@@ -1,3 +1,4 @@
+// W3Schools
 let nextBtn = document.querySelector('.next')
 let prevBtn = document.querySelector('.prev')
 
@@ -8,13 +9,10 @@ let thumbnailItems = thumbnail.querySelectorAll('.item')
 
 thumbnail.appendChild(thumbnailItems[0])
 
-// Function for next button 
 nextBtn.onclick = function() {
     moveSlider('next')
 }
 
-
-// Function for prev button 
 prevBtn.onclick = function() {
     moveSlider('prev')
 }
@@ -34,12 +32,11 @@ function moveSlider(direction) {
         slider.classList.add('prev')
     }
 
-
     slider.addEventListener('animationend', function() {
         if(direction === 'next'){
             slider.classList.remove('next')
         } else {
             slider.classList.remove('prev')
         }
-    }, {once: true}) // Remove the event listener after it's triggered once
+    }, {once: true}) 
 }

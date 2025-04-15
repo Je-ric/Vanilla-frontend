@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filter Generator</title>
+  <link rel="stylesheet" href="Filter.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    });
+</script>
+</head>
+<body>
+  <div id="header-container"></div>
+  <div class="container">
+
+    <div class="box">
+      <div class="preview" id="preview">
+        <img id="previewImage" src="default_image.png" alt="">
+      </div>
+      
+    </div>
+
+    <div class="controls">
+
+      <div class="group-1">
+      <label for="blurRadius">Blur Radius:</label>
+      <input type="range" id="blurRadius" class="slider" min="0" max="10" value="0">
+      <span class="slider-value" id="blurRadiusValue">0px</span><br><br>
+      
+      <label for="brightness">Brightness:</label>
+      <input type="range" id="brightness" class="slider" min="0" max="200" value="100">
+      <span class="slider-value" id="brightnessValue">100%</span><br><br>
+      
+      <label for="contrast">Contrast:</label>
+      <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
+      <span class="slider-value" id="contrastValue">100%</span><br><br>
+    
+      <label for="grayscale">Grayscale:</label>
+      <input type="range" id="grayscale" class="slider" min="0" max="100" value="0">
+      <span class="slider-value" id="grayscaleValue">0%</span><br><br>
+
+      <label for="hueRotate">Hue Rotate:</label>
+      <input type="range" id="hueRotate" class="slider" min="0" max="360" value="0">
+      <span class="slider-value" id="hueRotateValue">0deg</span><br><br>
+    </div>
+
+    <div class="group-2">
+      <label for="invert">Invert:</label>
+      <input type="range" id="invert" class="slider" min="0" max="100" value="0">
+      <span class="slider-value" id="invertValue">0%</span><br><br>
+
+      <label for="opacity">Opacity:</label>
+      <input type="range" id="opacity" class="slider" min="0" max="100" value="100">
+      <span class="slider-value" id="opacityValue">100%</span><br><br>
+      
+      <label for="saturate">Saturate:</label>
+      <input type="range" id="saturate" class="slider" min="0" max="200" value="100">
+      <span class="slider-value" id="saturateValue">100%</span><br><br>
+      
+      <label for="sepia">Sepia:</label>
+      <input type="range" id="sepia" class="slider" min="0" max="100" value="0">
+      <span class="slider-value" id="sepiaValue">0%</span><br><br>
+      <button>Reset</button>
+    </div>
+
+ 
+    <div class="group-3">
+   
+    <div class="button-container">
+      <textarea id="codeOutput" rows="11"></textarea>
+    </div>
+    <div>
+      <label for="imageInput">Change Image:</label>
+      <input type="file" id="imageInput">
+    </div>
+  </div>
+  </div>
+
+</div>
+
+  
+  <script src="Filter.js"></script>
+</body>
+</html>

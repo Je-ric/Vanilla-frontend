@@ -1,0 +1,230 @@
+* {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body{
+  overflow-x: hidden;
+  background-color: #e9e9e9;
+}
+
+
+.placement{
+  background-image: linear-gradient(90deg, #009d02 8%, #c0f900 90%);
+  padding: 8px;
+  height: 40px;
+  padding-left: 30px;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.placement h1{
+  padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dean-profile {
+  border: 1px solid #009d02;
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile-image {
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+
+.profile-image img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile-details {
+  padding: 20px;
+}
+
+.profile-details h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.profile-details p {
+  font-size: 16px;
+  color: #555;
+}
+
+.dean-profile:hover .profile-image img {
+  transform: scale(1.1);
+}
+
+.dean-profile:hover .overlay {
+  opacity: 0.7;
+  background-color: #4b4a4a; 
+}
+
+
+
+
+
+
+
+
+.executives {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.executive-card {
+  background-color: #f0f0f0;
+  flex: 0 0 calc(33.33% - 40px); 
+  border: 1px solid #009d02;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.executive-img img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.executive-info h3 {
+  margin-top: 15px;
+  font-size: 1.2em;
+}
+
+.executive-info p {
+  color: #888;
+  font-size: 0.9em;
+}
+
+.executive-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.executive-img img:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .executive-card {
+    flex: 0 0 calc(50% - 40px); 
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.faculty-container {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+}
+
+.faculty-card {
+  margin-bottom: 10px;
+  width: 250px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.faculty-card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #ddd;
+}
+
+.faculty-info {
+  padding: 10px;
+  text-align: center;
+}
+
+.faculty-card:hover {
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .faculty-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .faculty-card {
+    width: calc(100% - 20px);
+  }
+}

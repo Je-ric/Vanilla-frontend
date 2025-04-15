@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNeo - Neumorphic Technology Showcase</title>
+    <style>
+        :root {
+            --bg-color: #e0e5ec;
+            --text-color: #1a1a1a;
+            --highlight-color: #4a90e2;
+            --shadow-color: #a3b1c6;
+            --light-shadow: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .neo-box {
+            background-color: var(--bg-color);
+            border-radius: 20px;
+            box-shadow: 8px 8px 15px var(--shadow-color), -8px -8px 15px var(--light-shadow);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #4a90e2, #63b3ed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Section 1: Hero */
+        #hero {
+            background: linear-gradient(135deg, #e0e5ec, #f0f5fc);
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        /* Section 2: Features Grid */
+        #features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Section 3: Animated Showcase */
+        #showcase {
+            overflow: hidden;
+        }
+
+        .showcase-item {
+            width: 200px;
+            height: 200px;
+            margin: 1rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Section 4: Timeline */
+        #timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline-item {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: var(--highlight-color);
+            border-radius: 50%;
+        }
+
+        /* Section 5: Testimonials */
+        #testimonials {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .testimonial-card {
+            width: 300px;
+            padding: 2rem;
+            margin: 1rem;
+            text-align: center;
+        }
+
+        /* Section 6: Interactive Demo */
+        #demo {
+            position: relative;
+        }
+
+        .demo-box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        #demo:hover .demo-box {
+            transform: rotate(45deg);
+        }
+
+        /* Section 7: Team */
+        #team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        /* Section 8: Pricing */
+        #pricing {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 2rem;
+        }
+
+        .price-card {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* Section 9: Contact Form */
+        #contact form {
+            display: grid;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #contact input,
+        #contact textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            background-color: var(--bg-color);
+            box-shadow: inset 2px 2px 5px var(--shadow-color), inset -2px -2px 5px var(--light-shadow);
+            border-radius: 10px;
+        }
+
+        #contact button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background-color: var(--highlight-color);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #contact button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Section 10: Footer */
+        #footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #e0e5ec, #f0f5fc);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <section id="hero" class="section">
+        <div class="neo-box" style="padding: 3rem; text-align: center;">
+            <h1 class="gradient-text">TechNeo</h1>
+            <p>Embracing the future with neumorphic design and cutting-edge technology</p>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="feature-card neo-box">
+            <h3>Innovative Design</h3>
+            <p>Pushing boundaries with our unique approach</p>
+        </div>
+        <div class="feature-card neo-box">
+            <h3>Advanced AI</h3>
+            <p>Harnessing the power of artificial intelligence</p>
+        </div>
+        <div class="feature-card neo-box">
+            <h3>Secure Platform</h3>
+            <p>Your data's safety is our top priority</p>
+        </div>
+    </section>
+
+    <section id="showcase" class="section">
+        <div class="showcase-item neo-box"></div>
+        <div class="showcase-item neo-box" style="animation-delay: 1s;"></div>
+        <div class="showcase-item neo-box" style="animation-delay: 2s;"></div>
+    </section>
+
+    <section id="timeline" class="section">
+        <div class="timeline-item neo-box">
+            <h3>2020: Foundation</h3>
+            <p>TechNeo was established with a vision for the future</p>
+        </div>
+        <div class="timeline-item neo-box">
+            <h3>2021: Breakthrough</h3>
+            <p>Launched our first AI-powered product</p>
+        </div>
+        <div class="timeline-item neo-box">
+            <h3>2022: Expansion</h3>
+            <p>Opened offices in 5 new countries</p>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section">
+        <div class="testimonial-card neo-box">
+            <p>"TechNeo has revolutionized our workflow!"</p>
+            <h4>- John Doe, CEO</h4>
+        </div>
+        <div class="testimonial-card neo-box">
+            <p>"The most innovative tech company I've worked with."</p>
+            <h4>- Jane Smith, CTO</h4>
+        </div>
+    </section>
+
+    <section id="demo" class="section">
+        <div class="demo-box neo-box" style="top: 20%; left: 20%;"></div>
+        <div class="demo-box neo-box" style="top: 20%; right: 20%;"></div>
+        <div class="demo-box neo-box" style="bottom: 20%; left: 20%;"></div>
+        <div class="demo-box neo-box" style="bottom: 20%; right: 20%;"></div>
+    </section>
+
+    <section id="team" class="section">
+        <div class="team-member neo-box">
+            <img src="https://via.placeholder.com/150" alt="Team Member 1">
+            <h3>Alice Johnson</h3>
+            <p>Lead Developer</p>
+        </div>
+        <div class="team-member neo-box">
+            <img src="https://via.placeholder.com/150" alt="Team Member 2">
+            <h3>Bob Williams</h3>
+            <p>UX Designer</p>
+        </div>
+        <div class="team-member neo-box">
+            <img src="https://via.placeholder.com/150" alt="Team Member 3">
+            <h3>Carol Davis</h3>
+            <p>AI Specialist</p>
+        </div>
+    </section>
+
+    <section id="pricing" class="section">
+        <div class="price-card neo-box">
+            <h3>Basic</h3>
+            <p class="price">$29</p>
+            <ul>
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+            </ul>
+            <button>Choose Plan</button>
+        </div>
+        <div class="price-card neo-box">
+            <h3>Pro</h3>
+            <p class="price">$99</p>
+            <ul>
+                <li>All Basic Features</li>
+                <li>Feature 4</li>
+                <li>Feature 5</li>
+            </ul>
+            <button>Choose Plan</button>
+        </div>
+        <div class="price-card neo-box">
+            <h3>Enterprise</h3>
+            <p class="price">Custom</p>
+            <ul>
+                <li>All Pro Features</li>
+                <li>Custom Solutions</li>
+                <li>24/7 Support</li>
+            </ul>
+            <button>Contact Us</button>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <form class="neo-box">
+            <h2>Get in Touch</h2>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer id="footer" class="section">
+        <p>&copy; 2023 TechNeo. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+            <a href="#" aria-label="Instagram">📷</a>
+        </div>
+    </footer>
+</body>
+</html>

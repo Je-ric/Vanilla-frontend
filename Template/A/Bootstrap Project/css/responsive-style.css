@@ -1,0 +1,51 @@
+@media (max-width:1170px) {
+    .section-subtitle {
+        max-width: 60%;
+    }
+}
+
+@media (max-width:991px) {
+    .about .banner_section,
+    .product .banner_section,
+    .gallery .banner_section,
+    .contact .banner-section{
+        padding-top: 12.5rem;
+        padding-bottom: 3rem;
+    }
+    .header .navbar {
+        background-size: cover;
+        padding: 2rem;
+    }
+
+    .header .navbar-nav {
+        margin-top: 2rem;
+    }
+    .header .navbar-nav .nav-link{
+        padding: 0.2rem 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .header .header_right span {
+        padding: 0.2rem 0.5rem;
+    }
+}
+
+@media (max-width:767px) {
+    body, html {
+        font-size: 8px;
+    }
+    .section-subtitle{
+        max-width: 80%;
+    }
+    .banner-section {
+        min-height: 70vh;
+    }
+    .banner-section .carousel-item{
+        height: 70vh;
+    }
+}
+
+@media (max-width:590px) {
+    body, html {
+        font-size: 7px;
+    }
+}

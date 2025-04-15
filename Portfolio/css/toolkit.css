@@ -1,0 +1,429 @@
+:root {
+    --default-box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+}
+
+.toolkit-container{
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    padding-top: 20px;
+    text-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+}
+
+
+  
+
+.toolkit-top {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: flex-start; */
+    /* gap: 10px; */
+    /* padding: 20px; */
+}
+
+.toolkit-left {
+    flex: 1;
+    border-right: 2px solid #ddd;
+    padding-right: 20px;
+}
+
+.toolkit-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.toolkit-bottom{
+    border-top: 2px solid #ddd;
+    display: flex;
+    flex-direction: row;
+}
+
+.toolkit-bottom-left{
+    flex: 2;
+    border-right: 2px solid #ddd;
+}
+
+.toolkit-bottom-right{
+    flex: 1;
+}
+
+.toolkit-title {
+    padding-left: 20px; 
+    font-size: 3.7rem; 
+    text-align: start;
+    letter-spacing: 20px; 
+    color: #e8e8e8;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.version h2,
+.productivity h2,
+.design h2,
+.inspirations h2,
+.learning h2{
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+}
+
+.design h2,
+.learning h2{
+    padding-top: 10px;
+}
+.toolkit-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top: 2px solid #ddd;
+}
+  
+  .development {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dt-tag {
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: var(--default-box-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .dt-tag:hover {
+    transform: translateY(-5px);
+  }
+  
+  .dt-tag img {
+    width: 40px;
+    height: auto;
+  }
+
+/* Learning Section  */
+.learning{
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 20px 20px;
+}
+
+.lr-tag-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    box-shadow: var(--default-box-shadow);
+    padding: 10px;
+    /* background: linear-gradient(120deg, #03001e, #7303c0, #ec38bc ,#fdeff9);  */
+}
+
+.lr-tag{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
+    background-color: #e8e8e8;
+    padding: 10px;
+    box-shadow: inset 3px 3px 6px #a3b1c6, inset -3px -3px 6px #ffffff;
+    transition: background 0.3 ease, transform 0.3s ease-;
+}
+
+.lr-tag img {
+    width: 40px;
+    height: auto ;
+}
+
+
+/* Version Control Section  */
+.version {
+    padding: 0 20px 20px 20px;
+}
+
+.v-tag-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.v-tag {
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--default-box-shadow);
+    position: relative;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    overflow: hidden; 
+}
+
+.v-tag:hover {
+    transform: translateY(-5px);
+}
+
+.v-tag:nth-child(1) {background: linear-gradient(135deg, #333333, #6e6e6e);}
+.v-tag:nth-child(2) {background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335);}
+.v-tag:nth-child(3) {background: linear-gradient(135deg, #007BFF, #72C6FF);}
+
+.v-tag::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 10px;
+    background-color: #e8e8e8;
+    box-shadow: inset 3px 3px 6px #a3b1c6, inset -3px -3px 6px #ffffff;
+    z-index: 0; 
+}
+
+.v-tag img,
+.v-tag h3,
+.v-tag p {
+    position: relative;
+    z-index: 1;
+}
+
+.v-tag img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.v-tag h3 {
+    margin-bottom: 5px;
+}
+
+.v-tag p {
+    font-size: 0.9rem;
+    color: #454545;
+}
+
+/* Productivity Section */
+.productivity{
+    padding-bottom: 20px;
+}
+
+.p-tag-group {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.p-tag {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 15px;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: var(--default-box-shadow);
+}
+
+.p-tag:hover {
+    transform: translateY(-8px);
+}
+
+.p-tag img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.p-tag span {
+    display: flex;
+    flex-direction: column;
+}
+
+.p-tag h3 {
+    font-weight: 700;
+}
+
+.p-tag p {
+    font-size: 0.9rem;
+    color: #454545;
+}
+
+.p-tag-group .p-tag .p-img-wrapper{
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+}
+
+/* Design & Creativity Section */
+
+.design {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 20px 20px;
+}
+
+.d-tag-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.d-tag {
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    transition: transform 0.3s ease;
+    box-shadow: var(--default-box-shadow);
+    /* color: white; */
+}
+
+/* .d-tag:nth-child(1) {background: linear-gradient(135deg, #00C4CC, #D4C0C0);}
+.d-tag:nth-child(2) {background: linear-gradient(135deg, #F24E1E, #A259FF);}
+.d-tag:nth-child(3) {background: linear-gradient(135deg, #0061F2, #FFD400);}  */
+
+.d-tag:hover {
+    transform: translateY(-8px);
+}
+
+.d-tag img {
+    height: 50px;
+    width: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.d-tag p {
+    font-size: 0.9rem;
+    color: #454545;
+}
+
+.d-tag-group .d-tag .d-img-wrapper{
+    padding: 10px;
+    background-color: #e8e8e8;
+    box-shadow: inset 3px 3px 5px #bebebe, inset -3px -3px 5px #ffffff;
+}
+
+
+
+/* Inspirations Section  */
+.inspirations {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 20px 20px 20px; 
+    border-top: 2px solid #ddd;
+    padding-top: 10px;
+}
+
+.i-tag-group {
+    display: flex;
+    gap: 15px; 
+    flex-direction: row;
+}
+
+.i-tag-outer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 50px;
+    padding: 8px; 
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.i-tag-outer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    /* background-color: #d0d0d0; */
+    border-radius: 50px 0 0 50px;
+}
+
+.i-tag {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 50px;
+    box-shadow: var(--default-box-shadow); 
+    padding: 5px 8px;
+    position: relative;
+    flex: 1;
+    z-index: 1;
+
+}
+
+.i-tag-outer:hover{
+    transform: translateY(-8px);
+}
+
+.i-tag span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px; 
+    font-weight: bold;
+    margin-right: 15px; 
+    box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff; 
+}
+
+.i-tag img {
+    height: 40px; 
+    width: auto; 
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.i-tag.awwwwards {
+    background: linear-gradient(45deg, #000000, #333333); 
+} 
+
+.i-tag.pinterest span{
+    background: linear-gradient(45deg, #BD081C, #E60023);
+    color: white;
+}
+
+.i-tag.dribbble span {
+    background: linear-gradient(45deg, #EA4C89, #E82C61);
+    color: white;
+}
+
+.i-tag.wix span {
+    background: linear-gradient(45deg, #FFCD00, #FDB813);
+    color: black;
+}
+
+.i-tag.awwwards span {
+    background: linear-gradient(45deg, #000000, #333333);
+    color: white;
+}
+
+
+/* For Pinterest */
+.i-tag-outer.pinterest::before {
+    background-color: #BD081C; /* Pinterest red */
+}
+
+/* For Dribbble */
+.i-tag-outer.dribbble::before {
+    background-color: #F13C60; /* Dribbble pink */
+}
+
+/* For Awwwards */
+.i-tag-outer.awwwards::before {
+    background-color: #424242; /* Awwwards dark grey */
+}
+
+/* For Wix */
+.i-tag-outer.wix::before {
+    background-color: #1E88E5; /* Wix blue */
+}

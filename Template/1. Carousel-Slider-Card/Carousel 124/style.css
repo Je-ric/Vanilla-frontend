@@ -1,0 +1,97 @@
+body{
+	height: 600px;
+	margin: 0;
+	background: rgb(215, 214, 214);
+	display: grid;
+	grid-template-rows: 500px 100px;
+	align-items: center;
+	justify-items: center;
+}
+main#carousel{
+	grid-row: 1 / 2;
+	grid-column: 1 / 8;
+	width: 100vw;
+	height: 500px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	transform-style: preserve-3d;
+	perspective: 600px;
+	--items: 5;
+	--middle: 3;
+	--position: 1;
+	pointer-events: none;
+}
+div.item{
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	background-color: coral;
+	--r: calc(var(--position) - var(--offset));
+	--abs: max(calc(var(--r) * -1), var(--r));
+	transition: all 0.25s linear;
+	transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-300px * var(--r)));
+	z-index: calc((var(--position) - var(--abs)));
+}
+div.item:nth-of-type(1){
+	--offset: 1;
+	background-size: 100% 100%;
+	background-image: url(https://s0.rbk.ru/v6_top_pics/media/img/7/03/755675357617037.jpg);
+}
+div.item:nth-of-type(2){
+	--offset: 2;
+	background-size: 100% 100%;
+	background-image: url(http://lamcdn.net/furfurmag.ru/post_image-image/H89-pCPQ9jQ-0g9kLPk9oQ.jpg);
+}
+div.item:nth-of-type(3){
+	--offset: 3;
+	background-size: 100% 100%;
+	background-image: url(https://tengrinews.kz/userdata/c565df1fe5d576dafccfabf9a42d395b.jpg);
+}
+div.item:nth-of-type(4){
+	--offset: 4;
+	background-size: 100% 100%;
+	background-image: url(https://upload.wikimedia.org/wikipedia/ru/thumb/7/79/Logo_Fifa_World_Cup_2010_South_Africa.svg/800px-Logo_Fifa_World_Cup_2010_South_Africa.svg.png);
+}
+div.item:nth-of-type(5){
+	--offset: 5;
+	background-size: 100% 100%;
+	background-image: url(https://icdn.lenta.ru/images/0000/0190/000001902187/pic_1358709381.jpg);
+}
+input:nth-of-type(1){
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
+}
+input:nth-of-type(1):checked~main#carousel{
+	--position: 1;
+}
+input:nth-of-type(2){
+	grid-column: 3 / 4;
+	grid-row: 2 / 3;
+}
+input:nth-of-type(2):checked~main#carousel{
+	--position: 2;
+}
+input:nth-of-type(3) {
+	grid-column: 4 /5;
+	grid-row: 2 / 3;
+}
+input:nth-of-type(3):checked~main#carousel{
+	--position: 3;
+}
+input:nth-of-type(4){
+	grid-column: 5 / 6;
+	grid-row: 2 / 3;
+}
+input:nth-of-type(4):checked~main#carousel{
+	--position: 4;
+}
+input:nth-of-type(5){
+	grid-column: 6 / 7;
+	grid-row: 2 / 3;
+}
+
+input:nth-of-type(5):checked~main#carousel {
+	--position: 5;
+}

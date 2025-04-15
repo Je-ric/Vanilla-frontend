@@ -1,0 +1,210 @@
+.timeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .timeline {
+    grid-template-columns: 4fr 1fr;
+  }
+}
+
+
+/* ---------------------------------------------------------------------------- */
+.timeline-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .timeline-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------------------------------------------------------------------------- */
+
+.timeline-item {
+  text-align: center;
+  height: 380px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+.circle-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: #e0e5ec;
+  transition: .2s ease-in-out;
+  box-shadow: 9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff;
+}
+
+.circle:hover {
+  box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
+              -2px -2px 4px rgba(255, 255, 255, 0.4),
+              2px 2px 2px rgba(255, 255, 255, 0.05),
+              2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.circle::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  /* background: linear-gradient(135deg, #f12711, #f5af19); */
+  /* box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff; */
+}
+
+.circle.c1::before {background: linear-gradient(135deg, #fc00ff, #00dbde);}
+.circle.c2::before {background: linear-gradient(135deg, #f12711, #f5af19);}
+.circle.c3::before {background: linear-gradient(135deg, #f4c4f3, #fc67fa);}
+.circle.c4::before {background: linear-gradient(135deg, #DCE35B, #45B649);}
+
+.inner-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #e0e5ec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+border: 1px solid white;
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.circle span {
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  color: #2c3e50;
+  text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+}
+
+.circle-text {
+  text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.date {
+  border-bottom: 2px solid rgb(62, 62, 62);
+  border-top: 2px solid rgb(62, 62, 62);
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.description,
+.text-center ul li{
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.description {
+  text-align: center;
+  border-radius: 20px;
+  padding: 2px;
+  margin-bottom: 5px;
+  margin-top: auto;
+  box-shadow: 2px 2px 2px rgb(207, 206, 206) inset, -2px -2px 2px white inset;
+}
+
+.text-center ul li{
+  list-style-position: inside;
+}
+
+
+.additional-text p {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.image-container {
+  /* position: relative; */
+  width: auto;
+  height: 380px;
+  overflow: hidden;
+  padding: 15px;
+  /* background-color: #dcdcdc; */
+  border-radius: 200px 200px 10px 10px;
+  box-shadow:  5px 5px 10px #bebebe,
+             -5px -5px 10px #ffffff;
+}
+
+.image-container img {
+  border-radius: 200px 200px 10px 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timeline-bottom{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.timeline-img {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  gap: 20px;
+}
+
+.timeline-img img {
+  width: 80px; 
+  height: 80px; 
+  border-radius: 50%; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.timeline-img img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4); 
+}
+
+
+
+.timeline-title { 
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #e8e8e8;
+  letter-spacing: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="Header-Footer.css">
+    <link rel="stylesheet" href="Department.css">
+ 
+    <title>Landing Page</title>
+    <style>
+      @font-face {
+        font-family: 'oswald';
+        src: url(Font/Oswald-VariableFont_wght.ttf);
+      }
+    </style>
+  </head>
+  <body>
+
+    <header id="nav-menu" aria-label="navigation bar">
+      <div class="container-head">
+        <a class="logo" href="Landing-Page.html">
+          <img src="Images/CLSU_Logo.png"width="35"height="35"alt="Inc Logo"/>
+          <div class="logo-text">
+          <h4 class="cbaa">College of Business Administration and Accountancy </h4>
+          <h6>Central Luzon State University</h6>
+        </div>
+        </a>
+        <div class="nav-start">
+          <nav class="menu">
+            <ul class="menu-bar">
+              <li><a class="nav-link" href="Landing-Page.html">Home</a></li>
+              <li>
+                <button class="nav-link dropdown-btn" data-dropdown="dropdown1"
+                  aria-haspopup="true" aria-expanded="false"aria-label="browse"> Academic<i class="bx bx-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div id="dropdown1" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Department.html">
+                        <div>
+                          <span class="dropdown-link-title"
+                            >&#8226; Department</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+
+                  <ul role="menu">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Degree</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="1. Bachelor.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Bachelors Degree
+                      </a>
+                      <a class="dropdown-link" href="3. Masters.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Masters Degree
+                      </a>
+                    </li>
+                  </ul>
+                  <ul role="menu" style="border-top: 1px solid blue;">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Faculty</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Faculty-BA.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Business Administration
+                      </a>
+                      <a class="dropdown-link" href="Faculty-A.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Accountancy
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <button 
+                  class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                  aria-expanded="false" aria-label="discover" >Updates & Notices<i class="bx bx-chevron-down" 
+                  aria-hidden="true"></i>
+                </button>
+                <div id="dropdown2" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem"><a class="dropdown-link" href="Awards.html">&#8226; Awards</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="Organization.html">&#8226; Organizations</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="MVP.html">&#8226; CLSU Mandate</a></li>                    
+                    <li role="menuitem"><a class="dropdown-link" href="News.html">&#8226; News & Announcements</a></li>
+                  </ul>
+              <li><a class="nav-link" href="Contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+          <button
+            id="hamburger"
+            aria-label="hamburger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="bx bx-menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="harap">
+      <h1>Department</h1>
+    </div>
+
+    
+    <button onclick="goToTop()" class="scroll-top-btn" id="scroll-top-btn">Top</button>
+  
+<div class="all">
+  <main class="departments">
+    <div class="department">
+      <h2>Business Administration</h2>
+      <ul>
+        <li class="goal"><strong>Goal</strong><br> <br>
+          To produce business leaders equipped with versatile skills and ethical practices for global markets.
+          <li class="vision"><strong><br>Vision</strong><br> <br>
+            Empower students with comprehensive knowledge in various business disciplines, fostering critical thinking, innovation, and effective decision-making through experiential learning and industry engagement.
+          <li class="mission"><strong><br>Mission</strong><br> <br>
+            To be a renowned institution shaping future business administrators who drive sustainable organizational growth, embrace diversity, and pioneer transformative business practices.
+            <li class="objectives"><strong><br>Objectives</strong><br> <br>
+              1. Provide a curriculum encompassing diverse areas like marketing, finance, operations, and human resources.
+             <br> 2. Cultivate leadership qualities and entrepreneurship skills among students through practical experiences and mentorship programs.
+             <br> 3. Foster a collaborative learning environment that encourages creativity, critical analysis, and adaptability to dynamic business landscapes.
+            <br>4. Establish partnerships with industry leaders to facilitate internships, workshops, and real-world projects that bridge theory and practice.
+            <br>  5. Instill a strong sense of ethical values and social responsibility in future business leaders.
+      
+            </li>
+      </ul>   
+      <a href="Faculty-BA.html" class="bttn">Learn More</a>  
+    </div>
+
+    <p class="line"></p>
+
+    <div class="department">
+      <h2>Accountancy</h2>
+      <ul>
+        <li class="goal"><strong>Goal</strong><br> <br>
+          To produce competent and ethical accountants capable of navigating complex financial landscapes with integrity.
+          <li class="vision"><strong><br>Vision</strong><br> <br>
+            Provide a comprehensive education in accounting principles, practices, and regulations while nurturing ethical values, analytical skills, and professional integrity to excel in the field of accountancy.
+            <li class="mission"><strong><br>Mission</strong><br> <br>
+              To be a distinguished institution recognized for producing globally competitive accountants who uphold transparency, accuracy, and ethical standards in financial reporting and decision-making.
+              <li class="objectives"><strong><br>Objectives</strong><br> <br>
+               1. Offer a rigorous and up-to-date curriculum covering various accounting domains including auditing, taxation, financial reporting, and forensic accounting.
+              <br> 2. Prepare students to pass professional accounting examinations and obtain relevant certifications (e.g., CPA, CMA) by providing comprehensive exam preparation and support.
+               <br>3. Provide experiential learning opportunities through internships, case studies, and simulated scenarios to bridge theoretical knowledge with practical application.
+              <br> 4. Foster a culture of integrity, ethics, and accountability in handling financial information and decision-making.
+              <br> 5. Engage with professional accounting bodies, industry experts, and alumni networks to offer insights, mentorship, and networking opportunities for students pursuing a career in accountancy.
+              </li>
+      </ul> 
+      <a href="Faculty-A.html" class="bttn">Learn More</a>
+    </div>
+  </main>
+</div>
+  
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Contact Us</h3>
+        <p>Central Luzon State University<br>
+           Science City of Munoz<br>
+           Nueva Ecija, Philippines<br>
+           Phone: +123456789<br>
+           Email: cbaa@clsu2.edu.ph</p>
+        
+      </div>
+    </div>
+    <div class="lowest">
+      <img src="Images/CBAA-LOGO.png" alt="CLSU_LOGO">
+      <img src="Images/CLSU_Logo.png" alt="CLSU_LOGO">
+      <p class="ars">&copy; 2023 Central Luzon State University. All rights reserved.</p>
+    </div>
+
+    <div class="newsletter-signup">
+      <h3>Newsletter Signup:</h3>
+      <form action="#" method="post" class="signup-form">
+        <input type="email" name="email" placeholder="Your Email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</footer>
+
+<div class="footer-socmed">
+  <ul>
+      <li class="icon-link"><a href="https://www.facebook.com/clsuofficialpage/" class="icon"><img src="Images/1. FB.png" alt="Facebook Icon" width="30" height="30"></a></li>
+      <li class="icon-link"><a href="https://twitter.com/clsu_official?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="icon"><img src="Images/3. Twitter.png" alt="Twitter Icon" width="30" height="30"></a></li>
+      <li class="icon-link"><a href="https://www.instagram.com/clsu.official/?hl=en" class="icon"><img src="Images/2. IG.png" alt="Instagram Icon" width="30" height="30"></a></li>
+      <li class="icon-link"><a href="https://www.youtube.com/@clsutube" class="icon"><img src="Images/4. Youtube.png" alt="Youtube Icon" width="30" height="30"></a></li>
+  </ul>
+</div>
+
+
+<script src="Dropdown.js"></script>
+<script src="scroll.js"></script>
+</body>
+</html>

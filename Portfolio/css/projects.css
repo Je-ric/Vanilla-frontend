@@ -1,0 +1,157 @@
+.projects-container {
+  display: flex;
+  max-width: 1200px;
+  width: 1000px;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.project-list {
+  width: 300px;
+  height: 100%;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.project-item {
+  width: 250px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  /* transition: all 0.3s ease; */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  box-shadow: 
+      5px 5px 10px #bebebe,
+      -5px -5px 10px #ffffff;
+}
+
+.project-item:hover {
+  color: #2d3748;
+  transform: translateY(-5px);
+  box-shadow: 
+      8px 8px 15px #bebebe,
+      -8px -8px 15px #ffffff;
+}
+
+.project-item.active {
+  box-shadow: 
+      3px 3px 6px #a3b1c6,
+      -3px -3px 6px #ffffff;
+  background: linear-gradient(to right,#6a11cb, #2575fc);
+}
+
+.project-item.active h3 {
+  color: white; 
+}
+
+.project-item h3 {
+  color: #2d3748;
+  font-size: 1.0em;
+  margin-bottom: 5px;
+  transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
+
+.project-details {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease;
+}
+
+.project-details.active {
+  opacity: 1;
+  transform: translateX(0);
+} 
+
+/* .project-details.hidden {
+  display: block;
+} 
+.project-item:not(.active) + .project-details {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.project-item.active + .project-details {
+  display: none;
+  opacity: 0;
+  transform: translateX(20px); 
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}*/
+
+.tabProjectContent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+.tabProjectContent h2,
+.project-details h2 {
+  color: #2d3748;
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.tabProjectContent p,
+.project-details p {
+  color: #4a5568;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.tabProjectContent .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  color: #2d3748;
+  box-shadow: 
+      3px 3px 6px #bebebe,
+      -3px -3px 6px #ffffff;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+      5px 5px 10px #bebebe,
+      -5px -5px 10px #ffffff;
+}
+
+.project-image {
+  width: 100%;
+  max-width: 400px; 
+  height: auto; 
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      height: auto;
+  }
+
+  .project-list {
+      width: 100%;
+      max-height: 300px;
+  }
+
+  .project-details {
+      padding: 20px;
+  }
+}

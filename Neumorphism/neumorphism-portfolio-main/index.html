@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FontAwesome cdn link -->
+    <script src="https://kit.fontawesome.com/676eaf438a.js" crossorigin="anonymous"></script>
+    <!-- JQuery Cdn link -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <!-- Css link -->
+    <link rel="stylesheet" href="style.css">
+    <title>Neumorphism Portfolio</title>
+</head>
+
+<body>
+
+    <!-- Main Section -->
+    <div class="main_section">
+        <!-- Navbar Section -->
+        <nav class="navbar_section">
+            <a href="/" class="logo_section">Portfolio</a>
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#service">Service</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div id="toggleIcon">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </div>
+        </nav>
+        <!-- Hero Section -->
+        <div class="hero_section">
+            <div class="img_box">
+                <img src="./img/img.jpg" alt="User Image" class="user_img">
+            </div>
+            <div class="user_info">
+                <h1 class="fullname">Abraham Lincoln</h1>
+                <h6 class="professional">I'm Full-Stack Developer.</h6>
+            </div>
+            <div class="social_account">
+                <a href="#">
+                    <div class="social_box"><i class="fa-brands fa-github"></i></div>
+                </a>
+                <a href="#">
+                    <div class="social_box"><i class="fa-brands fa-instagram"></i></div>
+                </a>
+                <a href="#">
+                    <div class="social_box"><i class="fa-brands fa-youtube"></i></div>
+                </a>
+                <a href="#">
+                    <div class="social_box"><i class="fa-brands fa-linkedin-in"></i></div>
+                </a>
+                <a href="#">
+                    <div class="social_box"><i class="fa-brands fa-facebook-f"></i></div>
+                </a>
+                <a href="#">
+                    <div class="social_box"><i class="fa-brands fa-twitter"></i></div>
+                </a>
+            </div>
+            <a href="#about" class="scroll_section">
+                <i class="fa-solid fa-angles-down"></i>
+            </a>
+        </div>
+        <!-- About Section -->
+        <div class="about_section main_padding" id="about">
+            <div class="left_section">
+                <img src="./img/img.jpg" alt="About Image" class="about_img">
+            </div>
+            <div class="right_section">
+                <div class="tag">About Me</div>
+                <p class="desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit placeat, commodi dicta dolorem odio
+                    corporis. Odit qui voluptate magni architecto tempore, quos consequuntur culpa vitae sequi,
+                    excepturi voluptatibus eaque quisquam! Quam temporibus esse illum vero? Lorem ipsum dolor sit amet
+                    consectetur adipisicing elit. Saepe, error! <br> <br>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, consectetur accusamus dolorem
+                    dolores asperiores earum harum ut! Repellat, dolores ad?
+                </p>
+                <div class="my_info">
+                    <div class="line"></div>
+                    <div class="info_data">
+                        <div class="info_box"><i class="fa-solid fa-calendar"></i>Since 2018</div>
+                        <div class="info_box"><i class="fa-solid fa-calendar"></i>Present</div>
+                    </div>
+                </div>
+                <button class="primary_btn">Download Cv</button>
+            </div>
+        </div>
+        <!-- Skill Section -->
+        <div class="skill_section main_padding">
+            <div class="tag">My Experties</div>
+            <div class="skill_box">
+                <div class="skill_card">
+                    <h6 class="badge">Technological Skills</h6>
+                    <div class="progress_section">
+                        <div class="progress_data">
+                            <h6 class="progress_title">React Js</h6>
+                            <h6 class="progress_count">75%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress_section">
+                        <div class="progress_data">
+                            <h6 class="progress_title">Node Js</h6>
+                            <h6 class="progress_count">65%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress_section">
+                        <div class="progress_data">
+                            <h6 class="progress_title">Django</h6>
+                            <h6 class="progress_count">85%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress_section">
+                        <div class="progress_data">
+                            <h6 class="progress_title">Next Js</h6>
+                            <h6 class="progress_count">60%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill_card">
+                    <h6 class="badge">Professional Skills</h6>
+                    <div class="progress_section">
+                        <div class="progress_data">
+                            <h6 class="progress_title">Communication</h6>
+                            <h6 class="progress_count">85%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress_section">
+                        <div class="progress_data">
+                            <h6 class="progress_title">Problem Solving</h6>
+                            <h6 class="progress_count">95%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress_section">
+                        <div class="progress_data">
+                            <h6 class="progress_title">Teamwork</h6>
+                            <h6 class="progress_count">99%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width: 99%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress_section">
+                        <div class="progress_data">
+                            <h6 class="progress_title">Creativity</h6>
+                            <h6 class="progress_count">90%</h6>
+                        </div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Services Section -->
+        <div class="service_section main_padding" id="service">
+            <div class="tag">My Services</div>
+            <div class="service_box">
+                <div class="service_card">
+                    <div class="service_icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h4 class="service_title">Web Development</h4>
+                    <p class="desc">
+                        Lorem ipsum dolor sit amet consectetur adipi sicing elit. Quibusdam veritatis, asperiores mag
+                        nameveniet possimus amet repellat quidem non odit reiciendis!
+                    </p>
+                    <a href="#" class="tertiary_btn">
+                        Read more <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+                <div class="service_card">
+                    <div class="service_icon">
+                        <i class="fa-solid fa-mobile"></i>
+                    </div>
+                    <h4 class="service_title">Mobile Development</h4>
+                    <p class="desc">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam veritatis, asperiores magnam
+                        eveniet possimus amet repellat quidem non odit reiciendis!
+                    </p>
+                    <a href="#" class="tertiary_btn">
+                        Read more <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+                <div class="service_card">
+                    <div class="service_icon">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h4 class="service_title">Ux/Ui Design</h4>
+                    <p class="desc">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam veritatis, asperiores magnam
+                        eveniet possimus amet repellat quidem non odit reiciendis!
+                    </p>
+                    <a href="#" class="tertiary_btn">
+                        Read more <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Section -->
+        <div class="portfolio_section main_padding" id="portfolio">
+            <div class="tag">My Portfolios</div>
+            <div class="portfolio_box">
+                <div class="portfolio_card">
+                    <img src="./img/img.jpg" alt="Portfolio Image" class="portfolio_img">
+                    <div class="portfolio_data">
+                        <a href="#" class="portfolio_title">E-Commerce Website</a>
+                        <div class="portfolio_detail">
+                            <p class="portfolio_type">Web Development</p>
+                            <div class="buttons">
+                                <a href="#reviewcode" class="portfolio_btn"><i class="fa-brands fa-github"></i></a>
+                                <a href="#viewcasestudy" class="portfolio_btn"><i class="fa-solid fa-eye"></i></a>
+                                <a href="#livepreview" class="portfolio_btn">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio_card">
+                    <img src="./img/bg.jpg" alt="Portfolio Image" class="portfolio_img">
+                    <div class="portfolio_data">
+                        <a href="#" class="portfolio_title">E-Commerce Website</a>
+                        <div class="portfolio_detail">
+                            <p class="portfolio_type">Web Development</p>
+                            <div class="buttons">
+                                <a href="#reviewcode" class="portfolio_btn"><i class="fa-brands fa-github"></i></a>
+                                <a href="#viewcasestudy" class="portfolio_btn"><i class="fa-solid fa-eye"></i></a>
+                                <a href="#livepreview" class="portfolio_btn">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio_card">
+                    <img src="./img/img.jpg" alt="Portfolio Image" class="portfolio_img">
+                    <div class="portfolio_data">
+                        <a href="#" class="portfolio_title">E-Commerce Website</a>
+                        <div class="portfolio_detail">
+                            <p class="portfolio_type">Web Development</p>
+                            <div class="buttons">
+                                <a href="#reviewcode" class="portfolio_btn"><i class="fa-brands fa-github"></i></a>
+                                <a href="#viewcasestudy" class="portfolio_btn"><i class="fa-solid fa-eye"></i></a>
+                                <a href="#livepreview" class="portfolio_btn">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="load_btn">
+                <button class="secondary_btn">
+                    Load more <i class="fa-solid fa-rotate-right"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Blogs Section -->
+        <div class="blog_section main_padding" id="blog">
+            <div class="tag">Our Latest Blog</div>
+            <div class="blog_box">
+                <div class="blog_card">
+                    <img src="./img/img.jpg" alt="Blog Image" class="blog_img">
+                    <div class="blog_data">
+                        <div class="publish_data">
+                            <h6 class="user">Abraham Lincoln</h6>
+                            <h6 class="date">23 June, 2023</h6>
+                        </div>
+                        <a href="#" class="blog_title">How to build full stack web page?</a>
+                    </div>
+                </div>
+                <div class="blog_card">
+                    <img src="./img/img.jpg" alt="Blog Image" class="blog_img">
+                    <div class="blog_data">
+                        <div class="publish_data">
+                            <h6 class="user">Abraham Lincoln</h6>
+                            <h6 class="date">23 June, 2023</h6>
+                        </div>
+                        <a href="#" class="blog_title">How to build full stack web page?</a>
+                    </div>
+                </div>
+                <div class="blog_card">
+                    <img src="./img/img.jpg" alt="Blog Image" class="blog_img">
+                    <div class="blog_data">
+                        <div class="publish_data">
+                            <h6 class="user">Abraham Lincoln</h6>
+                            <h6 class="date">23 June, 2023</h6>
+                        </div>
+                        <a href="#" class="blog_title">How to build full stack web page?</a>
+                    </div>
+                </div>
+                <div class="blog_card">
+                    <img src="./img/img.jpg" alt="Blog Image" class="blog_img">
+                    <div class="blog_data">
+                        <div class="publish_data">
+                            <h6 class="user">Abraham Lincoln</h6>
+                            <h6 class="date">23 June, 2023</h6>
+                        </div>
+                        <a href="#" class="blog_title">How to build full stack web page?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact Section -->
+        <div class="contact_section main_padding" id="contact">
+            <div class="tag">Get In Touch</div>
+            <div class="contact_box">
+                <div class="contact_card">
+                    <!-- <div class="contact_data">
+                        <div class="data_card">
+                            <div class="icon_box">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <h6>agokarna444@gmail.com</h6>
+                        </div>
+                    </div> -->
+                    <div class="form_section">
+                        <!-- <h6>Feel free to Ask anything</h6> -->
+                        <form>
+                            <div class="input_card">
+                                <div class="input_box">
+                                    <label for="fullname" class="label_name">Fullname</label>
+                                    <input type="text" id="fullname" name="fullname" class="form" placeholder="Fullname...">
+                                </div>
+                                <div class="input_box">
+                                    <label for="email" class="label_name">Email Address</label>
+                                    <input type="email" id="email" name="email" class="form" placeholder="info@example.com">
+                                </div>
+                            </div>
+                            <div class="input_box">
+                                <label for="subject" class="label_name">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form" placeholder="e.g. web development">
+                            </div>
+                            <div class="input_box">
+                                <label for="message" class="label_name">Project Description</label>
+                                <textarea name="message" id="message" name="message"
+                                    placeholder="Type project requirements..."></textarea>
+                            </div>
+                            <button class="secondary_btn">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Section -->
+        <footer class="footer_section">
+            Copyright &copy; 2023. All right reserved! Designed & Developed by Goku.
+        </footer>
+    </div>
+
+
+    <!-- JavaScript link -->
+    <script src="main.js"></script>
+
+</body>
+
+</html>

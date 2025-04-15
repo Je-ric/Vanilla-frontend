@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #1a2235;
+            --secondary: #ffb51b;
+            --accent: #6366f1;
+            --light-bg: #e0e7ff;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            /* background-color: var(--light-bg); */
+            background: linear-gradient(150deg, #e3e5e6, #fae080);
+        }
+
+
+
+
+.pagination-btn {
+    min-width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.pagination-btn.active {
+    background-color: #ffb51b;
+    color: #1a2235;
+}
+
+
+
+
+
+.modal{
+    backdrop-filter: blur(4px);
+}
+
+
+
+
+
+/* volunteer */
+.status-pending { 
+    background-color: #fef3c7; 
+    color: #92400e; 
+    border: 1px solid #fde68a;
+}
+
+.status-approved { 
+    background-color: #dcfce7; 
+    color: #166534; 
+    border: 1px solid #bbf7d0;
+}
+
+.status-denied { 
+    background-color: #fee2e2; 
+    color: #b91c1c; 
+    border: 1px solid #fecaca;
+}
+
+/* content-request */
+.status-pending { background-color: #f3f4f6; color: #6b7280; }
+.status-in_progress { background-color: #ecfdf5; color: #065f46; }
+.status-done { background-color: #f5f3ff; color: #5b21b6; }
+
+/* content */
+.status-draft { background-color: #f3f4f6; color: #6b7280; }
+.status-published { background-color: #ecfdf5; color: #065f46; }
+.status-archived { background-color: #f5f3ff; color: #5b21b6; }
+
+/* programs */
+.status-incoming { 
+    background-color: #e0f2fe; 
+    color: #0369a1; 
+    border: 1px solid #bae6fd;
+}
+
+.status-ongoing { 
+    background-color: #fef3c7; 
+    color: #92400e; 
+    border: 1px solid #fde68a;
+}
+
+.status-done { 
+    background-color: #dcfce7; 
+    color: #166534; 
+    border: 1px solid #bbf7d0;
+}

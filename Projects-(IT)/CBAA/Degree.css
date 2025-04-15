@@ -1,0 +1,222 @@
+*{
+  font-family: 'oswald';
+  margin: 0;
+  padding: 0;
+}
+
+
+.cont-all{
+  background-image: url(Images/BG1.png);
+  background-attachment: fixed;
+  background-size: contain;
+}
+
+.title-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.main-title {
+  font-size: 3em;
+  color: #3498db;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-size: 1.5em;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.degree-timeline-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.degree-timeline {
+  margin-bottom: 2%;
+  max-width: 800px;
+  width: 100%;
+  border: 2px solid #333;
+  border-radius: 25px;
+}
+
+.degree-event {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.degree-event h3 {
+  text-align: center;
+  border-bottom: 2px solid #333;
+  padding: 10px;
+}
+
+.degree-event:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+}
+
+.degree-event-description {
+  position: relative;
+}
+
+.degree-event-description h3 {
+  margin-top: 0;
+  color: #3498db;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.degree-event:hover,
+.degree-event:hover h3,
+.degree-event-description:hover, 
+.degree-toggle-details {
+  border-color: blue; 
+}
+
+.degree-toggle-details {
+  cursor: pointer;
+  color: #3498db;
+  text-decoration: underline;
+  display: block;
+  margin-top: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.degree-toggle-details:hover {
+  color: #2980b9;
+}
+
+.degree-more-details {
+  display: none;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+
+.button-container {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.button-group {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  flex-direction: row;
+}
+
+.button {
+  display: block;
+  padding: 10px 20px;
+  margin: 5px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #333;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+
+.button:hover {
+  background-color: blue;
+}
+
+
+
+/* Adjustments for buttons */
+@media (max-width: 768px) {
+  .button {
+    display: flex;
+    margin: 5px auto;
+    border-radius: 0;
+  }
+
+  .button-group {
+    margin: 10px auto;
+    border-radius: 0;
+    flex-direction: row;
+  }
+
+  .degree-event {
+    padding: 15px;
+  }
+}
+
+/* Adjustments for timeline at various screen sizes */
+@media screen and (max-width: 768px) {
+  .degree-timeline-bg {
+    padding: 0 20px; /* Add some padding to the timeline container */
+  }
+
+  .degree-timeline {
+    width: 90%; /* Adjust the width */
+    max-width: none;
+    margin-bottom: 20px;
+  }
+
+  .degree-event {
+    padding: 15px;
+  }
+
+  .degree-event h3 {
+    font-size: 24px;
+  }
+
+  .degree-toggle-details {
+    font-size: 14px;
+  }
+
+  .degree-more-details {
+    font-size: 14px;
+  }
+}
+
+/* For 480px width */
+/* For 480px width */
+@media screen and (max-width: 480px) {
+  body,
+  .container
+  /* or any surrounding container */ {
+    margin: 0;
+    padding: 0;
+  }
+
+  .degree-timeline {
+    width: 90%; /* Adjust the width */
+    max-width: none;
+    margin-bottom: 20px;
+  }
+
+  .degree-event {
+    padding: 15px;
+  }
+
+  
+
+  .degree-event h3 {
+    font-size: 24px;
+  }
+
+  .degree-toggle-details {
+    font-size: 14px;
+  }
+
+  .degree-more-details {
+    font-size: 14px;
+  }
+}
+
+

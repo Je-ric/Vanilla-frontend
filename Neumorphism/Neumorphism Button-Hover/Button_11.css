@@ -1,0 +1,43 @@
+
+/* 11 */
+.btn-11 {
+    border: none;
+    transition: all 0.3s ease;
+  }
+  .dot {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 6.5px;
+      height: 100%;
+      border-radius: 100%;
+      transition: all 300ms ease;
+      display: none;
+  }
+  .dot:after {
+      content: '';
+      position: absolute;
+      left: calc(50% - .4em);
+      height: 8px;
+      width: 8px;
+      background: #e0e5ec;
+      border-radius: 3px;
+      box-shadow:
+     -7px -7px 20px 0px #fff,
+     -4px -4px 5px 0px #fff,
+     7px 7px 20px 0px #0004,
+     4px 4px 5px 0px #0004;
+  }
+  .btn-11:hover .dot,
+  .btn-11:focus .dot {
+      animation: rotation 2s infinite linear;
+      display: block;
+  }
+  @keyframes rotation {
+      0% {transform: translateX(0) rotate(0);}
+      30%{transform: translateX(60px) rotate(0);}
+      50% {transform: translateX(60px) rotate(180deg);}
+      80% {transform: translateX(0) rotate(180deg);}
+      100% {transform: translateX(0) rotate(360deg);}
+  }
+  

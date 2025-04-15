@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="Header-Footer.css">
+    <link rel="stylesheet" href="Organization.css">
+ 
+    <title>Landing Page</title>
+    <style>
+      @font-face {
+        font-family: 'oswald';
+        src: url(Font/Oswald-VariableFont_wght.ttf);
+      }
+    </style>
+  </head>
+  <body>
+
+    <header id="nav-menu" aria-label="navigation bar">
+      <div class="container-head">
+        <a class="logo" href="Landing-Page.html">
+          <img src="Images/CLSU_Logo.png"width="35"height="35"alt="Inc Logo"/>
+          <div class="logo-text">
+          <h4 class="cbaa">College of Business Administration and Accountancy </h4>
+          <h6>Central Luzon State University</h6>
+        </div>
+        </a>
+        <div class="nav-start">
+          <nav class="menu">
+            <ul class="menu-bar">
+              <li><a class="nav-link" href="Landing-Page.html">Home</a></li>
+              <li>
+                <button class="nav-link dropdown-btn" data-dropdown="dropdown1"
+                  aria-haspopup="true" aria-expanded="false"aria-label="browse"> Academic<i class="bx bx-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div id="dropdown1" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Department.html">
+                        <div>
+                          <span class="dropdown-link-title"
+                            >&#8226; Department</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+
+                  <ul role="menu">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Degree</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="1. Bachelor.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Bachelors Degree
+                      </a>
+                      <a class="dropdown-link" href="3. Masters.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Masters Degree
+                      </a>
+                    </li>
+                  </ul>
+                  <ul role="menu" style="border-top: 1px solid blue;">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Faculty</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Faculty-BA.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Business Administration
+                      </a>
+                      <a class="dropdown-link" href="Faculty-A.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Accountancy
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <button 
+                  class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                  aria-expanded="false" aria-label="discover" >Updates & Notices<i class="bx bx-chevron-down" 
+                  aria-hidden="true"></i>
+                </button>
+                <div id="dropdown2" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem"><a class="dropdown-link" href="Awards.html">&#8226; Awards</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="Organization.html">&#8226; Organizations</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="MVP.html">&#8226; CLSU Mandate</a></li>                    
+                    <li role="menuitem"><a class="dropdown-link" href="News.html">&#8226; News & Announcements</a></li>
+                  </ul>
+              <li><a class="nav-link" href="Contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+          <button
+            id="hamburger"
+            aria-label="hamburger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="bx bx-menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="harap">
+      <h1>Organizations</h1>
+    </div>
+
+    
+    <button onclick="goToTop()" class="scroll-top-btn" id="scroll-top-btn">Top</button>
+  
+<div class="all">
+  <div class="orgs-container">
+    
+    <div class="org">
+      <div class="org-info">
+          <img src="Org/Cbaa Government.png" alt="CAS">
+          <h2>CBAA - Corporate Student Government</h2>
+          <p>CBAA likely has its student government, which represents the interests of students within the college. They might organize events, advocate for student needs, and facilitate communication between students and faculty.</p>
+          <a href="https://www.facebook.com/CBAACorporateStudentGovernment">Learn More</a>
+      </div>
+    </div>
+
+    <div class="org">
+      <div class="org-info">
+          <img src="Org/Cbaa Link.png" alt="CAS">
+          <h2>CBAA Links - Student Media/Publication </h2>
+          <p>CBAA Links is likely a student-run publication associated with the College of Business Administration and Accountancy (CBAA). It may produce articles, newsletters, or magazines covering topics related to business, management, accounting, and economics.</p>
+          <a href="https://www.facebook.com/TheCBAALink">Learn More</a>
+      </div>
+    </div>
+
+    
+    <div class="org">
+      <div class="org-info">
+          <img src="Org/1 ESC.png" alt="CAS">
+          <h2>Business Economics Student Council</h2>
+          <p>Design a comprehensive plan for the CLSU Business Economics Student Council's annual event aimed at fostering industry connections and career development opportunities for students. Consider innovative approaches to engage local businesses and professionals while ensuring inclusivity and relevance to diverse student interests within the field.</p>
+          <a href=https://www.facebook.com/CLSUeconCouncil>Learn More</a>
+      </div>
+    </div>
+    
+    <div class="org">
+      <div class="org-info">
+          <img src="Org/2. Entrep.png" alt="CAS">
+          <h2>Entrepreneurship Student Council </h2>
+          <p>Develop a strategic roadmap outlining initiatives and projects for the Entrepreneurship Student Council at CLSU. Focus on fostering a vibrant entrepreneurial ecosystem within the university, including workshops, networking events, and collaborative projects to empower aspiring student entrepreneurs and promote a culture of innovation and business acumen.</p>
+          <a href="https://www.facebook.com/entrepcouncilclsu">Learn More</a>
+      </div>
+    </div>
+
+    <div class="org">
+      <div class="org-info">
+          <img src="Org/3. HRDM.png" alt="CAS">
+          <h2>Human Resource Development Management Student Council</h2>
+          <p>Devise a proposal outlining the initiatives and programs to enhance the academic and professional growth of students enrolled in the BSBA Human Resource Development Management program at CLSU. Highlight strategies to bridge academic learning with practical experiences, industry partnerships, and community engagement, ensuring holistic development and career readiness for students pursuing HR management careers.</p>
+          <a href="https://www.facebook.com/clsucbaa.HRDM">Learn More</a>
+      </div>
+    </div>
+
+    <div class="org">
+      <div class="org-info">
+          <img src="Org/JMA.png" alt="CAS">
+          <h2>JMA - Junior Marketing Association</h2>
+          <p>JMA is a student organization focused on promoting and enhancing the understanding of marketing principles among its members. It typically offers workshops, seminars, networking opportunities, and other activities related to marketing to help students gain practical knowledge and skills in the field.</p>
+          <a href="https://www.facebook.com/CLSUJMA/photos">Learn More</a>
+      </div>
+    </div>
+    
+
+    <div class="org">
+      <div class="org-info">
+          <img src="Org/JPIA.png" alt="CAS">
+          <h2>JPIA - Junior Philippine Institute of Accountants</h2>
+          <p>JPIA is an organization dedicated to students studying accountancy. Its primary goal is to supplement classroom learning with real-world experiences and opportunities. JPIA often conducts seminars, conferences, and activities that aid in the development of accounting skills and knowledge.</p>
+          <a href="https://www.facebook.com/jpiaclsu">Learn More</a>
+      </div>
+  </div>
+
+  <div class="org">
+    <div class="org-info">
+        <img src="Org/Economic Society.png" alt="CAS">
+        <h2>ECOSOC - Economic Society</h2>
+        <p>ECOSOC focuses on economic education and awareness among students. It might organize seminars, debates, and discussions on various economic theories, policies, and their real-world implications.</p>
+        <a href="https://www.facebook.com/clsuecosocofficial">Learn More</a>
+    </div>
+  </div>
+  
+  <div class="org">
+    <div class="org-info">
+        <img src="Org/Honors Circle.png" alt="CAS">
+        <h2>Honor's Circle</h2>
+        <p>This likely refers to an honor society or an elite group within the college, recognizing outstanding academic achievements and contributions to the academic community.</p>
+        <a href="https://www.facebook.com/profile.php?id=100069427152923">Learn More</a>
+    </div>
+  </div>
+  
+
+  <div class="org">
+    <div class="org-info">
+        <img src="Org/JBEES.png" alt="CAS">
+        <h2>JBEES - Junior Business Executive and Entrepreneur Society</h2>
+        <p>JBEES is a student society aimed at fostering entrepreneurship and developing future business leaders. It may organize events like pitch competitions, mentorship programs, and workshops on business development and innovation.</p>
+        <a href="https://www.facebook.com/19jbees86">Learn More</a>
+    </div>
+</div>
+
+<div class="org">
+  <div class="org-info">
+      <img src="Org/SAMS.png" alt="CAS">
+      <h2>SAMS - Society for the Advancement of Management Students</h2>
+      <p>SAMS is an organization geared toward students pursuing management studies. It offers resources, events, and networking opportunities to help students learn about different management principles, leadership skills, and industry trends.</p>
+      <a href="https://www.facebook.com/CLSU.SAMS">Learn More</a>
+  </div>
+</div>
+
+ </div>
+</div>
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>Contact Us</h3>
+          <p>Central Luzon State University<br>
+             Science City of Munoz<br>
+             Nueva Ecija, Philippines<br>
+             Phone: +123456789<br>
+             Email: cbaa@clsu2.edu.ph</p>
+         
+        </div>
+      </div>
+      <div class="lowest">
+        <img src="Images/CBAA-LOGO.png" alt="CLSU_LOGO">
+        <img src="Images/CLSU_Logo.png" alt="CLSU_LOGO">
+        <p class="ars">&copy; 2023 Central Luzon State University. All rights reserved.</p>
+      </div>
+  
+      <div class="newsletter-signup">
+        <h3>Newsletter Signup:</h3>
+        <form action="#" method="post" class="signup-form">
+          <input type="email" name="email" placeholder="Your Email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+  
+  <div class="footer-socmed">
+    <ul>
+        <li class="icon-link"><a href="https://www.facebook.com/clsuofficialpage/" class="icon"><img src="Images/1. FB.png" alt="Facebook Icon" width="30" height="30"></a></li>
+        <li class="icon-link"><a href="https://twitter.com/clsu_official?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="icon"><img src="Images/3. Twitter.png" alt="Twitter Icon" width="30" height="30"></a></li>
+        <li class="icon-link"><a href="https://www.instagram.com/clsu.official/?hl=en" class="icon"><img src="Images/2. IG.png" alt="Instagram Icon" width="30" height="30"></a></li>
+        <li class="icon-link"><a href="https://www.youtube.com/@clsutube" class="icon"><img src="Images/4. Youtube.png" alt="Youtube Icon" width="30" height="30"></a></li>
+    </ul>
+  </div>
+  
+  
+  <script src="Dropdown.js"> </script>
+  <script src="scroll.js"></script>
+  </body>
+  </html>

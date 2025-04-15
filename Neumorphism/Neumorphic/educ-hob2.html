@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Profile Designs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0e5ec;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            gap: 4rem;
+        }
+
+        .profile {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h2 {
+            color: #4a4a4a;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Design 1: Split Circular Dashboard */
+        .split-circle {
+            width: 600px;
+            height: 300px;
+            background: #e0e5ec;
+            border-radius: 150px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 
+                20px 20px 60px #bec3c9,
+                -20px -20px 60px #ffffff;
+        }
+
+        .split-half {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .split-half:hover {
+            transform: scale(1.05);
+        }
+
+        .education {
+            background: linear-gradient(145deg, #e0e5ec, #f0f5fc);
+            box-shadow: inset 5px 5px 10px #bec3c9;
+        }
+
+        .hobbies {
+            background: linear-gradient(145deg, #f0f5fc, #e0e5ec);
+            box-shadow: inset -5px -5px 10px #ffffff;
+        }
+
+        .split-half h3 {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
+        }
+
+        .split-item {
+            background: #e0e5ec;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 
+                3px 3px 6px #bec3c9,
+                -3px -3px 6px #ffffff;
+        }
+
+        /* Design 2: Interconnected Hexagons */
+        .hexagon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 
+                15px 15px 30px #bec3c9,
+                -15px -15px 30px #ffffff;
+        }
+
+        .hexagon-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hexagon {
+            width: 150px;
+            height: 173px;
+            background: #e0e5ec;
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                5px 5px 10px #bec3c9,
+                -5px -5px 10px #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .hexagon:hover {
+            transform: scale(1.05);
+        }
+
+        .hexagon span {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #4a4a4a;
+            padding: 1rem;
+        }
+
+        .connector {
+            width: 100px;
+            height: 4px;
+            background: #4a4a4a;
+            position: relative;
+        }
+
+        .connector::before, .connector::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #4a4a4a;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .connector::before { left: -5px; }
+        .connector::after { right: -5px; }
+
+        /* Design 3: Floating Islands */
+        .islands-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2rem;
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 
+                15px 15px 30px #bec3c9,
+                -15px -15px 30px #ffffff;
+        }
+
+        .island {
+            background: #e0e5ec;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 
+                8px 8px 16px #bec3c9,
+                -8px -8px 16px #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .island:hover {
+            transform: translateY(-10px);
+        }
+
+        .island h3 {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
+        }
+
+        .island-item {
+            background: #e0e5ec;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 
+                inset 3px 3px 6px #bec3c9,
+                inset -3px -3px 6px #ffffff;
+        }
+
+        /* Design 4: Nested Neumorphic Tabs */
+        .tabs-container {
+            background: #e0e5ec;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                15px 15px 30px #bec3c9,
+                -15px -15px 30px #ffffff;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            background: #e0e5ec;
+            border-radius: 10px;
+            box-shadow: 
+                5px 5px 10px #bec3c9,
+                -5px -5px 10px #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover, .tab.active {
+            box-shadow: 
+                inset 5px 5px 10px #bec3c9,
+                inset -5px -5px 10px #ffffff;
+        }
+
+        .tab-content {
+            background: #e0e5ec;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 
+                inset 8px 8px 16px #bec3c9,
+                inset -8px -8px 16px #ffffff;
+        }
+
+        .nested-item {
+            background: #e0e5ec;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 
+                3px 3px 6px #bec3c9,
+                -3px -3px 6px #ffffff;
+        }
+
+        /* Design 5: Neumorphic Timeline */
+        .timeline-container {
+            background: #e0e5ec;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                15px 15px 30px #bec3c9,
+                -15px -15px 30px #ffffff;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: #4a4a4a;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            width: 45%;
+            padding: 1rem;
+            background: #e0e5ec;
+            border-radius: 15px;
+            box-shadow: 
+                5px 5px 10px #bec3c9,
+                -5px -5px 10px #ffffff;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #4a4a4a;
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: auto;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            left: -30px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            right: -30px;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 0.5rem;
+            color: #4a4a4a;
+        }
+
+        .timeline-content {
+            background: #e0e5ec;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            box-shadow: 
+                inset 3px 3px 6px #bec3c9,
+                inset -3px -3px 6px #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Design 1: Split Circular Dashboard -->
+    <div class="profile">
+        <h2>Split Circular Dashboard</h2>
+        <div class="split-circle">
+            <div class="split-half education">
+                <h3>Education</h3>
+                <div class="split-item">BSc Computer Science</div>
+                <div class="split-item">Web Development Certification</div>
+            </div>
+            <div class="split-half hobbies">
+                <h3>Hobbies/Interests</h3>
+                <div class="split-item">Photography</div>
+                <div class="split-item">Hiking</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 2: Interconnected Hexagons -->
+    <div class="profile">
+        <h2>Interconnected Hexagons</h2>
+        <div class="hexagon-container">
+            <div class="hexagon-group">
+                <div class="hexagon"><span>BSc Computer Science</span></div>
+                <div class="hexagon"><span>Web Development Certification</span></div>
+            </div>
+            <div class="connector"></div>
+            <div class="hexagon-group">
+                <div class="hexagon"><span>Photography</span></div>
+                <div class="hexagon"><span>Hiking</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 3: Floating Islands -->
+    <div class="profile">
+        <h2>Floating Islands</h2>
+        <div class="islands-container">
+            <div class="island">
+                <h3>Education</h3>
+                <div class="island-item">BSc Computer Science</div>
+                <div class="island-item">Web Development Certification</div>
+            </div>
+            <div class="island">
+                <h3>Hobbies/Interests</h3>
+                <div class="island-item">Photography</div>
+                <div class="island-item">Hiking</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 4: Nested Neumorphic Tabs -->
+    <div class="profile">
+        <h2>Nested Neumorphic Tabs</h2>
+        <div class="tabs-container">
+            <div class="tabs">
+                <div class="tab active">Education</div>
+                <div class="tab">Hobbies/Interests</div>
+            </div>
+            <div class="tab-content">
+                <div class="nested-item">BSc Computer Science</div>
+                <div class="nested-item">Web Development Certification</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 5: Neumorphic Timeline -->
+    <div class="profile">
+        <h2>Neumorphic Timeline</h2>
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Education</h3>
+                    <div class="timeline-content">BSc Computer Science</div>
+                </div>
+                <div class="timeline-item">
+                    <h3>Hobby</h3>
+                    <div class="timeline-content">Photography</div>
+                </div>
+                <div class="timeline-item">
+                    <h3>Education</h3>
+                    <div class="timeline-content">Web Development Certification</div>
+                </div>
+                <div class="timeline-item">
+                    <h3>Interest</h3>
+                    <div class="timeline-content">Hiking</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

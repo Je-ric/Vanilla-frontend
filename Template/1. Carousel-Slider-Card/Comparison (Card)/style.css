@@ -1,0 +1,51 @@
+body{
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  background: #07252d;
+}
+h1{
+  text-align: center;
+  font-family: system-ui, sans-serif;
+  font-size: 3rem;
+}
+h1 span:first-child{
+  color: #0b3fa1;
+  margin: 0 20px;
+}
+h1 span:last-child{
+  color: #af3817;
+  margin: 0 20px;
+}
+.gallery{
+  display: grid;
+  gap: 8px;
+  width: calc(2 * 380px + 185px);
+  grid-auto-flow: column;
+}
+.gallery > img{
+  width: 0;
+  min-width: calc(100% + 32px / 2);
+  height: 360px;
+  object-fit: cover;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+  cursor: pointer;
+  transition: .5s;
+}
+.gallery > img:hover{
+  width: calc(360px / 2);
+}
+.gallery > img:first-child {
+  place-self: start;
+  clip-path: polygon(calc(2 * 32px) 0, 100% 0, 100% 100%, 0 100%);
+  --mask: conic-gradient(from -135deg at right,rgba(5, 4, 4, 0),#000 1deg 89deg,#0000 90deg) 
+          50%/100% calc(2 * 32px) repeat-y;
+}
+.gallery > img:last-child{
+  place-self: end;
+  clip-path: polygon(0 0,100% 0,calc(100% - 2 * 32px) 100%,0 100%);
+  --mask: conic-gradient(from 45deg at left ,#0000,#000 1deg 89deg,#0000 90deg) 
+          50% calc(50% - 32px)/100% calc(2 * 32px) repeat-y;
+}

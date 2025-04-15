@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radius Generator</title>
+  <link href='https://unpkg.com/css.gg@2.0.0/icons/css/corner-double-down-left.css' rel='stylesheet'>
+  <link rel="stylesheet" href="Radius.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    });
+</script>
+</head>
+<body>
+  <div id="header-container"></div>
+  <div class="container">
+    
+    <div class="outer-box">
+    <div class="box">
+      <div class="preview" id="preview">
+      </div>
+    </div>
+  </div>
+  
+    <div class="controls">
+      <div class="group-1">
+        
+        <label class="radius-label">
+          <i class="gg-corner-double-left-down"></i>
+          Top Left:
+          <input type="range" id="topLeft" class="slider" min="0" max="200" value="0">
+          <span class="slider-value" id="topLeftValue">0</span>
+        </label><br>
+        
+        <label class="radius-label">
+          <i class="gg-corner-double-right-down"></i>
+          Top Right:
+          <input type="range" id="topRight" class="slider" min="0" max="200" value="0">
+          <span class="slider-value" id="topRightValue">0</span>
+        </label><br>
+        
+        <label class="radius-label">
+          <i class="gg-corner-double-down-right"></i>
+          Bottom Left:
+          <input type="range" id="bottomLeft" class="slider" min="0" max="200" value="0">
+          <span class="slider-value" id="bottomLeftValue">0</span>
+        </label><br>
+        
+        <label class="radius-label">
+          <i class="gg-corner-double-down-left"></i>
+          Bottom Right:
+          <input type="range" id="bottomRight" class="slider" min="0" max="200" value="0">
+          <span class="slider-value" id="bottomRightValue">0</span>
+        </label><br>
+
+        
+      </div>
+      
+  
+
+    <div class="group-2">
+      <div class="group-2_1">
+      <label for="allSides">Border Width (All Sides):</label>
+      <input type="range" id="allSides" class="slider" min="0" max="5" value="3">
+      <span class="slider-value" id="allSidesValue">5</span>
+    </div>
+      <br><br>
+      <label for="borderColor">Border Color:</label>
+      <input type="color" id="borderColor" class="color-picker" value="#000000">&nbsp;&nbsp;or&nbsp;&nbsp;
+      <input type="text" class="color-input" id="borderColorHex" placeholder="Hex">
+      
+      <br><br>
+      <label for="bgColor">Background Color:</label>
+      <input type="color" id="bgColor" class="color-picker" value="#FFFFFF">&nbsp;&nbsp;or&nbsp;&nbsp;
+      <input type="text" class="color-input" id="bgColorHex" placeholder="Hex">
+    </div>
+
+    <div class="group-3">
+    <textarea id="codeOutput" rows="7"></textarea>
+    </div>
+  </div>  
+    
+  </div>
+
+  <script src="Radius.js"> </script>
+</body>
+</html>

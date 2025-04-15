@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click for More Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .toggle-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .toggle-item {
+            margin-bottom: 20px;
+        }
+
+        .toggle-item-content {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .toggle-trigger {
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: underline;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .toggle-details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toggle-container">
+        <div class="toggle-item">
+          <div class="toggle-item-content">
+            <h3>Master of Science in Business Administration (MS in Business Administration)</h3>
+            <p>Designed for business executives and leaders seeking a managerial advantage and leadership in their profession. Offers a blend of technical training and exposure to real-world cases and decision-making approaches for current management problems and challenges.</p>
+            <span class="toggle-trigger" onclick="toggleDetails(this)">Click for more details</span>
+            <div class="toggle-details">
+              <ul>
+                <li>Duration: 2 years</li>
+                <li>Curriculum Highlights: Combines technical training with case studies and decision-making approaches.</li>
+                <li>Career Opportunities: Senior management, executive leadership roles, consulting, entrepreneurship.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(element) {
+            var details = element.nextElementSibling;
+            if (details.style.display === 'none' || details.style.display === '') {
+                details.style.display = 'block';
+            } else {
+                details.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

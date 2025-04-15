@@ -1,0 +1,231 @@
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .projects {
+  display: flex;
+  max-width: 1200px;
+  width: 1000px;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.project-list {
+  width: 300px;
+  height: 100%;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.project-item {
+  width: 250px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  /* transition: all 0.3s ease; */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  box-shadow: 
+      5px 5px 10px #bebebe,
+      -5px -5px 10px #ffffff;
+}
+
+.project-item:hover, .project-item.active {
+  transform: translateY(-5px);
+  box-shadow: 
+      8px 8px 15px #bebebe,
+      -8px -8px 15px #ffffff;
+}
+
+.project-item h3 {
+  color: #2d3748;
+  font-size: 1.0em;
+  margin-bottom: 5px;
+  transition: color 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+}
+
+.project-details {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(50px);
+  transition: all 0.5s ease;
+}
+
+.project-details.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.project-details h2 {
+  color: #2d3748;
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.project-details p {
+  color: #4a5568;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.project-details .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  color: #2d3748;
+  box-shadow: 
+      3px 3px 6px #bebebe,
+      -3px -3px 6px #ffffff;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+      5px 5px 10px #bebebe,
+      -5px -5px 10px #ffffff;
+}
+
+.project-image {
+  width: 100%;
+  max-width: 400px; 
+  height: auto; 
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      height: auto;
+  }
+
+  .project-list {
+      width: 100%;
+      max-height: 300px;
+  }
+
+  .project-details {
+      padding: 20px;
+  }
+}
+        </style>
+    </head>
+    <body>
+
+        <div class="projects">
+            <div class="project-list">
+                <div class="project-item" onclick="showProject(1)">
+                    <h3>Color Game</h3>
+                </div>
+                <div class="project-item" onclick="showProject(2)">
+                    <h3>BeatStrum</h3>
+                </div>
+                <div class="project-item" onclick="showProject(3)">
+                    <h3>Student Portal</h3>
+                </div>
+                <div class="project-item" onclick="showProject(4)">
+                    <h3>Job Application Form</h3>
+                </div>
+                <div class="project-item" onclick="showProject(4)">
+                    <h3>Concert Reservation System</h3>
+                </div>
+                <div class="project-item" onclick="showProject(5)">
+                    <h3>CBAA Front-End Website</h3>
+                </div>
+            </div>
+            <div id="projectDetails" class="project-details">
+                <h2>Select a Project</h2>
+                <p>Click on a project from the list to view its details.</p>
+            </div>
+        </div>
+
+
+          <script>
+            const projects = [
+                {
+                    id: 1,
+                    name: "Color Game",
+                    description: "Developed an engaging Java color-matching game featuring three levels of difficulty—easy, medium, and hard—each with varying numbers of dice and colors for betting. This project uses the power of Java Swing for visually appealing graphics.",
+                    tags: ["Java"],
+                    image: "images/projects/colorgame.png"
+                },
+                {
+                    id: 2,
+                    name: "BeatStrum",
+                    description: "Developed BeatStrum, an e-commerce website for musical instruments, using an object-oriented programming approach. The project features a user-friendly interface, categorized listings, and efficient product management.",
+                    tags: ["HTML", "CSS", "PHP", "JavaScript", "MySQL", "AJAX"],
+                    image: "images/projects/BeatStrum.png"
+                },
+                {
+                    id: 3,
+                    name: "Student Portal",
+                    description: "Introducing a comprehensive Student Portal system built on Object-Oriented Programming principles. Seamlessly manage grading systems, update student records, and empower administrators with efficient information modification, all through intuitive interfaces tailored for both students and administrators.",
+                    tags: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
+                    image: "images/projects/StudentPortal.png"
+                },
+                {
+                    id: 4,
+                    name: "Job Application Form",
+                    description: "Designed a dynamic job application form with interactive fields allowing applicants to easily modify and update their submissions. Built functionality for administrators to review and manage applications, including the ability to delete redundant entries, simplifying the recruitment process effectively.",
+                    tags: ["HTML", "CSS", "PHP", "JavaScript", "MySQL"],
+                    image: "images/projects/jobs.png"
+                },
+                {
+                    id: 5,
+                    name: "Concert Reservation System",
+                    description: "Built a Concert Reservation System using Object-Oriented Programming, featuring user-friendly interfaces for both administrators and attendees. Users can effortlessly browse available concerts, reserve specific seats, receive email notifications, utilize various payment methods, and easily cancel reservations.",
+                    tags: ["HTML", "CSS", "PHP", "JavaScript", "MySQL", "AJAX"],
+                    image: "images/projects/Concert.png"
+                },
+                {
+                    id: 6,
+                    name: "CBAA Front-End Website",
+                    description: "Developed a responsive website for the College of Business Administration and Accountancy (CBAA), emphasizing front-end development practices. The website effectively outlines the college's programs, courses, and faculty and staff while ensuring seamless viewing across various devices, enhancing user experience and accessibility.",
+                    tags: ["HTML", "CSS", "JavaScript"],
+                    image: "images/projects/cbaa.png"
+                }
+            ];
+
+            function showProject(id) {
+            const project = projects.find(p => p.id === id);
+            const detailsElement = document.getElementById('projectDetails');
+            
+            document.querySelectorAll('.project-item').forEach(item => item.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+
+            detailsElement.innerHTML = `
+                <h2>${project.name}</h2>
+                <img src="${project.image}" alt="${project.name} image" class="project-image">
+                <p>${project.description}</p>
+                <div class="tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+            `;
+
+            detailsElement.classList.remove('active');
+            setTimeout(() => detailsElement.classList.add('active'), 50);
+        }
+
+    </script> 
+    </body>
+    </html>

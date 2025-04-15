@@ -1,0 +1,256 @@
+.hobbies-container {
+    display: flex; 
+    border-bottom: 2px solid #ddd;
+    /* gap: 20px;  */
+    /* align-items: flex-start;  */
+    /* padding: 20px; */
+}
+
+.hobbies-left {
+    /* flex: 1;  */
+    text-align: center; 
+}
+
+.hobbies-right {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: column wrap;
+    flex: 3; 
+    /* padding-bottom: 40px; */
+}
+
+.hobbies-grid {
+    display: flex;
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr);  */
+    gap: 20px; 
+    padding-left: 20px;
+    padding-top: 20px;
+    /* border-top: 2px solid #ddd; */
+}
+
+.group-1{
+    /* flex: 1; */
+    /* display: inline-block;
+    white-space: nowrap; */
+    gap: 10px; 
+}
+
+.group-2{   
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr); 
+    gap: 20px; 
+}
+
+.group-2_1{
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr); 
+    gap: 20px; 
+}
+
+.group-2_2{
+    flex: 1;
+}
+
+/* ---------------------------------------------------------------------------- */
+.floating-tags {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: baseline;
+    gap: 15px;
+}
+
+.floating-tag {
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 4px 4px 8px #a3b1c6,
+                -4px -4px 8px #ffffff;
+    text-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+    transition: all 0.3s ease;
+}
+
+.floating-tag:hover {
+    background: linear-gradient(145deg,  #4a90e2, #6fbaf0);
+    color: white;
+    transform: translateY(-5px) rotate(5deg);
+}
+
+
+/* ---------------------------------------------------------------------------- */
+.icon-module {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    border-radius: 0.5rem;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.7),
+                -6px -6px 10px rgba(255, 255, 255, 0.5),
+                6px 6px 8px rgba(255, 255, 255, 0.075),
+                6px 6px 10px rgba(0, 0, 0, 0.15);
+    transition: .2s ease-in-out;
+    cursor:text;
+    margin-bottom: 20px;
+}
+
+.icon-module:hover {
+    color: #1da1f2;
+    box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
+                -2px -2px 4px rgba(255, 255, 255, 0.4),
+                2px 2px 2px rgba(255, 255, 255, 0.05),
+                2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon-module:active {
+    box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7),
+                inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+                inset 2px 2px 2px rgba(255, 255, 255, 0.075),
+                inset 2px 2px 4px rgba(0, 0, 0, 0.15),
+                inset 5px 5px 15px rgba(64, 182, 255, 0.5), 
+                inset -5px -5px 15px rgba(149, 255, 224, 0.5);
+}
+
+.icon-img {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.icon-label {
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+} 
+
+/* ---------------------------------------------------------------------------- */
+
+.logo-tags{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr); 
+}
+
+.logo-tags img{
+    width: 50px;
+    height: auto;
+    transition: all 0.2s ease;
+}
+
+.logo-tags img:hover{
+    transform: scale(1.1);
+}
+
+/* ---------------------------------------------------------------------------- */
+.hobbies-title {
+    writing-mode: vertical-rl; 
+    text-orientation:sideways-right; 
+    border-left: 2px solid #ddd;
+    transform: rotate(180deg); 
+    padding-top: 20px;
+    font-size: 4rem;
+    letter-spacing: 18px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.interests-title {
+    padding-left: 20px;
+    padding-bottom: 20px;
+    font-size: 4rem; /* 5 */
+    line-height: 1;
+    text-align: start;
+    letter-spacing: 20px; 
+    /* letter-spacing: 25px;  */
+    color: #e8e8e8;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.interests-title span {
+    color: #e8e8e8; 
+    text-shadow: 
+      1px 1px 0 #000,  
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+
+.hobbies-right-top {
+    display: flex;
+    /* align-items: flex-start; */
+    justify-content: space-between;
+    border-bottom: 2px solid #ddd;
+}
+.hobbies-tags1 {
+    grid-template-columns: repeat(3, 1fr); 
+    display: grid;
+    align-items: center;
+    gap: 10px; 
+}
+.h-tag1 {
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 6px 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+.h-tag1:nth-child(1) {background: linear-gradient(45deg, #ff6a00, #ffb300);}
+.h-tag1:nth-child(2) {background: linear-gradient(45deg, #00b5ff, #1e90ff);}
+.h-tag1:nth-child(3) {background: linear-gradient(45deg, #9c27b0, #e91e63);}
+
+.h-tag1:hover {
+    transform: translateY(-5px) rotate(5deg);
+}
+
+/* ---------------------------------------------------------------------------- */
+
+.marquee{
+    border-bottom: 2px solid #ddd;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+.hobbies-tags {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px; 
+}
+.h-tag {
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 6px 10px;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+.h-tag:hover {
+    transform: translateY(-5px) rotate(5deg);
+}
+
+.h-tag:nth-child(1) {background: linear-gradient(45deg, #ff6b6b, #f06a90);}
+.h-tag:nth-child(2) {background: linear-gradient(45deg, #ff9f00, #ff5e00);}
+.h-tag:nth-child(3) {background: linear-gradient(45deg, #1da1f2, #1c84d2);}
+.h-tag:nth-child(4) {background: linear-gradient(45deg, #8bedb4, #29b6f6);}
+.h-tag:nth-child(5) {background: linear-gradient(45deg, #9c27b0, #5e35b1);}
+.h-tag:nth-child(6) {background: linear-gradient(45deg, #76c7c0, #388e3c);}
+.h-tag:nth-child(7) {background: linear-gradient(45deg, #f9d423, #ff4e50);}
+
+
+
+
+
+
+
+
+
+
+
+

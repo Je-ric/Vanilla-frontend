@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #2cd9ff, #7effb2, #ffbb7e, #ff7ebd, #cd7eff, #7e9eff);
+  background-size: 600% 600%;
+  animation: moving 9.5s infinite ease-in-out;
+}
+
+@keyframes moving {
+  0% {
+    background-position: 0 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/* .container {} */
+
+.outer-box {
+  position: relative;
+  border: 2px dashed black;
+  width: 300px;
+  height: 300px;
+  margin: 20px auto; 
+}
+
+.preview-box {
+  left: 50%;
+  margin-top: 50px;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  z-index: 1;
+  
+  transition: transform 0.3s ease;
+}
+
+.controls {
+  display: flex;
+ 
+ 
+  margin-left: 50px;
+  margin-right: 50px;
+ 
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.group-1,
+.group-2 {
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.group-1, .group-2 {
+  padding-right: 20px;
+  margin: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+textarea {
+  width: 100%;
+  margin-top: 20px;
+}

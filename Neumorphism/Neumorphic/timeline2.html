@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Timelines</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+    --bg-color: #e0e5ec;
+    --text-color: #333;
+    --shadow-light: #ffffff;
+    --shadow-dark: #a3b1c6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.timeline {
+    margin-bottom: 50px;
+}
+
+.timeline-item {
+    margin-bottom: 20px;
+}
+
+.timeline-content {
+    display: block;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: var(--bg-color);
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-3px);
+}
+
+.accordion-toggle {
+    display: none;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-toggle:checked + .timeline-content .accordion-content {
+    max-height: 200px;
+}
+
+/* Timeline 1: Vertical Timeline */
+.timeline-1 .timeline-item {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline-1 .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--shadow-dark);
+}
+
+.timeline-1 .timeline-item::after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+}
+
+/* Timeline 2: Horizontal Timeline */
+.timeline-2 .timeline-container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.timeline-2 .timeline-item {
+    flex: 0 0 250px;
+    margin-right: 20px;
+}
+
+/* Timeline 3: Circular Timeline */
+.timeline-3 .timeline-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.timeline-3 .timeline-item {
+    position: absolute;
+    width: 120px;
+}
+
+.timeline-3 .timeline-item:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-3 .timeline-item:nth-child(2) {
+    bottom: 20px;
+    left: 0;
+}
+
+.timeline-3 .timeline-item:nth-child(3) {
+    bottom: 20px;
+    right: 0;
+}
+
+/* Timeline 4: Zigzag Timeline */
+.timeline-4 .timeline-item {
+    position: relative;
+    padding-left: 50%;
+}
+
+.timeline-4 .timeline-item:nth-child(even) {
+    padding-left: 0;
+    padding-right: 50%;
+}
+
+.timeline-4 .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: var(--shadow-dark);
+}
+
+.timeline-4 .timeline-item:nth-child(even)::before {
+    left: auto;
+    right: 50%;
+}
+
+/* Timeline 5: Branching Timeline */
+.timeline-5 .timeline-branch {
+    position: relative;
+    padding-top: 50px;
+}
+
+.timeline-5 .main-branch {
+    width: 60%;
+    margin: 0 auto 30px;
+}
+
+.timeline-5 .branch-1,
+.timeline-5 .branch-2 {
+    width: 40%;
+    position: absolute;
+    top: 100px;
+}
+
+.timeline-5 .branch-1 {
+    left: 0;
+}
+
+.timeline-5 .branch-2 {
+    right: 0;
+}
+
+.timeline-5 .timeline-branch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 50px;
+    background-color: var(--shadow-dark);
+}
+
+.timeline-5 .branch-1::before,
+.timeline-5 .branch-2::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    width: calc(50% - 20px);
+    height: 2px;
+    background-color: var(--shadow-dark);
+}
+
+.timeline-5 .branch-1::before {
+    right: -20px;
+}
+
+.timeline-5 .branch-2::before {
+    left: -20px;
+}
+
+@media (max-width: 768px) {
+    .timeline-2 .timeline-container {
+        flex-direction: column;
+    }
+
+    .timeline-2 .timeline-item {
+        flex: 0 0 auto;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .timeline-3 .timeline-circle {
+        width: 100%;
+        height: auto;
+    }
+
+    .timeline-3 .timeline-item {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .timeline-4 .timeline-item,
+    .timeline-4 .timeline-item:nth-child(even) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .timeline-4 .timeline-item::before {
+        display: none;
+    }
+
+    .timeline-5 .timeline-branch {
+        padding-top: 0;
+    }
+
+    .timeline-5 .main-branch,
+    .timeline-5 .branch-1,
+    .timeline-5 .branch-2 {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .timeline-5 .timeline-branch::before,
+    .timeline-5 .branch-1::before,
+    .timeline-5 .branch-2::before {
+        display: none;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Neumorphic Timelines</h1>
+
+        <section class="timeline timeline-1">
+            <h2>Vertical Timeline</h2>
+            <div class="timeline-item">
+                <input type="checkbox" id="item1-1" class="accordion-toggle">
+                <label for="item1-1" class="timeline-content">
+                    <h3>2021</h3>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
+                    </div>
+                </label>
+            </div>
+            <div class="timeline-item">
+                <input type="checkbox" id="item1-2" class="accordion-toggle">
+                <label for="item1-2" class="timeline-content">
+                    <h3>2022</h3>
+                    <div class="accordion-content">
+                        <p>Phasellus mollis interdum neque, vitae aliquet felis varius non.</p>
+                    </div>
+                </label>
+            </div>
+            <div class="timeline-item">
+                <input type="checkbox" id="item1-3" class="accordion-toggle">
+                <label for="item1-3" class="timeline-content">
+                    <h3>2023</h3>
+                    <div class="accordion-content">
+                        <p>Fusce vehicula dolor arcu, sit amet blandit dolor mollis nec.</p>
+                    </div>
+                </label>
+            </div>
+        </section>
+
+        <section class="timeline timeline-2">
+            <h2>Horizontal Timeline</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <input type="checkbox" id="item2-1" class="accordion-toggle">
+                    <label for="item2-1" class="timeline-content">
+                        <h3>Phase 1</h3>
+                        <div class="accordion-content">
+                            <p>Initiation and planning of the project.</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="timeline-item">
+                    <input type="checkbox" id="item2-2" class="accordion-toggle">
+                    <label for="item2-2" class="timeline-content">
+                        <h3>Phase 2</h3>
+                        <div class="accordion-content">
+                            <p>Development and testing of core features.</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="timeline-item">
+                    <input type="checkbox" id="item2-3" class="accordion-toggle">
+                    <label for="item2-3" class="timeline-content">
+                        <h3>Phase 3</h3>
+                        <div class="accordion-content">
+                            <p>Final implementation and project closure.</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline timeline-3">
+            <h2>Circular Timeline</h2>
+            <div class="timeline-circle">
+                <div class="timeline-item">
+                    <input type="checkbox" id="item3-1" class="accordion-toggle">
+                    <label for="item3-1" class="timeline-content">
+                        <h3>Step 1</h3>
+                        <div class="accordion-content">
+                            <p>Begin the journey with initial preparations.</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="timeline-item">
+                    <input type="checkbox" id="item3-2" class="accordion-toggle">
+                    <label for="item3-2" class="timeline-content">
+                        <h3>Step 2</h3>
+                        <div class="accordion-content">
+                            <p>Progress through challenges and growth.</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="timeline-item">
+                    <input type="checkbox" id="item3-3" class="accordion-toggle">
+                    <label for="item3-3" class="timeline-content">
+                        <h3>Step 3</h3>
+                        <div class="accordion-content">
+                            <p>Achieve goals and celebrate success.</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline timeline-4">
+            <h2>Zigzag Timeline</h2>
+            <div class="timeline-item">
+                <input type="checkbox" id="item4-1" class="accordion-toggle">
+                <label for="item4-1" class="timeline-content">
+                    <h3>Milestone 1</h3>
+                    <div class="accordion-content">
+                        <p>Reached the first significant achievement.</p>
+                    </div>
+                </label>
+            </div>
+            <div class="timeline-item">
+                <input type="checkbox" id="item4-2" class="accordion-toggle">
+                <label for="item4-2" class="timeline-content">
+                    <h3>Milestone 2</h3>
+                    <div class="accordion-content">
+                        <p>Overcame major obstacles and made progress.</p>
+                    </div>
+                </label>
+            </div>
+            <div class="timeline-item">
+                <input type="checkbox" id="item4-3" class="accordion-toggle">
+                <label for="item4-3" class="timeline-content">
+                    <h3>Milestone 3</h3>
+                    <div class="accordion-content">
+                        <p>Completed the final phase successfully.</p>
+                    </div>
+                </label>
+            </div>
+        </section>
+
+        <section class="timeline timeline-5">
+            <h2>Branching Timeline</h2>
+            <div class="timeline-branch">
+                <div class="timeline-item main-branch">
+                    <input type="checkbox" id="item5-1" class="accordion-toggle">
+                    <label for="item5-1" class="timeline-content">
+                        <h3>Main Event</h3>
+                        <div class="accordion-content">
+                            <p>The central occurrence that sparked everything.</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="timeline-item branch-1">
+                    <input type="checkbox" id="item5-2" class="accordion-toggle">
+                    <label for="item5-2" class="timeline-content">
+                        <h3>Branch 1</h3>
+                        <div class="accordion-content">
+                            <p>A significant development from the main event.</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="timeline-item branch-2">
+                    <input type="checkbox" id="item5-3" class="accordion-toggle">
+                    <label for="item5-3" class="timeline-content">
+                        <h3>Branch 2</h3>
+                        <div class="accordion-content">
+                            <p>Another important outcome of the main event.</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

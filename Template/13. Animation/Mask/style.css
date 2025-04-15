@@ -1,0 +1,13 @@
+body{
+	margin: 0;
+	background: #000000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+img{
+	display: none;
+	
+}
+  

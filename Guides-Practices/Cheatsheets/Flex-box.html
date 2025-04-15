@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Flexbox Properties</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        height: 50vh;
+        border: 2px solid #007bff;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        width: 50%;
+        margin: 10% auto;
+    }
+
+    .box {  
+        width: 100px;
+        height: auto;
+        background-color: #007bff;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .selected-property {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: rgba(0, 123, 255, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+    }
+
+    .container:hover .selected-property {
+        opacity: 1;
+    }
+</style>
+</head>
+<body>
+
+<div class="container" onclick="selectFlexProperties()">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="selected-property"></div>
+</div>
+
+<script>
+function selectFlexProperties() {
+    const property = prompt("Enter the flex property you want to change:\n1. Flex Direction\n2. Align Items\n3. Align Content\n4. Justify Content");
+
+    if (!property || isNaN(property)) {
+        alert("Invalid input!");
+        return;
+    }
+
+    const propertyNumber = parseInt(property);
+    let propertyName = '';
+
+    switch (propertyNumber) {
+        case 1:
+            propertyName = 'Flex Direction';
+            const direction = prompt("Enter the flex direction:\n1. row\n2. row-reverse\n3. column\n4. column-reverse");
+            applyFlexDirection(parseInt(direction));
+            break;
+        case 2:
+            propertyName = 'Align Items';
+            const alignItems = prompt("Enter the align items property:\n1. flex-start\n2. flex-end\n3. center\n4. baseline\n5. stretch");
+            applyAlignItems(parseInt(alignItems));
+            break;
+        case 3:
+            propertyName = 'Align Content';
+            const alignContent = prompt("Enter the align content property:\n1. flex-start\n2. flex-end\n3. center\n4. space-between\n5. space-around\n6. stretch");
+            applyAlignContent(parseInt(alignContent));
+            break;
+        case 4:
+            propertyName = 'Justify Content';
+            const justifyContent = prompt("Enter the justify content property:\n1. flex-start\n2. flex-end\n3. center\n4. space-between\n5. space-around\n6. space-evenly");
+            applyJustifyContent(parseInt(justifyContent));
+            break;
+        default:
+            alert("Invalid input!");
+    }
+
+    document.querySelector('.selected-property').textContent = propertyName;
+}
+
+function applyFlexDirection(direction) {
+    const directions = ['row', 'row-reverse', 'column', 'column-reverse'];
+    document.querySelector('.container').style.flexDirection = directions[direction - 1];
+}
+
+function applyAlignItems(alignItems) {
+    const alignValues = ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'];
+    document.querySelector('.container').style.alignItems = alignValues[alignItems - 1];
+}
+
+function applyAlignContent(alignContent) {
+    const alignValues = ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'stretch'];
+    document.querySelector('.container').style.alignContent = alignValues[alignContent - 1];
+}
+
+function applyJustifyContent(justifyContent) {
+    const justifyValues = ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'];
+    document.querySelector('.container').style.justifyContent = justifyValues[justifyContent - 1];
+}
+</script>
+
+</body>
+</html>

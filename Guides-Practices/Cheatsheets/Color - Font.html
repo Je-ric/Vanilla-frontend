@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Guides</title>
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+            margin-left: 100px;
+        }
+
+        .img1 {
+            box-shadow: 20px 7px 5px red;
+        }
+
+        .img2 {
+            filter: drop-shadow(20px 7px 5px red);
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .box-shadow {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(to right, #ff0000, #0000ff);
+        }
+    </style>
+</head>
+<body>
+    <p style="background-color: powderblue;" class="box-shadow">Background-color</p>
+    <p style="color: lightcoral;" class="text-shadow">Font Color</p>
+    <p style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Text Shadow</p>
+    <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 300%;">Font Family & Font Size</p>
+    <p style="background: linear-gradient(to right, #ff0000, #0000ff);">Gradient Background</p>
+
+    <p>Box Shadow</p>
+    <img src="/Guides-Practices/Source/Baymax_Superhero_Render.png" alt="Baymax1" class="img1"> 
+    <p>Drop Shadow</p>
+    <img src="/Guides-Practices/Source/Baymax_Superhero_Render.png" alt="Baymax2" class="img2"> 
+</body>
+</html>

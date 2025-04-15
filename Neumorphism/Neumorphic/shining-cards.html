@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiny Cards</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.card {
+    position: relative;
+    width: 250px;
+    height: 300px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.card p {
+    font-size: 16px;
+    color: #666;
+    position: relative;
+    z-index: 1;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3) 20%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0.3) 80%
+    );
+    transform: rotate(30deg);
+    animation: shine 2s ease-in-out infinite; /* Automatic, slow, and infinite */
+    opacity: 0;
+}
+/* 
+.card:hover::before {
+    animation: shine 2.5s ease-in-out;
+} */
+
+@keyframes shine {
+    0% {
+        transform: rotate(30deg) translateX(-300%);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(30deg) translateX(300%);
+        opacity: 0;
+    }
+}
+
+.card-1 { background-color: #ffcccb; }
+.card-2 { background-color: #c1f0c1; }
+.card-3 { background-color: #b0e0e6; }
+.card-4 { background-color: #fffacd; }
+.card-5 { background-color: #e6e6fa; }
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card card-1">
+            <h2>Card 1</h2>
+            <p>This is the first shiny card.</p>
+        </div>
+        <div class="card card-2">
+            <h2>Card 2</h2>
+            <p>Explore the second glossy card.</p>
+        </div>
+        <div class="card card-3">
+            <h2>Card 3</h2>
+            <p>Discover the third gleaming card.</p>
+        </div>
+        <div class="card card-4">
+            <h2>Card 4</h2>
+            <p>Check out the fourth lustrous card.</p>
+        </div>
+        <div class="card card-5">
+            <h2>Card 5</h2>
+            <p>Experience the fifth radiant card.</p>
+        </div>
+    </div>
+</body>
+</html>
+

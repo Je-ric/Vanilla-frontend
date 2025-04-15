@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumap - Neumorphic Map App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0e5ec;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .neumorphic {
+            background: #e0e5ec;
+            box-shadow: 8px 8px 15px #a3b1c6, -8px -8px 15px #ffffff;
+            border-radius: 15px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .map-container {
+            height: 400px;
+            margin: 30px 0;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .feature {
+            flex-basis: 30%;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        input[type="text"] {
+            width: 60%;
+            padding: 15px;
+            border: none;
+            background: #e0e5ec;
+            box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            background: #e0e5ec;
+            box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            box-shadow: 2px 2px 5px #a3b1c6, -2px -2px 5px #ffffff;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="neumorphic">
+            <h1>Neumap</h1>
+            <p>Explore with Neumorphic Elegance</p>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for a location...">
+            <button>Search</button>
+        </div>
+
+        <div class="map-container neumorphic">
+            <!-- Placeholder for map -->
+            <p style="text-align: center; padding-top: 180px;">Interactive Map Goes Here</p>
+        </div>
+
+        <div class="features">
+            <div class="feature neumorphic">
+                <h2>View Locations</h2>
+                <p>Discover new places with our clean interface.</p>
+            </div>
+            <div class="feature neumorphic">
+                <h2>Plan Routes</h2>
+                <p>Get smooth navigation to your destination.</p>
+            </div>
+            <div class="feature neumorphic">
+                <h2>Find Landmarks</h2>
+                <p>Explore nearby attractions and points of interest.</p>
+            </div>
+        </div>
+
+        <footer class="neumorphic">
+            <p>&copy; 2023 Neumap. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

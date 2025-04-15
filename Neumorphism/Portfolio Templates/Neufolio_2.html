@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Advanced Neumorphic Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-color-1: #e0e5ec;
+    --bg-color-2: #d1d9e6;
+    --bg-color-3: #f0f4f8;
+    --bg-color-4: #e6eaf0;
+    --text-color: #2d3748;
+    --accent-color-1: #4a90e2;
+    --accent-color-2: #5a67d8;
+    --accent-color-3: #38b2ac;
+    --accent-color-4: #ed64a6;
+    --shadow-color-1: #a3b1c6;
+    --shadow-color-2: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color-1);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Neumorphic Styles */
+.neumorphic-section {
+    background-color: var(--bg-color-1);
+    border-radius: 20px;
+    box-shadow: 
+        8px 8px 16px var(--shadow-color-1),
+        -8px -8px 16px var(--shadow-color-2);
+    padding: 2rem;
+    margin: 2rem 0;
+    transition: all 0.3s ease;
+}
+
+.neumorphic-section:hover {
+    box-shadow: 
+        12px 12px 20px var(--shadow-color-1),
+        -12px -12px 20px var(--shadow-color-2);
+}
+
+.neumorphic-header {
+    background-color: var(--bg-color-2);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 
+        0 4px 6px var(--shadow-color-1),
+        0 -2px 4px var(--shadow-color-2);
+}
+
+.neumorphic-footer {
+    background-color: var(--bg-color-2);
+    padding: 2rem 0;
+    margin-top: 2rem;
+    box-shadow: 
+        0 -4px 6px var(--shadow-color-1),
+        0 2px 4px var(--shadow-color-2);
+}
+
+.neumorphic-image {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 
+        8px 8px 16px var(--shadow-color-1),
+        -8px -8px 16px var(--shadow-color-2);
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--bg-color-1);
+    box-shadow: 
+        inset 3px 3px 5px var(--shadow-color-1),
+        inset -3px -3px 5px var(--shadow-color-2);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--accent-color-1);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-1),
+        -4px -4px 8px var(--shadow-color-2);
+}
+
+.cta-button:hover {
+    background-color: var(--accent-color-2);
+    transform: translateY(-3px);
+    box-shadow: 
+        6px 6px 12px var(--shadow-color-1),
+        -6px -6px 12px var(--shadow-color-2);
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.about-text {
+    flex: 2;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+}
+
+.skill-card {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background-color: var(--bg-color-3);
+    transition: all 0.3s ease;
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-1),
+        -4px -4px 8px var(--shadow-color-2);
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        6px 6px 12px var(--shadow-color-1),
+        -6px -6px 12px var(--shadow-color-2);
+}
+
+.skill-card i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color-3);
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: var(--bg-color-4);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 
+        6px 6px 12px var(--shadow-color-1),
+        -6px -6px 12px var(--shadow-color-2);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        8px 8px 16px var(--shadow-color-1),
+        -8px -8px 16px var(--shadow-color-2);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    padding: 1rem;
+}
+
+.project-card p {
+    padding: 0 1rem 1rem;
+}
+
+.project-link {
+    display: inline-block;
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color-3);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: var(--accent-color-4);
+}
+
+/* Contact Form */
+.contact-form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--bg-color-3);
+    box-shadow: 
+        inset 3px 3px 5px var(--shadow-color-1),
+        inset -3px -3px 5px var(--shadow-color-2);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    box-shadow: 
+        inset 4px 4px 6px var(--shadow-color-1),
+        inset -4px -4px 6px var(--shadow-color-2);
+}
+
+.submit-button {
+    padding: 1rem 2rem;
+    background-color: var(--accent-color-2);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-1),
+        -4px -4px 8px var(--shadow-color-2);
+}
+
+.submit-button:hover {
+    background-color: var(--accent-color-1);
+    transform: translateY(-3px);
+    box-shadow: 
+        6px 6px 12px var(--shadow-color-1),
+        -6px -6px 12px var(--shadow-color-2);
+}
+
+/* Footer */
+.neumorphic-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-color-1);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 
+        3px 3px 6px var(--shadow-color-1),
+        -3px -3px 6px var(--shadow-color-2);
+}
+
+.social-icon:hover {
+    color: var(--accent-color-1);
+    transform: translateY(-3px);
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-1),
+        -4px -4px 8px var(--shadow-color-2);
+}
+
+/* Dividers */
+.divider {
+    height: 4px;
+    margin: 3rem 0;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2), var(--accent-color-3), var(--accent-color-4));
+    box-shadow: 
+        2px 2px 4px var(--shadow-color-1),
+        -2px -2px 4px var(--shadow-color-2);
+}
+
+.divider-1 { transform: skew(45deg); }
+.divider-2 { transform: skew(-45deg); }
+.divider-3 { transform: skew(30deg); }
+.divider-4 { transform: skew(-30deg); }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-image {
+        margin-bottom: 2rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .neumorphic-footer .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header class="neumorphic-header">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero neumorphic-section">
+            <div class="container">
+                <h1>Your Name</h1>
+                <p>Web Developer & Designer</p>
+                <a href="#contact" class="cta-button">Get in Touch</a>
+            </div>
+        </section>
+
+        <div class="divider divider-1"></div>
+
+        <section id="about" class="neumorphic-section">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-image neumorphic-image">
+                        <img src="https://picsum.photos/300/300" alt="Your Name">
+                    </div>
+                    <div class="about-text">
+                        <p>Hello! I'm a passionate web developer and designer with a keen eye for detail and a love for creating beautiful, functional websites. With over 5 years of experience in the industry, I specialize in crafting user-centric digital experiences that blend creativity with cutting-edge technology.</p>
+                        <p>When I'm not coding, you can find me exploring new design trends, contributing to open-source projects, or enjoying a good cup of coffee while sketching new ideas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider divider-2"></div>
+
+        <section id="skills" class="neumorphic-section">
+            <div class="container">
+                <h2>My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-html5"></i>
+                        <h3>HTML5</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt"></i>
+                        <h3>CSS3</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js"></i>
+                        <h3>JavaScript</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-react"></i>
+                        <h3>React</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-node-js"></i>
+                        <h3>Node.js</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-database"></i>
+                        <h3>SQL</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider divider-3"></div>
+
+        <section id="projects" class="neumorphic-section">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="https://picsum.photos/400/300" alt="Project 1">
+                        <h3>E-commerce Platform</h3>
+                        <p>A full-stack e-commerce solution with React and Node.js</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://picsum.photos/401/300" alt="Project 2">
+                        <h3>Portfolio Website</h3>
+                        <p>A responsive portfolio website with advanced CSS animations</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://picsum.photos/402/300" alt="Project 3">
+                        <h3>Task Management App</h3>
+                        <p>A React-based task management application with drag-and-drop functionality</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider divider-4"></div>
+
+        <section id="contact" class="neumorphic-section">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="neumorphic-footer">
+        <div class="container">
+            <p>&copy; 2023 Your Name. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

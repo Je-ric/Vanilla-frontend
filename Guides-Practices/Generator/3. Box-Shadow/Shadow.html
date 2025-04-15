@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shadow Generator</title>
+  <link rel="stylesheet" href="/HTML-CSS-JS/Laboratory/Generator/Generator-CSS.css">
+  <link rel="stylesheet" href="Shadow.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    });
+</script>
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <div class="container">
+    <div class="outer-box">
+      <div class="box">
+        <div class="preview" id="preview">
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="controls">
+
+      <div class="group-1">
+      <!-- <h4 class="head">Border:</h4> -->
+      <label>Border Color: <input type="color" id="borderColor">&nbsp;&nbsp;or&nbsp;&nbsp;
+        <input type="text" class="color-input" id="borderColorHex" placeholder="Hex"></label><br><br>
+      <div class="border-options">
+        <label>Sides:</label>
+        <button class="border-btn" data-side="top">Top</button>
+        <button class="border-btn" data-side="right">Right</button>
+        <button class="border-btn" data-side="bottom">Bottom</button>
+        <button class="border-btn" data-side="left">Left</button>
+        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+        <br><br>
+        <label>Border Style: 
+          <select id="borderStyle">
+              <option value="solid">Solid</option>
+              <option value="dashed">Dashed</option>
+              <option value="dotted">Dotted</option>
+              <option value="double">Double</option>
+              <option value="groove">Groove</option>
+              <option value="ridge">Ridge</option>
+              <option value="inset">Inset</option>
+              <option value="outset">Outset</option>
+              <option value="none">None</option>
+              <option value="hidden">Hidden</option>
+          </select>
+        </label><br><br>
+      </div>
+      <label>Border Size: <input type="range" id="borderSize" min="0" max="25" value="5">
+        <span class="slider-value" id="borderSizeValue">5</span></label>
+      <br><br>
+      <label>Radius: <input type="range" id="borderRadius" min="0" max="100" value="0">
+        <span class="slider-value" id="borderRadiusValue">0</span></label><br>
+    </div>
+
+      <div class="group-2">
+      <!-- <h4 class="head">Box Shadow:</h4> -->
+      <label>Shadow Color: <input type="color" id="boxShadowColor">&nbsp;&nbsp;or&nbsp;&nbsp;
+        <input type="text" class="color-input" id="boxShadowColorHex" placeholder="Hex"></label><br><br>
+      <label>Spread: <input type="range" id="boxShadowSpread" min="0" max="50" value="0">
+        <span class="slider-value" id="boxShadowSpreadValue">0</span></label><br>
+      <br><label>Blur: <input type="range" id="boxShadowBlur" min="0" max="50" value="10">
+        <span class="slider-value" id="boxShadowBlurValue">10</span></label><br><br>
+      <label>Horizontal Shift: <input type="range" id="boxShadowHorizontal" min="-50" max="50" value="0">
+        <span class="slider-value" id="boxShadowHorizontalValue">0</span></label><br>
+      <br><label>Vertical Shift: <input type="range" id="boxShadowVertical" min="-50" max="50" value="0">
+        <span class="slider-value" id="boxShadowVerticalValue">0</span></label><br>
+    </div>
+
+      <div class="group-3">
+        <label>Background Color: <input type="color" id="bgColor" value="#ffffff">&nbsp;&nbsp;or&nbsp;&nbsp;
+          <input type="text" class="color-input" id="bgColorHex" placeholder="Hex"></label><br>
+          <label for="shadowType">Shadow Type:
+      <select id="shadowType">
+        <option value="outset">Outset</option>
+        <option value="inset">Inset</option>
+      </select>
+    </label>
+      <div class="button-container">
+        <textarea id="codeOutput" rows="7"></textarea>
+        <!-- <button onclick="generateCode()" class="generate-button">Generate Code</button> -->
+      </div>
+    </div>
+    </div>
+  
+</div>
+
+  <script src="Shadow.js"></script>
+</body>
+</html>

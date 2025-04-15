@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>BORDER SIZE-COLOR GENERATOR</title>
+</head>
+<body>
+    <h1>BORDER-SIZE</h1>
+        <div class="overAll">
+            <div class="container" id="container"></div>
+
+        <div class="tools">
+            <label for="border">border size</label>
+            <input type="range" value="3" min="0" max="50" id="border">
+            <div id="pixels"></div>
+
+            <div class="dropDown">
+                <select id="select">
+                    <option>solid</option>
+                    <option>dotted</option>
+                    <option>dashed</option>
+                    <option>double</option>
+                    <option>groove</option>
+                    <option>ridge</option>
+                    <option>inset</option>
+                    <option>outset</option>
+                </select>
+            </div>
+
+        <div class="inputColor">
+            <label for="color">colors</label>
+            <input type="color" id="color"  class="color">
+        </div>
+
+            <textarea id="code"></textarea>
+            <button id="copy">copy</button>
+            
+        </div>
+</div>
+</body>
+</html>
+

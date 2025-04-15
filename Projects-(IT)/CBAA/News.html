@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="Header-Footer.css">
+    <link rel="stylesheet" href="News.css">
+ 
+    <title>Landing Page</title>
+    <style>
+      @font-face {
+        font-family: 'oswald';
+        src: url(Font/Oswald-VariableFont_wght.ttf);
+      }
+    </style>
+  </head>
+  <body>
+
+    <header id="nav-menu" aria-label="navigation bar">
+      <div class="container-head">
+        <a class="logo" href="Landing-Page.html">
+          <img src="Images/CLSU_Logo.png"width="35"height="35"alt="Inc Logo"/>
+          <div class="logo-text">
+          <h4 class="cbaa">College of Business Administration and Accountancy </h4>
+          <h6>Central Luzon State University</h6>
+        </div>
+        </a>
+        <div class="nav-start">
+          <nav class="menu">
+            <ul class="menu-bar">
+              <li><a class="nav-link" href="Landing-Page.html">Home</a></li>
+              <li>
+                <button class="nav-link dropdown-btn" data-dropdown="dropdown1"
+                  aria-haspopup="true" aria-expanded="false"aria-label="browse"> Academic<i class="bx bx-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div id="dropdown1" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Department.html">
+                        <div>
+                          <span class="dropdown-link-title"
+                            >&#8226; Department</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+
+                  <ul role="menu">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Degree</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="1. Bachelor.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Bachelors Degree
+                      </a>
+                      <a class="dropdown-link" href="3. Masters.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Masters Degree
+                      </a>
+                    </li>
+                  </ul>
+                  <ul role="menu" style="border-top: 1px solid blue;">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Faculty</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Faculty-BA.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Business Administration
+                      </a>
+                      <a class="dropdown-link" href="Faculty-A.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Accountancy
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <button 
+                  class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                  aria-expanded="false" aria-label="discover" >Updates & Notices<i class="bx bx-chevron-down" 
+                  aria-hidden="true"></i>
+                </button>
+                <div id="dropdown2" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem"><a class="dropdown-link" href="Awards.html">&#8226; Awards</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="Organization.html">&#8226; Organizations</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="MVP.html">&#8226; CLSU Mandate</a></li>                    
+                    <li role="menuitem"><a class="dropdown-link" href="News.html">&#8226; News & Announcements</a></li>
+                  </ul>
+              <li><a class="nav-link" href="Contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+          <button
+            id="hamburger"
+            aria-label="hamburger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="bx bx-menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="harap">
+      <h1>News & Announcements</h1>
+    </div>
+
+
+    <button onclick="goToTop()" class="scroll-top-btn" id="scroll-top-btn">Top</button>
+
+<div class="all">
+    <section class="main-content">
+        <div class="news">
+          <article class="announcement">
+            <h2>Related Articles</h2>
+            <p> <br>These initiatives include mentorship programs, startup incubators, and networking events to inspire and guide aspiring student entrepreneurs. Driven by a vision to promote a culture of innovation and enterprise, the Business School seeks to empower the next generation of business leaders through practical experiences and guidance from successful entrepreneurs.</p>
+            <p class="read-more"><a href="https://www.facebook.com/CBAACorporateStudentGovernment">Read more</a></p>
+          </article>
+    
+          <article class="announcement">
+            <h2>Important Event Reminder</h2>
+            <p><br>The incubator, equipped with modern facilities and guidance from seasoned mentors and industry experts, will serve as a hub for creativity, collaboration, and entrepreneurial growth within the university community. They might organize events, advocate for student needs, and facilitate communication between students and faculty.Renowned economists and industry experts will lead discussions on topics such as emerging markets, sustainable finance, and the impact of geopolitical events on the global economy. This initiative aims to provide students with insights into real-world economic scenarios, fostering critical thinking and analytical skills necessary for future economic decision-makers.            </p>
+            <p class="read-more"><a href="https://www.facebook.com/CBAACorporateStudentGovernment">Read more</a></p>
+          </article>
+        </div>
+    
+        <aside class="sidebar">
+          <div class="related-articles">
+            <h2>Related Articles</h2>
+            <ul>
+              <li>&#8226; Accounting Quiz Champion</li>
+              <li>&#8226; Intramural Dominance</li>
+              <li>&#8226; Training Guide Innovations</li>
+              <li>&#8226; Industry Partnerships</li>
+              <li>&#8226; Faculty Excellence</li>
+              <li>&#8226; Student Initiatives</li>
+              <li>&#8226; Alumni Success Stories</li>
+            </ul>            
+          </div>
+    
+          <div class="upcoming-events">
+            <h2>Upcoming Events</h2>
+            <ul>
+              <li>&#8226; Business Summit - March 15, 2024</li>
+              <li>&#8226; Accounting Workshop - April 28, 2024</li>
+              <li>&#8226; Entrepreneurs Conference - June 6, 2024</li>
+              <li>&#8226; Networking Gala - August 5, 2024</li>
+              <li>&#8226; Finance Seminar - September 20, 2024</li>
+              <li>&#8226; Marketing Expo - October 12, 2024</li>
+              <li>&#8226; Leadership Symposium - November 8, 2024</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    
+      <div class="title">
+        <h2>Other News</h2>
+      </div>
+
+      <section class="image-news">
+        <div class="image-news-item">
+          <img src="News/10.png" alt="Image 1">
+          <div class="image-news-content">
+            <h2>Exciting News Title</h2>
+            <p>This initiative aims to provide a conducive environment for student-led startups, offering mentorship, resources, and networking opportunities to transform innovative ideas into viable businesses.</p>
+            <p class="read-more"><a href="https://www.facebook.com/CBAACorporateStudentGovernment">Read more</a></p>
+          </div>
+        </div>
+      
+        <div class="image-news-item">
+          <img src="News/7.png" alt="Image 2">
+          <div class="image-news-content">
+            <h2>Important Announcement</h2>
+            <p>This strategic investment underscores the institution's commitment to empowering students to become trailblazers in the business world by fostering an ecosystem that encourages innovation, risk-taking, and success.</p>
+            <p class="read-more"><a href="https://www.facebook.com/CBAACorporateStudentGovernment">Read more</a></p>
+          </div>
+        </div>
+      
+      </section>
+
+      <section class="news-section">
+        <div class="news-item">
+            <div class="image">
+                <img src="News/3.png" alt="Image 1">
+            </div>
+            <div class="info">
+                <h3>Training Guide Owners Revolutionize Learning</h3>
+                <p> Enterprising students have taken learning into their own hands by developing comprehensive training guides. These innovative resources, crafted with dedication and expertise, have become essential tools for their peers, simplifying complex subjects and enhancing study techniques. Their initiative is transforming the academic landscape, offering invaluable support to students navigating challenging coursework.</p>
+              </div>
+        </div>
+        <div class="news-item">
+            <div class="image">
+                <img src="News/9.png" alt="Image 1">
+            </div>
+            <div class="info">
+                <h3>Accounting Quiz Champion Emerges</h3>
+                <p> In a battle of wits and numbers, one student emerged victorious as the reigning champion of the accounting quiz. With a keen eye for detail and a knack for financial acumen, they outshone their peers, impressing both faculty and fellow students alike. Their achievement not only exemplifies academic prowess but also inspires future accounting aficionados.</p>
+              </div>
+        </div>
+        <div class="news-item">
+            <div class="image">
+                <img src="News/8.png" alt="Image 1">
+            </div>
+            <div class="info">
+                <h3>Intramural Victories Sweep Campus</h3>
+                <p>The university grounds were abuzz with energy as the annual intramural games concluded, crowning new champions across various sports. From exhilarating basketball clashes to intense soccer showdowns, students showcased their athleticism and team spirit, fostering a sense of camaraderie among the diverse campus community.</p>
+              </div>
+        </div>
+        <a href="https://www.facebook.com/CBAACorporateStudentGovernment">
+        <button class="older-news-button">Older News</button>
+      </a>
+    </section>  
+  </div>
+
+
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>Contact Us</h3>
+          <p>Central Luzon State University<br>
+             Science City of Munoz<br>
+             Nueva Ecija, Philippines<br>
+             Phone: +123456789<br>
+             Email: cbaa@clsu2.edu.ph</p>
+         
+        </div>
+      </div>
+      <div class="lowest">
+        <img src="Images/CBAA-LOGO.png" alt="CLSU_LOGO">
+        <img src="Images/CLSU_Logo.png" alt="CLSU_LOGO">
+        <p class="ars">&copy; 2023 Central Luzon State University. All rights reserved.</p>
+      </div>
+  
+      <div class="newsletter-signup">
+        <h3>Newsletter Signup:</h3>
+        <form action="#" method="post" class="signup-form">
+          <input type="email" name="email" placeholder="Your Email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+  
+  <div class="footer-socmed">
+    <ul>
+        <li class="icon-link"><a href="https://www.facebook.com/clsuofficialpage/" class="icon"><img src="Images/1. FB.png" alt="Facebook Icon" width="30" height="30"></a></li>
+        <li class="icon-link"><a href="https://twitter.com/clsu_official?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="icon"><img src="Images/3. Twitter.png" alt="Twitter Icon" width="30" height="30"></a></li>
+        <li class="icon-link"><a href="https://www.instagram.com/clsu.official/?hl=en" class="icon"><img src="Images/2. IG.png" alt="Instagram Icon" width="30" height="30"></a></li>
+        <li class="icon-link"><a href="https://www.youtube.com/@clsutube" class="icon"><img src="Images/4. Youtube.png" alt="Youtube Icon" width="30" height="30"></a></li>
+    </ul>
+  </div>
+  
+  
+<script src="Dropdown.js"></script>
+<script src="scroll.js"></script>
+</body>
+</html>

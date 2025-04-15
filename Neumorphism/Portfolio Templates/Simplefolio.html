@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3f72af;
+            --secondary-color: #f9a826;
+            --accent-color: #1d4e89;
+            --bg-color-light: #f3f4f7;
+            --bg-color-dark: #1a1e26;
+            --text-color-light: #ffffff;
+            --text-color-dark: #333333;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --link-hover-color: #ff6a00;
+        }
+
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-color-dark);
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-color-light);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 0 10%;
+            color: var(--text-color-light);
+            border-radius: 10px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero .text {
+            max-width: 50%;
+        }
+
+        .hero .text h1 {
+            margin-bottom: 20px;
+            font-size: 3.5rem;
+        }
+
+        .hero .text p {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .hero .cta-btn {
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: var(--text-color-light);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .cta-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--bg-color-light);
+            padding: 80px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .about .text {
+            width: 55%;
+            padding-right: 30px;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--text-color-dark);
+        }
+
+        .about img {
+            width: 40%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-color-dark);
+            color: var(--text-color-light);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .projects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .projects .project-card {
+            display: inline-block;
+            width: 30%;
+            margin: 0 15px;
+            background: var(--bg-color-light);
+            color: var(--text-color-dark);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px var(--shadow-color);
+            transition: transform 0.3s ease;
+        }
+
+        .projects .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .projects .project-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .projects .project-card h3 {
+            margin-top: 20px;
+            font-size: 1.8rem;
+        }
+
+        .projects .project-card p {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            color: var(--text-color-dark);
+        }
+
+        .projects .btn {
+            display: inline-block;
+            padding: 10px 30px;
+            margin-top: 20px;
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            text-transform: uppercase;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .projects .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--bg-color-light);
+            padding: 80px 0;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact .form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact input, .contact textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact input[type="submit"] {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact input[type="submit"]:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-light);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="text">
+            <h1>Welcome to My Portfolio</h1>
+            <p>I'm a full-stack developer passionate about creating beautiful, user-friendly websites.</p>
+            <a href="#about" class="cta-btn">Learn More About Me</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="text">
+            <h2>About Me</h2>
+            <p>Hello, I'm Jeric. I'm a developer with a passion for building interactive and visually appealing websites. I have experience with front-end and back-end development, and I specialize in creating seamless user experiences.</p>
+            <p>My journey in web development began with a curiosity about technology, and now I enjoy solving complex problems and bringing ideas to life.</p>
+        </div>
+        <img src="https://via.placeholder.com/400" alt="Profile Picture">
+    </section>
+
+    <section class="projects" id="projects">
+        <h2>My Projects</h2>
+        <div class="container">
+            <div class="project-card">
+                <img src="https://via.placeholder.com/600x400" alt="Project 1">
+                <h3>Project 1</h3>
+                <p>A web app built with React and Node.js for task management.</p>
+                <a href="#" class="btn">View Project</a>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/600x400" alt="Project 2">
+                <h3>Project 2</h3>
+                <p>An e-commerce website with an integrated payment system.</p>
+                <a href="#" class="btn">View Project</a>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/600x400" alt="Project 3">
+                <h3>Project 3</h3>
+                <p>A personal blog platform built using Gatsby and GraphQL.</p>
+                <a href="#" class="btn">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Contact Me</h2>
+        <div class="form">
+            <form>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <input type="submit" value="Send Message">
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Jeric. All rights reserved.</p>
+    </footer>
+</body>
+</html>

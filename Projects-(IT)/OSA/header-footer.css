@@ -1,0 +1,231 @@
+*{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  padding: 0;
+  margin: 0;
+}
+  
+.logo {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  margin-left: 20px;
+}
+
+.topmenu.fixed-topmenu li a{
+  color: black;
+}
+
+.topmenu.fixed-topmenu{
+  background: linear-gradient(90deg, rgba(0,129,2,1) 0%, rgba(149,210,45,1) 100%);
+}
+
+.banner {
+  width: 100vw;
+  height: 75vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(Images/Siever.jpg);
+  background-size: cover;
+  background-position: top; 
+}
+
+.topmenu {
+  width: 100%; 
+  margin: auto;
+  padding: 35px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: transparent;
+}
+
+.topmenu ul li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.topmenu ul li {
+  list-style: none;
+  display: inline-block; 
+  margin: 0 20px;
+}
+
+.topmenu ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.topmenu ul li a {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: 0.3s;
+  
+}
+
+.topmenu li a:hover {
+  transition: o.3s; 
+  color: #91e30c;
+  border-bottom-color: #91e30c;
+  border-top-color: #91e30c;
+}
+
+
+.mainclsu{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-90%);
+  text-align: center;
+  color: #fff;
+  text-decoration: double;
+}
+
+.mainclsu h1{
+  font-size: 110px;
+}
+
+.mainclsu p{
+  font-size: 30px;
+}
+
+
+
+/*------------------------------------------------------------------------------------------------------------*/
+  
+.image {
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  text-align: center; 
+}
+
+.image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(Images/footer-bg.png);
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -1;
+}
+
+.footer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.footer-info::before {
+  color: white;
+}
+
+.footer-info {
+  padding-left: 95px;
+  text-align: justify;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-right: 2px solid #ffd700; 
+  padding-right: 20px;
+}
+
+.footer-info:last-child {
+  border-right: none; 
+  padding-right: 0; 
+}
+
+
+.footer-info h3 {
+  color: #91e30c;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.footer-info p {
+  font-size: 16px;
+  line-height: 2.0;
+  color: white;
+}
+
+.footer-info ul {
+  line-height: 2.5;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-info ul li {
+  margin-bottom: 8px;
+}
+
+.footer-info ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-info ul li a:hover {
+  color: green;
+}
+
+.footer-info p,
+.footer-info .icon-image img {
+  vertical-align: top;
+  margin-right: 5px;
+}
+
+.footer-info span{
+  color: #91e30c;
+}
+
+.ars {
+  color: white;
+  bottom: 10px;
+  left: 50%; 
+  transform: translateX(-50%); 
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  margin-top: 20px;
+}
+
+
+.lowest img {
+  align-self: center;
+  width: 150px;
+  height: 150px;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}

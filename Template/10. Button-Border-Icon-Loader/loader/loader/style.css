@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(12, 12, 12);
+    font-family: 'poppins';
+}
+.loader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    column-gap: 5px;
+    height: 200px;
+    width: 200px;
+    background-color: #fff;
+    border-radius: 1rem;
+    padding-bottom: 4rem;
+}
+
+
+.loader span {
+  --duration: 1s;  
+  height: var(--height);
+  width: 10px;
+  background-color: rgb(255, 196, 0);
+  border: none;
+  border-radius: 5px;
+  animation: animation var(--duration) ease-in-out infinite;
+}
+
+.loader span:nth-child(1) {
+    --height: 40px;
+    animation-delay: 0.25s;
+}
+
+.loader span:nth-child(2) {
+    --height: 60px;
+    animation-delay: 0.55s;
+}
+
+.loader span:nth-child(3) {
+    --height: 75px;
+    animation-delay: 0.75s;
+}
+
+.loader span:nth-child(4) {
+    --height: 60px;
+    animation-delay: 1s;
+}
+
+.loader span:nth-child(5) {
+    --height: 40px;
+  animation-delay: 1.25s;
+}
+
+.attribute{
+    position: absolute;
+    bottom: 10px;
+}
+
+@keyframes animation {
+    0%, 100% {
+      transform: translateY(25%);
+      opacity: 0.4;
+      box-shadow: 0 0 20px rgba(0, 213, 255, 0.8);
+    }
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+      box-shadow: none;
+      height: calc(var(--height) + 25px);
+    }
+}

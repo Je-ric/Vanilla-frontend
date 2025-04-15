@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="toolbar.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script defer src="toolbar.js"></script> 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a2235',
+                        secondary: '#ffb51b',
+                        accent: '#7E3AF2'
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        .image-preview {
+            transition: all 0.3s ease;
+        }
+        .image-preview:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body {
+            overflow: hidden;
+        }
+        .scrollable-content {
+            height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+        /* Custom scrollbar */
+        .scrollable-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        .radio-custom:checked {
+            background-color: #ffb51b !important;
+            border-color: #ffb51b !important;
+            color: #1a2235 !important;
+        }
+        .toggle-custom:checked {
+            background-color: #ffb51b !important;
+            border-color: #ffb51b !important;
+            color: #1a2235 !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="flex flex-col bg-white h-screen">
+        <div class="flex justify-between items-center p-6 border-b border-gray-200 bg-white">
+
+            <h2 class="text-2xl font-bold text-primary flex items-center gap-2">
+                <a href="content-index.html">
+                    <button class="btn btn-ghost btn-circle btn-sm">
+                        <i class='bx bx-arrow-back text-xl'></i>
+                    </button>
+                </a>
+                Content Creation
+            </h2>
+
+            <div class="flex gap-3">
+                <button class="btn btn-outline btn-sm gap-2" onclick="my_modal_1.showModal()">
+                        <i class='bx bx-show'></i> View Requests
+                </button>
+                <button class="btn bg-[#1a2235] btn-sm gap-2 text-white">
+                    <i class='bx bx-save'></i> Save
+                </button>
+                <button class="btn bg-[#ffb51b] btn-sm gap-2 text-white">
+                    <i class='bx bx-upload'></i> Publish
+                </button>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6 p-6 flex-grow overflow-hidden">
+            <div class="space-y-6 scrollable-content pr-4 pl-2">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label">
+                                <span class="label-text font-medium">Title</span>
+                            </label>
+                            <input type="text" value="Content Title" 
+                                   class="input input-bordered w-full focus:ring-2 focus:ring-primary">
+                        </div>
+                        
+                        <div>
+                            <label class="label">
+                                <span class="label-text font-medium">Category</span>
+                            </label>
+                            <div class="flex gap-4">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="category" class="radio radio-custom"> 
+                                    <span>News</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="category" class="radio radio-custom" checked> 
+                                    <span>Program</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="space-y">
+                        <label class="label">
+                            <span class="label-text font-medium">Featured Image</span>
+                        </label>
+                        <div 
+                            class="border-2 border-dashed border-gray-300 rounded-box p-4 bg-base-100 flex flex-col items-center justify-center h-40 cursor-pointer hover:bg-base-200 transition-colors"
+                            onclick="document.getElementById('featuredImageInput').click()"
+                        >
+                            <i class='bx bx-image-add text-4xl text-gray-400 mb-2'></i>
+                            <span class="text-gray-500 mb-3 text-sm">Click to upload or drag and drop</span>
+                            <input 
+                                type="file" 
+                                id="featuredImageInput" 
+                                name="image" 
+                                class="hidden" 
+                                accept="image/*"
+                                onchange="handleImageUpload(this)"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3" id="imagePreviews">
+                    <div class="image-preview relative group hidden">
+                        <img src="" alt="Preview" class="w-full h-24 object-cover rounded-lg">
+                        <button class="absolute top-1 right-1 btn btn-circle btn-xs btn-error opacity-0 group-hover:opacity-100 transition">
+                            <i class='bx bx-x'></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="label">
+                        <span class="label-text font-medium">Description</span>
+                    </label>
+                    <textarea class="textarea textarea-bordered w-full focus:ring-2 focus:ring-primary" rows="3">Description about the Content</textarea>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        
+                        <span class="label-text font-medium">Allow What applies</span>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" class="toggle toggle-custom" checked>
+                            <span class="label-text">Enable Likes</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" class="toggle toggle-custom" checked>
+                            <span class="label-text">Enable Comments</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label class="label">
+                            <span class="label-text font-medium">Multiple Image/Gallery</span>
+                        </label>
+                        <div 
+                        class="border-2 border-dashed border-gray-300 rounded-box p-4 bg-base-100 flex flex-col items-center justify-center h-40 cursor-pointer hover:bg-base-200 transition-colors"
+                        onclick="document.getElementById('multipleImagesInput').click()">
+                        <i class='bx bx-image-add text-3xl text-gray-400 mb-2'></i>
+                        <span class="text-gray-500 text-sm">Click to upload multiple images</span>
+                        <input type="file" id="multipleImagesInput" class="hidden" accept="image/*" multiple onchange="handleMultipleImages(this)">
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            
+             <div class="bg-base-200 rounded-box border border-base-300 scrollable-content">
+                <div class="toolbar" id="toolbar">
+                    <select onchange="execCmd('fontName', this.value)">
+                        <option value="Arial">Arial</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+            
+                    <select onchange="execCmd('fontSize', this.value)">
+                        <option value="1">Small</option>
+                        <option value="3" selected>Normal</option>
+                        <option value="5">Large</option>
+                        <option value="7">Huge</option>
+                    </select>
+            
+                    <button onclick="execCmd('bold')"><i class="fas fa-bold"></i></button>
+                    <button onclick="execCmd('italic')"><i class="fas fa-italic"></i></button>
+                    <button onclick="execCmd('underline')"><i class="fas fa-underline"></i></button>
+                    <button onclick="execCmd('strikeThrough')"><i class="fas fa-strikethrough"></i></button>
+            
+                    <input type="color" id="textColor" onchange="applyStyle('color', this.value)">
+                    <input type="color" id="highlightColor" onchange="applyStyle('backgroundColor', this.value)">
+            
+            
+                    <button onclick="execCmd('justifyLeft')"><i class="fas fa-align-left"></i></button>
+                    <button onclick="execCmd('justifyCenter')"><i class="fas fa-align-center"></i></button>
+                    <button onclick="execCmd('justifyRight')"><i class="fas fa-align-right"></i></button>
+                    <button onclick="execCmd('justifyFull')"><i class="fas fa-align-justify"></i></button>
+            
+                    <!-- <button onclick="execCmd('insertUnorderedList')"><i class="fas fa-list-ul"></i></button>
+                    <button onclick="execCmd('insertOrderedList')"><i class="fas fa-list-ol"></i></button> -->
+            
+                    <button onclick="execCmd('outdent')"><i class="fas fa-outdent"></i></button>
+                    <button onclick="execCmd('indent')"><i class="fas fa-indent"></i></button>
+            
+                    <select onchange="formatHeading(this.value)">
+                        <option value="">Paragraph</option>
+                        <option value="h1">H1</option>
+                        <option value="h2">H2</option>
+                        <option value="h3">H3</option>
+                        <option value="h4">H4</option>
+                        <option value="h5">H5</option>
+                        <option value="h6">H6</option>
+                    </select>
+            
+                    <button onclick="execCmd('formatBlock', 'blockquote')"><i class="fas fa-quote-left"></i></button>
+                    <button onclick="execCmd('formatBlock', 'pre')"><i class="fas fa-code"></i></button>
+            
+                    <button onclick="execCmd('undo')"><i class="fas fa-undo"></i></button>
+                    <button onclick="execCmd('redo')"><i class="fas fa-redo"></i></button>
+            
+                    <button onclick="execCmd('removeFormat')"><i class="fas fa-eraser"></i></button>
+            
+                    <button onclick="window.print()"><i class="fas fa-print"></i></button>
+                    <button id="hr-btn"><i class="fas fa-minus"></i></button>
+                    <button id="quote-btn"><i class="fas fa-quote-left"></i></button>
+                    <button id="code-btn"><i class="fas fa-code"></i></button>
+                    <button onclick="insertLink()"><i class="fas fa-link"></i></button>
+            
+                    <button id="insertOrderedList" class="option-button">
+                        <div class="fa-solid fa-list-ol"></div>
+                      </button>
+                      <button id="insertUnorderedList" class="option-button">
+                        <i class="fa-solid fa-list"></i>
+                      </button>
+
+                    <div class="input-wrapper">
+                        <input type="color" id="foreColor" class="adv-option-button" />
+                        <label for="foreColor">Font Color</label>
+                      </div>
+                      <div class="input-wrapper">
+                        <input type="color" id="backColor" class="adv-option-button" />
+                        <label for="backColor">Highlight Color</label>
+                      </div>
+                    <!-- <button onclick="insertImage()"><i class="fas fa-image"></i> Insert Image</button>
+                    <button onclick="insertTable()"><i class="fas fa-table"></i> Insert Table</button>
+                    <button onclick="addRow()">Add Row</button>
+                    <button onclick="addColumn()">Add Column</button>
+                    <button onclick="removeRow()">Remove Row</button>
+                    <button onclick="removeColumn()">Remove Column</button> -->
+                
+                </div>
+                
+                <div id="editor" class="editor" contenteditable="true"></div>
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;" />
+            
+                <div class="info">
+                    <p>Word Count: <span id="wordCount">0</span></p>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <dialog id="my_modal_1" class="modal w-full">
+        <div class="modal-box w-full max-w-4xl">
+            <h3 class="text-lg font-bold">Upcoming IT FEST</h3>
+            <p class="py-4">Requested by: <span>Jozen Agustin</span></p>
+            <p class="py-4">
+                Description: 
+                <span>Welcome to CLIRDEC! Get ready for an exciting IT Festival featuring innovative discussions, hands-on activities, and networking opportunities. Join us as we explore the latest trends and advancements in the world of technology.</span>
+            </p>
+            <p class="py-4">Notes: <span>Pa-add nang grammar at paayos nang grammar.</span></p>
+            <div class="flex gap-5 ">
+                <div><img src="https://placehold.co/200x200" alt=""><a href="" download>Download</a></div>
+                <div><img src="https://placehold.co/200x200" alt=""><a href="" download>Download</a></div>
+                <div><img src="https://placehold.co/200x200" alt=""><a href="" download>Download</a></div>
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+    
+</body>
+</html>

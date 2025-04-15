@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youmanitarian International CMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a2235',
+                        secondary: '#ffb51b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 18px;
+            height: 18px;
+            background-color: #ff4d4f;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .notification-panel {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 60px;
+            background-color: white;
+            width: 350px;
+            max-height: 400px;
+            overflow-y: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .sidebar-item {
+            transition: all 0.2s;
+        }
+        .sidebar-item:hover {
+            background-color: rgba(26, 34, 53, 0.05);
+        }
+        .sidebar-item.active {
+            background-color: rgba(26, 34, 53, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <div class="drawer lg:drawer-open">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        
+        <!-- Mobile toggle -->
+        <div class="drawer-content flex flex-col">
+            <div class="navbar bg-white lg:hidden shadow-sm">
+                <div class="flex-none">
+                    <label for="my-drawer" class="btn btn-square btn-ghost text-primary">
+                        <i class='bx bx-menu text-xl'></i>
+                    </label>
+                </div>
+                <div class="flex-1">
+                    <a class="btn btn-ghost normal-case text-xl text-primary">Youmanitarian Intl.</a>
+                </div>
+                
+                <!-- Top right icons for mobile -->
+                <div class="flex-none gap-2 lg:hidden">
+                    <div class="notification-container relative">
+                        <button class="btn btn-ghost btn-circle text-primary relative">
+                            <i class='bx bx-bell text-xl'></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-panel p-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-bold text-lg text-primary">Notifications</h3>
+                                <button class="text-sm text-secondary">Mark all as read</button>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border border-gray-100">
+                                    <div class="flex items-start gap-3">
+                                        <div class="bg-secondary/20 p-2 rounded-full">
+                                            <i class='bx bx-task text-secondary'></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-primary">New project assigned</p>
+                                            <p class="text-sm text-gray-500">2 hours ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border border-gray-100">
+                                    <div class="flex items-start gap-3">
+                                        <div class="bg-secondary/20 p-2 rounded-full">
+                                            <i class='bx bx-message-rounded text-secondary'></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-primary">You have 3 new messages</p>
+                                            <p class="text-sm text-gray-500">5 hours ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border border-gray-100">
+                                    <div class="flex items-start gap-3">
+                                        <div class="bg-secondary/20 p-2 rounded-full">
+                                            <i class='bx bx-calendar-event text-secondary'></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-primary">Meeting in 30 minutes</p>
+                                            <p class="text-sm text-gray-500">Yesterday</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="text-secondary text-sm">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full bg-secondary flex items-center justify-center text-primary font-bold">
+                                <span>AD</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-content mt-2 p-2">
+                            <div class="px-4 py-3 border-b border-gray-100">
+                                <p class="text-sm text-gray-500">Signed in as</p>
+                                <p class="font-medium text-primary">Admin User</p>
+                            </div>
+                            <ul class="menu">
+                                <li><a class="hover:bg-primary/5 hover:text-secondary text-primary"><i class='bx bx-user'></i> Profile</a></li>
+                                <li><a class="hover:bg-primary/5 hover:text-secondary text-primary"><i class='bx bx-cog'></i> Account Settings</a></li>
+                                <li><a class="hover:bg-primary/5 hover:text-secondary text-primary"><i class='bx bx-log-out'></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desktop navbar -->
+            <div class="navbar bg-white hidden lg:flex justify-end pr-4 shadow-sm">
+                <div class="flex-1"></div>
+                <div class="flex-none gap-4">
+                    <div class="notification-container relative">
+                        <button class="btn btn-ghost btn-circle text-primary relative">
+                            <i class='bx bx-bell text-xl'></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-panel p-4">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-bold text-lg text-primary">Notifications</h3>
+                                <button class="text-sm text-secondary">Mark all as read</button>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border border-gray-100">
+                                    <div class="flex items-start gap-3">
+                                        <div class="bg-secondary/20 p-2 rounded-full">
+                                            <i class='bx bx-task text-secondary'></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-primary">New project assigned</p>
+                                            <p class="text-sm text-gray-500">2 hours ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border border-gray-100">
+                                    <div class="flex items-start gap-3">
+                                        <div class="bg-secondary/20 p-2 rounded-full">
+                                            <i class='bx bx-message-rounded text-secondary'></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-primary">You have 3 new messages</p>
+                                            <p class="text-sm text-gray-500">5 hours ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 hover:bg-gray-50 rounded-lg cursor-pointer border border-gray-100">
+                                    <div class="flex items-start gap-3">
+                                        <div class="bg-secondary/20 p-2 rounded-full">
+                                            <i class='bx bx-calendar-event text-secondary'></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-primary">Meeting in 30 minutes</p>
+                                            <p class="text-sm text-gray-500">Yesterday</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="text-secondary text-sm">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full bg-secondary flex items-center justify-center text-primary font-bold">
+                                <span>AD</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-content mt-2 p-2">
+                            <div class="px-4 py-3 border-b border-gray-100">
+                                <p class="text-sm text-gray-500">Signed in as</p>
+                                <p class="font-medium text-primary">Admin User</p>
+                            </div>
+                            <ul class="menu">
+                                <li><a class="hover:bg-primary/5 hover:text-secondary text-primary"><i class='bx bx-user'></i> Profile</a></li>
+                                <li><a class="hover:bg-primary/5 hover:text-secondary text-primary"><i class='bx bx-cog'></i> Account Settings</a></li>
+                                <li><a class="hover:bg-primary/5 hover:text-secondary text-primary"><i class='bx bx-log-out'></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page content -->
+            <div class="p-6 bg-gray-50 min-h-[calc(100vh-64px)]">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h1 class="text-2xl font-bold mb-4 text-primary">Welcome to Youmanitarian International CMS</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-gradient-to-r from-primary/5 to-primary/10 p-6 rounded-lg border border-primary/10">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-secondary/20 p-3 rounded-full">
+                                    <i class='bx bx-group text-secondary text-2xl'></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Active Projects</p>
+                                    <p class="text-2xl font-bold text-primary">24</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-primary/5 to-primary/10 p-6 rounded-lg border border-primary/10">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-secondary/20 p-3 rounded-full">
+                                    <i class='bx bx-globe text-secondary text-2xl'></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Countries</p>
+                                    <p class="text-2xl font-bold text-primary">12</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-primary/5 to-primary/10 p-6 rounded-lg border border-primary/10">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-secondary/20 p-3 rounded-full">
+                                    <i class='bx bx-heart text-secondary text-2xl'></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Beneficiaries</p>
+                                    <p class="text-2xl font-bold text-primary">1,245</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 pt-6">
+                        <h2 class="text-xl font-semibold text-primary mb-4">Recent Activities</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-3 hover:bg-primary/5 rounded-lg">
+                                <div class="bg-secondary/10 p-2 rounded-full">
+                                    <i class='bx bx-check-circle text-secondary'></i>
+                                </div>
+                                <div>
+                                    <p class="text-primary font-medium">New project approved in Syria</p>
+                                    <p class="text-sm text-gray-500">Emergency relief for earthquake victims</p>
+                                    <p class="text-xs text-gray-400 mt-1">2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-3 hover:bg-primary/5 rounded-lg">
+                                <div class="bg-secondary/10 p-2 rounded-full">
+                                    <i class='bx bx-file text-secondary'></i>
+                                </div>
+                                <div>
+                                    <p class="text-primary font-medium">Quarterly report submitted</p>
+                                    <p class="text-sm text-gray-500">Q3 2023 impact assessment</p>
+                                    <p class="text-xs text-gray-400 mt-1">1 day ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Light Sidebar -->
+        <div class="drawer-side">
+            <label for="my-drawer" class="drawer-overlay"></label>
+            <div class="menu p-4 w-80 h-full bg-white text-primary border-r border-gray-200">
+                <!-- Logo/Brand -->
+                <div class="flex items-center mb-8 p-4 border-b border-gray-200">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-primary font-bold mr-3">
+                        <i class='bx bx-world text-xl'></i>
+                    </div>
+                    <h2 class="text-xl font-bold">Youmanitarian Intl.</h2>
+                </div>
+                
+                <!-- Navigation -->
+                <ul>
+                    <li class="mb-1">
+                        <a class="sidebar-item active rounded-lg text-primary hover:text-secondary">
+                            <i class='bx bx-home text-xl'></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="sidebar-item rounded-lg text-primary hover:text-secondary">
+                            <i class='bx bx-folder text-xl'></i>
+                            Projects
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="sidebar-item rounded-lg text-primary hover:text-secondary">
+                            <i class='bx bx-calendar text-xl'></i>
+                            Programs
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="sidebar-item rounded-lg text-primary hover:text-secondary">
+                            <i class='bx bx-group text-xl'></i>
+                            Beneficiaries
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="sidebar-item rounded-lg text-primary hover:text-secondary">
+                            <i class='bx bx-chart text-xl'></i>
+                            Reports
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="sidebar-item rounded-lg text-primary hover:text-secondary">
+                            <i class='bx bx-donate-heart text-xl'></i>
+                            Donations
+                            <span class="badge badge-secondary badge-sm">New</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a class="sidebar-item rounded-lg text-primary hover:text-secondary">
+                            <i class='bx bx-message-rounded text-xl'></i>
+                            Communications
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Bottom section -->
+                <div class="mt-auto">
+                    <div class="divider"></div>
+                    <ul>
+                        <li class="mb-1">
+                            <a class="sidebar-item rounded-lg text-primary hover:text-secondary">
+                                <i class='bx bx-cog text-xl'></i>
+                                Settings
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a class="sidebar-item rounded-lg text-primary hover:text-secondary">
+                                <i class='bx bx-help-circle text-xl'></i>
+                                Support
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle notification panel on click
+        document.querySelectorAll('.notification-container').forEach(container => {
+            const button = container.querySelector('button');
+            const panel = container.querySelector('.notification-panel');
+            
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!container.contains(e.target)) {
+                    panel.style.display = 'none';
+                }
+            });
+        });
+
+        // Active sidebar item
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transform CSS Generator</title>
+  <link rel="stylesheet" href="Transform.css">
+</head>
+<body>
+    <div class="container">
+<div>
+  <div class="preview-box" id="previewBox"></div>
+</div>
+    
+        <div class="controls">
+          <div class="group-1">
+          <label for="scale">Scale: <span id="scaleValue">1</span></label>
+          <input type="range" id="scale" class="slider" min="0" max="3" step="0.1" value="1">
+          
+          <label for="rotate">Rotate: <span id="rotateValue">0</span>deg</label>
+          <input type="range" id="rotate" class="slider" min="-180" max="180" value="0">
+      
+          <label for="translateX">Translate X: <span id="translateXValue">0</span>px</label>
+          <input type="range" id="translateX" class="slider" min="-100" max="100" value="0">
+        </div>
+        <div class="group-2">
+          <label for="translateY">Translate Y: <span id="translateYValue">0</span>px</label>
+          <input type="range" id="translateY" class="slider" min="-100" max="100" value="0">
+          
+          <label for="skewX">Skew X: <span id="skewXValue">0</span>deg</label>
+          <input type="range" id="skewX" class="slider" min="-45" max="45" value="0">
+          
+          <label for="skewY">Skew Y: <span id="skewYValue">0</span>deg</label>
+          <input type="range" id="skewY" class="slider" min="-45" max="45" value="0">
+        </div>
+        </div>
+        <div class="buttons">
+          <button onclick="resetTransform()" class="reset-button">Reset</button>
+        </div>
+        <textarea id="codeOutput" rows="10" readonly></textarea>
+      </div>
+
+
+  <script src="Transform.js">
+ 
+  </script>
+</body>
+</html>

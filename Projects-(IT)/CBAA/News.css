@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .all{
+    background-image: url(Images/BG1.png);
+    background-attachment: fixed;
+    background-size: contain;
+    padding: 30px;
+  }
+
+  .title {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    color: blue;
+    background-color: #f4f4f4;
+  }
+
+  .main-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .news {
+    flex: 2;
+    margin-right: 20px;
+  }
+
+  .announcement {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f4f4f4;
+  }
+
+  .announcement h2,
+  .announcement h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .announcement p {
+    margin-bottom: 15px;
+  }
+
+  .announcement p.read-more a {
+    color: blue;
+    text-decoration: none;
+  }
+
+  .read-more a{
+      font-size: 15px;
+      border: 2px solid blue;
+      padding: 5px;
+      transition: 0.3s ease-in-out;
+  }
+  .announcement p.read-more a:hover {
+    color:white;
+    border-radius: 20px;
+    background-color: blue;
+    transition: 0.3s ease-in-out;
+  }
+
+ 
+.sidebar {
+  flex: 1;
+  max-width: 300px;
+  margin-top: 20px;
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 8px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: none;
+  }
+
+  .sidebar h2{
+    font-size: 16px;
+  }
+
+  .sidebar ul li{
+    font-size: 15px;
+  }
+  .related-articles{
+    border-right:2px solid blue;
+  }
+
+  .related-articles,
+  .upcoming-events {
+    text-align: center;
+    flex-basis: calc(50% - 10px);
+    margin-bottom: 20px;
+  }
+
+  .main-content {
+    flex-direction: column;
+    }
+    
+    .news {
+    margin-right: 0;
+    }
+
+    
+  .image-news-item {
+    max-width: 48%;
+    margin-bottom: 20px;
+  }
+}
+
+
+
+  .image-news {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .image-news-item {
+    width: 46%;
+    margin-bottom: 20px;
+  }
+
+  .image-news-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .image-news-content {
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+  }
+
+  .image-news-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .image-news-content p {
+    margin-bottom: 15px;
+  }
+
+  .image-news-content .read-more a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .image-news-content .read-more a:hover {
+    color: blue;
+  }
+
+ 
+ 
+
+.news-section {
+border-top: 1px solid blue;
+border-bottom: 1px solid blue;
+padding: 20px 0;
+}
+
+
+.news-item {
+display: flex;
+flex-direction: column;
+margin-bottom: 20px;
+}
+
+.news-item .image {
+width: 100%;
+margin-bottom: 10px;
+}
+
+.news-item .image img {
+width: 100%;
+border-radius: 5px;
+}
+
+.news-item .info {
+width: 100%;
+}
+
+.news-item .info h3 {
+font-size: 25px;
+margin-bottom: 10px;
+}
+
+.news-item .info p {
+line-height: 1.5;
+}
+
+
+.older-news-button {
+padding: 10px 20px;
+background-color: #333;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+display: block;
+margin: 0 auto;
+}
+
+.older-news-button:hover {
+background-color: blue;
+}
+
+
+@media screen and (min-width: 768px) {
+  .news-item {
+    flex-direction: row;
+  }
+
+  .news-item .image {
+    width: 30%;
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .news-item .info h3 {
+    font-size: 30px;
+  }
+
+  .news-item .info p {
+    font-size: 18px;
+  }
+
+  .news-item .info {
+    width: calc(70% - 20px);
+  }
+
+  .older-news-button {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .image-news-item {
+    width: 100%;
+  }
+}
+
+
+
+@media screen and (max-width: 767px) {
+  .news-item .info h3 {
+    font-size: 16px;
+  }
+
+  .news-item .info p {
+    font-size: 12px;
+  }
+}

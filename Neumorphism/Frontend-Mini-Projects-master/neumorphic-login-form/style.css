@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --background-color: #131419;
+  --h2-text-color: #c7c7c7;
+  --label-text-color: #868686;
+  --text-color-warning: #ff0047;
+  --text-color-primary: #03a9f4;
+  --text-color-primary-active: #006c9c;
+  --paragraph-text-color: #555;
+
+  /*Outer-Shadow-Top-Left*/
+  --box-shadow-1: rgba(255, 255, 255, 0.1);
+  /*Outer-Shadow-Bottom-Right*/
+  --box-shadow-2: rgba(0, 0, 0, 0.3);
+
+  /*Inner-Shadow-Bottom-Left*/
+  --inset-box-shadow-2: rgba(0, 0, 0, 0.9);
+  /*Inner-Shadow-Bottom-Right*/
+  --inset-box-shadow-1: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] {
+  --background-color: #ebf5fc;
+  --h2-text-color: #32a3b1;
+  --label-text-color: #797979;
+  --text-color-warning: #ff0047;
+  --text-color-primary: #32a3b1;
+  --text-color-primary-active: #006c9c;
+  --paragraph-text-color: #bdcada;
+
+  /*Outer-Shadow-Top-Left*/
+  --box-shadow-1: rgba(255, 255, 255, 0.8);
+  /*Outer-Shadow-Bottom-Right*/
+  --box-shadow-2: rgba(0, 0, 0, 0.1);
+  /*Inner Shadow Top Left*/
+  --inset-box-shadow-1: rgba(255, 255, 255, 1);
+  /*Inner Shadow Bottom Right*/
+  --inset-box-shadow-2: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "sans-serif";
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--background-color);
+}
+
+.form {
+  position: relative;
+  text-align: center;
+  width: 350px;
+  padding: 40px 40px 60px;
+  background: var(--background-color);
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: -5px -5px 10px var(--box-shadow-1),
+    5px 5px 10px var(--box-shadow-2);
+}
+
+.form h2 {
+  color: var(--h2-text-color);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.form .input {
+  text-align: left;
+  margin-top: 40px;
+}
+
+.form .input .input-box {
+  margin-top: 20px;
+}
+
+.form .input .input-box label {
+  display: block;
+  color: var(--label-text-color);
+  border-bottom: 5px;
+  font-size: 18px;
+  margin: 10px;
+}
+
+.form .input .input-box input {
+  width: 100%;
+  height: 50px;
+  background-color: var(--background-color);
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  padding: 5px 15px;
+  color: var(--text-color-primary);
+  font-size: 18px;
+  box-shadow: inset -2px -2px 6px var(--inset-box-shadow-1),
+    inset 2px 2px 6px var(--inset-box-shadow-2);
+}
+
+.form .input .input-box input[type="submit"] {
+  margin-top: 20px;
+  box-shadow: -5px -5px 10px var(--box-shadow-1),
+    5px 5px 10px var(--box-shadow-2);
+}
+.form .input .input-box input[type="submit"]:active {
+  margin-top: 20px;
+  color: var(--text-color-primary-active);
+  box-shadow: inset -5px -5px 10px var(--box-shadow-1),
+    inset 5px 5px 10px var(--box-shadow-2);
+}
+
+.form .input .input-box input[type="submit"]::placeholder {
+  color: var(--paragraph-text-color);
+  font-size: 18px;
+}
+
+.forget {
+  margin: 30px 0;
+  color: #555;
+}
+
+.forget a {
+  text-decoration: none;
+  color: var(--text-color-warning);
+}

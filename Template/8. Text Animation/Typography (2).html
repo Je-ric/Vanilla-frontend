@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: darkgray;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: white;
+            position: relative;
+            
+        }
+
+        h1::before,
+        h1::after{
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: 0.3s ease-out;
+        }
+
+        h1:hover::before{
+            color: #bb0000;
+            transform: translate(12px, -12px);
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+        h1:hover::after{
+            color: #77efff;
+            transform: translate(24px, -24px);
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 data-text="Frontend">Frontend</h1>
+</body>
+</html>

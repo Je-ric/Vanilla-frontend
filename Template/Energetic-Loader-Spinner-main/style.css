@@ -1,0 +1,215 @@
+body {
+  overflow-y: hidden;
+}
+
+@property --value {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+@property --width-ratio {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+:root {
+  --width: 0.5vmin;
+  --duration: 7s;
+  --size: 50vmin;
+  --logo: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDAuNTgxIiBoZWlnaHQ9IjU3Ljg0NiIgdmlld0JveD0iMCAwIDQwLjU4MSA1Ny44NDYiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIwLjkxMSIgeTE9IjAuMDgyIiB4Mj0iMC4xODUiIHkyPSIwLjkxIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2UyMDBmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuMTA3IiBzdG9wLWNvbG9yPSIjZWVhM2Y3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMC40NDMiIHN0b3AtY29sb3I9IiNlMWQwZTMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjU3NiIgc3RvcC1jb2xvcj0iI2ZmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM4N2NjZjAiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGlkPSJQYXRoXzEiIGRhdGEtbmFtZT0iUGF0aCAxIiBkPSJNOTMzLjYxMyw2OTkuNDkybC0zMS40NTMsMzEuODVoMjAuMzA4bC0xOC43OCwyNiwzOS4wNTMtMzQuNzk1SDkyMS4wN1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05MDIuMTU5IC02OTkuNDkyKSIgZmlsbD0idXJsKCNsaW5lYXItZ3JhZGllbnQpIi8+Cjwvc3ZnPgoK");
+}
+@supports not (background: paint(foo)) {
+  :root {
+    --duration: 4s;
+  }
+}
+
+.rings {
+  width: var(--size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  perspective: var(--size);
+}
+.rings:before,
+.rings:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: red;
+  border-radius: 50%;
+  --width-ratio: 1;
+  border: calc(var(--width) * var(--width-ratio)) solid transparent;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  background: conic-gradient(
+      from calc(var(--value) * 3),
+      #ff8c41,
+      transparent,
+      #6666d2,
+      #bb2727,
+      #3d9a7f,
+      transparent,
+      transparent,
+      #00a8ff,
+      transparent,
+      magenta,
+      yellow,
+      orange,
+      transparent,
+      transparent,
+      transparent
+    )
+    border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  --start: 180deg;
+  --value: var(--start);
+  --scale: 1;
+  transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value))
+    scale(var(--scale));
+}
+@supports (background: paint(foo)) {
+  .rings:before,
+  .rings:after {
+    -webkit-animation: ring var(--duration) ease-in-out infinite;
+    animation: ring var(--duration) ease-in-out infinite;
+  }
+}
+@supports not (background: paint(foo)) {
+  .rings:before,
+  .rings:after {
+    -webkit-animation: ring-legacy var(--duration) ease-in-out infinite;
+    animation: ring-legacy var(--duration) ease-in-out infinite;
+  }
+}
+.rings:before {
+  --start: 180deg;
+}
+.rings:after {
+  --start: 90deg;
+}
+.rings > .rings:before {
+  --start: 360deg;
+}
+.rings > .rings:after {
+  --start: 270deg;
+}
+
+@-webkit-keyframes ring {
+  from {
+    --value: var(--start);
+    --scale: 1;
+  }
+  50% {
+    --scale: 1.2;
+    --width-ratio: 1.5;
+  }
+  70% {
+    --scale: 1;
+    --value: calc(var(--start) + 180deg);
+    --width-ratio: 1;
+  }
+  80% {
+    --scale: 1.2;
+    --width-ratio: 1.5;
+  }
+  to {
+    --value: calc(var(--start) + 360deg);
+    --scale: 1;
+    --width-ratio: 1;
+  }
+}
+
+@keyframes ring {
+  from {
+    --value: var(--start);
+    --scale: 1;
+  }
+  50% {
+    --scale: 1.2;
+    --width-ratio: 1.5;
+  }
+  70% {
+    --scale: 1;
+    --value: calc(var(--start) + 180deg);
+    --width-ratio: 1;
+  }
+  80% {
+    --scale: 1.2;
+    --width-ratio: 1.5;
+  }
+  to {
+    --value: calc(var(--start) + 360deg);
+    --scale: 1;
+    --width-ratio: 1;
+  }
+}
+@-webkit-keyframes ring-legacy {
+  from {
+    --value: var(--start);
+    --scale: 1;
+    transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value))
+      scale(var(--scale));
+  }
+  70% {
+    --scale: 1.2;
+    --value: calc(var(--start) + 180deg);
+    transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value))
+      scale(var(--scale));
+  }
+  to {
+    --value: calc(var(--start) + 360deg);
+    --scale: 1;
+    transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value))
+      scale(var(--scale));
+  }
+}
+@keyframes ring-legacy {
+  from {
+    --value: var(--start);
+    --scale: 1;
+    transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value))
+      scale(var(--scale));
+  }
+  70% {
+    --scale: 1.2;
+    --value: calc(var(--start) + 180deg);
+    transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value))
+      scale(var(--scale));
+  }
+  to {
+    --value: calc(var(--start) + 360deg);
+    --scale: 1;
+    transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value))
+      scale(var(--scale));
+  }
+}
+.logo {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  inset: 0;
+  filter: drop-shadow(0 0 1.5vmin rgba(138, 205, 240, 0.8));
+  display: grid;
+  place-items: center;
+  background: var(--logo) center center no-repeat;
+  background-size: calc(var(--size) / 3.1);
+}
+
+.demo {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(at center, #111, black);
+}
+
+body {
+  color: #eea3f7;
+}

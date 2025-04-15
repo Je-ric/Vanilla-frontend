@@ -1,0 +1,71 @@
+:root {
+    --bg-color-light: #e0e5ec;
+    --bg-color-dark: #1a1e26;
+    --text-color-light: #2d3748;
+    --text-color-dark: #e0e0e0;
+    --accent-color-1: #4a90e2;
+    --accent-color-2: #5a67d8;
+    --accent-color-3: #38b2ac;
+    --shadow-color-light-1: #ffffff;
+    --shadow-color-light-2: #a3b1c6;
+    --shadow-color-dark-1: #13161c;
+    --shadow-color-dark-2: #21262e;
+}
+
+.neumorphic-header {
+  transition: display 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 
+      0 4px 6px #a3b1c6,
+      0 -2px 4px #ffffff;
+  /* padding-right: 0; */
+}
+
+
+#topMenu {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  width: 100%;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: var(--text-color-light);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: var(--bg-color-light);
+  box-shadow: 
+      inset 3px 3px 5px var(--shadow-color-light-2),
+      inset -3px -3px 5px var(--shadow-color-light-1);
+}
+
+nav ul li a.active {
+  background-color: var(--bg-color-light);
+  box-shadow: 
+      inset 3px 3px 5px var(--shadow-color-light-2),
+      inset -3px -3px 5px var(--shadow-color-light-1);
+}

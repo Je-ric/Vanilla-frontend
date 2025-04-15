@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Space+Mono&display=swap');
+
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #ffffff;
+    --accent-color: #00ff00;
+    --card-bg: #1a1a1a;
+    --card-hover: #2a2a2a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* cursor: none; */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.glitch {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.1em;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-color);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--accent-color);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(17px, 9999px, 94px, 0);
+    }
+    20% {
+        clip: rect(37px, 9999px, 44px, 0);
+    }
+    40% {
+        clip: rect(58px, 9999px, 54px, 0);
+    }
+    60% {
+        clip: rect(80px, 9999px, 66px, 0);
+    }
+    80% {
+        clip: rect(108px, 9999px, 85px, 0);
+    }
+    100% {
+        clip: rect(129px, 9999px, 144px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(129px, 9999px, 36px, 0);
+    }
+    20% {
+        clip: rect(36px, 9999px, 4px, 0);
+    }
+    40% {
+        clip: rect(62px, 9999px, 78px, 0);
+    }
+    60% {
+        clip: rect(15px, 9999px, 34px, 0);
+    }
+    80% {
+        clip: rect(89px, 9999px, 98px, 0);
+    }
+    100% {
+        clip: rect(1px, 9999px, 144px, 0);
+    }
+}
+
+.subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.menu-item {
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover::before {
+    transform: translateY(0);
+}
+
+.menu-item i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: cardAppear 0.5s ease-out forwards;
+    opacity: 0;
+    animation-delay: var(--delay);
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+}
+
+.card-front,
+.card-back {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover .card-front {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.card:hover .card-back {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.card ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+.card li {
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #00cc00;
+}
+
+footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--accent-color);
+}
+
+.cursor,
+.cursor-follower {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    left: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+}
+
+.cursor {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+}
+
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--accent-color);
+    transition: transform 0.1s, opacity 0.5s;
+}
+
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 2.5rem;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+    }
+
+    .menu-item {
+        margin: 0.5rem;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="glitch" data-text="Your Name">Your Name</h1>
+            <p class="subtitle">Web Developer & Digital Artist</p>
+        </header>
+        
+        <nav class="menu">
+            <div class="menu-item" data-text="About">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+            </div>
+            <div class="menu-item" data-text="Projects">
+                <i class="fas fa-code"></i>
+                <span>Projects</span>
+            </div>
+            <div class="menu-item" data-text="Skills">
+                <i class="fas fa-cogs"></i>
+                <span>Skills</span>
+            </div>
+            <div class="menu-item" data-text="Contact">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </div>
+        </nav>
+
+        <main>
+            <section class="card-container">
+                <div class="card" style="--delay: 0s;">
+                    <div class="card-front">
+                        <h3>Latest Project</h3>
+                        <img src="https://picsum.photos/300/200" alt="Project Preview">
+                    </div>
+                    <div class="card-back">
+                        <p>An innovative web app that revolutionizes task management.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="card" style="--delay: 0.1s;">
+                    <div class="card-front">
+                        <h3>Skills Highlight</h3>
+                        <ul>
+                            <li>React</li>
+                            <li>Node.js</li>
+                            <li>Python</li>
+                            <li>UI/UX Design</li>
+                        </ul>
+                    </div>
+                    <div class="card-back">
+                        <p>Constantly learning and expanding my skill set.</p>
+                        <a href="#" class="btn">View All Skills</a>
+                    </div>
+                </div>
+                <div class="card" style="--delay: 0.2s;">
+                    <div class="card-front">
+                        <h3>Get in Touch</h3>
+                        <i class="fas fa-paper-plane fa-3x"></i>
+                    </div>
+                    <div class="card-back">
+                        <p>Let's collaborate on your next big idea!</p>
+                        <a href="#" class="btn">Contact Me</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <script src="script.js">
+        document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'scale(0.7)';
+        cursorFollower.style.transform = 'scale(0.7)';
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'scale(1)';
+        cursorFollower.style.transform = 'scale(1)';
+    });
+
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            cursorFollower.style.transform = 'scale(1.5)';
+            cursorFollower.style.borderColor = 'rgba(0, 255, 0, 0.5)';
+        });
+        item.addEventListener('mouseleave', () => {
+            cursorFollower.style.transform = 'scale(1)';
+            cursorFollower.style.borderColor = 'var(--accent-color)';
+        });
+    });
+});
+
+
+    </script>
+</body>
+</html>

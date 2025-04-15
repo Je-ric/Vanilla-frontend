@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #e8e8e8;
+
+  --text-color: #333;
+  --highlight-color: #4a90e2;
+  --shadow-color: #a3b1c6;
+  --light-shadow: #ffffff;
+}
+
+
+*::selection{
+  background-color: rgb(74, 74, 74);
+  color: rgb(255, 255, 255) !important;
+}
+
+html {
+  scroll-behavior: smooth; 
+}
+body {
+    font-family: 'Oswald', sans-serif;
+    color: #000;
+    background-color: var(--bg-color);
+}
+.container {
+    display: flex;
+    min-height: 100vh;
+    padding: 30px;
+    flex-wrap: wrap; 
+    padding-bottom: 30px;
+}
+
+.profile-container{
+  width: 23%;
+  height: 100vh;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  overflow: hidden; 
+  z-index: 10;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 10px 10px 10px;
+}
+
+
+.right-section {
+  /* position: relative; 
+  background-color: #efefef; */
+  width: calc(100% - 23%); 
+  margin-left: 23%; 
+  /* padding: 40px; */
+  border-radius: 10px;
+  box-shadow: inset 5px 5px 11px #c5c5c5,
+              inset -5px -5px 11px #fbfbfb;
+  overflow-y: auto; 
+  transition: background 0.3s ease;
+}
+
+.tabSectionContent{
+  padding-left: 40px;
+  padding-bottom: 40px;
+  padding-right: 40px;
+}
+
+  .neu{
+    margin-top: 40px;
+    box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                -6px -6px 10px rgba(255, 255, 255, .5),
+                6px 6px 8px rgba(255, 255, 255, .075),
+                6px 6px 10px rgba(0, 0, 0, .15);
+  }
+
+  .neu-text{
+    font-size: 1.6em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #f4f4f4;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .tabSectionContent {
+    display: none; 
+}
+
+  
+.hobbiesinterest-container{
+  /* background-color: red; */
+  padding-top: 20px;
+  margin-top: 50px;
+}
+
+
+.education-container,
+.experience-container,
+.service-container,
+.toolkit-container {
+  padding-top: 20px;
+  margin-top: 50px;
+}

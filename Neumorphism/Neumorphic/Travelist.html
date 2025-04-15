@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelist - Neumorphic Trip Planner</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .neumorphic {
+            background: #f0f4f8;
+            box-shadow: 6px 6px 12px #c8d0e7, -6px -6px 12px #ffffff;
+            border-radius: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin: 0;
+        }
+        .add-trip {
+            padding: 12px 24px;
+            border: none;
+            background: #f0f4f8;
+            box-shadow: 4px 4px 8px #c8d0e7, -4px -4px 8px #ffffff;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .add-trip:hover {
+            box-shadow: 2px 2px 4px #c8d0e7, -2px -2px 4px #ffffff;
+        }
+        .trip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .trip-card {
+            padding: 20px;
+            text-align: center;
+        }
+        .trip-card h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .trip-date {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        .trip-details {
+            text-align: left;
+            margin-top: 15px;
+        }
+        .trip-details p {
+            margin: 5px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="neumorphic">
+            <h1>Travelist</h1>
+            <button class="add-trip">+ New Trip</button>
+        </header>
+
+        <div class="trip-grid">
+            <div class="trip-card neumorphic">
+                <h2>Paris Getaway</h2>
+                <div class="trip-date">June 15 - June 22, 2023</div>
+                <div class="trip-details">
+                    <p><strong>Destinations:</strong> Eiffel Tower, Louvre, Notre-Dame</p>
+                    <p><strong>Accommodation:</strong> Le Grand Hotel</p>
+                    <p><strong>Transportation:</strong> Eurostar, Metro</p>
+                </div>
+            </div>
+            <div class="trip-card neumorphic">
+                <h2>Tokyo Adventure</h2>
+                <div class="trip-date">September 3 - September 12, 2023</div>
+                <div class="trip-details">
+                    <p><strong>Destinations:</strong> Shibuya, Mt. Fuji, Akihabara</p>
+                    <p><strong>Accommodation:</strong> APA Hotel Shinjuku</p>
+                    <p><strong>Transportation:</strong> Japan Rail Pass</p>
+                </div>
+            </div>
+            <div class="trip-card neumorphic">
+                <h2>New York City Escape</h2>
+                <div class="trip-date">December 20 - December 27, 2023</div>
+                <div class="trip-details">
+                    <p><strong>Destinations:</strong> Times Square, Central Park, Broadway</p>
+                    <p><strong>Accommodation:</strong> The Plaza Hotel</p>
+                    <p><strong>Transportation:</strong> Subway, Taxi</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="neumorphic">
+            <p>&copy; 2023 Travelist. Plan your journey with style.</p>
+        </footer>
+    </div>
+</body>
+</html>
+

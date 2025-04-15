@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Advanced Neumorphic Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-color-light: #e0e5ec;
+    --bg-color-dark: #e0e5ec;
+    --text-color-light: #2d3748;
+    --text-color-dark: #2d3748;
+    --accent-color-1: #4a90e2;
+    --accent-color-2: #5a67d8;
+    --accent-color-3: #38b2ac;
+    --shadow-color-light-1: #ffffff;
+    --shadow-color-light-2: #a3b1c6;
+    --shadow-color-dark-1: #ffffff;
+    --shadow-color-dark-2: #a3b1c6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-light);
+    background-color: var(--bg-color-light);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Neumorphic Styles */
+.neumorphic-section {
+    background-color: var(--bg-color-light);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    margin: 3rem 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        8px 8px 16px var(--shadow-color-light-2),
+        -8px -8px 16px var(--shadow-color-light-1);
+}
+
+.contrast-section {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        8px 8px 16px var(--shadow-color-dark-1),
+        -8px -8px 16px var(--shadow-color-dark-2);
+}
+
+.neumorphic-header {
+    background-color: var(--bg-color-light);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 
+        0 4px 6px var(--shadow-color-light-2),
+        0 -2px 4px var(--shadow-color-light-1);
+}
+
+.neumorphic-footer {
+    background-color: var(--bg-color-light);
+    padding: 2rem 0;
+    margin-top: 2rem;
+    box-shadow: 
+        0 -4px 6px var(--shadow-color-light-2),
+        0 2px 4px var(--shadow-color-light-1);
+}
+
+.neumorphic-image {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 
+        8px 8px 16px var(--shadow-color-light-2),
+        -8px -8px 16px var(--shadow-color-light-1);
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--bg-color-light);
+    box-shadow: 
+        inset 3px 3px 5px var(--shadow-color-light-2),
+        inset -3px -3px 5px var(--shadow-color-light-1);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 6rem 0;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.glitch-text {
+    position: relative;
+    animation: glitch 5s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--accent-color-2);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--accent-color-1);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim-2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 0.05em 0 0 var(--accent-color-1), -0.05em -0.025em 0 var(--accent-color-2),
+            -0.025em 0.05em 0 var(--accent-color-3);
+    }
+    14% {
+        text-shadow: 0.05em 0 0 var(--accent-color-1), -0.05em -0.025em 0 var(--accent-color-2),
+            -0.025em 0.05em 0 var(--accent-color-3);
+    }
+    15% {
+        text-shadow: -0.05em -0.025em 0 var(--accent-color-1), 0.025em 0.025em 0 var(--accent-color-2),
+            -0.05em -0.05em 0 var(--accent-color-3);
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 var(--accent-color-1), 0.025em 0.025em 0 var(--accent-color-2),
+            -0.05em -0.05em 0 var(--accent-color-3);
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 var(--accent-color-1), 0.05em 0 0 var(--accent-color-2),
+            0 -0.05em 0 var(--accent-color-3);
+    }
+    99% {
+        text-shadow: 0.025em 0.05em 0 var(--accent-color-1), 0.05em 0 0 var(--accent-color-2),
+            0 -0.05em 0 var(--accent-color-3);
+    }
+    100% {
+        text-shadow: -0.025em 0 0 var(--accent-color-1), -0.025em -0.025em 0 var(--accent-color-2),
+            -0.025em -0.05em 0 var(--accent-color-3);
+    }
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(17px, 9999px, 94px, 0);
+    }
+    20% {
+        clip: rect(37px, 9999px, 44px, 0);
+    }
+    40% {
+        clip: rect(58px, 9999px, 54px, 0);
+    }
+    60% {
+        clip: rect(80px, 9999px, 66px, 0);
+    }
+    80% {
+        clip: rect(108px, 9999px, 85px, 0);
+    }
+    100% {
+        clip: rect(129px, 9999px, 144px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(129px, 9999px, 36px, 0);
+    }
+    20% {
+        clip: rect(36px, 9999px, 4px, 0);
+    }
+    40% {
+        clip: rect(62px, 9999px, 78px, 0);
+    }
+    60% {
+        clip: rect(15px, 9999px, 34px, 0);
+    }
+    80% {
+        clip: rect(89px, 9999px, 98px, 0);
+    }
+    100% {
+        clip: rect(1px, 9999px, 144px, 0);
+    }
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--accent-color-1);
+    color: var(--text-color-dark);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-light-2),
+        -4px -4px 8px var(--shadow-color-light-1);
+}
+
+.cta-button:hover {
+    background-color: var(--accent-color-2);
+    transform: translateY(-3px);
+    box-shadow: 
+        6px 6px 12px var(--shadow-color-light-2),
+        -6px -6px 12px var(--shadow-color-light-1);
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.about-text {
+    flex: 2;
+}
+
+/* Experience Section */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--accent-color-1);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: var(--bg-color-light);
+    border: 4px solid var(--accent-color-1);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -16px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: var(--bg-color-light);
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-light-2),
+        -4px -4px 8px var(--shadow-color-light-1);
+}
+
+/* Education Section */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.education-item {
+    background-color: var(--bg-color-dark);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-dark-1),
+        -4px -4px 8px var(--shadow-color-dark-2);
+}
+
+/* Services Section */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background-color: var(--bg-color-light);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 
+        8px 8px 16px var(--shadow-color-light-2),
+        -8px -8px 16px var(--shadow-color-light-1);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: var(--accent-color-1);
+    margin-bottom: 1rem;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.skill-card {
+    background-color: var(--bg-color-dark);
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-dark-1),
+        -4px -4px 8px var(--shadow-color-dark-2);
+}
+
+.skill-icon {
+    font-size: 3rem;
+    color: var(--accent-color-3);
+    margin-bottom: 1rem;
+}
+
+.skill-bar {
+    background-color: var(--bg-color-light);
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.skill-level {
+    height: 100%;
+    background-color: var(--accent-color-1);
+    border-radius: 5px;
+    transition: width 1s ease-in-out;
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: var(--bg-color-light);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 
+        6px 6px 12px var(--shadow-color-light-2),
+        -6px -6px 12px var(--shadow-color-light-1);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color-1);
+    color: var(--text-color-dark);
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: var(--accent-color-2);
+}
+
+/* Contact Form */
+.contact-form {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    box-shadow: 
+        inset 3px 3px 5px var(--shadow-color-dark-1),
+        inset -3px -3px 5px var(--shadow-color-dark-2);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    box-shadow: 
+        inset 4px 4px 6px var(--shadow-color-dark-1),
+        inset -4px -4px 6px var(--shadow-color-dark-2);
+}
+
+.submit-button {
+    padding: 1rem 2rem;
+    background-color: var(--accent-color-1);
+    color: var(--text-color-dark);
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-dark-1),
+        -4px -4px 8px var(--shadow-color-dark-2);
+}
+
+.submit-button:hover {
+    background-color: var(--accent-color-2);
+    transform: translateY(-3px);
+    box-shadow: 
+        6px 6px 12px var(--shadow-color-dark-1),
+        -6px -6px 12px var(--shadow-color-dark-2);
+}
+
+/* Footer */
+.neumorphic-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 
+        3px 3px 6px var(--shadow-color-light-2),
+        -3px -3px 6px var(--shadow-color-light-1);
+}
+
+.social-icon:hover {
+    color: var(--accent-color-1);
+    transform: translateY(-3px);
+    box-shadow: 
+        4px 4px 8px var(--shadow-color-light-2),
+        -4px -4px 8px var(--shadow-color-light-1);
+}
+
+/* Floating Shapes */
+.floating-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.shape {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    animation: float 15s infinite;
+    z-index: -1;
+}
+
+.shape1 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    left: 10%;
+    top: 20%;
+}
+
+.shape2 {
+    width: 60px;
+    height: 60px;
+    right: 20%;
+    top: 40%;
+    transform: rotate(45deg);
+}
+
+.shape3 {
+    width: 100px;
+    height: 100px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    left: 30%;
+    bottom: 30%;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Custom Cursor */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color-1);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transition: 0.1s;
+    z-index: 9999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-image {
+        margin-bottom: 2rem;
+    }
+
+    .timeline::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+    }
+
+    .timeline-item::after {
+        left: 15px;
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 0%;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .neumorphic-footer .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <header class="neumorphic-header">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero neumorphic-section">
+            <div class="container">
+                <h1 class="glitch-text" data-text="Your Name">Your Name</h1>
+                <p class="subtitle">Web Developer & UX Designer</p>
+                <a href="#contact" class="cta-button">Get in Touch</a>
+            </div>
+            <div class="floating-shapes">
+                <div class="shape shape1"></div>
+                <div class="shape shape2"></div>
+                <div class="shape shape3"></div>
+            </div>
+        </section>
+
+        <section id="about" class="about contrast-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-image neumorphic-image">
+                        <img src="https://picsum.photos/400/400" alt="Your Name">
+                    </div>
+                    <div class="about-text">
+                        <p>Hello! I'm a passionate web developer and UX designer with a knack for creating intuitive and visually appealing digital experiences. With over 5 years in the industry, I specialize in blending form and function to craft websites and applications that not only look great but also provide seamless user experiences.</p>
+                        <p>My approach combines the latest web technologies with user-centered design principles, resulting in digital solutions that are both innovative and user-friendly. When I'm not coding or designing, you can find me exploring new UX trends, contributing to open-source projects, or mentoring aspiring developers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience neumorphic-section">
+            <div class="container">
+                <h2 class="section-title">Work Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Senior Web Developer</h3>
+                            <h4>TechCorp Inc.</h4>
+                            <p class="timeline-date">2019 - Present</p>
+                            <p>Lead development of complex web applications, mentored junior developers, and implemented best practices in web accessibility and performance optimization.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>UX Designer</h3>
+                            <h4>DesignHub Studio</h4>
+                            <p class="timeline-date">2017 - 2019</p>
+                            <p>Created user-centered designs for various clients, conducted user research, and developed interactive prototypes to improve user engagement and satisfaction.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Junior Web Developer</h3>
+                            <h4>StartUp Innovations</h4>
+                            <p class="timeline-date">2015 - 2017</p>
+                            <p>Developed responsive websites, collaborated with design team to implement UI/UX improvements, and assisted in the maintenance of existing web applications.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="education contrast-section">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-grid">
+                    <div class="education-item">
+                        <h3>Master of Science in Web Development</h3>
+                        <h4>Tech University</h4>
+                        <p class="education-date">2014 - 2015</p>
+                        <p>Focused on advanced web technologies, user experience design, and web application architecture.</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Bachelor of Science in Computer Science</h3>
+                        <h4>State University</h4>
+                        <p class="education-date">2010 - 2014</p>
+                        <p>Studied software engineering, database management, and web development fundamentals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services neumorphic-section">
+            <div class="container">
+                <h2 class="section-title">Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                        <p>Custom website and web application development using the latest technologies and best practices.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>UX/UI Design</h3>
+                        <p>User-centered design solutions that enhance user engagement and satisfaction.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Responsive Design</h3>
+                        <p>Creating websites that look and function beautifully across all devices and screen sizes.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-search"></i>
+                        <h3>SEO Optimization</h3>
+                        <p>Improving website visibility and ranking in search engine results pages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills contrast-section">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                        <h3>HTML5</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                        <h3>CSS3</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-js"></i></div>
+                        <h3>JavaScript</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-react"></i></div>
+                        <h3>React</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                        <h3>Node.js</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-database"></i></div>
+                        <h3>SQL</h3>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects neumorphic-section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://picsum.photos/401/300" alt="Project 1">
+                        </div>
+                        <div class="project-info">
+                            <h3>E-commerce Platform</h3>
+                            <p>A full-stack e-commerce solution with React and Node.js</p>
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://picsum.photos/402/300" alt="Project 2">
+                        </div>
+                        <div class="project-info">
+                            <h3>Task Management App</h3>
+                            <p>A React-based task management application with drag-and-drop functionality</p>
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://picsum.photos/403/300" alt="Project 3">
+                        </div>
+                        <div class="project-info">
+                            <h3>Portfolio Website</h3>
+                            <p>A responsive portfolio website with advanced CSS animations</p>
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact contrast-section">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="neumorphic-footer">
+        <div class="container">
+            <p>&copy; 2023 Your Name. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

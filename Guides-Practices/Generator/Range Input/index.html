@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="range-input.css is a tool that allows you to easily generate CSS to style range inputs that look consistent across all browsers. " />
+    <script defer data-domain="range-input-css.netlify.app" src="https://plausible.io/js/plausible.js"></script>
+    <link rel="stylesheet" href="css/mvp.css" />
+    <link rel="stylesheet" href="css/range.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  <title>range-input.css - Range Input CSS Generator</title>
+  </head>
+  <body>
+
+    
+    <main>
+      <section>
+        <div id="range-input-container">
+          <label class="hide-label" for="range-input"> Demo Range Input </label>
+          <input type="range" id="range-input" />
+        </div>
+      </section>
+      <section>
+        <article id="card-track">
+          <h2>Track Styles</h2>
+          <div class="flex">
+            <label for="track-color">Color: </label>
+            <input type="color" id="track-color" value="#ADD8E6" />
+          </div>
+          <div class="flex">
+            <label for="track-width"> Width: </label>
+            <input type="number" id="track-width" min="0" value="25" step="0.5" />
+            <label class="hide-label" for="track-width-unit">Choose a width unit:</label>
+            <select id="track-width-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+              <option value="%">%</option>
+            </select>
+          </div>
+          <div class="flex">
+            <label for="track-height"> Height: </label>
+            <input type="number" id="track-height" min="0" step="0.5" value="0.5" />
+            <label class="hide-label" for="track-height-unit">Choose a height unit:</label>
+            <select id="track-height-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+            </select>
+          </div>
+          <div class="flex">
+            <label for="track-border-radius">Border-radius: </label>
+            <input type="number" id="track-border-radius" min="0" step="0.5" value="0.5" />
+            <label class="hide-label" for="track-border-radius-unit">Choose a border-radius unit:</label>
+            <select id="track-border-radius-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+              <option value="%">%</option>
+            </select>
+          </div>
+          <p>
+            <small> *The track is the element that the thumb runs along. </small>
+          </p>
+        </article>
+        <article id="card-thumb">
+          <h2>Thumb Styles</h2>
+          <div class="flex">
+            <label for="thumb-color">Color: </label>
+            <input type="color" id="thumb-color" value="#808080" />
+          </div>
+          <div class="flex">
+            <label for="thumb-width"> Width: </label>
+            <input type="number" id="thumb-width" min="0" value="1" step="0.5" />
+            <label class="hide-label" for="thumb-width-unit">Choose a width unit:</label>
+            <select id="thumb-width-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+              <option value="%">%</option>
+            </select>
+          </div>
+          <div class="flex">
+            <label for="thumb-height"> Height: </label>
+            <input type="number" id="thumb-height" min="0" step="0.5" value="1" />
+            <label class="hide-label" for="thumb-height-unit">Choose a height unit:</label>
+            <select id="thumb-height-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+            </select>
+          </div>
+          <div class="flex">
+            <label for="thumb-border-radius">Border-radius: </label>
+            <input type="number" id="thumb-border-radius" min="0" step="0.5" value="0.5" />
+            <label class="hide-label" for="thumb-border-radius-unit">Choose a border-radius unit:</label>
+            <select id="thumb-border-radius-unit">
+              <option value="rem">rem</option>
+              <option value="px">px</option>
+              <option value="%">%</option>
+            </select>
+          </div>
+          <p>
+            <small>*The thumb is used to select varying range values.</small>
+          </p>
+        </article>
+      </section>
+      <section>
+        <div id="code-container">
+          <pre>
+																		<button id="copy-btn" data-tooltip="Copied!">Copy</button>
+																		<code tabindex="0"></code>
+																	</pre>
+        </div>
+      </section>
+ 
+    </main>
+  </body>
+  <script src="js/scripts.js"></script>
+</html>

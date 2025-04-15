@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Cheatsheet</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+        .container {
+            padding: 20px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            padding: 20px;
+            background-color: #000000;
+            color: white;
+            border-radius: 8px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .card h2 {
+            font-size: 22px;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+        pre {
+            background: #cfcfcf;
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #000000;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .copy-btn:hover {
+            background: #0056b3;
+        }
+        .icon {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>MySQL Cheatsheet</h1>
+    <div class="container grid">
+
+        <div>
+            <h2>📌 Basic Commands</h2>
+            <div class="code-container">
+                <pre>CREATE DATABASE mydb;
+USE mydb;
+SHOW DATABASES;
+DROP DATABASE mydb;</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Table Management</h2>
+            <div class="code-container">
+                <pre>CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    age INT CHECK (age > 0),
+    course_id INT
+);
+SHOW TABLES;
+DESC students;
+DROP TABLE students;</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Alter Table & Modify Columns</h2>
+            <div class="code-container">
+                <pre>ALTER TABLE students ADD COLUMN email VARCHAR(255);
+ALTER TABLE students DROP COLUMN email;
+ALTER TABLE students MODIFY COLUMN age TINYINT;
+ALTER TABLE students RENAME TO learners;</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Foreign Keys</h2>
+            <div class="code-container">
+                <pre>CREATE TABLE courses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    course_name VARCHAR(100) NOT NULL
+);
+CREATE TABLE students (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    course_id INT,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Data Manipulation (CRUD)</h2>
+            <div class="code-container">
+                <pre>INSERT INTO students (name, age, course_id) VALUES ('Alice', 20, 101);
+SELECT * FROM students;
+UPDATE students SET age = 21 WHERE name = 'Alice';
+DELETE FROM students WHERE name = 'Alice';</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Filtering & Conditions</h2>
+            <div class="code-container">
+                <pre>
+SELECT * FROM students WHERE age = 20;
+SELECT * FROM students WHERE age <> 20;
+SELECT * FROM students WHERE name LIKE 'A%';
+SELECT * FROM students WHERE name NOT LIKE 'A%';
+SELECT * FROM students WHERE age BETWEEN 18 AND 25;
+SELECT * FROM students WHERE course_id IN (101, 102);
+SELECT * FROM students WHERE course_id NOT IN (101, 102);
+SELECT * FROM students WHERE age IS NULL;
+SELECT * FROM students WHERE age IS NOT NULL;
+SELECT * FROM students WHERE age > 18 AND course_id = 101;
+SELECT * FROM students WHERE age > 18 OR course_id = 101;
+SELECT * FROM students WHERE EXISTS (SELECT * FROM courses WHERE id = students.course_id);
+SELECT * FROM students WHERE NOT EXISTS (SELECT * FROM courses WHERE id = students.course_id);</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Sorting & Grouping</h2>
+            <div class="code-container">
+                <pre>SELECT * FROM students ORDER BY age ASC;
+SELECT * FROM students ORDER BY age DESC;
+SELECT course_id, COUNT(*) FROM students GROUP BY course_id;
+SELECT course_id, COUNT(*) FROM students GROUP BY course_id HAVING COUNT(*) > 1;</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Multi-Table Joins</h2>
+            <div class="code-container">
+                <pre>SELECT students.name, courses.course_name, departments.dept_name
+FROM students
+INNER JOIN courses ON students.course_id = courses.id
+INNER JOIN departments ON courses.dept_id = departments.id;</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Aggregate Functions</h2>
+            <div class="code-container">
+                <pre>SELECT COUNT(*) FROM students;
+SELECT MAX(age) FROM students;
+SELECT MIN(age) FROM students;
+SELECT SUM(age) FROM students;
+SELECT AVG(age) FROM students;</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 Limit & Pagination</h2>
+            <div class="code-container">
+                <pre>SELECT * FROM students LIMIT 5;
+SELECT * FROM students LIMIT 5 OFFSET 10;</pre>
+            </div>
+        </div>
+
+        <div>
+            <h2>📌 String Functions</h2>
+            <div class="code-container">
+                <pre>SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM students;
+SELECT UPPER(name) FROM students;
+SELECT LOWER(name) FROM students;</pre>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

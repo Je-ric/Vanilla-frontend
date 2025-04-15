@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Color Picker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    });
+  </script>
+</head>
+<body>
+  <div id="header-container"></div>
+  <div class="container">
+   
+    <div class="photo-section">
+      <div class="image-container">
+        <img id="image" src="./your-image.jpg" />
+        <canvas id="color-canvas" style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+      </div>
+    </div>    
+
+    <div class="controls-section">
+      <div class="btns-container">
+        <input type="file" id="file" accept="image/*" />
+        <label for="file">Open A Photo</label>
+        <button id="pick-color">Pick Color</button>
+      </div>
+      <p>Click <span>'Pick Color'</span> to start selecting a color from your photo.</p>
+      <div id="error" class="hide"></div>
+      <div id="result">
+        <div>
+          <input type="text" id="hex-val-ref" placeholder="Hex Value" />
+          <button onclick="copy('hex-val-ref')">Copy</button>
+        </div>
+        <div>
+          <input type="text" id="rgb-val-ref" placeholder="RGB Value" />
+          <button onclick="copy('rgb-val-ref')">Copy</button>
+        </div>
+        <div id="picked-color-ref"></div>
+        <h3>Color Palette</h3>
+        <div id="color-palette">
+          <div id="palette-container"></div>
+        </div>
+      </div>
+      <div id="custom-alert">Color Code Copied!</div>
+    </div>
+  </div>
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

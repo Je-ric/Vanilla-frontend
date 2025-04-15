@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border Generator</title>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/border-all.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Border.css">
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+    fetch('../header.html')  // Move up one directory to fetch header.html
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error fetching header:', error));
+});
+  </script>
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <div class="container">
+      
+    <div class="outer-box">
+      <div class="box">
+        <div class="preview" id="preview">
+        </div>
+      </div>
+    </div>
+    
+      <div class="controls">
+
+       
+        <div class="group-1">
+          <div class="control">
+            <label class="size-label">
+              <i class="gg-border-top"></i> Size: 
+              <input type="range" id="borderTopWidth" min="0" max="25" value="5">
+              <span class="slider-value" id="borderTopWidthValue">5</span>
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Border Style: <select id="borderTopStyle">
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+                <option value="double">Double</option>
+                <option value="groove">Groove</option>
+                <option value="ridge">Ridge</option>
+                <option value="inset">Inset</option>
+                <option value="outset">Outset</option>
+                <option value="none">None</option>
+                <option value="hidden">Hidden</option>
+              </select>
+            </label>
+            <!-- <br> -->
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>Color: <input type="color" id="borderTopColor">&nbsp;&nbsp; or&nbsp;&nbsp; 
+              <input type="text" class="color-input" id="borderTopColorHex" placeholder="Hex">
+            </label>
+          </div>
+
+          <div class="control">
+            <!-- <h4 class="head">Border Right:</h4> -->
+            <label class="size-label">
+              <i class="gg-border-right"></i> Size: 
+              <input type="range" id="borderRightWidth" min="0" max="25" value="5">
+              <span class="slider-value" id="borderRightWidthValue">5</span>
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Border Style: <select id="borderRightStyle">
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+                <option value="double">Double</option>
+                <option value="groove">Groove</option>
+                <option value="ridge">Ridge</option>
+                <option value="inset">Inset</option>
+                <option value="outset">Outset</option>
+                <option value="none">None</option>
+                <option value="hidden">Hidden</option>
+              </select>
+            </label>
+            <!-- <br> -->
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>Color: <input type="color" id="borderRightColor">&nbsp;&nbsp; or&nbsp;&nbsp; 
+              <input type="text" class="color-input" id="borderRightColorHex" placeholder="Hex">
+            </label>
+          </div>
+       
+
+          <div class="control">
+            <!-- <h4 class="head">Border Bottom:</h4> -->
+            <label class="size-label">
+              <i class="gg-border-bottom"></i> Size: 
+              <input type="range" id="borderBottomWidth" min="0" max="25" value="5">
+              <span class="slider-value" id="borderBottomWidthValue">5</span>
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Border Style: <select id="borderBottomStyle">
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+                <option value="double">Double</option>
+                <option value="groove">Groove</option>
+                <option value="ridge">Ridge</option>
+                <option value="inset">Inset</option>
+                <option value="outset">Outset</option>
+                <option value="none">None</option>
+                <option value="hidden">Hidden</option>
+              </select>
+            </label>
+            <!-- <br> -->
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>Color: <input type="color" id="borderBottomColor">&nbsp;&nbsp; or&nbsp;&nbsp; 
+              <input type="text" class="color-input" id="borderBottomColorHex" placeholder="Hex">
+            </label>
+          </div>
+
+          <div class="control">
+            <!-- <h4 class="head">Border Left:</h4> -->
+            <label>
+              <label class="size-label">
+                <i class="gg-border-left"></i> Size: 
+                <input type="range" id="borderLeftWidth" min="0" max="25" value="5">
+                <span class="slider-value" id="borderLeftWidthValue">5</span>
+              </label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Border Style: <select id="borderLeftStyle">
+                  <option value="solid">Solid</option>
+                  <option value="dashed">Dashed</option>
+                  <option value="dotted">Dotted</option>
+                  <option value="double">Double</option>
+                  <option value="groove">Groove</option>
+                  <option value="ridge">Ridge</option>
+                  <option value="inset">Inset</option>
+                  <option value="outset">Outset</option>
+                  <option value="none">None</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+              </label>
+              <!-- <br> -->
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <label>Color: <input type="color" id="borderLeftColor">&nbsp;&nbsp; or&nbsp;&nbsp; 
+                <input type="text" class="color-input" id="borderLeftColorHex" placeholder="Hex">
+              </label>
+          </div>
+       
+      </div>
+      
+
+        <div class="group-2">
+          <!-- <h4 class="head">Border Width (All Borders):</h4> -->
+          <br><br>
+          <label class="size-label">
+            <i class="gg-border-all"></i> Size: <input type="range" id="borderWidth" min="0" max="25" value="5">
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Color: 
+            <input type="color" id="borderColor">&nbsp;&nbsp; or&nbsp;&nbsp; 
+            <input type="text" class="color-input" id="borderColorHex" placeholder="Hex">
+          </label>
+          <br><br><br>
+          <label class="size-label">
+            <i class="gg-bg-color"></i> Background Color
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Color: 
+            <input type="color" id="bgColor" value="#FFFFFF">&nbsp;&nbsp;or&nbsp;&nbsp; 
+            <input type="text" class="color-input" id="bgColorHex" placeholder="Hex">
+          </label>
+        </div>
+          <!-- <br> -->
+          <div class="group-3">
+          <div class="button-container">
+            <textarea id="codeOutput" rows="7"></textarea>
+          </div>
+        
+        </div>
+      
+        <!-- <div class="group-3"><div class="button-container"><textarea id="codeOutput" rows="10"></textarea></div></div> -->
+      </div>
+    </div>
+    <script src="Border.js"></script>
+  </body>
+</html>

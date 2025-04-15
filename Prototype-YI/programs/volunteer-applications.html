@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Applications</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .table-header {
+            background: linear-gradient(to right, var(--primary), #2a3a5f);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .action-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+        .badge {
+            padding: 0.35rem 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+            border-radius: 9999px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.2s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto max-w-7xl py-8 px-4">
+        <div class="mb-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <i class='bx bx-calendar-event text-3xl text-indigo-600'></i>
+                    <h1 class="text-3xl font-bold text-[#1a2235]">Aspiring Volunteers</h1>
+                </div>
+            </div>
+            <p class="text-slate-600 mt-2 ml-9">Manage volunteer applications and their status</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md mb-6 flex flex-wrap gap-6">
+            <div class="form-control w-full max-w-xs">
+                <label class="label">
+                    <span class="label-text font-medium text-slate-700">Filter by Status</span>
+                </label>
+                <select class="select select-bordered w-full rounded-lg border-slate-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <option>All Statuses</option>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Denied</option>
+                </select>
+            </div>
+            <div class="form-control flex-grow">
+                <label class="label">
+                    <span class="label-text font-medium text-slate-700">Search</span>
+                </label>
+                <div class="relative">
+                    <input type="text" placeholder="Search by name or email..." 
+                           class="input input-bordered w-full pl-10 rounded-lg border-slate-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <i class='bx bx-search absolute left-3 top-3 text-slate-400 text-xl'></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="table-header">
+                            <th class="text-left py-4 px-6 text-sm font-semibold">Name</th>
+                            <th class="text-left py-4 px-6 text-sm font-semibold">Email</th>
+                            <th class="text-left py-4 px-6 text-sm font-semibold">Status</th>
+                            <th class="text-left py-4 px-6 text-sm font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="volunteersTableBody">
+                        <!--  -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="p-4 mt-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="text-sm text-slate-600">Showing <span id="showingCount" class="font-medium">1</span> to <span id="totalCount" class="font-medium">8</span> of <span id="totalEntries" class="font-medium">27</span> entries</div>
+                <div class="flex gap-2">
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">4</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="actionModal" class="modal">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg" id="modalTitle">Confirm Action</h3>
+        <p class="py-4" id="modalMessage">Are you sure?</p>
+        <div class="modal-action">
+            <label for="actionModal" class="btn btn-ghost" id="cancelActionBtn">Cancel</label>
+            <button id="confirmActionBtn" class="btn btn-primary">Confirm</button>
+        </div>
+    </div>
+</div>
+
+    <script>
+        const volunteers = [
+            { id: 1, name: "Jozen Agustin", email: "jozena@email.com", status: "pending" },
+            { id: 2, name: "Melgie Alata", email: "melgie@email.com", status: "approved" },
+            { id: 3, name: "Jeric Dela Cruz", email: "jericdc@email.com", status: "denied" },
+            { id: 4, name: "Ronnel Baldovino", email: "ronnelb@email.com", status: "pending" },
+            { id: 1, name: "Ejay Basinga", email: "ejayb@email.com", status: "pending" },
+            { id: 2, name: "Franz Eda", email: "franze@email.com", status: "approved" },
+            { id: 3, name: "Krisha Manahan", email: "krisham@email.com", status: "denied" },
+            { id: 4, name: "Christine Duatin", email: "christined@email.com", status: "pending" }
+        ];
+
+        // DOM 
+        const tableBody = document.getElementById("volunteersTableBody");
+        const actionModal = document.getElementById("actionModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalMessage = document.getElementById("modalMessage");
+        const modalIcon = document.getElementById("modalIcon");
+        const confirmActionBtn = document.getElementById("confirmActionBtn");
+        const cancelActionBtn = document.getElementById("cancelActionBtn");
+
+        let selectedVolunteerId = null;
+        let actionType = "";
+
+        function getStatusBadge(status) {
+            switch (status) {
+                case "pending":
+                    return `<span class="badge status-pending">
+                        <i class='bx bx-time-five mr-1'></i> Pending
+                    </span>`;
+                case "approved":
+                    return `<span class="badge status-approved">
+                        <i class='bx bx-check mr-1'></i> Approved
+                    </span>`;
+                case "denied":
+                    return `<span class="badge status-denied">
+                        <i class='bx bx-x mr-1'></i> Denied
+                    </span>`;
+                default:
+                    return "";
+            }
+        }
+
+        // Populate volunteers table
+        function populateVolunteersTable() {
+            tableBody.innerHTML = "";
+            volunteers.forEach(volunteer => {
+                const row = document.createElement("tr");
+                row.className = "border-b border-slate-100 hover:bg-indigo-50/30 transition-colors";
+                
+                let actionsHtml = "";
+                if (volunteer.status === "pending") {
+                    actionsHtml = `
+                        <div class="flex gap-2">
+                            <button class="action-btn px-3 py-1.5 rounded-lg text-sm border border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800 flex items-center"
+                                onclick="openActionModal(${volunteer.id}, 'approve')">
+                                <i class='bx bx-check mr-1'></i> Approve
+                            </button>
+                            <button class="action-btn px-3 py-1.5 rounded-lg text-sm border border-rose-200 text-rose-700 hover:bg-rose-50 hover:text-rose-800 flex items-center"
+                                onclick="openActionModal(${volunteer.id}, 'deny')">
+                                <i class='bx bx-x mr-1'></i> Deny
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    actionsHtml = `
+                        <button class="action-btn px-3 py-1.5 rounded-lg text-sm border border-indigo-200 text-indigo-700 hover:bg-indigo-50 hover:text-indigo-800 flex items-center"
+                            onclick="resetToPending(${volunteer.id})">
+                            <i class='bx bx-reset mr-1'></i> Reset to Pending
+                        </button>
+                    `;
+                }
+                
+                row.innerHTML = `
+                    <td class="py-4 px-6">
+                        <div class="font-medium text-slate-800">${volunteer.name}</div>
+                    </td>
+                    <td class="py-4 px-6 text-slate-600">${volunteer.email}</td>
+                    <td class="py-4 px-6">${getStatusBadge(volunteer.status)}</td>
+                    <td class="py-4 px-6">${actionsHtml}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+       // Open action modal
+function openActionModal(id, action) {
+    selectedVolunteerId = id;
+    actionType = action;
+    const volunteer = volunteers.find(v => v.id === id);
+
+    modalTitle.textContent = action === "approve" ? "Approve Volunteer" : "Deny Volunteer";
+    modalMessage.textContent = `Are you sure you want to ${action} ${volunteer.name}?`;
+
+    // Change confirm button text & color
+    confirmActionBtn.textContent = action === "approve" ? "Approve" : "Deny";
+    confirmActionBtn.className = action === "approve" 
+        ? "btn btn-success" 
+        : "btn btn-error";
+
+    // Show modal using DaisyUI class
+    actionModal.classList.add("modal-open");
+}
+
+// Close modal
+cancelActionBtn.addEventListener('click', function() {
+    actionModal.classList.remove("modal-open");
+});
+
+// Handle action confirmation
+confirmActionBtn.addEventListener('click', function() {
+    if (selectedVolunteerId !== null) {
+        const volunteerIndex = volunteers.findIndex(v => v.id === selectedVolunteerId);
+        if (volunteerIndex !== -1) {
+            volunteers[volunteerIndex].status = actionType === "approve" ? "approved" : "denied";
+            populateVolunteersTable();
+            actionModal.classList.remove("modal-open");
+        }
+    }
+});
+
+        // Handle action confirmation
+        function handleAction() {
+            if (selectedVolunteerId !== null) {
+                const volunteerIndex = volunteers.findIndex(v => v.id === selectedVolunteerId);
+                if (volunteerIndex !== -1) {
+                    volunteers[volunteerIndex].status = actionType === "approve" ? "approved" : "denied";
+                    populateVolunteersTable();
+                    actionModal.classList.remove('show');
+                }
+            }
+        }
+
+        // Initialize the table
+        document.addEventListener('DOMContentLoaded', populateVolunteersTable);
+    </script>
+</body>
+</html>

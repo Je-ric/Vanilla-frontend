@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .category {
+            grid-column: 1 / -1;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .cursor-container {
+            /* width: 150px; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .cursor-container:hover {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="category">Basic Cursors</div>
+    <div class="cursor-container" style="cursor: auto;"><span>Auto</span></div>
+    <div class="cursor-container" style="cursor: default;"><span>Default</span></div>
+    <div class="cursor-container" style="cursor: pointer;"><span>Pointer</span></div>
+    <div class="cursor-container" style="cursor: wait;"><span>Wait</span></div>
+    <div class="cursor-container" style="cursor: text;"><span>Text</span></div>
+    <div class="cursor-container" style="cursor: move;"><span>Move</span></div>
+
+    <div class="category">Resize Cursors</div>
+    <div class="cursor-container" style="cursor: e-resize;"><span>E Resize</span></div>
+    <div class="cursor-container" style="cursor: n-resize;"><span>N Resize</span></div>
+    <div class="cursor-container" style="cursor: ne-resize;"><span>NE Resize</span></div>
+    <div class="cursor-container" style="cursor: nw-resize;"><span>NW Resize</span></div>
+    <div class="cursor-container" style="cursor: s-resize;"><span>S Resize</span></div>
+    <div class="cursor-container" style="cursor: se-resize;"><span>SE Resize</span></div>
+    <div class="cursor-container" style="cursor: sw-resize;"><span>SW Resize</span></div>
+    <div class="cursor-container" style="cursor: w-resize;"><span>W Resize</span></div>
+    <div class="cursor-container" style="cursor: ew-resize;"><span>EW Resize</span></div>
+    <div class="cursor-container" style="cursor: ns-resize;"><span>NS Resize</span></div>
+    <div class="cursor-container" style="cursor: nesw-resize;"><span>NESW Resize</span></div>
+    <div class="cursor-container" style="cursor: nwse-resize;"><span>NWSE Resize</span></div>
+    <div class="cursor-container" style="cursor: col-resize;"><span>Column Resize</span></div>
+    <div class="cursor-container" style="cursor: row-resize;"><span>Row Resize</span></div>
+
+    <div class="category">Other Cursors</div>
+    <div class="cursor-container" style="cursor: crosshair;"><span>Crosshair</span></div>
+    <div class="cursor-container" style="cursor: not-allowed;"><span>Not Allowed</span></div>
+    <div class="cursor-container" style="cursor: all-scroll;"><span>All Scroll</span></div>
+    <div class="cursor-container" style="cursor: help;"><span>Help</span></div>
+    <div class="cursor-container" style="cursor: alias;"><span>Alias</span></div>
+    <div class="cursor-container" style="cursor: copy;"><span>Copy</span></div>
+    <div class="cursor-container" style="cursor: grab;"><span>Grab</span></div>
+    <div class="cursor-container" style="cursor: grabbing;"><span>Grabbing</span></div>
+    <div class="cursor-container" style="cursor: zoom-in;"><span>Zoom In</span></div>
+    <div class="cursor-container" style="cursor: zoom-out;"><span>Zoom Out</span></div>
+
+    <div class="category">Custom Cursors</div>
+    <div class="cursor-container" style="cursor: url('/Guides-Practices/Source/pizza.png'), auto;"><span>pizza</span></div>
+    <div class="cursor-container" style="cursor: url('/Guides-Practices/Source/wand.png'), auto;"><span>wand</span></div>
+    <div class="cursor-container" style="cursor: url('/Guides-Practices/Source/lipstick.png'), auto;"><span>lipstick</span></div>
+    <div class="cursor-container" style="cursor: url('/Guides-Practices/Source/feather.png'), auto;"><span>feather</span></div>
+    <div class="cursor-container" style="cursor: url('/Guides-Practices/Source/sword.png'), auto;"><span>sword</span></div>
+    <div class="cursor-container" style="cursor: url('/Guides-Practices/Source/rocket.png'), auto;"><span>rocket</span></div>
+</body>
+</html>

@@ -1,0 +1,680 @@
+    
+.container-about {
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about {
+ 
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 20px;
+  background-size: cover;
+  background-position: top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -5;
+  transform: rotate(180deg);
+}
+
+.container-about {
+
+  position: relative;
+  z-index: -1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.about img {
+  width: 90%;
+  max-width: 300px;
+  height: auto;
+  padding: 0 20px;
+}
+
+.about-text {
+  text-align: justify;
+  font-size: 20px;
+  padding: 0 20px;
+}
+
+.about-text p {
+  color: black;
+  font-family: Arial, sans-serif;
+  margin: 15px 0;
+  letter-spacing: 1px;
+  font-size: 18px;
+  text-align: justify;
+  text-indent: 5%;
+}
+
+.about h1 {
+  color: #041E42;
+  text-transform: capitalize;
+  text-decoration-thickness: 3px;
+  font-size: 50px;
+  margin-bottom: 15px;
+  border-left: 5px solid #041E42;
+  padding-left: 1rem;
+}
+
+.about-text h3 {
+  color: black;
+  text-transform: capitalize;
+  font-size: 25px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+span {
+  color: rgb(13, 0, 128);
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .about h1 {
+    color: #041E42;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container-about {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about img {
+    max-width: 30%;
+    height: auto;
+    order: 1;
+  }  
+
+  .about-text {
+    font-size: 16px;
+    padding: 0 10px;
+    text-align: left;
+  }
+
+  .about h1 {
+    color: #041E42;
+    font-size: 40px;
+  }
+  .about-text p{
+    font-size: 15px;
+    margin-right: 20px;
+  }
+  .about-text h3 {
+    font-size: 20px;
+  }
+}
+
+
+.quick-links {
+ 
+ background-image: url(Images/pexels-artem-podrez-7233099.jpg);
+ background-attachment: fixed;
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+
+ padding: 30px;
+ color: white;
+}
+
+
+.quick-link-item {
+ font-weight: bold;
+ display: inline-block;
+ padding: 15px 80px 15px 80px;
+ margin: 0 8px;
+ border: 1px solid #ccc;
+ transition: border-color 0.3s ease;
+ box-sizing: border-box;
+ min-width: 80px;
+}
+
+
+.quick-link-item a {
+ font-style: italic;
+ text-decoration: none;
+ color: #ffffff;
+ display: block; 
+}
+
+.quick-link-item:hover {
+ border-color: blue;
+ background-color: blue;
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+ .quick-links {
+  
+    display: flex;
+   justify-content: space-around;
+   align-items: center;
+   flex-direction: column;
+ }
+ 
+ .quick-link-item {
+   display: inline-block;
+   margin-top: 20px;
+   width: 200px;
+   max-width: 500px; 
+   height: auto;
+   padding: 20px;
+ }
+ 
+ .quick-link-item a{
+   text-align: center;
+ }
+ 
+ .quick-link-text{
+   font-size: 25px;
+   margin-top: 20px;
+   }
+ 
+
+}
+
+@media screen and (max-width: 768px) {
+.quick-links {
+
+  display: flex;
+ justify-content: space-around;
+ align-items: center;
+ flex-direction: column;
+}
+
+.quick-link-item {
+ display: inline-block;
+ margin-top: 20px;
+ width: 350px;
+ max-width: 500px; 
+ height: auto;
+ padding: 20px;
+}
+
+.quick-link-item a{
+ text-align: center;
+ font-size: 15px;
+}
+
+.quick-link-text{
+ font-size: 20px;
+ margin-top: 20px;
+}
+
+}
+
+
+
+.title{ 
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-bottom: 25px;
+}
+
+.title::before {
+  content: "";
+  display: inline-block;
+  border-top: 2px solid blue;
+  width: 30px; 
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.title::after {
+  content: "";
+  display: inline-block;
+  border-top: 2px solid blue;
+  width: 30px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.coll-courses{
+  padding-bottom: 100px;
+  background-image: url(Images/White-Bg1.jpg);
+  background-size: contain;
+  padding-top: 40px;
+}
+  
+  .courses {
+    display: flex;
+    flex-wrap: wrap;
+        justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .course {
+    background-color: #0099ff;
+    position: relative;
+    width: 300px;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  /* .course img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  } */
+
+  .course img {
+    width: 60%; 
+    max-width: 80%;
+    height: auto; 
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  
+  .course h2 {
+    margin: 0;
+    font-size: 18px;
+    color: white;
+  }
+  
+  .course:hover {
+    background-image: linear-gradient(to right,#e052a0,#f15c41);
+    transform: scale(1.05);
+  }
+  
+  .course:hover h2 {
+    color: white; 
+    font-style: italic;
+  }
+
+  .course:hover {
+    transform: scale(1.05);
+  }
+  
+
+
+@media screen and (max-width: 768px) {
+  .coll-courses {
+    padding-top: 20px;
+  }
+
+  .courses {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .course {
+    width: 40%;
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  /* .course img { display: none;  } */
+
+  .course h2 {
+    font-size: 16px;
+    margin: 0;
+  }}
+
+
+  
+
+.title{ 
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-bottom: 25px;
+}
+
+.title::before {
+  content: "";
+  display: inline-block;
+  border-top: 2px solid blue;
+  width: 30px; 
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.title::after {
+  content: "";
+  display: inline-block;
+  border-top: 2px solid blue;
+  width: 30px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.coll-courses{
+  padding-bottom: 100px;
+  background-image: url(Images/White-Bg1.jpg);
+  background-size: contain;
+  padding-top: 40px;
+}
+  
+  .courses {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .course {
+    background-color: #0099ff;
+    position: relative;
+    width: 300px;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .course img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .course h2 {
+    margin: 0;
+    font-size: 18px;
+    color: white;
+  }
+  
+  .course:hover {
+    background-image: linear-gradient(to right,#e052a0,#f15c41);
+    transform: scale(1.05);
+  }
+  
+  .course:hover h2 {
+    color: black; 
+    font-style: italic;
+  }
+
+  .course:hover {
+    transform: scale(1.05);
+  }
+  
+
+
+@media screen and (max-width: 768px) {
+  .coll-courses {
+    padding-top: 20px;
+  }
+
+  .courses {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .course {
+    width: 40%;
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  /* .course img {display: none;} */
+
+  .course h2 {
+    font-size: 16px;
+    margin: 0;
+  }}
+
+  svg{
+  background-image: url(Images/White_Bg21.jpeg);
+  background-size: cover;
+  background-attachment: fixed ;
+}
+
+
+
+  .career-services {
+    background-image: url(Images/White-Bg2.webp);
+    background-attachment: fixed;
+    background-size: cover;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px 30px 50px 30px;
+    text-align: center;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.services-grid {
+  display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+    /* justify-content: center; */
+}
+
+.service-item {
+    border-bottom: 1px solid #3a3a3a;
+    padding: 20px;
+    text-align: center;
+    flex: 1 0 200px; 
+    max-width: 300px; 
+    margin: 10px; 
+}
+
+.service-icon {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.service-title {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .service-item {
+    padding: 15px;
+  }
+
+  .service-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .service-title {
+    font-size: 16px;
+    margin-top: 8px;
+  }
+}
+
+
+
+.news-section {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #f7f7f7;
+ 
+}
+
+
+.section-header {
+  text-align: center;
+  margin-bottom: 20px;
+ 
+}
+
+
+.section-subtitle {
+  font-size: 18px;
+  font-weight: bold;
+ padding-top: 50px;
+  color: #2f00ff;
+}
+
+
+.section-title {
+  font-size: 24px;
+  padding-bottom: 30px;
+}
+
+
+.news-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+ 
+}
+
+
+.news-item {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+ 
+}
+
+
+.news-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.news-item img {
+  width: 100%;
+  height: auto;
+ 
+}
+
+
+.news-details {
+  padding: 15px;
+ 
+}
+
+
+.news-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+ 
+}
+
+
+.news-date {
+  font-style: italic;
+  color: #999;
+  margin-bottom: 10px;
+ 
+}
+
+
+.news-description {
+  font-size: 14px;
+  border-bottom: 1px solid #2f00ff;
+  padding-bottom: 7px;
+ 
+}
+
+
+.news-details a {
+  color: #333;
+  text-decoration: none;
+  position: relative;
+ 
+}
+
+
+
+
+.news-details a:hover:before {
+  transform: scaleX(1);
+}
+
+
+.news-details a:hover {
+  color: blue;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+  .news-list {
+    justify-content: center;
+  }
+
+  .news-item {
+    width: calc(50% - 20px);
+    max-width: none;
+    margin: 0 10px 20px 10px;
+  }
+
+  .news-details {
+    padding: 10px;
+  }
+
+  .news-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .news-date {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+
+  .news-description {
+    font-size: 14px;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .news-details a {
+    position: relative;
+  }
+
+  .news-details a:hover:before {
+    display: none;
+  }
+}
+
+
+
+
+
+

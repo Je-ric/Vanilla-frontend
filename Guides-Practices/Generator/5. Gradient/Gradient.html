@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Generator</title>
+    <link rel="stylesheet" href="Gradient.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('../header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                });
+        });
+    </script>
+    </head>
+    <body>
+      <div id="header-container"></div>
+    <div class="container">
+        <div class="adjustable-box" id="adjustableBox"></div>
+        <div class="controls">
+            <div id="gradientOptions">
+                <label for="direction">Direction:</label>
+                <select id="direction">
+                    <option value="linear">Linear</option>
+                    <option value="radial">Radial</option>  
+                </select>
+                <div id="colorInputs">
+                    <label for="color1">Color 1:</label>
+                    <input type="color" id="color1" value="#ffffff">
+                    <input type="text" class="color-input" id="color1Hex" placeholder="Hex">
+                    <label for="color2">Color 2:</label>
+                    <input type="color" id="color2" value="#f0f0f0">
+                    <input type="text" class="color-input" id="color2Hex" placeholder="Hex">
+                </div>
+            </div>
+            <label for="opacity">Opacity:</label>
+            <input type="range" id="opacity" min="0" max="1" step="0.1" value="1">
+            <span id="opacityValue">1</span><br>
+            <label for="gradientDirection">Gradient Direction:</label>
+            <input type="range" id="gradientDirection" min="0" max="360" value="0" step="1">
+            <span id="gradientDirectionValue">0</span><br>
+            <button onclick="shuffleColors()">Shuffle Colors</button>
+            <br>
+            <textarea id="cssCode" rows="5" cols="50" readonly></textarea>
+        </div>   
+    </div>
+
+    <script src="Gradient.js"></script>
+</body>
+</html>

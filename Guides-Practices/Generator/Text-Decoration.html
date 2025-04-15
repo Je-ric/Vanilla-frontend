@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Decoration Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .text-decoration-example {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .code {
+    margin-top: 20px;
+    background-color: #eaeaea;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    overflow-wrap: break-word;
+  }
+
+  .output {
+    margin-top: 20px;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <label for="textDecoration">Text Decoration:</label>
+  <select id="textDecoration">
+    <option value="none">None</option>
+    <option value="underline">Underline</option>
+    <option value="overline">Overline</option>
+    <option value="line-through">Line Through</option>
+    <option value="underline overline">Underline Overline</option>
+    <option value="underline line-through">Underline Line Through</option>
+    <option value="overline line-through">Overline Line Through</option>
+    <option value="blink">Blink</option>
+  </select>
+  <label for="lineStyle">Line Style:</label>
+  <select id="lineStyle">
+    <option value="solid">Solid</option>
+    <option value="dashed">Dashed</option>
+    <option value="dotted">Dotted</option>
+    <option value="double">Double</option>
+    <option value="wavy">Wavy</option>
+  </select>
+  <label for="color">Color:</label>
+  <input type="color" id="color" value="#000000">
+  <label for="thickness">Thickness:</label>
+  <input type="number" id="thickness" placeholder="Thickness (optional)">
+</div>
+
+<div class="code" id="codeDisplay">
+  <!-- Generated code will appear here -->
+</div>
+
+<div class="output">
+  <p id="outputText" class="text-decoration-example">Sample Text</p>
+</div>
+
+<script>
+  const textDecorationSelect = document.getElementById('textDecoration');
+  const lineStyleSelect = document.getElementById('lineStyle');
+  const colorInput = document.getElementById('color');
+  const thicknessInput = document.getElementById('thickness');
+  const codeDisplay = document.getElementById('codeDisplay');
+  const outputText = document.getElementById('outputText');
+
+  function generateCode() {
+    const textDecoration = textDecorationSelect.value;
+    const lineStyle = lineStyleSelect.value;
+    const color = colorInput.value;
+    const thickness = thicknessInput.value;
+
+    let code = `.text-decoration-example {
+  text-decoration: ${textDecoration};
+  text-decoration-color: ${color};
+  text-decoration-style: ${lineStyle};`;
+
+    if (thickness) {
+      code += `\n  text-decoration-thickness: ${thickness}px;`;
+    }
+
+    code += `
+}`;
+
+    codeDisplay.innerText = code;
+    outputText.style.textDecoration = textDecoration;
+    outputText.style.textDecorationColor = color;
+    outputText.style.textDecorationStyle = lineStyle;
+    if (thickness) {
+      outputText.style.textDecorationThickness = thickness + 'px';
+    } else {
+      outputText.style.textDecorationThickness = 'auto';
+    }
+  }
+
+  // Event listeners for input changes
+  textDecorationSelect.addEventListener('change', generateCode);
+  lineStyleSelect.addEventListener('change', generateCode);
+  colorInput.addEventListener('input', generateCode);
+  thicknessInput.addEventListener('input', generateCode);
+
+  // Initial code generation
+  generateCode();
+</script>
+
+</body>
+</html>

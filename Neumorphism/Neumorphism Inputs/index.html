@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Forms</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Universal Styles */
+        :root {
+            --primary: #e4ebf5;
+            --secondary: #1d887a;
+            --grey-100: #c8d0e7;
+            --grey-400: #bec8e4;
+            --grey-500: #9baacf;
+            --white: #fff;
+        }
+
+        * {
+            border: 0;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* margin-top: 20%; */
+            /* height: 100vh; */
+            height: 100%;
+            background-color: var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* overflow: hidden; */
+            position: relative;
+            width: 100%;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .form-section {
+            padding: 20px;
+            background: var(--primary);
+            box-shadow: -5px -5px 20px var(--white), 5px 5px 20px var(--grey-400);
+            border-radius: 12px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--grey-400);
+            margin: 20px 0;
+        }
+
+        /* Sign Up Form CSS */
+        .segment {
+            padding: 32px 0;
+            text-align: center;
+        }
+
+        button,
+        input {
+            border: 0;
+            outline: 0;
+            font-size: 16px;
+            border-radius: 320px;
+            padding: 16px;
+            background: var(--primary);
+            text-shadow: 1px 1px 0 var(--white);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        input {
+            margin-right: 8px;
+            box-shadow: inset 2px 2px 5px var(--grey-400), inset -5px -5px 10px var(--white);
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out;
+            appearance: none;
+        }
+
+        input:focus {
+            box-shadow: inset 1px 1px 2px var(--grey-400), inset 1px -1px 2px var(--white);
+        }
+
+        button {
+            color: #61677c;
+            font-weight: bold;
+            box-shadow: -5px -5px 20px var(--white), 5px 5px 20px var(--grey-400);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:hover {
+            box-shadow: -2px -2px 5px var(--white), 2px 2px 5px var(--grey-400);
+        }
+
+        button:active {
+            box-shadow: 1px 1px 2px var(--white), -1px 1px 2px var(--grey-400);
+        }
+
+        button .fa {
+            margin-right: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        button.unit {
+            border-radius: 8px;
+            line-height: 0;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 8px;
+            font-size: 19.2px;
+        }
+
+        button.unit .fa {
+            margin-right: 0;
+        }
+
+        button.red {
+            display: block;
+            width: 100%;
+            color: #ae1100;
+        }
+
+
+    </style>
+</head>
+<body>
+    <head>
+        <link rel="stylesheet" href="radio.css">
+        <link rel="stylesheet" href="toggle-switch.css">
+        <link rel="stylesheet" href="checkbox.css">
+        <link rel="stylesheet" href="search.css">
+        <link rel="stylesheet" href="range.css">
+        <link rel="stylesheet" href="file.css">
+    </head>
+    <div class="form-container">
+        <div class="form-section">
+            <form action="" class="radio-form">
+                <div class="radio">
+                    <input type="radio" name="radio" id="radio-1">
+                    <label for="radio-1"></label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="radio" id="radio-2" checked>
+                    <label for="radio-2"></label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="radio" id="radio-3">
+                    <label for="radio-3"></label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="radio" id="radio-4">
+                    <label for="radio-4"></label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="radio" id="radio-5">
+                    <label for="radio-5"></label>
+                </div>
+            </form>
+        </div>
+        
+
+        <div class="divider"></div>
+
+        <div class="form-section">
+           <form action="" class="toggle-form">
+                <label class="label">
+                    <div class="container">
+                        <input type="checkbox" class="switch" name="check" value="check">
+                        <div class="toggle"></div>
+                    </div>
+                </label>
+                <label class="label">
+                    <div class="container">
+                        <input type="checkbox" class="switch" name="check" value="check">
+                        <div class="toggle"></div>
+                    </div>
+                </label>
+                <label class="label">
+                    <div class="container">
+                        <input type="checkbox" class="switch" name="check" value="check">
+                        <div class="toggle"></div>
+                    </div>
+                </label>
+                <label class="label">
+                    <div class="container">
+                        <input type="checkbox" class="switch" name="check" value="check">
+                        <div class="toggle"></div>
+                    </div>
+                </label>
+                <label class="label">
+                    <div class="container">
+                        <input type="checkbox" class="switch" name="check" value="check">
+                        <div class="toggle"></div>
+                    </div>
+                </label>
+           </form>
+        </div>
+        
+
+        <div class="divider"></div>
+
+        <div class="form-section">
+             <form action="">
+                <label for="">
+                    <input type="text" placeholder="Email Address">
+                </label>
+                <label for="">
+                    <input type="password" placeholder="Password">
+                </label>
+            </form> 
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="form-section">
+            <form action="" class="checkbox-form">
+                <div class="checkbox">
+                    <input type="checkbox" name="" id="checkbox-1">
+                    <label for="checkbox-1">
+                        <i class="fa fa-check"></i>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="" id="checkbox-2">
+                    <label for="checkbox-2">
+                        <i class="fa fa-check"></i>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="" id="checkbox-3">
+                    <label for="checkbox-3">
+                        <i class="fa fa-check"></i>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="" id="checkbox-4">
+                    <label for="checkbox-4">
+                        <i class="fa fa-check"></i>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="" id="checkbox-5">
+                    <label for="checkbox-5">
+                        <i class="fa fa-check"></i>
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-section">
+            <form autocomplete="off" class="search-form">
+                <div class="finder">
+                  <div class="finder__outer">
+                    <div class="finder__inner">
+                      <div class="finder__icon" ref="icon"></div>
+                      <input class="finder__input" type="text" name="q" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+
+        <div class="form-section">
+            <form action="" class="range-container">
+                <input type="range" class="range-style" name="volume" min="0" max="100">
+            </form>
+        </div>
+
+
+        <div class="form-section">
+        <form action="" class="file-form">
+            <div>
+                <input type="file" id="fileInput" class="file-input">
+                <label for="fileInput" class="file-label">
+                    <img class="file-icon">
+                    <span class="file-icon">📁</span>
+                    <span class="file-name">Choose a file</span>
+                </label>
+            </div>
+        </form>
+        </div>
+    </div>
+
+    </div>
+    
+
+    <!-- div{
+        background: linear-gradient(-60deg, #1ec600, #d9ff40);
+        background: linear-gradient(-60deg, #ff555f, #ff55b3);
+        background: linear-gradient(-60deg, #40b6ff, #95ffe0);
+        
+    } -->
+
+</body>
+</html>
+

@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* Start General */
+* {
+  margin:0;
+  padding:0;
+  font-family: Tahoma;
+  box-sizing:border-box;
+  -o-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+body{
+  background-color: #CCC;
+}
+nav ul li a {
+  color: #FFF;
+  text-decoration: none;
+}
+/* End General */
+
+/* Start Navbar */
+nav ul {
+  background-color: #bf0000;
+}
+nav ul > li {
+  padding: 15px;
+  display: inline-block;
+  transition: all .3s ease;
+  margin-left: -5px
+}
+nav ul > li:not(:last-of-type):hover {
+  background-color: #222
+}
+nav ul > li:first-of-type {
+  background-color: #222
+}
+nav ul > li:last-of-type {
+  float: right;
+}
+nav ul > li:last-of-type a .fa {
+  font-size: 21px
+}
+/* End Navbar */
+
+/* Start Menue Right */
+nav ul > li:last-of-type {
+  position: relative;
+  display: none
+}
+nav ul > ol {
+  position: absolute;
+  top: 49px;
+  right: 0;
+  background: #333;
+  text-align: center;
+  list-style: none;
+  display: none
+}
+nav ul > ol > li {
+  width: 100vw;
+  color: #FFF;
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: all .3s ease;
+}
+nav ul > ol > li:hover a {
+  margin: 20px;
+}
+nav ul > ol > li:hover {
+  background: #000;
+  cursor: pointer
+}
+nav ul input {
+  opacity: .7;
+  padding: 5px;
+  flot: right;
+  display: none
+}
+/* Start Menue Right */
+
+/* Start Media Query */
+@media screen and (max-width:680px){
+  nav ul > li:not(:first-child) {
+    display:none
+  }
+  nav ul > li:last-of-type {
+    display: block
+  }
+  nav ul input {
+    display: inline
+  }
+}
+@media screen and (min-width:680px) {
+  nav ul > ol > li {
+    display:none
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#">Home </a></li>
+      <li><a href="#">About </a></li>
+      <li><a href="#">Services </a></li>
+      <li><a href="#">Contact </a></li>
+      <li><a href="#">Images </a></li>
+      <li><a href="#">Test </a></li>
+      <li>
+        <a href="#">
+          <i class="fa fa-bars"></i>
+        </a>
+      </li>
+      <input type="search" />
+    </ul>
+  </nav>
+  
+  
+</body>
+<script>
+
+
+$(function() {
+  var ulLi = $('nav ul > li'),
+      fa = $('nav ul > li:last-of-type a .fa');
+  
+   $('nav ul').append('<ol></ol>');
+  
+   $('nav').each(function() {
+     for (var i=0; i <= ulLi.length - 3; i++) {
+       $('nav ul > ol').append("<li>"+ i +"</li>");
+       $('nav ul > ol > li').eq(i).html(ulLi.eq(i+1).html());
+     }
+  });
+
+  $('nav ul > li:last-of-type').on('click', function() {
+    fa.toggleClass('fa-bars');
+    fa.toggleClass('fa-times');
+    $(this).parent().children('ol').slideToggle(500);
+  });
+});
+// Em An
+// 10/10/2016
+// https://codepen.io/anon/pen/qaoxyA  
+// https://codepen.io/Em-An/pen/LRdjwp
+</script>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Timelines</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+    --bg-color: #e0e5ec;
+    --text-color: #333;
+    --shadow-color: #a3b1c6;
+    --highlight-color: #ffffff;
+    --timeline-color: #4a90e2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline {
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px var(--shadow-color), -5px -5px 10px var(--highlight-color);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--timeline-color);
+}
+
+.timeline-item {
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: inset 3px 3px 6px var(--shadow-color), inset -3px -3px 6px var(--highlight-color);
+}
+
+.date {
+    font-weight: bold;
+    color: var(--timeline-color);
+    margin-bottom: 10px;
+}
+
+/* Timeline 1: Vertical Timeline */
+.timeline-1 .timeline-item {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline-1 .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--timeline-color);
+}
+
+.timeline-1 .timeline-item::after {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    box-shadow: inset 2px 2px 4px var(--shadow-color), inset -2px -2px 4px var(--highlight-color);
+}
+
+/* Timeline 2: Horizontal Timeline */
+.timeline-2 .timeline-container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.timeline-2 .timeline-item {
+    flex: 0 0 250px;
+    margin-right: 20px;
+}
+
+/* Timeline 3: Circular Timeline */
+.timeline-3 .timeline-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.timeline-3 .timeline-item {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.timeline-3 .timeline-item:nth-child(1) { top: 0; left: 90px; }
+.timeline-3 .timeline-item:nth-child(2) { top: 90px; right: 0; }
+.timeline-3 .timeline-item:nth-child(3) { bottom: 0; left: 90px; }
+.timeline-3 .timeline-item:nth-child(4) { top: 90px; left: 0; }
+
+/* Timeline 4: Zigzag Timeline */
+.timeline-4 .timeline-item {
+    position: relative;
+    width: 50%;
+}
+
+.timeline-4 .timeline-item:nth-child(odd) {
+    margin-left: auto;
+    padding-left: 30px;
+}
+
+.timeline-4 .timeline-item:nth-child(even) {
+    padding-right: 30px;
+    text-align: right;
+}
+
+.timeline-4 .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--timeline-color);
+    border-radius: 50%;
+}
+
+.timeline-4 .timeline-item:nth-child(odd)::before { left: -10px; }
+.timeline-4 .timeline-item:nth-child(even)::before { right: -10px; }
+
+/* Timeline 5: Branching Timeline */
+.timeline-5 .timeline-branch {
+    position: relative;
+}
+
+.timeline-5 .timeline-item {
+    width: 60%;
+    margin-bottom: 30px;
+}
+
+.timeline-5 .timeline-item.main {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timeline-5 .timeline-item.branch {
+    position: absolute;
+    top: 50%;
+    width: 40%;
+}
+
+.timeline-5 .timeline-item.branch.left { left: 0; }
+.timeline-5 .timeline-item.branch.right { right: 0; }
+
+.timeline-5 .timeline-branch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: var(--timeline-color);
+}
+
+@media (max-width: 768px) {
+    .timeline-4 .timeline-item,
+    .timeline-5 .timeline-item {
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 0;
+        text-align: left;
+    }
+
+    .timeline-4 .timeline-item::before,
+    .timeline-5 .timeline-item::before {
+        left: -10px !important;
+        right: auto !important;
+    }
+
+    .timeline-5 .timeline-item.branch {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+    }
+
+    .timeline-5 .timeline-branch::before {
+        left: 0;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="timeline timeline-1">
+            <h2>Vertical Timeline</h2>
+            <div class="timeline-item">
+                <div class="date">2021</div>
+                <div class="content">
+                    <h3>Event 1</h3>
+                    <p>Description of the first event in the timeline.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">2022</div>
+                <div class="content">
+                    <h3>Event 2</h3>
+                    <p>Description of the second event in the timeline.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">2023</div>
+                <div class="content">
+                    <h3>Event 3</h3>
+                    <p>Description of the third event in the timeline.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline timeline-2">
+            <h2>Horizontal Timeline</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="date">2021</div>
+                    <div class="content">
+                        <h3>Milestone 1</h3>
+                        <p>Achievement details for the first milestone.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">2022</div>
+                    <div class="content">
+                        <h3>Milestone 2</h3>
+                        <p>Achievement details for the second milestone.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">2023</div>
+                    <div class="content">
+                        <h3>Milestone 3</h3>
+                        <p>Achievement details for the third milestone.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline timeline-3">
+            <h2>Circular Timeline</h2>
+            <div class="timeline-circle">
+                <div class="timeline-item">
+                    <div class="date">Q1</div>
+                    <div class="content">
+                        <h3>Phase 1</h3>
+                        <p>Initial planning and research.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Q2</div>
+                    <div class="content">
+                        <h3>Phase 2</h3>
+                        <p>Development and testing.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Q3</div>
+                    <div class="content">
+                        <h3>Phase 3</h3>
+                        <p>Implementation and review.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">Q4</div>
+                    <div class="content">
+                        <h3>Phase 4</h3>
+                        <p>Final deployment and evaluation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline timeline-4">
+            <h2>Zigzag Timeline</h2>
+            <div class="timeline-item">
+                <div class="date">Step 1</div>
+                <div class="content">
+                    <h3>Ideation</h3>
+                    <p>Brainstorming and concept development.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Step 2</div>
+                <div class="content">
+                    <h3>Design</h3>
+                    <p>Creating mockups and prototypes.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Step 3</div>
+                <div class="content">
+                    <h3>Development</h3>
+                    <p>Building and coding the solution.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">Step 4</div>
+                <div class="content">
+                    <h3>Testing</h3>
+                    <p>Quality assurance and user testing.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline timeline-5">
+            <h2>Branching Timeline</h2>
+            <div class="timeline-branch">
+                <div class="timeline-item main">
+                    <div class="date">2023</div>
+                    <div class="content">
+                        <h3>Project Start</h3>
+                        <p>Initiation of the main project.</p>
+                    </div>
+                </div>
+                <div class="timeline-item branch left">
+                    <div class="date">Q2</div>
+                    <div class="content">
+                        <h3>Sub-project A</h3>
+                        <p>Development of feature set A.</p>
+                    </div>
+                </div>
+                <div class="timeline-item branch right">
+                    <div class="date">Q3</div>
+                    <div class="content">
+                        <h3>Sub-project B</h3>
+                        <p>Development of feature set B.</p>
+                    </div>
+                </div>
+                <div class="timeline-item main">
+                    <div class="date">2024</div>
+                    <div class="content">
+                        <h3>Project Completion</h3>
+                        <p>Final integration and launch.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

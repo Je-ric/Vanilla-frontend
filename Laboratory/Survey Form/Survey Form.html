@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLSU Survey</title>
+    <link rel="stylesheet" href="Survey Form.css">
+</head>
+<body>
+    <div class="banner">
+        <img src="CLSU-Banner.jfif" alt="" width="700" height="150">
+        <img src="CLSU_Logo.png" alt="logo" width="100" height="100" class="CLSU_Logo">
+</div>
+
+
+    <form action="">
+    <H1>Central Luzon State University</H1>
+    <h2>Comprehensive Survey Form</h2>
+
+    <td>Please fill out this survey:</td><br><br>
+        <table style="text-align: center;" border = 5px;>
+            <caption> Survey Results</caption>
+            <tr style="background-color: black;">
+                <th style="color: white;">Name </th>
+                <th style="color: white;">Age</th>
+                <th style="color: white;" >Gender</th>
+                <th style="color: white;" >Favorite Language</th>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>28</td>
+                <td>Male</td>
+                <td>Python</td>
+            </tr>
+                <td>Jane Smith</td>
+                <td>24</td>
+                <td>Female</td>
+                <td>JavaScript</td>
+            <tr>
+        </table>
+
+    <br><td>Name:</td>
+        <td><input type="text" name="name" required></td>
+    
+    <td><br><br>Gender:</td>
+        <td><br>
+            <input type="radio" name="gender" value="male"> Male <br>
+            <input type="radio" name="gender" value="female"> Female <br>
+            <input type="radio" name="gender" value="other"> other <br><br>
+    </td>
+
+    <td>Email:</td>
+            <td><input type="text" name="email" required></td> <br> <br>
+
+    <td>Age:</td>
+            <td><input type="text" name="age" style="width: 50px;"></td> <br><br>
+
+    <td>Country of Residence:</td>
+            <td>
+                <select name="country">
+                    <option value="United States">United States</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="England">England</option>
+                    <option value="Autralia">Australia</option>
+                </select>
+            </td><br><br>
+
+    <td>Which programming languages do you use?:</td>
+            <td><br>
+                <input type="checkbox" name="languages[]" value="Python"> Python <br>
+                <input type="checkbox" name="languages[]" value="javascript"> JavaScript <br>
+                <input type="checkbox" name="languages[]" value="Java"> Java <br>
+                <input type="checkbox" name="languages[]" value="C#"> C#<br>
+    </td><br>
+
+    <td>Years of Experience:</td>
+            <td><input type="text" name="Years of Experience" style="width: 50px;"></td> <br><br>
+        
+    <td>Highest Education Level:</td>
+            <td>
+                <select name="Highest Education Level">
+                    <option value="High School">High School</option>
+                    <option value="Associate's Degree">Associate's Degree</option>
+                    <option value="Bachelor's Degree">Bachelor's Degree</option>
+                    <option value="Master's Degree">Master's Degree</option>
+                    <option value="Doctorate">Doctorate</option>
+                </select>
+    </td>
+
+    <td><br><br>Preferred Development Environment:</td>
+        <td><br>
+            <input type="radio" name="pde" value="IDE"> IDE <br>
+            <input type="radio" name="pde" value="Text Editor"> Text Editor <br>
+            <input type="radio" name="pde" value="Command Line"> Command Line <br><br>
+    </td>
+
+    <td>Additional Comments:</td><br>
+    <textarea name="" id="" cols="40" rows="4"></textarea>
+
+    <td><br><br>Subscribe to Newsletter:</td>
+            <td>
+                <input type="checkbox" name="Subscribe[]" value="Subscribe"> <br>
+    </td>
+
+    <td><br>I agree to the Terms and Conditions:</td>
+    <td>
+        <input type="checkbox" name="Subscribe[]" value="Subscribe"> <br>
+    </td>
+
+    <br><input type="submit" value="Submit"> <br>
+    
+    <br><footer style="background-color: antiquewhite;" id="footer" >
+        <p style="text-align: center;">Jeric J. Dela Cruz <br>
+            BSIT
+            2-2 <br>
+            WEDNESDAY (1:00 - 4:00 PM) 
+        </p>
+        </footer>
+    </form>
+
+</body>
+</html>

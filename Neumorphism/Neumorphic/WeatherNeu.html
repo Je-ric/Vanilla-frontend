@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherNeu Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --text-color: #333;
+    --background-color: #e0e5ec;
+    --card-background: transparent;
+    --shadow-color: #a3b1c6;
+    --highlight-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 
+        5px 5px 10px var(--shadow-color),
+        -5px -5px 10px var(--highlight-color);
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 
+        3px 3px 6px var(--shadow-color),
+        -3px -3px 6px var(--highlight-color);
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+section {
+    background-color: var(--card-background);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 
+        5px 5px 10px var(--shadow-color),
+        -5px -5px 10px var(--highlight-color);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.current-weather {
+    grid-column: 1 / -1;
+}
+
+.weather-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 15px;
+    /* background: linear-gradient(145deg, #f0f0f0, #ffffff); */
+    box-shadow: 
+        8px 8px 16px var(--shadow-color),
+        -8px -8px 16px var(--highlight-color);
+}
+
+.location {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.temperature {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.weather-icon {
+    font-size: 4rem;
+    color: var(--secondary-color);
+}
+
+.forecast-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.forecast-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    /* background: linear-gradient(145deg, #f0f0f0, #ffffff); */
+    box-shadow: 
+        4px 4px 8px var(--shadow-color),
+        -4px -4px 8px var(--highlight-color);
+}
+
+.day {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.forecast-card i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.temp {
+    font-weight: 600;
+}
+
+.details-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.detail-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    /* background: linear-gradient(145deg, #f0f0f0, #ffffff); */
+    box-shadow: 
+        4px 4px 8px var(--shadow-color),
+        -4px -4px 8px var(--highlight-color);
+}
+
+.detail-card i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.detail-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.detail-value {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+    }
+
+    nav ul li {
+        margin-left: 0;
+        margin-right: 1rem;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .forecast-container {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .forecast-card {
+        flex: 1 1 calc(50% - 0.5rem);
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>WeatherNeu</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Dashboard</a></li>
+                    <li><a href="#">Forecast</a></li>
+                    <li><a href="#">Maps</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="current-weather">
+                <h2>Current Weather</h2>
+                <div class="weather-card">
+                    <div class="location">New York, NY</div>
+                    <div class="temperature">72°F</div>
+                    <div class="description">Partly Cloudy</div>
+                    <i class="fas fa-cloud-sun weather-icon"></i>
+                </div>
+            </section>
+            <section class="forecast">
+                <h2>5-Day Forecast</h2>
+                <div class="forecast-container">
+                    <div class="forecast-card">
+                        <div class="day">Mon</div>
+                        <i class="fas fa-sun"></i>
+                        <div class="temp">75°F</div>
+                    </div>
+                    <div class="forecast-card">
+                        <div class="day">Tue</div>
+                        <i class="fas fa-cloud"></i>
+                        <div class="temp">70°F</div>
+                    </div>
+                    <div class="forecast-card">
+                        <div class="day">Wed</div>
+                        <i class="fas fa-cloud-showers-heavy"></i>
+                        <div class="temp">68°F</div>
+                    </div>
+                    <div class="forecast-card">
+                        <div class="day">Thu</div>
+                        <i class="fas fa-cloud-sun"></i>
+                        <div class="temp">72°F</div>
+                    </div>
+                    <div class="forecast-card">
+                        <div class="day">Fri</div>
+                        <i class="fas fa-sun"></i>
+                        <div class="temp">76°F</div>
+                    </div>
+                </div>
+            </section>
+            <section class="weather-details">
+                <h2>Weather Details</h2>
+                <div class="details-container">
+                    <div class="detail-card">
+                        <i class="fas fa-wind"></i>
+                        <div class="detail-title">Wind</div>
+                        <div class="detail-value">5 mph</div>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-tint"></i>
+                        <div class="detail-title">Humidity</div>
+                        <div class="detail-value">65%</div>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-sun"></i>
+                        <div class="detail-title">UV Index</div>
+                        <div class="detail-value">3 of 10</div>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                        <div class="detail-title">Pressure</div>
+                        <div class="detail-value">1015 hPa</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+

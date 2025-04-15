@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tab-link {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .tab-link:hover {
+            background-color: #0056b3;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .active-tab {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-container">
+        <button class="tab-link" onclick="openTab(event, 'tab1')">Tab 1</button>
+        <button class="tab-link" onclick="openTab(event, 'tab2')">Tab 2</button>
+        <button class="tab-link" onclick="openTab(event, 'tab3')">Tab 3</button>
+        <!-- Copy Paste mo lang yung BUTTONS!-->
+    </div>
+
+    <div id="tab1" class="tab-content">
+        <div class="tab-content-container">
+            <h1>Content for Tab 1</h1>
+        </div>
+    </div>
+
+    <div id="tab2" class="tab-content">
+        <div class="tab-content-container">
+            <h1>Content for Tab 2</h1>
+        </div>
+    </div>
+
+    <div id="tab3" class="tab-content">
+        <div class="tab-content-container">
+            <h1>Content for Tab 3</h1>
+        </div>
+    </div> 
+    <!-- Same lang DITO, Copy Paste! -->
+
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabContent, tabLinks;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+            tabLinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].className = tabLinks[i].className.replace(" active-tab", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active-tab";
+        }
+
+        document.getElementById("tab1").style.display = "block";
+    </script>
+</body>
+</html>

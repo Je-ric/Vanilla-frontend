@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Rectangle Variations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+            background: #e8e8e8;
+            font-family: Arial, sans-serif;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Base styles for all variations */
+        .col-full {
+            display: flex;
+            justify-content: center;
+        }
+
+        .icon-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .icon-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .icon-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Variation 1 - Purple to Pink Gradient */
+        .v1 .layer-1 {
+            width: 250px;
+            height: 100px;
+            background: linear-gradient(145deg, #f0f0f0, #e6e6e6);
+            box-shadow: 5px 5px 10px #d1d1d1, -5px -5px 10px #ffffff;
+            border-radius: 15px;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .v1 .layer-2 {
+            height: 100%;
+            background: linear-gradient(45deg, #7928ca, #ff0080);
+            border-radius: 12px;
+            padding: 5px;
+        }
+
+        .v1 .layer-3 {
+            height: 100%;
+            background: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .v1 .icon-label {
+            color: #7928ca;
+        }
+
+        .v1 .layer-1:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Variation 2 - Cyan to Blue Gradient */
+        .v2 .layer-1 {
+            width: 250px;
+            height: 100px;
+            background: #e8e8e8;
+            box-shadow: 8px 8px 16px #c5c5c5, -8px -8px 16px #ffffff;
+            border-radius: 20px;
+            padding: 8px;
+        }
+
+        .v2 .layer-2 {
+            height: 100%;
+            background: linear-gradient(135deg, #00c6fb, #005bea);
+            border-radius: 15px;
+            padding: 5px;
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .v2 .layer-3 {
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .v2 .icon-label {
+            color: #005bea;
+        }
+
+        .v2 .layer-1:hover {
+            box-shadow: 12px 12px 20px #c5c5c5, -12px -12px 20px #ffffff;
+        }
+
+        /* Variation 3 - Green to Teal Gradient */
+        .v3 .layer-1 {
+            width: 250px;
+            height: 100px;
+            background: linear-gradient(145deg, #f0f0f0, #e6e6e6);
+            border-radius: 25px;
+            padding: 10px;
+            box-shadow: 6px 6px 12px #d1d1d1, -6px -6px 12px #ffffff;
+        }
+
+        .v3 .layer-2 {
+            height: 100%;
+            background: linear-gradient(45deg, #00b09b, #96c93d);
+            border-radius: 20px;
+            padding: 5px;
+        }
+
+        .v3 .layer-3 {
+            height: 100%;
+            background: #ffffff;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 3px 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .v3 .icon-label {
+            color: #00b09b;
+        }
+
+        .v3 .layer-1:hover {
+            transform: scale(1.05);
+        }
+
+        /* Variation 4 - Orange to Red Gradient */
+        .v4 .layer-1 {
+            width: 250px;
+            height: 100px;
+            background: #e8e8e8;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 5px 5px 10px #c5c5c5, -5px -5px 10px #ffffff;
+        }
+
+        .v4 .layer-2 {
+            height: 100%;
+            background: linear-gradient(45deg, #ff4e50, #f9d423);
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .v4 .layer-3 {
+            height: 100%;
+            background: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .v4 .icon-label {
+            color: #ff4e50;
+        }
+
+        .v4 .layer-1:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* Variation 5 - Multi-color Gradient */
+        .v5 .layer-1 {
+            width: 250px;
+            height: 100px;
+            background: linear-gradient(145deg, #f0f0f0, #e6e6e6);
+            border-radius: 18px;
+            padding: 10px;
+            box-shadow: 8px 8px 16px #d1d1d1, -8px -8px 16px #ffffff;
+        }
+
+        .v5 .layer-2 {
+            height: 100%;
+            background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+            border-radius: 14px;
+            padding: 5px;
+        }
+
+        .v5 .layer-3 {
+            height: 100%;
+            background: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .v5 .icon-label {
+            background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .v5 .layer-1:hover {
+            transform: rotate(5deg);
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Variation 1 -->
+    <div class="row">
+        <div class="col-full v1">
+            <div class="layer-1">
+                <div class="layer-2">
+                    <div class="layer-3">
+                        <a href="#" class="icon-link">
+                            <img src="images/watch.png" alt="Music Icon" class="icon-img">
+                            <span class="icon-label">Watching movie</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 2 -->
+    <div class="row">
+        <div class="col-full v2">
+            <div class="layer-1">
+                <div class="layer-2">
+                    <div class="layer-3">
+                        <a href="#" class="icon-link">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Music Icon" class="icon-img">
+                            <span class="icon-label">Ocean Waves</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 3 -->
+    <div class="row">
+        <div class="col-full v3">
+            <div class="layer-1">
+                <div class="layer-2">
+                    <div class="layer-3">
+                        <a href="#" class="icon-link">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Music Icon" class="icon-img">
+                            <span class="icon-label">Forest Vibes</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 4 -->
+    <div class="row">
+        <div class="col-full v4">
+            <div class="layer-1">
+                <div class="layer-2">
+                    <div class="layer-3">
+                        <a href="#" class="icon-link">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Music Icon" class="icon-img">
+                            <span class="icon-label">Sunset Melody</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variation 5 -->
+    <div class="row">
+        <div class="col-full v5">
+            <div class="layer-1">
+                <div class="layer-2">
+                    <div class="layer-3">
+                        <a href="#" class="icon-link">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Music Icon" class="icon-img">
+                            <span class="icon-label">Rainbow Beats</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

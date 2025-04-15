@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .content {
+      flex: 1;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .contact-info {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <!-- Your page content goes here -->
+  </div>
+
+  <footer>
+    <div class="column">
+      <h3>Column 1</h3>
+      <p>Content here</p>
+    </div>
+    <div class="column">
+      <h3>Column 2</h3>
+      <p>Content here</p>
+    </div>
+    <div class="column contact-info">
+      <h3>Contact Information</h3>
+      <p>Email: info@example.com</p>
+      <p>Phone: +1 (123) 456-7890</p>
+    </div>
+  </footer>
+
+</body>
+</html>

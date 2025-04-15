@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Profile Designs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0e5ec;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            gap: 3rem;
+        }
+
+        .profile {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #4a4a4a;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Design 1: Circular Orbit */
+        .orbit-profile {
+            background: #e0e5ec;
+            border-radius: 50%;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 
+                20px 20px 60px #bec3c9,
+                -20px -20px 60px #ffffff;
+        }
+
+        .orbit-center {
+            width: 200px;
+            height: 200px;
+            background: #e0e5ec;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                inset 8px 8px 16px #bec3c9,
+                inset -8px -8px 16px #ffffff;
+        }
+
+        .orbit-item {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #e0e5ec;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                5px 5px 10px #bec3c9,
+                -5px -5px 10px #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .orbit-item:hover {
+            transform: scale(1.1);
+        }
+
+        .orbit-item:nth-child(1) { top: 50px; left: 50px; }
+        .orbit-item:nth-child(2) { top: 50px; right: 50px; }
+        .orbit-item:nth-child(3) { bottom: 50px; left: 50px; }
+        .orbit-item:nth-child(4) { bottom: 50px; right: 50px; }
+
+        .orbit-item span {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #4a4a4a;
+        }
+
+        /* Design 2: Layered Cards */
+        .layered-cards {
+            background: #e0e5ec;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                10px 10px 20px #bec3c9,
+                -10px -10px 20px #ffffff;
+        }
+
+        .card {
+            background: #e0e5ec;
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 
+                5px 5px 10px #bec3c9,
+                -5px -5px 10px #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #4a4a4a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #6d6d6d;
+            font-size: 0.9rem;
+        }
+
+        /* Design 3: Hexagonal Grid */
+        .hexagon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 
+                15px 15px 30px #bec3c9,
+                -15px -15px 30px #ffffff;
+        }
+
+        .hexagon {
+            width: 150px;
+            height: 173px;
+            background: #e0e5ec;
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                5px 5px 10px #bec3c9,
+                -5px -5px 10px #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .hexagon:hover {
+            transform: scale(1.05);
+        }
+
+        .hexagon span {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #4a4a4a;
+            padding: 1rem;
+        }
+
+        /* Design 4: Concentric Circles */
+        .concentric-circles {
+            width: 500px;
+            height: 500px;
+            background: #e0e5ec;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                20px 20px 60px #bec3c9,
+                -20px -20px 60px #ffffff;
+        }
+
+        .circle {
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                inset 8px 8px 16px #bec3c9,
+                inset -8px -8px 16px #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .circle:hover {
+            transform: scale(1.05);
+        }
+
+        .circle-1 { width: 90%; height: 90%; }
+        .circle-2 { width: 70%; height: 70%; }
+        .circle-3 { width: 50%; height: 50%; }
+        .circle-4 { width: 30%; height: 30%; }
+
+        .circle span {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #4a4a4a;
+            padding: 1rem;
+        }
+
+        /* Design 5: Floating Platforms */
+        .floating-platforms {
+            background: #e0e5ec;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                15px 15px 30px #bec3c9,
+                -15px -15px 30px #ffffff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+        }
+
+        .platform {
+            width: 45%;
+            height: 100px;
+            background: #e0e5ec;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                8px 8px 16px #bec3c9,
+                -8px -8px 16px #ffffff;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .platform:hover {
+            transform: translateY(-10px);
+        }
+
+        .platform::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            top: -100%;
+            left: -100%;
+            transition: all 0.6s;
+        }
+
+        .platform:hover::before {
+            top: 100%;
+            left: 100%;
+        }
+
+        .platform span {
+            font-size: 0.9rem;
+            text-align: center;
+            color: #4a4a4a;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Design 1: Circular Orbit -->
+    <div class="profile">
+        <h2>Circular Orbit Profile</h2>
+        <div class="orbit-profile">
+            <div class="orbit-center">
+                <span>John Doe</span>
+            </div>
+            <div class="orbit-item">
+                <span>BSc Computer Science</span>
+            </div>
+            <div class="orbit-item">
+                <span>Web Development</span>
+            </div>
+            <div class="orbit-item">
+                <span>Photography</span>
+            </div>
+            <div class="orbit-item">
+                <span>Hiking</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 2: Layered Cards -->
+    <div class="profile">
+        <h2>Layered Cards Profile</h2>
+        <div class="layered-cards">
+            <div class="card">
+                <h3>Education</h3>
+                <p>BSc Computer Science, University of Technology</p>
+            </div>
+            <div class="card">
+                <h3>Skills</h3>
+                <p>Web Development, UI/UX Design, Data Analysis</p>
+            </div>
+            <div class="card">
+                <h3>Hobbies</h3>
+                <p>Photography, Hiking, Reading</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 3: Hexagonal Grid -->
+    <div class="profile">
+        <h2>Hexagonal Grid Profile</h2>
+        <div class="hexagon-grid">
+            <div class="hexagon"><span>BSc Computer Science</span></div>
+            <div class="hexagon"><span>Web Development</span></div>
+            <div class="hexagon"><span>UI/UX Design</span></div>
+            <div class="hexagon"><span>Data Analysis</span></div>
+            <div class="hexagon"><span>Photography</span></div>
+            <div class="hexagon"><span>Hiking</span></div>
+        </div>
+    </div>
+
+    <!-- Design 4: Concentric Circles -->
+    <div class="profile">
+        <h2>Concentric Circles Profile</h2>
+        <div class="concentric-circles">
+            <div class="circle circle-1">
+                <div class="circle circle-2">
+                    <div class="circle circle-3">
+                        <div class="circle circle-4">
+                            <span>John Doe</span>
+                        </div>
+                        <span>BSc Computer Science</span>
+                    </div>
+                    <span>Web Development, UI/UX Design</span>
+                </div>
+                <span>Photography, Hiking, Reading</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Design 5: Floating Platforms -->
+    <div class="profile">
+        <h2>Floating Platforms Profile</h2>
+        <div class="floating-platforms">
+            <div class="platform">
+                <span>BSc Computer Science</span>
+            </div>
+            <div class="platform">
+                <span>Web Development</span>
+            </div>
+            <div class="platform">
+                <span>UI/UX Design</span>
+            </div>
+            <div class="platform">
+                <span>Photography</span>
+            </div>
+            <div class="platform">
+                <span>Hiking</span>
+            </div>
+            <div class="platform">
+                <span>Reading</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

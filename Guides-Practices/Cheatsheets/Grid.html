@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(3, 100px);
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            width: 50%;
+            border: 2px solid #007bff;
+        }
+
+        .box {
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            width: 90px;
+            height: auto;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .input-container {
+            text-align: center;
+            margin-bottom: 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="number"] {
+            padding: 8px 16px;
+            font-size: 16px;
+            width: 100px;
+            margin: 10px;
+        }
+
+        select {
+            padding: 8px 16px;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: black;
+        }
+
+        .inputs {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="inputs">
+    <div class="input-container">
+        <label for="rows">Number of Rows:</label><br>
+        <input type="number" id="rows" min="1" value="3"><br>
+        <button onclick="changeGridTemplate('rows')">Update Rows</button>
+    </div>
+
+    <div class="input-container">
+        <label for="columns">Number of Columns:</label><br>
+        <input type="number" id="columns" min="1" value="4"><br>
+        <button onclick="changeGridTemplate('columns')">Update Columns</button>
+    </div>
+
+    <div class="input-container">
+        <label for="gap">Gap:</label><br>
+        <input type="number" id="gap" min="0" value="10"><br>
+        <button onclick="changeGap()">Update Gap</button>
+    </div>
+<!-- </div>
+
+<div class="inputs"> -->
+    <div class="input-container">
+        <label for="justify-content">Justify Content:</label><br>
+        <select id="justify-content">
+            <option value="center">Center</option>
+            <option value="flex-start">Start</option>
+            <option value="flex-end">End</option>
+            <option value="space-between">Space Between</option>
+            <option value="space-around">Space Around</option>
+        </select><br>
+        <button onclick="changeJustifyContent()">Update Justify Content</button>
+    </div>
+
+    <div class="input-container">
+        <label for="align-items">Align Items:</label><br>
+        <select id="align-items">
+            <option value="center">Center</option>
+            <option value="flex-start">Start</option>
+            <option value="flex-end">End</option>
+            <option value="stretch">Stretch</option>
+        </select><br>
+        <button onclick="changeAlignItems()">Update Align Items</button>
+    </div>
+
+    <div class="input-container">
+        <label for="box-count">Number of Boxes:</label><br>
+        <input type="number" id="box-count" min="1" value="12"><br>
+        <button onclick="updateBoxCount()">Update Box Count</button>
+    </div>
+</div>
+
+<div class="container" id="container">
+</div>
+
+<script>
+    function changeGridTemplate(property) {
+        const value = document.getElementById(property).value;
+        const container = document.querySelector('.container');
+        if (property === 'rows') {
+            container.style.gridTemplateRows = `repeat(${value}, 100px)`;
+        } else if (property === 'columns') {
+            container.style.gridTemplateColumns = `repeat(${value}, 100px)`;
+        }
+    }
+
+    function changeGap() {
+        const gap = document.getElementById('gap').value;
+        const container = document.querySelector('.container');
+        container.style.gap = `${gap}px`;
+    }
+
+    function changeJustifyContent() {
+        const justifyContent = document.getElementById('justify-content').value;
+        const container = document.querySelector('.container');
+        container.style.justifyContent = justifyContent;
+    }
+
+    function changeAlignItems() {
+        const alignItems = document.getElementById('align-items').value;
+        const container = document.querySelector('.container');
+        container.style.alignItems = alignItems;
+    }
+
+    function updateBoxCount() {
+        const count = document.getElementById('box-count').value;
+        const container = document.getElementById('container');
+        container.innerHTML = '';
+        for (let i = 0; i < count; i++) {
+            const box = document.createElement('div');
+            box.className = 'box';
+            box.textContent = i + 1;
+            container.appendChild(box);
+        }
+    }
+</script>
+    
+</body>
+</html>

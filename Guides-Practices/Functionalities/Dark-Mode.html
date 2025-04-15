@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Landing-Page.css or a separate dark-mode.css file */
+body.dark-mode {
+    background-color: #1f1f1f;
+    color: #ffffff;
+
+ } 
+
+
+.toggle-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-text {
+    margin-right: 8px;
+}
+
+.toggle {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    border-radius: 20px;
+    background-color: #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-inner {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #030303;
+    transition: transform 0.3s ease;
+}
+
+.dark-mode .toggle {
+    background-color: #fff;
+}
+
+.dark-mode .toggle-inner {
+    transform: translateX(26px);
+}
+
+    </style>
+</head>
+<body>
+    <!-- <button id="dark-mode-toggle">Dark Mode</button> -->
+    <button id="dark-mode-toggle" class="toggle-button">
+        <span class="toggle-text">Dark Mode</span>
+        <div class="toggle">
+            <div class="toggle-inner"></div>
+        </div>
+    </button>
+    
+</body>
+<script>
+    // darkmode.js
+const toggleButton = document.getElementById('dark-mode-toggle');
+const body = document.body;
+
+// Check if the user has a preference for dark mode using localStorage
+const currentTheme = localStorage.getItem('theme');
+
+// If the user prefers dark mode, set it
+if (currentTheme === 'dark') {
+    body.classList.add('dark-mode');
+}
+
+// Toggle dark mode when the button is clicked
+toggleButton.addEventListener('click', function () {
+    body.classList.toggle('dark-mode');
+
+    // Save user preference in localStorage
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+</script>
+</html>

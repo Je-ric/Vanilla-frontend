@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <title>Create Program</title>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex justify-between items-center p-6 border-b border-gray-200 bg-white">
+        <h2 class="text-2xl font-bold flex items-center gap-2 text-[#1a2235]">
+            Bring Your Vision to Life: Create a New Program
+        </h2>
+        <div>
+            <button class="btn bg-[#ffb51b] btn-sm gap-2 text-white hover:bg-[#e6a017]">
+                <i class='bx bx-check-circle'></i> Launch Program
+            </button>
+        </div>
+    </div>
+<div class="bg-white p-6">
+    
+            <form action="" method="POST">
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-[#1a2235] mb-2">Title</label>
+                    <div class="flex items-center gap-2 border border-gray-300 rounded-lg p-3 focus-within:border-[#ffb51b]">
+                        <i class='bx bx-pencil text-[#ffb51b] text-xl'></i>
+                        <input type="text" name="title" placeholder="Enter program title" 
+                            class="w-full focus:outline-none" required>
+                    </div>
+                </div>
+    
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-[#1a2235] mb-2">Description</label>
+                    <div class="flex items-start gap-2 border border-gray-300 rounded-lg p-3 focus-within:border-[#ffb51b]">
+                        <i class='bx bx-comment-edit text-[#ffb51b] text-xl pt-1'></i>
+                        <textarea name="description" placeholder="Briefly describe the program" 
+                            class="w-full focus:outline-none resize-none" rows="4" required></textarea>
+                    </div>
+                </div>
+    
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-[#1a2235] mb-2">Start Date</label>
+                        <div class="flex items-center gap-2 border border-gray-300 rounded-lg p-3 focus-within:border-[#ffb51b]">
+                            <i class='bx bx-calendar text-[#ffb51b] text-xl'></i>
+                            <input type="date" name="start_date" class="w-full focus:outline-none" required>
+                        </div>
+                    </div>
+    
+                    <div>
+                        <label class="block text-sm font-semibold text-[#1a2235] mb-2">End Date (Optional)</label>
+                        <div class="flex items-center gap-2 border border-gray-300 rounded-lg p-3 focus-within:border-[#ffb51b]">
+                            <i class='bx bx-calendar text-[#ffb51b] text-xl'></i>
+                            <input type="date" name="end_date" class="w-full focus:outline-none">
+                        </div>
+                    </div>
+    
+                    <div>
+                        <label class="block text-sm font-semibold text-[#1a2235] mb-2">Start Time</label>
+                        <div class="flex items-center gap-2 border border-gray-300 rounded-lg p-3 focus-within:border-[#ffb51b]">
+                            <i class='bx bx-time text-[#ffb51b] text-xl'></i>
+                            <input type="time" name="start_time" class="w-full focus:outline-none" required>
+                        </div>
+                    </div>
+    
+                    <div>
+                        <label class="block text-sm font-semibold text-[#1a2235] mb-2">End Time</label>
+                        <div class="flex items-center gap-2 border border-gray-300 rounded-lg p-3 focus-within:border-[#ffb51b]">
+                            <i class='bx bx-time-five text-[#ffb51b] text-xl'></i>
+                            <input type="time" name="end_time" class="w-full focus:outline-none" required>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-[#1a2235] mb-2">Location (Optional)</label>
+                    <div class="flex items-center gap-2 border border-gray-300 rounded-lg p-3 focus-within:border-[#ffb51b]">
+                        <i class='bx bx-map text-[#ffb51b] text-xl'></i>
+                        <input type="text" name="location" placeholder="Enter location" class="w-full focus:outline-none">
+                    </div>
+                </div>
+    
+    
+            </form>
+</div>
+</body>
+</html>

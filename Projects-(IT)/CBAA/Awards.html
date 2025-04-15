@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="Header-Footer.css">
+    <link rel="stylesheet" href="Awards.css">
+ 
+    <title>Landing Page</title>
+    <style>
+      @font-face {
+        font-family: 'oswald';
+        src: url(Font/Oswald-VariableFont_wght.ttf);
+      }
+    </style>
+  </head>
+  <body>
+
+    <header id="nav-menu" aria-label="navigation bar">
+      <div class="container-head">
+        <a class="logo" href="Landing-Page.html">
+          <img src="Images/CLSU_Logo.png"width="35"height="35"alt="Inc Logo"/>
+          <div class="logo-text">
+          <h4 class="cbaa">College of Business Administration and Accountancy </h4>
+          <h6>Central Luzon State University</h6>
+        </div>
+        </a>
+        <div class="nav-start">
+          <nav class="menu">
+            <ul class="menu-bar">
+              <li><a class="nav-link" href="Landing-Page.html">Home</a></li>
+              <li>
+                <button class="nav-link dropdown-btn" data-dropdown="dropdown1"
+                  aria-haspopup="true" aria-expanded="false"aria-label="browse"> Academic<i class="bx bx-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div id="dropdown1" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Department.html">
+                        <div>
+                          <span class="dropdown-link-title"
+                            >&#8226; Department</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+
+                  <ul role="menu">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Degree</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="1. Bachelor.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Bachelors Degree
+                      </a>
+                      <a class="dropdown-link" href="3. Masters.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Masters Degree
+                      </a>
+                    </li>
+                  </ul>
+                  <ul role="menu" style="border-top: 1px solid blue;">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Faculty</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Faculty-BA.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Business Administration
+                      </a>
+                      <a class="dropdown-link" href="Faculty-A.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Accountancy
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <button 
+                  class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                  aria-expanded="false" aria-label="discover" >Updates & Notices<i class="bx bx-chevron-down" 
+                  aria-hidden="true"></i>
+                </button>
+                <div id="dropdown2" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem"><a class="dropdown-link" href="Awards.html">&#8226; Awards</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="Organization.html">&#8226; Organizations</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="MVP.html">&#8226; CLSU Mandate</a></li>                    
+                    <li role="menuitem"><a class="dropdown-link" href="News.html">&#8226; News & Announcements</a></li>
+                  </ul>
+              <li><a class="nav-link" href="Contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+          <button
+            id="hamburger"
+            aria-label="hamburger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="bx bx-menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="harap" style="margin-bottom: 30px;">
+      <h1>Awards</h1>
+    </div>
+
+    
+    <button onclick="goToTop()" class="scroll-top-btn" id="scroll-top-btn">Top</button>
+  
+
+<section class="phrase">
+    <p>"Our faculty members represent the pinnacle of academic excellence, with many recognized as notable scholars or recipients of prestigious awards within their respective fields. A significant number have been celebrated as rising stars in academia, earning accolades such as 'Emerging Leaders in Education' within their communities or by acclaimed educational publications. These achievements are a testament to the expertise and dedication of our faculty, embodying our unwavering commitment to advancing our educational mission."</p>
+</section>
+
+<div class="newNoteworthy">
+  <h1 class="title" style="color: blue;">New & Noteworthy</h1>
+  <div class="award-container">
+      <div class="award-item">
+        <div>
+          <img src="Images/Award 1.png" alt="Award Logo 1">
+        </div>
+          <h2>Excellence in Innovation</h2>
+      </div>
+      <div class="award-item">
+        <div>
+          <img src="Images/Award 3.png" alt="Award Logo 1">
+        </div>
+          <h2>Community Impact Recognition</h2>
+      </div>
+      <div class="award-item">
+        <div>
+          <img src="Images/Award 2.png" alt="Award Logo 1">
+        </div>
+          <h2>Leadership Distinction</h2>
+      </div>
+  </div>
+</div>
+
+<section class="illustration">
+  <div class="illustration-item">
+      <img src="News/1.png" alt="Illustration Image">
+      <div class="info">
+          <h2>"CLSU Alumna Brings Home Asia's Most Outstanding Marketer Award"</h2>
+          <p>In a remarkable achievement that echoes the excellence fostered at Central Luzon State University (CLSU), one of its distinguished alumni has captured Asia's most prestigious accolade in the realm of marketing. Demonstrating unparalleled expertise and innovation, The Awardee, a graduate of CLSU's esteemed [Degree Program], clinched the coveted title of "Asia's Most Outstanding Marketer." <br> Armed with a vision fueled by academic prowess and real-world acumen cultivated during her time at CLSU,  spearheaded groundbreaking marketing campaigns that resonated across regional markets. Her ingenious strategies and unwavering commitment to innovation have not only propelled brands to new heights but have also set a paradigm for marketing excellence in the industry.</p>
+      </div>
+  </div>
+</section>
+
+
+<section id="additionalHonors" class="additionalHonors">
+  <h1 class="title" style="color: blue; padding-top: 20px; padding-bottom: 10px;">Additional Honors</h1>
+
+  <div id="honorsContainer" class="honors-container">
+      <div class="additional-honors-item">
+          <div class="honors-info">
+            
+            <h3>Academic Excellence</h3>
+            Awardee: Leonardo DiCaprio<br>
+            Where: Los Angeles, USA<br>
+            When: January 5, 2023
+          </div>
+      </div>
+      <div class="additional-honors-item">
+        <div class="honors-info">
+          <h3>Leadership</h3>
+          Awardee: Malala Yousafzai<br>
+    Where: Oslo, Norway<br>
+    When: December 10, 2014
+        </div>
+    </div>
+    <div class="additional-honors-item">
+      <div class="honors-info">
+        <h3>Innovation</h3>
+        Awardee: Meryl Streep<br>
+    Where: Hollywood, USA<br>
+    When: February 26, 2017
+      </div>
+  </div>
+  <div class="additional-honors-item">
+    <div class="honors-info">
+      <h3>Community Service</h3>
+      Awardee: Stevie Wonder<br>
+    Where: Los Angeles, USA<br>
+    When: February 13, 2005
+    </div>
+</div>
+<div class="additional-honors-item">
+  <div class="honors-info">
+    <h3>Creative Arts</h3>
+    Awardee: Margaret Atwood<br>
+    Where: London, UK<br>
+    When: October 14, 2000
+  </div>
+</div>
+<div class="additional-honors-item">
+  <div class="honors-info">
+    <h3>Sports Excellence</h3>
+    Awardee: Toni Morrison<br>
+    Where: New York City, USA<br>
+    When: May 7, 1988
+  </div>
+</div>
+  
+  </div>
+</section>
+
+
+
+
+<div class="newsUpdates">
+  <h2 class="title">News & Updates</h2>
+<h1 class="title" style="color:blue">AWARDS & RECOGNITION</h1>
+  <div class="news-container">
+      <div class="news-item">
+          <img src="News/6.png" alt="News Image 1">
+          <h3>Sustainable Food Systems Program</h3>
+          <p>Congratulations to Roann Alberto, Department of Business Administration - College of Business Administration and Accountancy, who will spend  2 months at the University of Liverpool as part of her PhD in Sustainable Food Systems Program.</p>
+        </div>
+      <div class="news-item">
+          <img src="News/4.png" alt="News Image 2">
+          <h3>𝗞𝗮𝘀𝗲𝘁𝘀𝗮𝗿𝘁 𝗨𝗻𝗶𝘃𝗲𝗿𝘀𝗶𝘁𝘆 𝗙𝗠𝗦</h3>
+          <p>The courtesy visit aims at identifying possible areas of partnership and collaboration focusing on the pillars of student & faculty exchange, international internships, joint degree offerings, and research collaboration between and among student and faculty members.</p>
+             </div>
+      <div class="news-item">
+          <img src="News/5.png" alt="News Image 3">
+          <h3>𝗔 𝗣𝗮𝗻𝗱𝗲𝗺𝗶𝗰 𝗦𝘂𝗰𝗰𝗲𝘀𝘀 𝗦𝘁𝗼𝗿𝘆</h3>
+          <p>Czarina Jean Eugenio, a graduate of CBAA-CLSU holding a degree in Business Administration major in Business Economics, made a visionary move in 2020 as the world grappled with the pandemic. Recognizing the growing demand for healthier beverage choices, a fruit often dubbed "the golden lemon" due to its remarkable health benefits. </p>
+        </div>
+  </div>
+</div>
+
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Contact Us</h3>
+        <p>Central Luzon State University<br>
+           Science City of Munoz<br>
+           Nueva Ecija, Philippines<br>
+           Phone: +123456789<br>
+           Email: cbaa@clsu2.edu.ph</p>
+    
+      </div>
+    </div>
+    <div class="lowest">
+      <img src="Images/CBAA-LOGO.png" alt="CLSU_LOGO">
+      <img src="Images/CLSU_Logo.png" alt="CLSU_LOGO">
+      <p class="ars">&copy; 2023 Central Luzon State University. All rights reserved.</p>
+    </div>
+
+    <div class="newsletter-signup">
+      <h3>Newsletter Signup:</h3>
+      <form action="#" method="post" class="signup-form">
+        <input type="email" name="email" placeholder="Your Email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</footer>
+
+<div class="footer-socmed">
+  <ul>
+      <li class="icon-link"><a href="https://www.facebook.com/clsuofficialpage/" class="icon"><img src="Images/1. FB.png" alt="Facebook Icon" width="30" height="30"></a></li>
+      <li class="icon-link"><a href="https://twitter.com/clsu_official?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="icon"><img src="Images/3. Twitter.png" alt="Twitter Icon" width="30" height="30"></a></li>
+      <li class="icon-link"><a href="https://www.instagram.com/clsu.official/?hl=en" class="icon"><img src="Images/2. IG.png" alt="Instagram Icon" width="30" height="30"></a></li>
+      <li class="icon-link"><a href="https://www.youtube.com/@clsutube" class="icon"><img src="Images/4. Youtube.png" alt="Youtube Icon" width="30" height="30"></a></li>
+  </ul>
+</div>
+
+
+<script src="Dropdown.js"></script>
+<script src="scroll.js"></script>
+</body>
+</html>

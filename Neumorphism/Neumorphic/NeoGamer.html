@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoGamer - Ultimate Gaming Experience</title>
+    <style>
+        :root {
+            --bg-color: #e0e5ec;
+            --text-color: #2a2a2a;
+            --highlight-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --shadow-color: #a3b1c6;
+            --light-shadow: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .neo-box {
+            background-color: var(--bg-color);
+            border-radius: 20px;
+            box-shadow: 8px 8px 15px var(--shadow-color), -8px -8px 15px var(--light-shadow);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--highlight-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Section 1: Hero */
+        #hero {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+        }
+
+        /* Section 2: Featured Games */
+        #featured-games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        /* Section 3: Game Trailer */
+        #game-trailer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #game-trailer video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .trailer-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        /* Section 4: Gaming Stats */
+        #gaming-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            margin: 1rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Section 5: Game Categories */
+        #game-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-item {
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section 6: Latest News */
+        #latest-news {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .news-item {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+
+        /* Section 7: Community Showcase */
+        #community-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .showcase-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .showcase-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Section 8: Upcoming Events */
+        #upcoming-events {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .event-card {
+            width: 300px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .event-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Section 9: Gaming Setup */
+        #gaming-setup {
+            position: relative;
+        }
+
+        .setup-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .setup-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #gaming-setup:hover .setup-overlay {
+            opacity: 1;
+        }
+
+        /* Section 10: Game Reviews */
+        #game-reviews {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .review-card {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+
+        .review-card .rating {
+            font-size: 2rem;
+            color: var(--highlight-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Section 11: Gaming Tips */
+        #gaming-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tip-card {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .tip-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Section 12: Leaderboard */
+        #leaderboard {
+            display: flex;
+            justify-content: center;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+        }
+
+        .leaderboard-table th,
+        .leaderboard-table td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .leaderboard-table tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Section 13: Gaming Gear */
+        #gaming-gear {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .gear-item {
+            width: 200px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .gear-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        /* Section 14: Newsletter */
+        #newsletter {
+            text-align: center;
+        }
+
+        #newsletter form {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        #newsletter input {
+            padding: 0.5rem 1rem;
+            width: 300px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        #newsletter button {
+            padding: 0.5rem 1rem;
+            background-color: var(--highlight-color);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        /* Section 15: Footer */
+        #footer {
+            background: linear-gradient(135deg, #4ecdc4, #ff6b6b);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <section id="hero" class="section">
+        <div class="neo-box" style="padding: 3rem;">
+            <h1>NeoGamer</h1>
+            <p>Experience the future of gaming</p>
+        </div>
+    </section>
+
+    <section id="featured-games" class="section">
+        <div class="game-card neo-box">
+            <img src="/placeholder.svg?height=150&width=250" alt="Game 1">
+            <h3>Cyber Odyssey</h3>
+            <p>Embark on an epic cyberpunk adventure</p>
+        </div>
+        <div class="game-card neo-box">
+            <img src="/placeholder.svg?height=150&width=250" alt="Game 2">
+            <h3>Stellar Conquest</h3>
+            <p>Conquer the galaxy in this space strategy game</p>
+        </div>
+        <div class="game-card neo-box">
+            <img src="/placeholder.svg?height=150&width=250" alt="Game 3">
+            <h3>Mystic Realms</h3>
+            <p>Explore magical worlds in this fantasy RPG</p>
+        </div>
+    </section>
+
+    <section id="game-trailer" class="section">
+        <video autoplay loop muted>
+            <source src="/placeholder.svg?height=720&width=1280" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="trailer-content">
+            <h2>Upcoming Release: Neon Nexus</h2>
+            <p>Get ready for the most immersive gaming experience yet!</p>
+        </div>
+    </section>
+
+    <section id="gaming-stats" class="section">
+        <div class="stat-item neo-box">
+            <h3>1M+</h3>
+            <p>Active Players</p>
+        </div>
+        <div class="stat-item neo-box">
+            <h3>500+</h3>
+            <p>Games Available</p>
+        </div>
+        <div class="stat-item neo-box">
+            <h3>24/7</h3>
+            <p>Support</p>
+        </div>
+    </section>
+
+    <section id="game-categories" class="section">
+        <div class="category-item neo-box">
+            <h3>Action</h3>
+            <p>Fast-paced and intense gameplay</p>
+        </div>
+        <div class="category-item neo-box">
+            <h3>Strategy</h3>
+            <p>Plan, conquer, and outsmart your opponents</p>
+        </div>
+        <div class="category-item neo-box">
+            <h3>RPG</h3>
+            <p>Immerse yourself in rich, story-driven worlds</p>
+        </div>
+        <div class="category-item neo-box">
+            <h3>Sports</h3>
+            <p>Compete in virtual arenas and stadiums</p>
+        </div>
+    </section>
+
+    <section id="latest-news" class="section">
+        <h2 class="gradient-text">Latest Gaming News</h2>
+        <div class="news-item neo-box">
+            <h3>New DLC Announced for Cyber Odyssey</h3>
+            <p>Explore the neon-lit undercity in this exciting expansion!</p>
+        </div>
+        <div class="news-item neo-box">
+            <h3>Esports Tournament Breaks Viewership Records</h3>
+            <p>The Stellar Conquest World Championship saw over 10 million concurrent viewers.</p>
+        </div>
+    </section>
+
+    <section id="community-showcase" class="section">
+        <div class="showcase-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Community Art 1">
+        </div>
+        <div class="showcase-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Community Art 2">
+        </div>
+        <div class="showcase-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Community Art 3">
+        </div>
+        <div class="showcase-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Community Art 4">
+        </div>
+        <div class="showcase-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Community Art 5">
+        </div>
+        <div class="showcase-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Community Art 6">
+        </div>
+    </section>
+
+    <section id="upcoming-events" class="section">
+        <div class="event-card neo-box">
+            <h3>Cyber Odyssey Tournament</h3>
+            <p>Date: August 15, 2023</p>
+            <p>Prize Pool: $100,000</p>
+        </div>
+        <div class="event-card neo-box">
+            <h3>Stellar Conquest Galactic League</h3>
+            <p>Date: September 1-30, 2023</p>
+            <p>Monthly online competition</p>
+        </div>
+        <div class="event-card neo-box">
+            <h3>Mystic Realms Cosplay Contest</h3>
+            <p>Date: October 31, 2023</p>
+            <p>Show off your best fantasy costumes!</p>
+        </div>
+    </section>
+
+    <section id="gaming-setup" class="section">
+        <img src="/placeholder.svg?height=720&width=1280" alt="Gaming Setup" class="setup-image">
+        <div class="setup-overlay">
+            <div class="neo-box" style="padding: 2rem; text-align: center;">
+                <h2>Ultimate Gaming Setup</h2>
+                <p>Discover the gear that pros use to dominate the competition</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="game-reviews" class="section">
+        <h2 class="gradient-text">Game Reviews</h2>
+        <div class="review-card neo-box">
+            <h3>Cyber Odyssey</h3>
+            <div class="rating">★★★★★</div>
+            <p>"A mind-bending journey through a neon-drenched future. A must-play!" - GamePro</p>
+        </div>
+        <div class="review-card neo-box">
+            <h3>Stellar Conquest</h3>
+            <div class="rating">★★★★☆</div>
+            <p>"Strategic depth meets stunning visuals in this space epic." - Strategy Gamer</p>
+        </div>
+    </section>
+
+    <section id="gaming-tips" class="section">
+        <div class="tip-card neo-box">
+            <h3>Improve Your Aim</h3>
+            <p>Practice with aim trainers and adjust your mouse sensitivity for better accuracy.</p>
+        </div>
+        <div class="tip-card neo-box">
+            <h3>Master Resource Management</h3>
+            <p>In strategy games, focus on efficient resource allocation to outpace your opponents.</p>
+        </div>
+        <div class="tip-card neo-box">
+            <h3>Communicate Effectively</h3>
+            <p>Use clear and concise callouts in team-based games to coordinate better with your allies.</p>
+        </div>
+    </section>
+
+    <section id="leaderboard" class="section">
+        <div class="neo-box" style="padding: 2rem;">
+            <h2 class="gradient-text">Global Leaderboard</h2>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>NeoChampion</td>
+                        <td>10,500</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>PixelWarrior</td>
+                        <td>10,200</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>CyberNinja</td>
+                        <td>9,800</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>GalacticQueen</td>
+                        <td>9,600</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>MysticMage</td>
+                        <td>9,400</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="gaming-gear" class="section">
+        <div class="gear-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Gaming Mouse">
+            <h3>Pro Gaming Mouse</h3>
+            <p>Precision-engineered for maximum accuracy</p>
+        </div>
+        <div class="gear-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Mechanical Keyboard">
+            <h3>Mechanical Keyboard</h3>
+            <p>Responsive keys for faster inputs</p>
+        </div>
+        <div class="gear-item neo-box">
+            <img src="/placeholder.svg?height=150&width=150" alt="Gaming Headset">
+            <h3>Surround Sound Headset</h3>
+            <p>Immersive audio for competitive edge</p>
+        </div>
+    </section>
+
+    <section id="newsletter" class="section">
+        <div class="neo-box" style="padding: 2rem;">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for the latest gaming news and exclusive offers!</p>
+            <form>
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer id="footer" class="section">
+        <p>&copy; 2023 NeoGamer. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">📘</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="YouTube">🎥</a>
+        </div>
+    </footer>
+</body>
+</html>

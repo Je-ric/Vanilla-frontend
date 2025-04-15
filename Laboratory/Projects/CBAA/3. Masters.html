@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/Header-Footer.css">
+    <link rel="stylesheet" href="css/Degree.css">
+ 
+    <title>Landing Page</title>
+    <style>
+      @font-face {
+        font-family: 'oswald';
+        src: url(Font/Oswald-VariableFont_wght.ttf);
+      }
+    </style>
+  </head>
+  <body>
+
+    <header id="nav-menu" aria-label="navigation bar">
+      <div class="container-head">
+        <a class="logo" href="Landing-Page.html">
+          <img src="Images/CLSU_Logo.png"width="35"height="35"alt="Inc Logo"/>
+          <div class="logo-text">
+          <h4 class="cbaa">College of Business Administration and Accountancy </h4>
+          <h6>Central Luzon State University</h6>
+        </div>
+        </a>
+        <div class="nav-start">
+          <nav class="menu">
+            <ul class="menu-bar">
+              <li><a class="nav-link" href="Landing-Page.html">Home</a></li>
+              <li>
+                <button class="nav-link dropdown-btn" data-dropdown="dropdown1"
+                  aria-haspopup="true" aria-expanded="false"aria-label="browse"> Academic<i class="bx bx-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div id="dropdown1" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Department.html">
+                        <div>
+                          <span class="dropdown-link-title"
+                            >&#8226; Department</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+
+                  <ul role="menu">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Degree</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="1. Bachelor.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Bachelors Degree
+                      </a>
+                      <a class="dropdown-link" href="3. Masters.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Masters Degree
+                      </a>
+                    </li>
+                  </ul>
+                  <ul role="menu" style="border-top: 1px solid blue;">
+                    <li class="dropdown-title">
+                      <span class="dropdown-link-title">Faculty</span>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-link" href="Faculty-BA.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Business Administration
+                      </a>
+                      <a class="dropdown-link" href="Faculty-A.html">
+                        <!-- <img src="./assets/icons/xd.svg" /> -->
+                        &#8226; Accountancy
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <button 
+                  class="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true"
+                  aria-expanded="false" aria-label="discover" >Updates & Notices<i class="bx bx-chevron-down" 
+                  aria-hidden="true"></i>
+                </button>
+                <div id="dropdown2" class="dropdown">
+                  <ul role="menu">
+                    <li role="menuitem"><a class="dropdown-link" href="Awards.html">&#8226; Awards</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="Organization.html">&#8226; Organizations</a></li>
+                    <li role="menuitem"><a class="dropdown-link" href="MVP.html">&#8226; CLSU Mandate</a></li>                    
+                    <li role="menuitem"><a class="dropdown-link" href="News.html">&#8226; News & Announcements</a></li>
+                  </ul>
+              <li><a class="nav-link" href="Contact.html">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+          <button
+            id="hamburger"
+            aria-label="hamburger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="bx bx-menu" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="harap">
+      <h1>Master's Degree</h1>
+    </div>
+
+    
+    <button onclick="goToTop()" class="scroll-top-btn" id="scroll-top-btn">Top</button>
+
+<div class="cont-all">
+    <div class="button-container">
+        <div class="button-group">
+          <a href="1. Bachelor.html" class="button">Bachelor</a>
+          <a href="3. Masters.html" class="button">Masters</a>
+        </div>
+      </div>
+
+  <div class="title-container">
+    <h1 class="main-title">Masters Degree</h1>
+    <p class="subtitle">Degree Programs Offered</p>
+  </div>
+
+  <div class="degree-timeline-bg">
+    <div class="degree-timeline">
+      <div class="degree-event">
+        <div class="degree-event-description">
+          <h3>Master of Science in Business Administration (MS in Business Administration)</h3>
+          <p> Designed for business executives and leaders seeking a managerial advantage and leadership in their profession. Offers a blend of technical training and exposure to real-world cases and decision-making approaches for current management problems and challenges.</p>
+          <span class="degree-toggle-details" onclick="toggleDetails(this)">Click for more details</span>
+          <div class="degree-more-details">
+            <li>Duration: 2 years</li>
+            <li>Curriculum Highlights: Combines technical training with case studies and decision-making approaches.</li>
+            <li>Career Opportunities: Senior management, executive leadership roles, consulting, entrepreneurship.</li>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    </div>
+</div>
+
+
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <h3>Contact Us</h3>
+            <p>Central Luzon State University<br>
+               Science City of Munoz<br>
+               Nueva Ecija, Philippines<br>
+               Phone: +123456789<br>
+               Email: cbaa@clsu2.edu.ph</p>
+           
+          </div>
+        </div>
+        <div class="lowest">
+          <img src="Images/CBAA-LOGO.png" alt="CLSU_LOGO">
+          <img src="Images/CLSU_Logo.png" alt="CLSU_LOGO">
+          <p class="ars">&copy; 2023 Central Luzon State University. All rights reserved.</p>
+        </div>
+    
+        <div class="newsletter-signup">
+          <h3>Newsletter Signup:</h3>
+          <form action="#" method="post" class="signup-form">
+            <input type="email" name="email" placeholder="Your Email" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </footer>
+    
+    <div class="footer-socmed">
+      <ul>
+          <li class="icon-link"><a href="https://www.facebook.com/clsuofficialpage/" class="icon"><img src="Images/1. FB.png" alt="Facebook Icon" width="30" height="30"></a></li>
+          <li class="icon-link"><a href="https://twitter.com/clsu_official?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="icon"><img src="Images/3. Twitter.png" alt="Twitter Icon" width="30" height="30"></a></li>
+          <li class="icon-link"><a href="https://www.instagram.com/clsu.official/?hl=en" class="icon"><img src="Images/2. IG.png" alt="Instagram Icon" width="30" height="30"></a></li>
+          <li class="icon-link"><a href="https://www.youtube.com/@clsutube" class="icon"><img src="Images/4. Youtube.png" alt="Youtube Icon" width="30" height="30"></a></li>
+      </ul>
+    </div>
+    
+    
+    <script src="js/details-degree.js"></script>
+    <Script src="js/Dropdown.js"></Script>
+    <script src="js/scroll.js"></script>
+</body>
+</html>
+
+
+
+
+

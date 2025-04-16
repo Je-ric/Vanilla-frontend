@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #222;
+}
+.box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+}
+h2{
+  color: #222;
+  background: linear-gradient(90deg, #0f0, #1899ff, #f0f, #f00, #ff0 90%);
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.04em transparent;
+  font-size: 8em;
+  animation: animate 1.5s linear infinite;
+}
+h2::before{
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  color: #222;
+  background: linear-gradient(90deg, #0f0, #1899ff, #f0f, #f00, #ff0 90%);
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.04em transparent;
+  transform: translate(-10px, -10px);
+  z-index: -1;
+  opacity: 0.1;
+}
+h2::after{
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  color: #222;
+  background: linear-gradient(90deg, #0f0, #1899ff, #f0f, #f00, #ff0 90%);
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.04em transparent;
+  transform: translate(-20px, -20px);
+  z-index: -1;
+  opacity: 0.05;
+}
+@keyframes animate{
+  0%
+  {
+    filter: hue-rotate(0deg);
+  }
+  100%
+  {
+    filter: hue-rotate(360deg);
+  }
+}
+
+h2:last-child{
+  display: flex;
+  font-size: 8em;
+}
+h2:last-child:hover p{
+  opacity: 0;
+  filter: blur(30px);
+  transform: rotate(45deg) translateY(-200px);
+}
+p{
+  margin: 0 30px;
+  text-shadow: 0 0 20px #f00;
+  color: #fff;
+  transition: 2s;
+}
+p:last-child{
+  color: #0f0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  filter: blur(30px);
+  transform: rotate(-45deg) translateY(200px);
+}
+h2:last-child:hover p:last-child{
+  opacity: 1;
+  filter: blur(0px);
+  transform: rotate(0deg) translateY(0px);
+}
+
+
+

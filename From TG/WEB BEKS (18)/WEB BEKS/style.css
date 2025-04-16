@@ -1,0 +1,37 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  min-height: 100vh;
+  background: #111;
+  overflow: hidden;
+}
+span{
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+span::before{
+  content: '\f005';
+  position: absolute;
+  font-family: fontAwesome;
+  color: #1ceb6b;
+  animation: moveShape 1s linear forwards;
+}
+@keyframes moveShape{
+  0%
+  {
+    transform: translate(0) rotate(0deg);
+  }
+  20%, 80%
+  {
+    opacity: 1;
+  }
+  100%
+  {
+    transform: translate(300px) rotate(360deg);
+    opacity: 0;
+  }
+}

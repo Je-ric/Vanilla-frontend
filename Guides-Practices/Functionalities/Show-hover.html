@@ -1,112 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .info-container {
-  border-radius: 20px;
-  max-width: 1200px;
-  width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f8f8f8;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 50px;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hover Info List</title>
+  <style>
+    .info-container {
+      border-radius: 20px;
+      max-width: 1200px;
+      margin: 20px auto 50px;
+      padding: 20px;
+      background-color: #f8f8f8;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.info,
-.details {
-  width: 48%; 
-}
+    .info-container h2 {
+      color: #4caf50;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      border-left: 2px solid #ffd700;
+      border-right: 2px solid #ffd700;
+      text-align: center;
+    }
 
-.info-container h2 {
-  color: #4caf50;
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-  border-left: 2px solid #ffd700;
-  border-right: 2px solid #ffd700;
-}
+    ul.info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-.info-container ul {
-  list-style: none;
-  padding: 0;
-}
+    .info-item {
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      border: 1px solid #ffd700;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative;
+    }
 
-.info-container h2,
-.info-container li {
-  text-align: center;
-}
+    .info-item:hover {
+      background-color: #60c063;
+      color: #000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
 
-.item,
-.detail {
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: #fff;
-  border: 1px solid #ffd700;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    .info-details {
+      display: none;
+      font-size: 0.9rem;
+      padding: 5px;
+      margin-top: 5px;
+      background-color: #ffffff;
+      border-radius: 3px;
+    }
 
-.item:hover,
-.detail:hover {
-  background-color: #60c063;
-  color: rgb(0, 0, 0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
+    .info-item:hover .info-details {
+      display: block;
+    }
 
-.item-info,
-.detail-info {
-  display: none;
-  font-size: 0.9rem;
-  padding: 5px;
-  margin-top: 5px;
-  background-color: #ffffff;
-  border-radius: 3px;
-}
+    @media (max-width: 768px) {
+      .info-container {
+        padding: 15px;
+      }
 
-.item:hover .item-info,
-.detail:hover .detail-info {
-  display: block;
-}
-
-    </style>
+      .info-item {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <section class="info">
-        <h2>Hover Info</h2>
-        <ul>
-            <li class="item">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <span class="item-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.</span>
-            </li>
-            <li class="item">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <span class="item-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.</span>
-            </li>
-            <li class="item">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <span class="item-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.</span>
-            </li>
-            <li class="item">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <span class="item-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.</span>
-            </li>
-            <li class="item">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <span class="item-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.</span>
-            </li>
-            <li class="item">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <span class="item-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.</span>
-            </li>
-        </ul>
-    </section>
-    
+  <section class="info-container">
+    <h2>Hover Info</h2>
+    <ul class="info-list">
+      <li class="info-item">
+        Hover to reveal details.
+        <span class="info-details">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.
+        </span>
+      </li>
+      <li class="info-item">
+        Hover to reveal details.
+        <span class="info-details">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.
+        </span>
+      </li>
+      <li class="info-item">
+        Hover to reveal details.
+        <span class="info-details">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.
+        </span>
+      </li>
+      <li class="info-item">
+        Hover to reveal details.
+        <span class="info-details">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet eros in justo consequat elementum ac id libero.
+        </span>
+      </li>
+    </ul>
+  </section>
 </body>
 </html>

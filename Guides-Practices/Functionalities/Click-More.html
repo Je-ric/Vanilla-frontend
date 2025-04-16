@@ -48,9 +48,17 @@
         }
 
         .toggle-details {
-            display: none;
-            margin-top: 10px;
+            max-height: 0;
+            overflow: hidden;
+            margin-top: 0;
+            padding-top: 0;
+            transition: max-height 0.4s ease, padding 0.3s ease;
         }
+        .toggle-details.open {
+            max-height: 300px; 
+            padding-top: 10px;
+            margin-top: 10px;
+            }
 
         ul {
             list-style-type: none;
@@ -82,13 +90,9 @@
     </div>
 
     <script>
-        function toggleDetails(element) {
-            var details = element.nextElementSibling;
-            if (details.style.display === 'none' || details.style.display === '') {
-                details.style.display = 'block';
-            } else {
-                details.style.display = 'none';
-            }
+        function toggleDetails(trigger) {
+            const details = trigger.nextElementSibling;
+            details.classList.toggle('open');
         }
     </script>
 </body>

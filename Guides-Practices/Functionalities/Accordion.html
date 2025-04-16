@@ -1,79 +1,83 @@
-<style>
-    .accordion {
-               width: 100%;
-               max-width: 600px;
-               margin: 0 auto;
-               background-color: #fff;
-               border-radius: 8px;
-               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-           }
-   
-           .accordion input[type="checkbox"] {
-               display: none;
-           }
-   
-           .accordion label {
-               display: block;
-               padding: 15px;
-               background-color: #007bff;
-               color: #fff;
-               cursor: pointer;
-               font-weight: bold;
-               border-top: 1px solid #ddd;
-               transition: background-color 0.3s ease;
-           }
-   
-           .accordion label:hover {
-               background-color: #0056b3;
-           }
-   
-           .accordion .content {
-               padding: 15px;
-               background-color: #f1f1f1;
-               display: none;
-               border-top: 1px solid #ddd;
-               overflow: hidden;
-               max-height: 0;
-               transition: max-height 0.5s ease-out;
-           }
-   
-           .accordion input[type="checkbox"]:checked + label + .content {
-               display: block;
-               max-height: 500px; /* or whatever max-height suits the content */
-               padding-top: 10px;
-               padding-bottom: 10px;
-           }
-   
-           .accordion input[type="checkbox"]:checked + label {
-               background-color: #0056b3;
-           }
-   
-           /* Optional: Add some spacing and enhance the look */
-           .accordion label:first-of-type {
-               border-top: none;
-           }
-   
-           .accordion .content p {
-               margin: 0;
-           }
-       </style>
-       
-   <div class="accordion">
-           <input type="checkbox" id="section1">
-           <label for="section1">Manual 1</label>
-           <div class="content">
-               <p>Blah blah blah</p>
-           </div>
-   
-           <input type="checkbox" id="section2">
-           <label for="section2">Manual 1</label>
-           <div class="content">
-               <p>This is the content of Section 2. You can customize the accordion content however you'd like.</p>
-           </div>
-   
-           <input type="checkbox" id="section3">
-           <label for="section3">Manual 1</label>
-           <div class="content">
-               <p>This is the content of Section 3. Each section is independent, and they work without JavaScript.</p>
-           </div>
-       </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .accordion {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            font-family: sans-serif;
+            background-color: #fff;
+        }
+        
+        .accordion input[type="checkbox"] {
+            display: none;
+        }
+        
+        .accordion label {
+            display: block;
+            padding: 15px 20px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-top: 1px solid #ddd;
+        }
+        
+        .accordion label:hover {
+            background-color: #0056b3;
+        }
+        
+        .accordion .content {
+            background-color: #f9f9f9;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 20px;
+        }
+        
+        .accordion input[type="checkbox"]:checked + label {
+            background-color: #0056b3;
+        }
+        
+        .accordion input[type="checkbox"]:checked + label + .content {
+            max-height: 300px;
+            padding: 15px 20px;
+        }
+        
+        .accordion .content p {
+            margin: 0;
+        }
+        </style>
+        
+        <div class="accordion">
+            <input type="checkbox" id="section1">
+            <label for="section1">📘 Manual 1: Introduction</label>
+            <div class="content">
+                <p>This is the introduction content. You can place any text, links, or images here.</p>
+            </div>
+        
+            <input type="checkbox" id="section2">
+            <label for="section2">📗 Manual 2: Setup Guide</label>
+            <div class="content">
+                <p>Here’s how you can set up the system step-by-step. Add screenshots if needed.</p>
+            </div>
+        
+            <input type="checkbox" id="section3">
+            <label for="section3">📙 Manual 3: Troubleshooting</label>
+            <div class="content">
+                <p>Common issues and how to fix them. FAQs and support links can go here.</p>
+            </div>
+        </div>
+        
+</body>
+</html>

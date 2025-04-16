@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy to Clipboard</title>
+  <style>
+    input {
+      padding: 8px;
+      width: 200px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .copied-message {
+      color: green;
+      margin-left: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="text" id="copyText" value="Some text here">
+  <button onclick="copyToClipboard()">Copy</button>
+  <span class="copied-message" id="copiedMessage">Copied!</span>
+
+  <script>
+    function copyToClipboard() {
+      const text = document.getElementById("copyText").value;
+      const message = document.getElementById("copiedMessage");
+
+      // Use modern Clipboard API
+      navigator.clipboard.writeText(text).then(() => {
+        message.style.display = "inline";
+        setTimeout(() => {
+          message.style.display = "none";
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+  </script>
+
+</body>
+</html>

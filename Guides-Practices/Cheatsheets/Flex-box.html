@@ -1,127 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CSS Flexbox Properties</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Flexbox Playground</title>
+  <style>
     body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 40px;
+      background: #f0f2f5;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      max-width: 900px;
+      margin-inline: auto;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
 
     .container {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        align-content: center;
-        height: 50vh;
-        border: 2px solid #007bff;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        position: relative;
-        width: 50%;
-        margin: 10% auto;
+      display: flex;
+      height: 300px;
+      background: #fff;
+      border: 2px dashed #007bff;
+      border-radius: 10px;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px;
+      max-width: 900px;
+      margin-inline: auto;
+      transition: all 0.3s ease-in-out;
     }
 
-    .box {  
-        width: 100px;
-        height: auto;
-        background-color: #007bff;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
-        margin: 10px;
+    .box {
+      width: 80px;
+      height: 80px;
+      background-color: #007bff;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      font-size: 1.2rem;
     }
 
-    .selected-property {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background-color: rgba(0, 123, 255, 0.7);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: opacity 0.3s ease-in-out;
-        opacity: 0;
+    .property-label {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      color: #666;
     }
-
-    .container:hover .selected-property {
-        opacity: 1;
-    }
-</style>
+  </style>
 </head>
 <body>
 
-<div class="container" onclick="selectFlexProperties()">
-    <div class="box">1</div>
-    <div class="box">2</div>
-    <div class="box">3</div>
-    <div class="box">4</div>
-    <div class="selected-property"></div>
+<h1>CSS Flexbox Playground</h1>
+
+<div class="controls">
+  <div>
+    <label for="flex-direction">Flex Direction</label>
+    <select id="flex-direction" onchange="updateFlex()">
+      <option value="row">row</option>
+      <option value="row-reverse">row-reverse</option>
+      <option value="column">column</option>
+      <option value="column-reverse">column-reverse</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="justify-content">Justify Content</label>
+    <select id="justify-content" onchange="updateFlex()">
+      <option value="flex-start">flex-start</option>
+      <option value="flex-end">flex-end</option>
+      <option value="center" selected>center</option>
+      <option value="space-between">space-between</option>
+      <option value="space-around">space-around</option>
+      <option value="space-evenly">space-evenly</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="align-items">Align Items</label>
+    <select id="align-items" onchange="updateFlex()">
+      <option value="flex-start">flex-start</option>
+      <option value="flex-end">flex-end</option>
+      <option value="center" selected>center</option>
+      <option value="baseline">baseline</option>
+      <option value="stretch">stretch</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="align-content">Align Content</label>
+    <select id="align-content" onchange="updateFlex()">
+      <option value="flex-start">flex-start</option>
+      <option value="flex-end">flex-end</option>
+      <option value="center">center</option>
+      <option value="space-between">space-between</option>
+      <option value="space-around">space-around</option>
+      <option value="stretch" selected>stretch</option>
+    </select>
+  </div>
+</div>
+
+<div class="container" id="flex-container">
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+  <div class="box">4</div>
 </div>
 
 <script>
-function selectFlexProperties() {
-    const property = prompt("Enter the flex property you want to change:\n1. Flex Direction\n2. Align Items\n3. Align Content\n4. Justify Content");
-
-    if (!property || isNaN(property)) {
-        alert("Invalid input!");
-        return;
-    }
-
-    const propertyNumber = parseInt(property);
-    let propertyName = '';
-
-    switch (propertyNumber) {
-        case 1:
-            propertyName = 'Flex Direction';
-            const direction = prompt("Enter the flex direction:\n1. row\n2. row-reverse\n3. column\n4. column-reverse");
-            applyFlexDirection(parseInt(direction));
-            break;
-        case 2:
-            propertyName = 'Align Items';
-            const alignItems = prompt("Enter the align items property:\n1. flex-start\n2. flex-end\n3. center\n4. baseline\n5. stretch");
-            applyAlignItems(parseInt(alignItems));
-            break;
-        case 3:
-            propertyName = 'Align Content';
-            const alignContent = prompt("Enter the align content property:\n1. flex-start\n2. flex-end\n3. center\n4. space-between\n5. space-around\n6. stretch");
-            applyAlignContent(parseInt(alignContent));
-            break;
-        case 4:
-            propertyName = 'Justify Content';
-            const justifyContent = prompt("Enter the justify content property:\n1. flex-start\n2. flex-end\n3. center\n4. space-between\n5. space-around\n6. space-evenly");
-            applyJustifyContent(parseInt(justifyContent));
-            break;
-        default:
-            alert("Invalid input!");
-    }
-
-    document.querySelector('.selected-property').textContent = propertyName;
-}
-
-function applyFlexDirection(direction) {
-    const directions = ['row', 'row-reverse', 'column', 'column-reverse'];
-    document.querySelector('.container').style.flexDirection = directions[direction - 1];
-}
-
-function applyAlignItems(alignItems) {
-    const alignValues = ['flex-start', 'flex-end', 'center', 'baseline', 'stretch'];
-    document.querySelector('.container').style.alignItems = alignValues[alignItems - 1];
-}
-
-function applyAlignContent(alignContent) {
-    const alignValues = ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'stretch'];
-    document.querySelector('.container').style.alignContent = alignValues[alignContent - 1];
-}
-
-function applyJustifyContent(justifyContent) {
-    const justifyValues = ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly'];
-    document.querySelector('.container').style.justifyContent = justifyValues[justifyContent - 1];
+function updateFlex() {
+  const container = document.getElementById('flex-container');
+  container.style.flexDirection = document.getElementById('flex-direction').value;
+  container.style.justifyContent = document.getElementById('justify-content').value;
+  container.style.alignItems = document.getElementById('align-items').value;
+  container.style.alignContent = document.getElementById('align-content').value;
 }
 </script>
 

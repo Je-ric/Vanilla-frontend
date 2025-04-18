@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love - Digital Greeting Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .heart-animation {
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        .card-container {
+            perspective: 1500px;
+        }
+        
+        .card {
+            transition: transform 1s;
+            transform-style: preserve-3d;
+        }
+        
+        .card-front, .card-inside {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .card-inside {
+            transform: rotateY(180deg);
+        }
+        
+        .card.open {
+            transform: rotateY(180deg);
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ec4899' width='24px' height='24px'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center center;
+            width: 24px;
+            height: 24px;
+            opacity: 0;
+            animation: float 6s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(100%) scale(0.5);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1.2) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-red-100 min-h-screen flex items-center justify-center p-4">
+    <div class="floating-hearts" id="heartsContainer"></div>
+    
+    <div class="card-container w-full max-w-2xl">
+        <div class="card relative rounded-xl shadow-2xl" id="card">
+            <!-- Card Front -->
+            <div class="card-front bg-gradient-to-r from-pink-400 to-red-400 rounded-xl p-8 flex flex-col items-center justify-center min-h-[500px]">
+                <div class="heart-animation text-white mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold text-white text-center mb-4">To My Dearest</h1>
+                <p class="text-xl text-white text-center mb-8">A special message just for you</p>
+                <button id="openCard" class="bg-white text-pink-500 hover:bg-pink-100 font-bold py-3 px-6 rounded-full shadow-lg transform transition hover:scale-105">
+                    Open Card
+                </button>
+            </div>
+            
+            <!-- Card Inside -->
+            <div class="card-inside bg-white rounded-xl p-8 overflow-y-auto min-h-[500px]">
+                <div class="flex flex-col h-full">
+                    <div class="text-center mb-6">
+                        <h2 class="text-3xl font-bold text-pink-600 mb-2">My Love</h2>
+                        <p class="text-gray-600 italic">"In all the world, there is no heart for me like yours."</p>
+                    </div>
+                    
+                    <div class="flex-1 mb-6">
+                        <div class="mb-8 flex justify-center">
+                            <img src="/placeholder.svg?height=200&width=300" alt="Us Together" class="rounded-lg shadow-md max-w-full h-auto">
+                        </div>
+                        
+                        <div class="space-y-4 text-gray-700">
+                            <p>My dearest love,</p>
+                            <p>Every day with you feels like a gift. Your smile brightens my darkest days, and your love gives me strength I never knew I had.</p>
+                            <p>Thank you for being my partner, my confidant, and my best friend. I cherish every moment we spend together and look forward to creating countless more memories.</p>
+                            <p>I love you more than words can express.</p>
+                            <p class="text-right">Forever yours,</p>
+                            <p class="text-right font-bold">Me</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-pink-200 pt-6">
+                        <div class="text-center mb-4">
+                            <h3 class="text-xl font-bold text-pink-600 mb-2">Our Anniversary Countdown</h3>
+                            <div id="countdown" class="text-3xl font-bold text-pink-500"></div>
+                        </div>
+                        
+                        <div class="flex justify-center space-x-4">
+                            <button id="showHearts" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full shadow transition hover:scale-105">
+                                <span class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                                    </svg>
+                                    Send Love
+                                </span>
+                            </button>
+                            <button id="closeCard" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full shadow transition hover:scale-105">
+                                Close Card
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.getElementById('card');
+            const openBtn = document.getElementById('openCard');
+            const closeBtn = document.getElementById('closeCard');
+            const heartsBtn = document.getElementById('showHearts');
+            const heartsContainer = document.getElementById('heartsContainer');
+            const countdownEl = document.getElementById('countdown');
+            
+            // Set your anniversary date here (YYYY, MM-1, DD)
+            // Note: Month is 0-indexed (0 = January, 11 = December)
+            const anniversaryDate = new Date(2023, 11, 31);
+            
+            // Open card
+            openBtn.addEventListener('click', function() {
+                card.classList.add('open');
+            });
+            
+            // Close card
+            closeBtn.addEventListener('click', function() {
+                card.classList.remove('open');
+            });
+            
+            // Show floating hearts
+            heartsBtn.addEventListener('click', function() {
+                createHearts(20);
+            });
+            
+            // Create floating hearts
+            function createHearts(count) {
+                for (let i = 0; i < count; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('heart');
+                        
+                        // Random position
+                        heart.style.left = Math.random() * 100 + '%';
+                        // Random delay
+                        heart.style.animationDelay = Math.random() * 2 + 's';
+                        // Random size
+                        const size = Math.random() * 30 + 15;
+                        heart.style.width = `${size}px`;
+                        heart.style.height = `${size}px`;
+                        
+                        heartsContainer.appendChild(heart);
+                        
+                        // Remove heart after animation
+                        setTimeout(() => {
+                            heart.remove();
+                        }, 6000);
+                    }, i * 100);
+                }
+            }
+            
+            // Update countdown
+            function updateCountdown() {
+                const now = new Date();
+                const diff = anniversaryDate - now;
+                
+                if (diff <= 0) {
+                    countdownEl.textContent = "Happy Anniversary! ❤️";
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+            
+            // Initial countdown
+            updateCountdown();
+            
+            // Update countdown every second
+            setInterval(updateCountdown, 1000);
+            
+            // Create some hearts on load
+            setTimeout(() => {
+                createHearts(5);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

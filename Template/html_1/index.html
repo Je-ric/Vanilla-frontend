@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Log in | Register </title>
+</head>
+
+<body>
+    <div class="form-containet">
+        <div class="col col-1">
+            <div class="image-layer">
+                <img src="img/full-moon.png" class="form-image-main fi-2">
+                <img src="img/cloud.png" class="form-image-1 fi-1">
+                <img src="img/cloud.png" class="form-image-2 fi-1">
+                <img src="img/cloud.png" class="form-image-3 fi-3">
+            </div>
+        </div>
+        <div class="col col-2">
+            <div class="btn-box">
+                <button class="btn btn-1" id="login">Sign In</button>
+                <button class="btn btn-2" id="register">Sign Up</button>
+            </div>
+
+            <!-- =================== login-form =================== -->
+
+            <div class="login-form">
+                <div class="form-title">
+                    <span>Sign In</span>
+                </div>
+                <div class="form-inputs">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="User Name" required>
+                        <i class='bx bx-user icon'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Password" required>
+                        <i class='bx bx-lock-alt icon'></i>
+                    </div>
+                    <div class="forget-pass">
+                        <a href="#">Forgot Password</a>
+                    </div>
+                    <div class="input-box">
+                        <button class="input-submit">
+                            <span>Sign In</span>
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="social-login">
+                    <i class="bx bxl-google"></i>
+                    <i class="bx bxl-facebook"></i>
+                    <i class="bx bxl-twitter"></i>
+                    <i class="bx bxl-github"></i>
+                </div>
+            </div>
+
+            <!-- =================== register-form =================== -->
+
+            <div class="register-form">
+                <div class="form-title">
+                    <span>Sign Up</span>
+                </div>
+                <div class="form-inputs">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="User Name" required>
+                        <i class='bx bx-user icon'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" class="input-field" placeholder="Email" required>
+                        <i class='bx bx-envelope icon'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Password" required>
+                        <i class='bx bx-lock-alt icon'></i>
+                    </div>
+                    <div class="input-box">
+                        <button class="input-submit">
+                            <span>Sign Up</span>
+                            <i class="bx bx-right-arrow-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="social-login">
+                    <i class="bx bxl-google"></i>
+                    <i class="bx bxl-facebook"></i>
+                    <i class="bx bxl-twitter"></i>
+                    <i class="bx bxl-github"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

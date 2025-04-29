@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+</head>
+<body>
+    <h3 id="print"></h3>
+
+
+    <!-- Concat -->
+    <div>
+        <input type="text" name="first_name" id="first_name">
+        <input type="text" name="last_name" id="last_name">
+        <button onclick="concatName()">Show Full Name</button>
+        <h3 id="full_name"></h3>
+    </div>
+
+    <script>
+        console.log('Hello World!'); // console lang visible
+        document.getElementById("print").innerHTML = "New Text" // Page na
+
+        //document.getElementById("") kung ano man yung id     
+        // .innerHTML - //it means papalitan yung laman nang may id 
+
+        alert('Hello World!');
+        let $name = "John Doe na Sikat";
+        alert($name);
+        $name = "Jane Doe naman";
+        alert($name);
+
+        // a = 5
+        // let b = 12.5
+        // const c = "Hello World!"
+        // var d = true
+
+        // Automatic Variable
+        // let - cannot be redeclared but can be reassigned (recommended) - use let if you want to change the value
+        // const - cannot be redeclared or reassigned (recommended) 
+        // var - can be redeclared and reassigned (old)
+
+        function concatName() {
+            let first_name = document.getElementById("first_name").value;
+            let last_name = document.getElementById("last_name").value;
+            // .value retrives data from the input field
+
+            let full_name = first_name + " " + last_name;
+            document.getElementById("full_name").innerHTML = full_name;
+        }
+    </script>
+</body>
+</html>

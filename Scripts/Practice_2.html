@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice 2</title>
+</head>
+<body>
+    
+    <input type="text" name="person_1" id="person_1" placeholder="Enter Person 1"><br>
+    <input type="text" name="person_2" id="person_2" placeholder="Enter Person 2"><br>
+    <input type="text" name="pronoun" id="pronoun" placeholder="Enter Pronoun of Person 2"><br>
+    <input type="text" name="item" id="item" placeholder="Enter a drink..."><br>
+    <button onclick="displayOutput()">Display Output</button>
+    <p id="full_name"></p>
+    
+    <script>
+        function displayOutput() {
+            let person_1 = document.getElementById("person_1").value;
+            let person_2 = document.getElementById("person_2").value;
+            let pronoun = document.getElementById("pronoun").value;
+            let item = document.getElementById("item").value;
+
+            let full_name = person_1 + ", the friendly neighbor, waved at " + person_2 + 
+                            " as " + pronoun + " walked by " + person_2 + "'s house. " + person_2 + 
+                            " smiled back and invited " + person_1 + " for a cup of " + item + ".";
+
+            document.getElementById("full_name").innerHTML = full_name;
+        }
+        
+    </script>
+</body>
+</html>

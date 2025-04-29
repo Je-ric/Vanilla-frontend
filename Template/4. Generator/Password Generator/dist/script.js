@@ -1,75 +1,96 @@
-const lengthSlider = document.querySelector(".pass-length input"),
-  options = document.querySelectorAll(".option input"),
-  copyIcon = document.querySelector(".input-box span"),
-  passwordInput = document.querySelector(".input-box input"),
-  passIndicator = document.querySelector(".pass-indicator"),
-  generateBtn = document.querySelector(".generate-btn");
+// Select all the necessary HTML elements
+var lengthSlider = document.querySelector(".pass-length input");
+var options = document.querySelectorAll(".option input");
+var copyIcon = document.querySelector(".input-box span");
+var passwordInput = document.querySelector(".input-box input");
+var passIndicator = document.querySelector(".pass-indicator");
+var generateBtn = document.querySelector(".generate-btn");
 
-const characters = {
+// Define the available character sets for password generation
+var characters = {
   lowercase: "abcdefghijklmnopqrstuvwxyz",
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   numbers: "0123456789",
   symbols: "^!$%&|[](){}:;.,*+-#@<>~"
 };
 
-const generatePassword = () => {
-  let staticPassword = "",
-    randomPassword = "",
-    excludeDuplicate = false,
-    passLength = lengthSlider.value;
+// Function to generate a random password
+function generatePassword() {
+  var staticPassword = "";
+  var randomPassword = "";
+  var excludeDuplicate = false;
+  var passLength = lengthSlider.value;
 
-  options.forEach((option) => {
+  // Check each option and add the respective characters
+  for (var i = 0; i < options.length; i++) {
+    var option = options[i];
     if (option.checked) {
       if (option.id !== "exc-duplicate" && option.id !== "spaces") {
         staticPassword += characters[option.id];
       } else if (option.id === "spaces") {
-        staticPassword += `  ${staticPassword}  `;
+        staticPassword += "  "; // Add spaces
       } else {
         excludeDuplicate = true;
       }
     }
-  });
+  }
 
-  for (let i = 0; i < passLength; i++) {
-    let randomChar =
-      staticPassword[Math.floor(Math.random() * staticPassword.length)];
+  // Generate a random password using the selected characters
+  for (var i = 0; i < passLength; i++) {
+    var randomChar = staticPassword[Math.floor(Math.random() * staticPassword.length)];
     if (excludeDuplicate) {
-      !randomPassword.includes(randomChar) || randomChar == " "
-        ? (randomPassword += randomChar)
-        : i--;
+      if (randomPassword.indexOf(randomChar) === -1 && randomChar !== " ") {
+        randomPassword += randomChar;
+      } else {
+        i--; // Try again if duplicate found
+      }
     } else {
       randomPassword += randomChar;
     }
   }
+  
+  // Set the generated password to the input field
   passwordInput.value = randomPassword;
-};
+}
 
-const updatePassIndicator = () => {
-  passIndicator.id =
-    lengthSlider.value <= 8
-      ? "weak"
-      : lengthSlider.value <= 16
-      ? "medium"
-      : "strong";
-};
+// Function to update the password strength indicator based on length
+function updatePassIndicator() {
+  if (lengthSlider.value <= 8) {
+    passIndicator.id = "weak";
+  } else if (lengthSlider.value <= 16) {
+    passIndicator.id = "medium";
+  } else {
+    passIndicator.id = "strong";
+  }
+}
 
-const updateSlider = () => {
+// Function to update the slider value and regenerate the password
+function updateSlider() {
   document.querySelector(".pass-length span").innerText = lengthSlider.value;
   generatePassword();
   updatePassIndicator();
-};
+}
+
+// Initial call to update the slider and generate the password
 updateSlider();
 
-const copyPassword = () => {
+// Function to copy the password to the clipboard
+function copyPassword() {
   navigator.clipboard.writeText(passwordInput.value);
   copyIcon.innerText = "check";
   copyIcon.style.color = "#4285F4";
-  setTimeout(() => {
+  
+  setTimeout(function() {
     copyIcon.innerText = "copy_all";
     copyIcon.style.color = "#707070";
   }, 1500);
-};
+}
 
+// Event listener for the copy icon
 copyIcon.addEventListener("click", copyPassword);
+
+// Event listener for the slider input change
 lengthSlider.addEventListener("input", updateSlider);
+
+// Event listener for the generate button click
 generateBtn.addEventListener("click", generatePassword);

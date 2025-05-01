@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="text">Hello World!!!</h1>
+    <button onclick="changeText()">Change</button>
+
+    <script>
+        function changeText() {
+            let current_text = document.getElementById('text').innerHTML;
+            let first_text = "Hello World!!!";
+            let second_text = "World Hello!!!";
+
+            if (current_text === first_text) {
+                document.getElementById('text').innerHTML = second_text;
+            } else {
+                document.getElementById('text').innerHTML = first_text;
+            }
+        }
+    </script>
+</body>
+</html>

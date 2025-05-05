@@ -4,68 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cyberpunk Clock</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(145deg, #0f0f1c, #1a1a2e);
-      color: #0ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Orbitron', sans-serif;
-      overflow: hidden;
-    }
-
-    .digital-clock {
-      display: flex;
-      background: rgba(0, 0, 0, 0.6);
-      border: 4px solid #0ff;
-      border-radius: 20px;
-      padding: 1.5rem 3rem;
-      box-shadow: 0 0 20px #0ff, 0 0 60px #f0f;
-      gap: 2rem;
-      backdrop-filter: blur(10px);
-    }
-
-    .week {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #555;
-      font-size: 1rem;
-      font-weight: bold;
-      user-select: none;
-    }
-
-    .week div {
-      margin: 0.2rem 0;
-      transition: all 0.3s;
-    }
-
-    .week .active {
-      color: #f0f;
-      text-shadow: 0 0 5px #f0f, 0 0 15px #f0f;
-    }
-
-    .time {
-      display: flex;
-      align-items: center;
-    }
-
-    .hour, .min, .dot {
-      font-size: 10rem;
-      transition: all 0.3s;
-      text-shadow: 0 0 10px #0ff, 0 0 25px #0ff;
-    }
-
-    .dot.invisible {
-      visibility: hidden;
-    }
-  </style>
+    <link rel="stylesheet" href="style_1.css">
 </head>
 <body>
   <div class="digital-clock">
@@ -85,33 +24,6 @@
     </div>
   </div>
 
-  <script>
-    const $ = (selector) => document.querySelector(selector);
-
-    const hour = $('.hour');
-    const dot = $('.dot');
-    const min = $('.min');
-    const week = document.querySelector('.week');
-    let showDot = true;
-
-    function update() {
-      showDot = !showDot;
-      const now = new Date();
-
-      dot.classList.toggle('invisible', showDot);
-
-      hour.textContent = String(now.getHours()).padStart(2, '0');
-      min.textContent = String(now.getMinutes()).padStart(2, '0');
-
-      Array.from(week.children).forEach((ele) =>
-        ele.classList.remove('active')
-      );
-
-      week.children[now.getDay()].classList.add('active');
-    }
-
-    setInterval(update, 500);
-    update(); // initialize on load
-  </script>
+<script src="script.js"></script>
 </body>
 </html>

@@ -73,3 +73,13 @@
         gap: 0.5rem;
       }
     }
+
+    .period {
+        font-size: 1.5rem;
+        color: #b2fefa;
+        margin-left: 0.5rem;
+        align-self: flex-end;
+        padding-bottom: 0.5rem;
+        text-shadow: 0 0 4px rgba(178, 254, 250, 0.3);
+      }
+      

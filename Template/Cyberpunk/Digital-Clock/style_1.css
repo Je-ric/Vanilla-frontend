@@ -1,62 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
 body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(145deg, #0f0f1c, #1a1a2e);
-  color: #0ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Orbitron', sans-serif;
-  overflow: hidden;
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(145deg, #0f0f1c, #1a1a2e);
+    color: #0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
 }
 
 .digital-clock {
-  display: flex;
-  background: rgba(0, 0, 0, 0.6);
-  border: 4px solid #0ff;
-  border-radius: 20px;
-  padding: 1.5rem 3rem;
-  box-shadow: 0 0 20px #0ff, 0 0 60px #f0f;
-  gap: 2rem;
-  backdrop-filter: blur(10px);
+    display: flex;
+    background: rgba(0, 0, 0, 0.6);
+    border: 4px solid #0ff;
+    border-radius: 20px;
+    padding: 1.5rem 3rem;
+    box-shadow: 0 0 20px #0ff, 0 0 60px #f0f;
+    gap: 2rem;
+    backdrop-filter: blur(10px);
 }
 
 .week {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #555;
-  font-size: 1rem;
-  font-weight: bold;
-  user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    font-size: 1rem;
+    font-weight: bold;
+    user-select: none;
 }
 
 .week div {
-  margin: 0.2rem 0;
-  transition: all 0.3s;
+    margin: 0.2rem 0;
+    transition: all 0.3s;
 }
 
 .week .active {
-  color: #f0f;
-  text-shadow: 0 0 5px #f0f, 0 0 15px #f0f;
+    color: #f0f;
+    text-shadow: 0 0 5px #f0f, 0 0 15px #f0f;
 }
 
 .time {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .hour, .min, .dot {
-  font-size: 10rem;
-  transition: all 0.3s;
-  text-shadow: 0 0 10px #0ff, 0 0 25px #0ff;
+    font-size: 10rem;
+    transition: all 0.3s;
+    text-shadow: 0 0 10px #0ff, 0 0 25px #0ff;
 }
 
 .dot.invisible {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .period {
@@ -66,5 +66,4 @@ body {
     align-self: flex-end;
     padding-bottom: 0.5rem;
     text-shadow: 0 0 4px rgba(178, 254, 250, 0.3);
-  }
-  
+}

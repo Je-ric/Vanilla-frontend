@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #1a1a2e;
+      color: #b2fefa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .digital-clock {
+      display: flex;
+      background: rgba(35, 35, 50, 0.9);
+      border: 2px solid #5f7adb;
+      border-radius: 20px;
+      padding: 2rem 3rem;
+      box-shadow: 0 0 10px rgba(95, 122, 219, 0.4);
+      gap: 2rem;
+    }
+
+    .week {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #7a7a8c;
+      font-weight: bold;
+    }
+
+    .week div {
+      margin: 0.3rem 0;
+      transition: all 0.3s ease;
+    }
+
+    .week .active {
+      color: #b2fefa;
+      text-shadow: 0 0 4px #5f7adb;
+    }
+
+    .time {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hour,
+    .min,
+    .dot {
+      font-size: 8rem;
+      color: #b2fefa;
+      text-shadow: 0 0 6px rgba(178, 254, 250, 0.3);
+    }
+
+    .dot.invisible {
+      visibility: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .hour, .min, .dot {
+        font-size: 4rem;
+      }
+
+      .digital-clock {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+
+      .time {
+        gap: 0.5rem;
+      }
+    }

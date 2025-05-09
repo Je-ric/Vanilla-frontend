@@ -1,392 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image Color Picker</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Professional Image Color Picker</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <style>
+    :root {
+      --primary-color: #4f46e5;
+      --secondary-color: #6366f1;
+      --accent-color: #a5b4fc;
+      --light-bg: #f8fafc;
+      --dark-bg: #1e293b;
+      --text-color: #334155;
+      --border-radius: 12px;
+      --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s ease;
+    }
+
     * {
-  padding: 0;
-  margin: 0;
-}
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-.container {
-  display: flex;
-  margin: 0 auto;
-  justify-content: space-between;
-  max-width: 1200px;
-  padding: 2em;
-  border-radius: 8px;
-}
+    .app-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
 
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-.photo-section {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-}
+    header h1 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
-.image-container {
-  position: relative;
-  /* max-width: 100%;
-  max-height: 500px; */
-}
+    header p {
+      color: var(--text-color);
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
 
-#color-canvas {
-  width: 100%;
-  height: 100%;
-}
+    .main-content {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
+    .image-section {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--light-bg);
+      position: relative;
+      min-height: 400px;
+    }
 
-img {
-  overflow: hidden;
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
+    .image-container {
+      position: relative;
+      max-width: 100%;
+      max-height: 500px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
 
+    #image {
+      display: block;
+      max-width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+    }
 
-.controls-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px
-}
+    #color-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
 
-.btns-container {
-  display: flex;
-  flex-direction: row;
-  gap: 1em;
-  margin-bottom: 1.5em;
-}
+    .controls-section {
+      padding: 30px;
+      background-color: white;
+      border-top: 1px solid #e5e7eb;
+    }
 
-input[type="file"] {
-  display: none;
-}
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
 
-label,
-button {
-  width: 100%;
-  font-size: 0.8em;
-  background-color: black;
-  color: #ffffff;
-  padding: 1em;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-}
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
 
-label:hover,
-button:hover {
-  background-color: white;
-  color: black;
-  border: 2px solid blue;
-}
+    .control-group h3 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
 
+    .btns-container {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
 
-#result {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  margin-top: 1.5em;
-}
+    input[type="file"] {
+      display: none;
+    }
 
-#result div {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      gap: 8px;
+    }
 
-#result input {
-  background-color: transparent;
-  font-size: 1em;
-  padding: 0.5em;
-  width: 100%;
-  color: #313b4c;
-  border: 1px solid #021637;
-  border-radius: 4px;
-}
+    .btn:hover {
+      background-color: var(--secondary-color);
+    }
 
-#result button {
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  border: none;
-}
+    .btn svg {
+      width: 18px;
+      height: 18px;
+    }
 
-#picked-color-ref {
-  height: 100px;
-  border: 4px solid #d9e8ff;
-  border-radius: 8px;
-  background-color: #ffffff;
-  margin-top: 1em;
-}
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
 
+    .btn-outline:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
 
-#custom-alert {
-  display: none;
-  background-color: #d9e8ff;
-  color: #025bee;
-  text-align: center;
-  padding: 0.5em;
-  margin-top: 1.5em;
-  border-radius: 4px;
-}
+    .instruction {
+      margin: 15px 0;
+      padding: 15px;
+      background-color: var(--light-bg);
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--accent-color);
+    }
 
-span{
-  color: blue;
-}
+    .instruction span {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
 
-#error {
-  color: #ff725a;
-  text-align: center;
-  margin-top: 1em;
-}
+    #error {
+      color: #ef4444;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #fee2e2;
+      border-radius: var(--border-radius);
+      display: none;
+    }
 
+    #error.show {
+      display: block;
+    }
 
+    .color-result {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-#palette-container {
-  display: flex;
-  flex-direction: row;
-}
+    .color-display {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
 
-.palette-color {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #ddd;
-}
+    .color-input-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
+    .color-input-group input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e5e7eb;
+      border-radius: var(--border-radius);
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .color-input-group button {
+      padding: 10px 15px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .color-input-group button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    #picked-color-ref {
+      height: 100px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .color-palette {
+      margin-top: 20px;
+    }
+
+    .color-palette h3 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    #palette-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+      gap: 10px;
+    }
+
+    .palette-color {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .palette-color:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #custom-alert {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    #custom-alert.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .no-image-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px;
+      background-color: #f1f5f9;
+      border-radius: var(--border-radius);
+      border: 2px dashed #cbd5e1;
+    }
+
+    .no-image-placeholder svg {
+      width: 80px;
+      height: 80px;
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    .no-image-placeholder p {
+      color: #64748b;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .controls-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .btns-container {
+        flex-direction: column;
+      }
+    }
   </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetch('../header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-            });
-    });
-  </script>
 </head>
 <body>
-  <div id="header-container"></div>
-  <div class="container">
-   
-    <div class="photo-section">
-      <div class="image-container">
-        <img id="image" src="./your-image.jpg" />
-        <canvas id="color-canvas" style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
-      </div>
-    </div>    
+  <div class="app-container">
+    <header>
+      <h1>Image Color Picker</h1>
+      <p>Upload an image and extract colors with precision</p>
+    </header>
 
-    <div class="controls-section">
-      <div class="btns-container">
-        <input type="file" id="file" accept="image/*" />
-        <label for="file">Open A Photo</label>
-        <button id="pick-color">Pick Color</button>
+    <div class="main-content">
+      <div class="image-section">
+        <div class="image-container" id="image-container">
+          <div class="no-image-placeholder" id="placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p>No image selected. Upload an image to get started.</p>
+          </div>
+          <img id="image" src="your-image.jpg" style="display: none;" />
+          <canvas id="color-canvas"></canvas>
+        </div>
       </div>
-      <p>Click <span>'Pick Color'</span> to start selecting a color from your photo.</p>
-      <div id="error" class="hide"></div>
-      <div id="result">
-        <div>
-          <input type="text" id="hex-val-ref" placeholder="Hex Value" />
-          <button onclick="copy('hex-val-ref')">Copy</button>
+
+      <div class="controls-section">
+        <div class="controls-grid">
+          <div class="control-group">
+            <h3>Image Controls</h3>
+            <div class="btns-container">
+              <input type="file" id="file" accept="image/*" />
+              <label for="file" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                Upload Image
+              </label>
+              <button id="pick-color" class="btn btn-outline">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+                Pick Color
+              </button>
+            </div>
+            <div class="instruction">
+              Click <span>Upload Image</span> to select an image, then click <span>Pick Color</span> to select colors from your image.
+            </div>
+            <div id="error" class="hide"></div>
+          </div>
+
+          <div class="control-group">
+            <h3>Selected Color</h3>
+            <div class="color-result">
+              <div class="color-display">
+                <div class="color-input-group">
+                  <input type="text" id="hex-val-ref" placeholder="Hex Value" readonly />
+                  <button onclick="copy('hex-val-ref')">Copy</button>
+                </div>
+                <div class="color-input-group">
+                  <input type="text" id="rgb-val-ref" placeholder="RGB Value" readonly />
+                  <button onclick="copy('rgb-val-ref')">Copy</button>
+                </div>
+                <div id="picked-color-ref"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <input type="text" id="rgb-val-ref" placeholder="RGB Value" />
-          <button onclick="copy('rgb-val-ref')">Copy</button>
-        </div>
-        <div id="picked-color-ref"></div>
-        <h3>Color Palette</h3>
-        <div id="color-palette">
+
+        <div class="color-palette">
+          <h3>Color Palette</h3>
           <div id="palette-container"></div>
         </div>
       </div>
-      <div id="custom-alert">Color Code Copied!</div>
     </div>
   </div>
-  <!-- Script -->
-  <script src="script.js">
+
+  <div id="custom-alert">Color Code Copied!</div>
+
+  <script>
     // Create Initial references
-let pickColor = document.getElementById("pick-color");
-let error = document.getElementById("error");
-let fileInput = document.getElementById("file");
-let image = document.getElementById("image");
-let hexValRef = document.getElementById("hex-val-ref");
-let rgbValRef = document.getElementById("rgb-val-ref");
-let customAlert = document.getElementById("custom-alert");
-let pickedColorRef = document.getElementById("picked-color-ref");
-let canvas = document.getElementById('color-canvas');
-let ctx = canvas.getContext('2d');
-let eyeDropper;
+    let pickColor = document.getElementById("pick-color");
+    let error = document.getElementById("error");
+    let fileInput = document.getElementById("file");
+    let image = document.getElementById("image");
+    let placeholder = document.getElementById("placeholder");
+    let hexValRef = document.getElementById("hex-val-ref");
+    let rgbValRef = document.getElementById("rgb-val-ref");
+    let customAlert = document.getElementById("custom-alert");
+    let pickedColorRef = document.getElementById("picked-color-ref");
+    let canvas = document.getElementById('color-canvas');
+    let ctx = canvas.getContext('2d');
+    let eyeDropper;
 
-// Function On Window Load
-window.onload = () => {
-  // Check if the browser supports eyedropper
-  if ("EyeDropper" in window) {
-    pickColor.classList.remove("hide");
-    eyeDropper = new EyeDropper();
-  } else {
-    error.classList.remove("hide");
-    error.innerText = "Your browser doesn't support Eyedropper API";
-    pickColor.classList.add("hide");
-    return false;
-  }
-
-  // Initialize canvas size
-  canvas.width = image.naturalWidth;
-  canvas.height = image.naturalHeight;
-};
-
-// Function to update the canvas size
-const updateCanvasSize = () => {
-  canvas.width = image.naturalWidth;
-  canvas.height = image.naturalHeight;
-};
-
-// Eyedropper logic
-const colorSelector = async () => {
-  const color = await eyeDropper
-    .open()
-    .then((colorValue) => {
-      error.classList.add("hide");
-      // Get the hex color code
-      let hexValue = colorValue.sRGBHex;
-      // Convert Hex Value To RGB
-      let rgbArr = [];
-      for (let i = 1; i < hexValue.length; i += 2) {
-        rgbArr.push(parseInt(hexValue[i] + hexValue[i + 1], 16));
-      }
-      let rgbValue = "rgb(" + rgbArr.join(",") + ")";
-      hexValRef.value = hexValue;
-      rgbValRef.value = rgbValue;
-      pickedColorRef.style.backgroundColor = hexValue;
-
-      // Ensure result is shown
-      result.style.display = "grid";
-    })
-    .catch((err) => {
-      error.classList.remove("hide");
-      // If user presses escape to close the eyedropper
-      if (err.toString().includes("AbortError")) {
-        error.innerText = "";
+    // Function On Window Load
+    window.onload = () => {
+      // Check if the browser supports eyedropper
+      if ("EyeDropper" in window) {
+        pickColor.style.display = "inline-flex";
+        eyeDropper = new EyeDropper();
       } else {
-        error.innerText = err;
+        error.classList.add("show");
+        error.innerText = "Your browser doesn't support Eyedropper API. Try using Chrome or Edge.";
+        pickColor.style.display = "none";
       }
-    });
-};
-
-pickColor.addEventListener("click", colorSelector);
-
-// Function to extract colors from the image
-const extractColors = () => {
-  let colors = [];
-  let numColors = 8;
-
-  // Create a temporary canvas to extract colors
-  let tempCanvas = document.createElement('canvas');
-  let tempCtx = tempCanvas.getContext('2d');
-  tempCanvas.width = image.naturalWidth;
-  tempCanvas.height = image.naturalHeight;
-
-  tempCtx.drawImage(image, 0, 0);
-
-  let imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-  let data = imageData.data;
-
-  let colorCounts = {};
-
-  for (let i = 0; i < data.length; i += 4) {
-    let r = data[i];
-    let g = data[i + 1];
-    let b = data[i + 2];
-    let a = data[i + 3];
-    if (a > 0) { // Ensure color is not transparent
-      let hex = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-      colorCounts[hex] = (colorCounts[hex] || 0) + 1;
-    }
-  }
-
-  // Sort colors by frequency
-  colors = Object.keys(colorCounts).sort((a, b) => colorCounts[b] - colorCounts[a]);
-
-  // Limit to 8 colors
-  colors = colors.slice(0, numColors);
-
-  // Display colors in palette
-  const paletteContainer = document.getElementById('palette-container');
-  paletteContainer.innerHTML = '';
-  colors.forEach(color => {
-    let colorDiv = document.createElement('div');
-    colorDiv.classList.add('palette-color');
-    colorDiv.style.backgroundColor = color;
-    colorDiv.title = color; // Show color code on hover
-    paletteContainer.appendChild(colorDiv);
-  });
-};
-
-// Function to handle color picking on canvas click
-const pickColorFromCanvas = (event) => {
-  let rect = canvas.getBoundingClientRect();
-  let x = event.clientX - rect.left;
-  let y = event.clientY - rect.top;
-
-  let imageData = ctx.getImageData(x, y, 1, 1).data;
-  let r = imageData[0];
-  let g = imageData[1];
-  let b = imageData[2];
-  let a = imageData[3];
-
-  if (a > 0) { // Check if color is not transparent
-    let hexValue = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-    let rgbValue = `rgb(${r},${g},${b})`;
-
-    hexValRef.value = hexValue;
-    rgbValRef.value = rgbValue;
-    pickedColorRef.style.backgroundColor = hexValue;
-
-    // Ensure result is shown
-    result.style.display = "grid";
-  }
-};
-
-// Add click event listener to the canvas
-canvas.addEventListener('click', pickColorFromCanvas);
-
-// Function to handle file input change
-fileInput.onchange = () => {
-  let reader = new FileReader();
-  reader.readAsDataURL(fileInput.files[0]);
-  reader.onload = () => {
-    image.setAttribute("src", reader.result);
-    image.onload = () => {
-      updateCanvasSize(); // Update canvas size when new image is loaded
-      extractColors(); // Update color palette when new image is uploaded
     };
-  };
-};
 
-// Function to copy the color code
-const copy = (textId) => {
-  // Selects the text in the <input> element
-  document.getElementById(textId).select();
-  // Copies the selected text to clipboard
-  document.execCommand("copy");
-  // Display Alert
-  customAlert.style.transform = "scale(1)";
-  setTimeout(() => {
-    customAlert.style.transform = "scale(0)";
-  }, 2000);
-};
+    // Function to update the canvas size
+    const updateCanvasSize = () => {
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+    };
 
+    // Eyedropper logic
+    const colorSelector = async () => {
+      try {
+        // Check if an image is loaded
+        if (image.style.display === "none") {
+          error.classList.add("show");
+          error.innerText = "Please upload an image first.";
+          return;
+        }
+
+        const colorValue = await eyeDropper.open();
+        
+        error.classList.remove("show");
+        
+        // Get the hex color code
+        let hexValue = colorValue.sRGBHex;
+        
+        // Convert Hex Value To RGB
+        let rgbArr = [];
+        for (let i = 1; i < hexValue.length; i += 2) {
+          rgbArr.push(parseInt(hexValue[i] + hexValue[i + 1], 16));
+        }
+        let rgbValue = "rgb(" + rgbArr.join(",") + ")";
+        
+        // Update UI with color values
+        hexValRef.value = hexValue;
+        rgbValRef.value = rgbValue;
+        pickedColorRef.style.backgroundColor = hexValue;
+      } catch (err) {
+        // If user presses escape to close the eyedropper
+        if (err.toString().includes("AbortError")) {
+          error.classList.remove("show");
+        } else {
+          error.classList.add("show");
+          error.innerText = err;
+        }
+      }
+    };
+
+    // Add click event listener to the pick color button
+    pickColor.addEventListener("click", colorSelector);
+
+    // Function to extract colors from the image
+    const extractColors = () => {
+      let colors = [];
+      let numColors = 8;
+
+      // Create a temporary canvas to extract colors
+      let tempCanvas = document.createElement('canvas');
+      let tempCtx = tempCanvas.getContext('2d');
+      tempCanvas.width = image.naturalWidth;
+      tempCanvas.height = image.naturalHeight;
+
+      tempCtx.drawImage(image, 0, 0);
+
+      let imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+      let data = imageData.data;
+
+      let colorCounts = {};
+
+      // Sample pixels at regular intervals to improve performance
+      const pixelSkip = Math.max(1, Math.floor((data.length / 4) / 10000));
+      
+      for (let i = 0; i < data.length; i += 4 * pixelSkip) {
+        let r = data[i];
+        let g = data[i + 1];
+        let b = data[i + 2];
+        let a = data[i + 3];
+        
+        if (a > 0) { // Ensure color is not transparent
+          let hex = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+          colorCounts[hex] = (colorCounts[hex] || 0) + 1;
+        }
+      }
+
+      // Sort colors by frequency
+      colors = Object.keys(colorCounts).sort((a, b) => colorCounts[b] - colorCounts[a]);
+
+      // Limit to numColors colors
+      colors = colors.slice(0, numColors);
+
+      // Display colors in palette
+      const paletteContainer = document.getElementById('palette-container');
+      paletteContainer.innerHTML = '';
+      
+      colors.forEach(color => {
+        let colorDiv = document.createElement('div');
+        colorDiv.classList.add('palette-color');
+        colorDiv.style.backgroundColor = color;
+        colorDiv.title = color; // Show color code on hover
+        
+        // Add click event to select this color
+        colorDiv.addEventListener('click', () => {
+          hexValRef.value = color;
+          
+          // Convert hex to RGB
+          let r = parseInt(color.slice(1, 3), 16);
+          let g = parseInt(color.slice(3, 5), 16);
+          let b = parseInt(color.slice(5, 7), 16);
+          let rgbValue = `rgb(${r}, ${g}, ${b})`;
+          
+          rgbValRef.value = rgbValue;
+          pickedColorRef.style.backgroundColor = color;
+        });
+        
+        paletteContainer.appendChild(colorDiv);
+      });
+    };
+
+    // Function to handle file input change
+    fileInput.onchange = () => {
+      if (fileInput.files.length === 0) return;
+      
+      let reader = new FileReader();
+      reader.readAsDataURL(fileInput.files[0]);
+      
+      reader.onload = () => {
+        image.setAttribute("src", reader.result);
+        
+        image.onload = () => {
+          // Show the image and hide placeholder
+          image.style.display = "block";
+          placeholder.style.display = "none";
+          
+          updateCanvasSize(); // Update canvas size when new image is loaded
+          extractColors(); // Update color palette when new image is uploaded
+          
+          // Clear any previous error messages
+          error.classList.remove("show");
+        };
+      };
+    };
+
+    // Function to copy the color code
+    const copy = (textId) => {
+      // Check if there's a value to copy
+      const textElement = document.getElementById(textId);
+      if (!textElement.value) return;
+      
+      // Selects the text in the <input> element
+      textElement.select();
+      
+      // Copies the selected text to clipboard
+      document.execCommand("copy");
+      
+      // Display Alert
+      customAlert.classList.add("show");
+      
+      setTimeout(() => {
+        customAlert.classList.remove("show");
+      }, 2000);
+    };
   </script>
 </body>
 </html>

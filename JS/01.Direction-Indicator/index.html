@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Direction Indicator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .compass {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 10px;
+      background-color: #2c3e50;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .direction-area {
+      position: absolute;
+      width: 33.33%;
+      height: 33.33%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    /* Position each direction area */
+    .nw { top: 0; left: 0; }
+    .n { top: 0; left: 33.33%; }
+    .ne { top: 0; right: 0; }
+    .w { top: 33.33%; left: 0; }
+    .center { top: 33.33%; left: 33.33%; background-color: #34495e; }
+    .e { top: 33.33%; right: 0; }
+    .sw { bottom: 0; left: 0; }
+    .s { bottom: 0; left: 33.33%; }
+    .se { bottom: 0; right: 0; }
+
+    /* Hover effects */
+    .direction-area:hover {
+      background-color: #e74c3c;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    /* Direction labels */
+    .direction-area::before {
+      content: attr(data-direction);
+      font-size: 16px;
+    }
+
+    /* Add grid lines */
+    .compass::before, .compass::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .compass::before {
+      width: 100%;
+      height: 1px;
+      top: 33.33%;
+      left: 0;
+      box-shadow: 0 100px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .compass::after {
+      height: 100%;
+      width: 1px;
+      left: 33.33%;
+      top: 0;
+      box-shadow: 100px 0 0 rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="compass">
+    <div class="direction-area nw" data-direction="NW"></div>
+    <div class="direction-area n" data-direction="N"></div>
+    <div class="direction-area ne" data-direction="NE"></div>
+    <div class="direction-area w" data-direction="W"></div>
+    <div class="direction-area center" data-direction="C"></div>
+    <div class="direction-area e" data-direction="E"></div>
+    <div class="direction-area sw" data-direction="SW"></div>
+    <div class="direction-area s" data-direction="S"></div>
+    <div class="direction-area se" data-direction="SE"></div>
+  </div>
+
+  <script>
+    // Very minimal JavaScript - just to show the current direction in the console
+    const areas = document.querySelectorAll('.direction-area');
+    
+    areas.forEach(area => {
+      area.addEventListener('mouseenter', function() {
+        console.log('Direction: ' + this.getAttribute('data-direction'));
+      });
+    });
+  </script>
+</body>
+</html>

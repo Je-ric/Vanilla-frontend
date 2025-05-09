@@ -13,6 +13,77 @@
             });
     });
 </script>
+<style>
+  body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Ensure the body takes full viewport height */
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(90deg, #2cd9ff, #7effb2, #ffbb7e, #ff7ebd, #cd7eff, #7e9eff);
+  background-size: 600% 600%;
+  animation: moving 9.5s infinite ease-in-out;
+}
+
+
+@keyframes moving {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview img {
+  height: 260px;
+  border: 1px solid #000;
+  background-color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.controls {  
+  display: grid;
+  grid-template-columns: 30% 30% 40%;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+}
+
+.group-1, .group-2, .group-3 {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.group-3 {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 20px; */
+}
+
+#codeOutput {
+  width: 300px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+</style>
 </head>
 <body>
   <div id="header-container"></div>
@@ -84,6 +155,77 @@
 </div>
 
   
-  <script src="Filter.js"></script>
+  <script src="Filter.js">
+    const previewImage = document.getElementById('previewImage');
+const sliders = document.querySelectorAll('.slider');
+const codeOutput = document.querySelector('textarea');
+const resetButton = document.querySelector('button');
+
+const initialValues = {};
+sliders.forEach(slider => {
+  initialValues[slider.id] = slider.value;
+});
+
+function applyFilters() {
+  const blurRadius = document.getElementById('blurRadius').value + 'px';
+  const brightness = document.getElementById('brightness').value + '%';
+  const contrast = document.getElementById('contrast').value + '%';
+  const grayscale = document.getElementById('grayscale').value + '%';
+  const hueRotate = document.getElementById('hueRotate').value + 'deg';
+  const invert = document.getElementById('invert').value + '%';
+  const opacity = document.getElementById('opacity').value + '%';
+  const saturate = document.getElementById('saturate').value + '%';
+  const sepia = document.getElementById('sepia').value + '%';
+
+  previewImage.style.filter = `blur(${blurRadius}) brightness(${brightness}) contrast(${contrast}) grayscale(${grayscale}) hue-rotate(${hueRotate}) invert(${invert}) opacity(${opacity}) saturate(${saturate}) sepia(${sepia})`;
+
+  updateCodeOutput();
+}
+
+function updateCodeOutput() {
+  codeOutput.value = `
+  filter: blur(${document.getElementById('blurRadius').value}px) 
+          brightness(${document.getElementById('brightness').value}%) 
+          contrast(${document.getElementById('contrast').value}%) 
+          grayscale(${document.getElementById('grayscale').value}%) 
+          hue-rotate(${document.getElementById('hueRotate').value}deg) 
+          invert(${document.getElementById('invert').value}%) 
+          opacity(${document.getElementById('opacity').value}%) 
+          saturate(${document.getElementById('saturate').value}%) 
+          sepia(${document.getElementById('sepia').value}%);  `;
+}
+
+// Call applyFilters once on page load
+applyFilters();
+
+sliders.forEach(slider => {
+  slider.addEventListener('input', applyFilters);
+});
+const imageInput = document.getElementById('imageInput');
+imageInput.addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    // Update the id of the image element to 'previewImage'
+    document.getElementById('previewImage').src = e.target.result;
+  };
+
+  reader.readAsDataURL(file);
+});
+
+
+resetButton.addEventListener('click', function() {
+  sliders.forEach(slider => {
+    slider.value = initialValues[slider.id];
+  });
+
+  applyFilters();
+  previewImage.style.backgroundImage = '';
+  // Update the code output after resetting
+  updateCodeOutput();
+});
+
+  </script>
 </body>
 </html>

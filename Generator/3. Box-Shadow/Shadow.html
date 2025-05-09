@@ -2,47 +2,477 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shadow Generator</title>
-  <link rel="stylesheet" href="/HTML-CSS-JS/Laboratory/Generator/Generator-CSS.css">
-  <link rel="stylesheet" href="Shadow.css">
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetch('../header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-            });
-    });
-</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Box Shadow Generator | Professional Tool</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <style>
+    :root {
+      --primary-color: #6d28d9;
+      --secondary-color: #4c1d95;
+      --accent-color: #c4b5fd;
+      --light-bg: #f8fafc;
+      --dark-bg: #1e293b;
+      --text-color: #334155;
+      --border-radius: 12px;
+      --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a78bfa, #8b5cf6, #7c3aed, #6d28d9);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .preview-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0 40px 0;
+    }
+
+    .outer-box {
+      position: relative;
+      border: 2px dashed rgba(255, 255, 255, 0.7);
+      width: 300px;
+      height: 300px;
+      border-radius: var(--border-radius);
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      box-shadow: var(--box-shadow);
+    }
+
+    .preview {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .preview::after {
+      content: "Preview";
+      color: #888;
+      font-size: 14px;
+    }
+
+    .controls-section {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 25px;
+      margin-top: auto;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .control-group {
+      background-color: var(--light-bg);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .control-group h3 {
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .control {
+      margin-bottom: 15px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .control-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      min-width: 120px;
+    }
+
+    .control-label svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--primary-color);
+    }
+
+    input[type="range"] {
+      flex: 1;
+      height: 8px;
+      border-radius: 10px;
+      background: #ddd;
+      outline: none;
+      -webkit-appearance: none;
+      max-width: 200px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      cursor: pointer;
+    }
+
+    .slider-value {
+      min-width: 40px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--primary-color);
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .color-control {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .color-label {
+      min-width: 120px;
+      font-weight: 500;
+    }
+
+    input[type="color"] {
+      -webkit-appearance: none;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: 5px;
+    }
+
+    input[type="text"] {
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      border: 1px solid #ddd;
+      font-family: inherit;
+      font-size: 0.9rem;
+      width: 100px;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--accent-color);
+      outline: none;
+    }
+
+    select {
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      border: 1px solid #ddd;
+      background-color: white;
+      font-family: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      outline: none;
+    }
+
+    select:focus {
+      border-color: var(--accent-color);
+    }
+
+    .border-options {
+      margin-bottom: 15px;
+    }
+
+    .border-btn {
+      padding: 8px 12px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .border-btn:hover {
+      background-color: #f1f5f9;
+    }
+
+    .border-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    .output-section {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 25px;
+    }
+
+    .output-section h3 {
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+
+    #codeOutput {
+      width: 100%;
+      min-height: 120px;
+      padding: 15px;
+      border-radius: var(--border-radius);
+      border: 1px solid #ddd;
+      background-color: #f8f9fa;
+      font-family: monospace;
+      resize: vertical;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .copy-btn:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .preset-btn {
+      padding: 8px 16px;
+      background-color: var(--light-bg);
+      border: 1px solid var(--accent-color);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .preset-btn:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: white;
+      font-size: 0.9rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .controls {
+        grid-template-columns: 1fr;
+      }
+      
+      .control-row, .color-control {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      input[type="range"] {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="header-container"></div>
-
   <div class="container">
-    <div class="outer-box">
-      <div class="box">
-        <div class="preview" id="preview">
-        </div>
+    <header>
+      <h1>Box Shadow Generator</h1>
+      <p>Create beautiful CSS shadows with this easy-to-use tool</p>
+    </header>
+
+    <div class="preview-section">
+      <div class="outer-box">
+        <div class="preview" id="preview"></div>
       </div>
     </div>
-  
 
-    <div class="controls">
+    <div class="output-section">
+      <h3>Generated CSS Code</h3>
+      <textarea id="codeOutput" readonly></textarea>
+      <button id="copyButton" class="copy-btn">Copy to Clipboard</button>
+    </div>
 
-      <div class="group-1">
-      <!-- <h4 class="head">Border:</h4> -->
-      <label>Border Color: <input type="color" id="borderColor">&nbsp;&nbsp;or&nbsp;&nbsp;
-        <input type="text" class="color-input" id="borderColorHex" placeholder="Hex"></label><br><br>
-      <div class="border-options">
-        <label>Sides:</label>
-        <button class="border-btn" data-side="top">Top</button>
-        <button class="border-btn" data-side="right">Right</button>
-        <button class="border-btn" data-side="bottom">Bottom</button>
-        <button class="border-btn" data-side="left">Left</button>
-        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-        <br><br>
-        <label>Border Style: 
-          <select id="borderStyle">
+    <div class="controls-section">
+      <div class="preset-buttons">
+        <button class="preset-btn" data-preset="subtle">Subtle Shadow</button>
+        <button class="preset-btn" data-preset="medium">Medium Shadow</button>
+        <button class="preset-btn" data-preset="harsh">Harsh Shadow</button>
+        <button class="preset-btn" data-preset="inset">Inset Shadow</button>
+        <button class="preset-btn" data-preset="neon">Neon Glow</button>
+        <button class="preset-btn" data-preset="reset">Reset</button>
+      </div>
+      
+      <div class="controls">
+        <!-- Box Shadow Controls -->
+        <div class="control-group">
+          <h3>
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/>
+              <path d="M14 14h5v5h-5v-5z" fill-opacity="0.3"/>
+            </svg>
+            Box Shadow
+          </h3>
+          
+          <div class="color-control">
+            <label class="color-label">Shadow Color:</label>
+            <input type="color" id="boxShadowColor" value="#000000">
+            <input type="text" class="color-input" id="boxShadowColorHex" placeholder="#000000" value="#000000">
+          </div>
+          
+          <div class="control-row">
+            <label class="control-label">Horizontal:</label>
+            <input type="range" id="boxShadowHorizontal" min="-50" max="50" value="0">
+            <span class="slider-value" id="boxShadowHorizontalValue">0px</span>
+          </div>
+          
+          <div class="control-row">
+            <label class="control-label">Vertical:</label>
+            <input type="range" id="boxShadowVertical" min="-50" max="50" value="0">
+            <span class="slider-value" id="boxShadowVerticalValue">0px</span>
+          </div>
+          
+          <div class="control-row">
+            <label class="control-label">Blur:</label>
+            <input type="range" id="boxShadowBlur" min="0" max="100" value="10">
+            <span class="slider-value" id="boxShadowBlurValue">10px</span>
+          </div>
+          
+          <div class="control-row">
+            <label class="control-label">Spread:</label>
+            <input type="range" id="boxShadowSpread" min="-50" max="100" value="0">
+            <span class="slider-value" id="boxShadowSpreadValue">0px</span>
+          </div>
+          
+          <div class="control-row">
+            <label class="control-label">Shadow Type:</label>
+            <select id="shadowType">
+              <option value="outset">Outset</option>
+              <option value="inset">Inset</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Border Controls -->
+        <div class="control-group">
+          <h3>
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+            Border
+          </h3>
+          
+          <div class="border-options">
+            <label>Border Sides:</label>
+            <div style="margin-top: 8px;">
+              <button class="border-btn" data-side="top">Top</button>
+              <button class="border-btn" data-side="right">Right</button>
+              <button class="border-btn" data-side="bottom">Bottom</button>
+              <button class="border-btn" data-side="left">Left</button>
+            </div>
+          </div>
+          
+          <div class="color-control">
+            <label class="color-label">Border Color:</label>
+            <input type="color" id="borderColor" value="#000000">
+            <input type="text" class="color-input" id="borderColorHex" placeholder="#000000" value="#000000">
+          </div>
+          
+          <div class="control-row">
+            <label class="control-label">Border Style:</label>
+            <select id="borderStyle">
               <option value="solid">Solid</option>
               <option value="dashed">Dashed</option>
               <option value="dotted">Dotted</option>
@@ -52,49 +482,351 @@
               <option value="inset">Inset</option>
               <option value="outset">Outset</option>
               <option value="none">None</option>
-              <option value="hidden">Hidden</option>
-          </select>
-        </label><br><br>
-      </div>
-      <label>Border Size: <input type="range" id="borderSize" min="0" max="25" value="5">
-        <span class="slider-value" id="borderSizeValue">5</span></label>
-      <br><br>
-      <label>Radius: <input type="range" id="borderRadius" min="0" max="100" value="0">
-        <span class="slider-value" id="borderRadiusValue">0</span></label><br>
-    </div>
-
-      <div class="group-2">
-      <!-- <h4 class="head">Box Shadow:</h4> -->
-      <label>Shadow Color: <input type="color" id="boxShadowColor">&nbsp;&nbsp;or&nbsp;&nbsp;
-        <input type="text" class="color-input" id="boxShadowColorHex" placeholder="Hex"></label><br><br>
-      <label>Spread: <input type="range" id="boxShadowSpread" min="0" max="50" value="0">
-        <span class="slider-value" id="boxShadowSpreadValue">0</span></label><br>
-      <br><label>Blur: <input type="range" id="boxShadowBlur" min="0" max="50" value="10">
-        <span class="slider-value" id="boxShadowBlurValue">10</span></label><br><br>
-      <label>Horizontal Shift: <input type="range" id="boxShadowHorizontal" min="-50" max="50" value="0">
-        <span class="slider-value" id="boxShadowHorizontalValue">0</span></label><br>
-      <br><label>Vertical Shift: <input type="range" id="boxShadowVertical" min="-50" max="50" value="0">
-        <span class="slider-value" id="boxShadowVerticalValue">0</span></label><br>
-    </div>
-
-      <div class="group-3">
-        <label>Background Color: <input type="color" id="bgColor" value="#ffffff">&nbsp;&nbsp;or&nbsp;&nbsp;
-          <input type="text" class="color-input" id="bgColorHex" placeholder="Hex"></label><br>
-          <label for="shadowType">Shadow Type:
-      <select id="shadowType">
-        <option value="outset">Outset</option>
-        <option value="inset">Inset</option>
-      </select>
-    </label>
-      <div class="button-container">
-        <textarea id="codeOutput" rows="7"></textarea>
-        <!-- <button onclick="generateCode()" class="generate-button">Generate Code</button> -->
+            </select>
+          </div>
+          
+          <div class="control-row">
+            <label class="control-label">Border Size:</label>
+            <input type="range" id="borderSize" min="0" max="25" value="1">
+            <span class="slider-value" id="borderSizeValue">1px</span>
+          </div>
+          
+          <div class="control-row">
+            <label class="control-label">Border Radius:</label>
+            <input type="range" id="borderRadius" min="0" max="100" value="0">
+            <span class="slider-value" id="borderRadiusValue">0px</span>
+          </div>
+        </div>
+        
+        <!-- Background Controls -->
+        <div class="control-group">
+          <h3>
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor"/>
+            </svg>
+            Background
+          </h3>
+          
+          <div class="color-control">
+            <label class="color-label">Background Color:</label>
+            <input type="color" id="bgColor" value="#FFFFFF">
+            <input type="text" class="color-input" id="bgColorHex" placeholder="#FFFFFF" value="#FFFFFF">
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-  
-</div>
 
-  <script src="Shadow.js"></script>
+    <footer>
+      <p>Box Shadow Generator Tool &copy; 2025 | Made with ❤️</p>
+    </footer>
+  </div>
+
+  <script>
+    // Get all DOM elements
+    const elements = {
+      // Shadow controls
+      boxShadowColor: document.getElementById('boxShadowColor'),
+      boxShadowColorHex: document.getElementById('boxShadowColorHex'),
+      boxShadowHorizontal: document.getElementById('boxShadowHorizontal'),
+      boxShadowVertical: document.getElementById('boxShadowVertical'),
+      boxShadowBlur: document.getElementById('boxShadowBlur'),
+      boxShadowSpread: document.getElementById('boxShadowSpread'),
+      shadowType: document.getElementById('shadowType'),
+      
+      // Border controls
+      borderColor: document.getElementById('borderColor'),
+      borderColorHex: document.getElementById('borderColorHex'),
+      borderStyle: document.getElementById('borderStyle'),
+      borderSize: document.getElementById('borderSize'),
+      borderRadius: document.getElementById('borderRadius'),
+      borderButtons: document.querySelectorAll('.border-btn'),
+      
+      // Background controls
+      bgColor: document.getElementById('bgColor'),
+      bgColorHex: document.getElementById('bgColorHex'),
+      
+      // Value displays
+      boxShadowHorizontalValue: document.getElementById('boxShadowHorizontalValue'),
+      boxShadowVerticalValue: document.getElementById('boxShadowVerticalValue'),
+      boxShadowBlurValue: document.getElementById('boxShadowBlurValue'),
+      boxShadowSpreadValue: document.getElementById('boxShadowSpreadValue'),
+      borderSizeValue: document.getElementById('borderSizeValue'),
+      borderRadiusValue: document.getElementById('borderRadiusValue'),
+      
+      // Preview and output
+      preview: document.getElementById('preview'),
+      codeOutput: document.getElementById('codeOutput'),
+      
+      // Copy button
+      copyButton: document.getElementById('copyButton'),
+      
+      // Preset buttons
+      presetButtons: document.querySelectorAll('.preset-btn')
+    };
+    
+    // Update the preview and code output
+    function updatePreview() {
+      // Get shadow values
+      const horizontalValue = elements.boxShadowHorizontal.value + 'px';
+      const verticalValue = elements.boxShadowVertical.value + 'px';
+      const blurValue = elements.boxShadowBlur.value + 'px';
+      const spreadValue = elements.boxShadowSpread.value + 'px';
+      const shadowColor = elements.boxShadowColor.value;
+      const shadowType = elements.shadowType.value;
+      
+      // Get border values
+      const borderSize = elements.borderSize.value + 'px';
+      const borderStyle = elements.borderStyle.value;
+      const borderColor = elements.borderColor.value;
+      const borderRadius = elements.borderRadius.value + 'px';
+      
+      // Get background color
+      const bgColor = elements.bgColor.value;
+      
+      // Update value displays
+      elements.boxShadowHorizontalValue.textContent = horizontalValue;
+      elements.boxShadowVerticalValue.textContent = verticalValue;
+      elements.boxShadowBlurValue.textContent = blurValue;
+      elements.boxShadowSpreadValue.textContent = spreadValue;
+      elements.borderSizeValue.textContent = borderSize;
+      elements.borderRadiusValue.textContent = borderRadius;
+      
+      // Create box shadow value
+      let boxShadowValue = `${horizontalValue} ${verticalValue} ${blurValue} ${spreadValue} ${shadowColor}`;
+      if (shadowType === 'inset') {
+        boxShadowValue = `inset ${boxShadowValue}`;
+      }
+      
+      // Reset border styles
+      elements.preview.style.borderWidth = '0';
+      elements.preview.style.borderStyle = 'none';
+      
+      // Apply selected border sides
+      const selectedSides = [];
+      elements.borderButtons.forEach(btn => {
+        if (btn.classList.contains('active')) {
+          const side = btn.getAttribute('data-side');
+          selectedSides.push(side);
+          elements.preview.style[`border${side.charAt(0).toUpperCase() + side.slice(1)}Width`] = borderSize;
+          elements.preview.style[`border${side.charAt(0).toUpperCase() + side.slice(1)}Style`] = borderStyle;
+          elements.preview.style[`border${side.charAt(0).toUpperCase() + side.slice(1)}Color`] = borderColor;
+        }
+      });
+      
+      // If no sides selected, apply to all sides
+      if (selectedSides.length === 0) {
+        elements.preview.style.borderWidth = '0';
+      }
+      
+      // Apply other styles
+      elements.preview.style.backgroundColor = bgColor;
+      elements.preview.style.borderRadius = borderRadius;
+      elements.preview.style.boxShadow = boxShadowValue;
+      
+      // Generate CSS code
+      let borderCSS = '';
+      if (selectedSides.length > 0) {
+        selectedSides.forEach(side => {
+          borderCSS += `border-${side}-width: ${borderSize};\n`;
+          borderCSS += `border-${side}-style: ${borderStyle};\n`;
+          borderCSS += `border-${side}-color: ${borderColor};\n`;
+        });
+      } else {
+        borderCSS = 'border: none;\n';
+      }
+      
+      const formattedCSS = `/* CSS Box Shadow Code */
+${borderCSS}background-color: ${bgColor};
+border-radius: ${borderRadius};
+box-shadow: ${boxShadowValue};`;
+      
+      // Update code output
+      elements.codeOutput.value = formattedCSS;
+    }
+    
+    // Set up event listeners for all controls
+    function setupEventListeners() {
+      // Shadow controls
+      elements.boxShadowHorizontal.addEventListener('input', updatePreview);
+      elements.boxShadowVertical.addEventListener('input', updatePreview);
+      elements.boxShadowBlur.addEventListener('input', updatePreview);
+      elements.boxShadowSpread.addEventListener('input', updatePreview);
+      elements.shadowType.addEventListener('change', updatePreview);
+      
+      // Border controls
+      elements.borderSize.addEventListener('input', updatePreview);
+      elements.borderStyle.addEventListener('change', updatePreview);
+      elements.borderRadius.addEventListener('input', updatePreview);
+      
+      // Border buttons
+      elements.borderButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          this.classList.toggle('active');
+          updatePreview();
+        });
+      });
+      
+      // Color pickers
+      elements.boxShadowColor.addEventListener('input', function() {
+        elements.boxShadowColorHex.value = this.value;
+        updatePreview();
+      });
+      
+      elements.borderColor.addEventListener('input', function() {
+        elements.borderColorHex.value = this.value;
+        updatePreview();
+      });
+      
+      elements.bgColor.addEventListener('input', function() {
+        elements.bgColorHex.value = this.value;
+        updatePreview();
+      });
+      
+      // Hex inputs
+      elements.boxShadowColorHex.addEventListener('input', function() {
+        if (isValidHexColor(this.value)) {
+          elements.boxShadowColor.value = this.value;
+          updatePreview();
+        }
+      });
+      
+      elements.borderColorHex.addEventListener('input', function() {
+        if (isValidHexColor(this.value)) {
+          elements.borderColor.value = this.value;
+          updatePreview();
+        }
+      });
+      
+      elements.bgColorHex.addEventListener('input', function() {
+        if (isValidHexColor(this.value)) {
+          elements.bgColor.value = this.value;
+          updatePreview();
+        }
+      });
+      
+      // Copy button
+      elements.copyButton.addEventListener('click', function() {
+        elements.codeOutput.select();
+        document.execCommand('copy');
+        
+        // Visual feedback
+        const originalText = this.textContent;
+        this.textContent = 'Copied!';
+        this.style.backgroundColor = '#10b981';
+        
+        setTimeout(() => {
+          this.textContent = originalText;
+          this.style.backgroundColor = '';
+        }, 1500);
+      });
+      
+      // Preset buttons
+      elements.presetButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          applyPreset(this.dataset.preset);
+        });
+      });
+    }
+    
+    // Check if a string is a valid hex color
+    function isValidHexColor(hex) {
+      return /^#([0-9A-F]{3}){1,2}$/i.test(hex);
+    }
+    
+    // Apply preset configurations
+    function applyPreset(preset) {
+      // Reset active border buttons
+      elements.borderButtons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      switch(preset) {
+        case 'subtle':
+          elements.boxShadowHorizontal.value = 0;
+          elements.boxShadowVertical.value = 4;
+          elements.boxShadowBlur.value = 6;
+          elements.boxShadowSpread.value = 0;
+          elements.boxShadowColor.value = '#00000033';
+          elements.boxShadowColorHex.value = '#00000033';
+          elements.shadowType.value = 'outset';
+          elements.borderRadius.value = 8;
+          break;
+          
+        case 'medium':
+          elements.boxShadowHorizontal.value = 0;
+          elements.boxShadowVertical.value = 10;
+          elements.boxShadowBlur.value = 15;
+          elements.boxShadowSpread.value = -3;
+          elements.boxShadowColor.value = '#00000066';
+          elements.boxShadowColorHex.value = '#00000066';
+          elements.shadowType.value = 'outset';
+          elements.borderRadius.value = 12;
+          break;
+          
+        case 'harsh':
+          elements.boxShadowHorizontal.value = 0;
+          elements.boxShadowVertical.value = 20;
+          elements.boxShadowBlur.value = 25;
+          elements.boxShadowSpread.value = 5;
+          elements.boxShadowColor.value = '#000000';
+          elements.boxShadowColorHex.value = '#000000';
+          elements.shadowType.value = 'outset';
+          elements.borderRadius.value = 4;
+          break;
+          
+        case 'inset':
+          elements.boxShadowHorizontal.value = 0;
+          elements.boxShadowVertical.value = 5;
+          elements.boxShadowBlur.value = 15;
+          elements.boxShadowSpread.value = 0;
+          elements.boxShadowColor.value = '#00000066';
+          elements.boxShadowColorHex.value = '#00000066';
+          elements.shadowType.value = 'inset';
+          elements.borderRadius.value = 8;
+          break;
+          
+        case 'neon':
+          elements.boxShadowHorizontal.value = 0;
+          elements.boxShadowVertical.value = 0;
+          elements.boxShadowBlur.value = 20;
+          elements.boxShadowSpread.value = 10;
+          elements.boxShadowColor.value = '#8b5cf6';
+          elements.boxShadowColorHex.value = '#8b5cf6';
+          elements.shadowType.value = 'outset';
+          elements.borderRadius.value = 12;
+          elements.bgColor.value = '#ffffff';
+          elements.bgColorHex.value = '#ffffff';
+          break;
+          
+        case 'reset':
+          elements.boxShadowHorizontal.value = 0;
+          elements.boxShadowVertical.value = 0;
+          elements.boxShadowBlur.value = 10;
+          elements.boxShadowSpread.value = 0;
+          elements.boxShadowColor.value = '#000000';
+          elements.boxShadowColorHex.value = '#000000';
+          elements.shadowType.value = 'outset';
+          elements.borderSize.value = 1;
+          elements.borderStyle.value = 'solid';
+          elements.borderRadius.value = 0;
+          elements.borderColor.value = '#000000';
+          elements.borderColorHex.value = '#000000';
+          elements.bgColor.value = '#FFFFFF';
+          elements.bgColorHex.value = '#FFFFFF';
+          break;
+      }
+      
+      updatePreview();
+    }
+    
+    // Initialize the application
+    function init() {
+      setupEventListeners();
+      updatePreview();
+    }
+    
+    // Start the app when DOM is loaded
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
 </html>

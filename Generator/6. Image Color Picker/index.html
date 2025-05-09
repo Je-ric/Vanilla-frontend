@@ -4,6 +4,168 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Image Color Picker</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+  padding: 0;
+  margin: 0;
+}
+
+
+.container {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  max-width: 1200px;
+  padding: 2em;
+  border-radius: 8px;
+}
+
+
+.photo-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.image-container {
+  position: relative;
+  /* max-width: 100%;
+  max-height: 500px; */
+}
+
+#color-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+
+img {
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+
+.controls-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px
+}
+
+.btns-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  margin-bottom: 1.5em;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label,
+button {
+  width: 100%;
+  font-size: 0.8em;
+  background-color: black;
+  color: #ffffff;
+  padding: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+label:hover,
+button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid blue;
+}
+
+
+#result {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 1.5em;
+}
+
+#result div {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+#result input {
+  background-color: transparent;
+  font-size: 1em;
+  padding: 0.5em;
+  width: 100%;
+  color: #313b4c;
+  border: 1px solid #021637;
+  border-radius: 4px;
+}
+
+#result button {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+#picked-color-ref {
+  height: 100px;
+  border: 4px solid #d9e8ff;
+  border-radius: 8px;
+  background-color: #ffffff;
+  margin-top: 1em;
+}
+
+
+#custom-alert {
+  display: none;
+  background-color: #d9e8ff;
+  color: #025bee;
+  text-align: center;
+  padding: 0.5em;
+  margin-top: 1.5em;
+  border-radius: 4px;
+}
+
+span{
+  color: blue;
+}
+
+#error {
+  color: #ff725a;
+  text-align: center;
+  margin-top: 1em;
+}
+
+
+
+#palette-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.palette-color {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+}
+
+  </style>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
         fetch('../header.html')
@@ -52,6 +214,179 @@
     </div>
   </div>
   <!-- Script -->
-  <script src="script.js"></script>
+  <script src="script.js">
+    // Create Initial references
+let pickColor = document.getElementById("pick-color");
+let error = document.getElementById("error");
+let fileInput = document.getElementById("file");
+let image = document.getElementById("image");
+let hexValRef = document.getElementById("hex-val-ref");
+let rgbValRef = document.getElementById("rgb-val-ref");
+let customAlert = document.getElementById("custom-alert");
+let pickedColorRef = document.getElementById("picked-color-ref");
+let canvas = document.getElementById('color-canvas');
+let ctx = canvas.getContext('2d');
+let eyeDropper;
+
+// Function On Window Load
+window.onload = () => {
+  // Check if the browser supports eyedropper
+  if ("EyeDropper" in window) {
+    pickColor.classList.remove("hide");
+    eyeDropper = new EyeDropper();
+  } else {
+    error.classList.remove("hide");
+    error.innerText = "Your browser doesn't support Eyedropper API";
+    pickColor.classList.add("hide");
+    return false;
+  }
+
+  // Initialize canvas size
+  canvas.width = image.naturalWidth;
+  canvas.height = image.naturalHeight;
+};
+
+// Function to update the canvas size
+const updateCanvasSize = () => {
+  canvas.width = image.naturalWidth;
+  canvas.height = image.naturalHeight;
+};
+
+// Eyedropper logic
+const colorSelector = async () => {
+  const color = await eyeDropper
+    .open()
+    .then((colorValue) => {
+      error.classList.add("hide");
+      // Get the hex color code
+      let hexValue = colorValue.sRGBHex;
+      // Convert Hex Value To RGB
+      let rgbArr = [];
+      for (let i = 1; i < hexValue.length; i += 2) {
+        rgbArr.push(parseInt(hexValue[i] + hexValue[i + 1], 16));
+      }
+      let rgbValue = "rgb(" + rgbArr.join(",") + ")";
+      hexValRef.value = hexValue;
+      rgbValRef.value = rgbValue;
+      pickedColorRef.style.backgroundColor = hexValue;
+
+      // Ensure result is shown
+      result.style.display = "grid";
+    })
+    .catch((err) => {
+      error.classList.remove("hide");
+      // If user presses escape to close the eyedropper
+      if (err.toString().includes("AbortError")) {
+        error.innerText = "";
+      } else {
+        error.innerText = err;
+      }
+    });
+};
+
+pickColor.addEventListener("click", colorSelector);
+
+// Function to extract colors from the image
+const extractColors = () => {
+  let colors = [];
+  let numColors = 8;
+
+  // Create a temporary canvas to extract colors
+  let tempCanvas = document.createElement('canvas');
+  let tempCtx = tempCanvas.getContext('2d');
+  tempCanvas.width = image.naturalWidth;
+  tempCanvas.height = image.naturalHeight;
+
+  tempCtx.drawImage(image, 0, 0);
+
+  let imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+  let data = imageData.data;
+
+  let colorCounts = {};
+
+  for (let i = 0; i < data.length; i += 4) {
+    let r = data[i];
+    let g = data[i + 1];
+    let b = data[i + 2];
+    let a = data[i + 3];
+    if (a > 0) { // Ensure color is not transparent
+      let hex = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+      colorCounts[hex] = (colorCounts[hex] || 0) + 1;
+    }
+  }
+
+  // Sort colors by frequency
+  colors = Object.keys(colorCounts).sort((a, b) => colorCounts[b] - colorCounts[a]);
+
+  // Limit to 8 colors
+  colors = colors.slice(0, numColors);
+
+  // Display colors in palette
+  const paletteContainer = document.getElementById('palette-container');
+  paletteContainer.innerHTML = '';
+  colors.forEach(color => {
+    let colorDiv = document.createElement('div');
+    colorDiv.classList.add('palette-color');
+    colorDiv.style.backgroundColor = color;
+    colorDiv.title = color; // Show color code on hover
+    paletteContainer.appendChild(colorDiv);
+  });
+};
+
+// Function to handle color picking on canvas click
+const pickColorFromCanvas = (event) => {
+  let rect = canvas.getBoundingClientRect();
+  let x = event.clientX - rect.left;
+  let y = event.clientY - rect.top;
+
+  let imageData = ctx.getImageData(x, y, 1, 1).data;
+  let r = imageData[0];
+  let g = imageData[1];
+  let b = imageData[2];
+  let a = imageData[3];
+
+  if (a > 0) { // Check if color is not transparent
+    let hexValue = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+    let rgbValue = `rgb(${r},${g},${b})`;
+
+    hexValRef.value = hexValue;
+    rgbValRef.value = rgbValue;
+    pickedColorRef.style.backgroundColor = hexValue;
+
+    // Ensure result is shown
+    result.style.display = "grid";
+  }
+};
+
+// Add click event listener to the canvas
+canvas.addEventListener('click', pickColorFromCanvas);
+
+// Function to handle file input change
+fileInput.onchange = () => {
+  let reader = new FileReader();
+  reader.readAsDataURL(fileInput.files[0]);
+  reader.onload = () => {
+    image.setAttribute("src", reader.result);
+    image.onload = () => {
+      updateCanvasSize(); // Update canvas size when new image is loaded
+      extractColors(); // Update color palette when new image is uploaded
+    };
+  };
+};
+
+// Function to copy the color code
+const copy = (textId) => {
+  // Selects the text in the <input> element
+  document.getElementById(textId).select();
+  // Copies the selected text to clipboard
+  document.execCommand("copy");
+  // Display Alert
+  customAlert.style.transform = "scale(1)";
+  setTimeout(() => {
+    customAlert.style.transform = "scale(0)";
+  }, 2000);
+};
+
+  </script>
 </body>
 </html>

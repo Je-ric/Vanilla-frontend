@@ -2,230 +2,666 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Filter Generator</title>
-  <link rel="stylesheet" href="Filter.css">
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        fetch('../header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-container').innerHTML = data;
-            });
-    });
-</script>
-<style>
-  body {
-  margin: 0;
-  padding: 0;
-  height: 100vh; /* Ensure the body takes full viewport height */
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(90deg, #2cd9ff, #7effb2, #ffbb7e, #ff7ebd, #cd7eff, #7e9eff);
-  background-size: 600% 600%;
-  animation: moving 9.5s infinite ease-in-out;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Filter Generator | Professional Tool</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <style>
+    :root {
+      --primary-color: #3b82f6;
+      --secondary-color: #1d4ed8;
+      --accent-color: #93c5fd;
+      --light-bg: #f8fafc;
+      --dark-bg: #1e293b;
+      --text-color: #334155;
+      --border-radius: 12px;
+      --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s ease;
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-@keyframes moving {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-.container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    .app-container {
+      display: flex;
+      flex-direction: row;
+      height: calc(100vh - 80px);
+      position: relative;
+      overflow: hidden;
+    }
 
-.box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-.preview img {
-  height: 260px;
-  border: 1px solid #000;
-  background-color: white;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
+    header h1 {
+      color: white;
+      font-size: 2.2rem;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.controls {  
-  display: grid;
-  grid-template-columns: 30% 30% 40%;
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
-}
+    header p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+    }
 
-.group-1, .group-2, .group-3 {
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 5px;
-}
+    .main-content {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+    }
 
-.group-3 {
-  display: flex;
-  flex-direction: column;
-  /* margin-top: 20px; */
-}
+    .preview-container {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 20px;
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-#codeOutput {
-  width: 300px;
-  resize: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+    .preview {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
-</style>
+    .preview img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 8px;
+      transition: filter 0.3s ease;
+    }
+
+    .image-upload {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .upload-btn-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .btn {
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      background-color: white;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .upload-btn-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .code-output-container {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .code-output-container h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    #codeOutput {
+      width: 100%;
+      min-height: 120px;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      background-color: #f8fafc;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      resize: none;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .copy-btn:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .sidebar {
+      width: 350px;
+      background-color: white;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar h2 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .filter-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .filter-group {
+      background-color: #f8fafc;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .filter-group h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-control {
+      margin-bottom: 15px;
+    }
+
+    .filter-control:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .filter-value {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 8px;
+      border-radius: 10px;
+      background: #e2e8f0;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      cursor: pointer;
+    }
+
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .preset-btn {
+      padding: 8px 16px;
+      background-color: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      flex: 1;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .preset-btn:hover {
+      background-color: var(--accent-color);
+      color: var(--secondary-color);
+    }
+
+    .reset-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f1f5f9;
+      color: var(--text-color);
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .reset-btn:hover {
+      background-color: #e2e8f0;
+    }
+
+    .reset-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .app-container {
+        flex-direction: column;
+        height: auto;
+      }
+      
+      .sidebar {
+        width: 100%;
+        order: 2;
+      }
+      
+      .main-content {
+        order: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .preview-container, .code-output-container {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="header-container"></div>
-  <div class="container">
+  <header>
+    <h1>CSS Filter Generator</h1>
+    <p>Create beautiful image filters with this easy-to-use tool</p>
+  </header>
 
-    <div class="box">
-      <div class="preview" id="preview">
-        <img id="previewImage" src="default_image.png" alt="">
+  <div class="app-container">
+    <div class="main-content">
+      <div class="preview-container">
+        <div class="preview">
+          <img id="previewImage" src="https://images.unsplash.com/photo-1682687982501-1e58ab814714" alt="Preview Image">
+        </div>
+        <div class="image-upload">
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload Your Image</button>
+            <input type="file" id="imageInput" accept="image/*" />
+          </div>
+        </div>
+      </div>
+
+      <div class="code-output-container">
+        <h3>Generated CSS Code</h3>
+        <textarea id="codeOutput" readonly></textarea>
+        <button id="copyButton" class="copy-btn">Copy to Clipboard</button>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>Filter Controls</h2>
+      
+      <div class="preset-buttons">
+        <button class="preset-btn" data-preset="normal">Normal</button>
+        <button class="preset-btn" data-preset="vintage">Vintage</button>
+        <button class="preset-btn" data-preset="bw">B&W</button>
+        <button class="preset-btn" data-preset="dramatic">Dramatic</button>
       </div>
       
-    </div>
-
-    <div class="controls">
-
-      <div class="group-1">
-      <label for="blurRadius">Blur Radius:</label>
-      <input type="range" id="blurRadius" class="slider" min="0" max="10" value="0">
-      <span class="slider-value" id="blurRadiusValue">0px</span><br><br>
+      <div class="filter-controls">
+        <div class="filter-group">
+          <h3>Basic Adjustments</h3>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Brightness</span>
+              <span class="filter-value" id="brightnessValue">100%</span>
+            </div>
+            <input type="range" id="brightness" class="slider" min="0" max="200" value="100">
+          </div>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Contrast</span>
+              <span class="filter-value" id="contrastValue">100%</span>
+            </div>
+            <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
+          </div>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Saturation</span>
+              <span class="filter-value" id="saturateValue">100%</span>
+            </div>
+            <input type="range" id="saturate" class="slider" min="0" max="200" value="100">
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h3>Color Effects</h3>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Grayscale</span>
+              <span class="filter-value" id="grayscaleValue">0%</span>
+            </div>
+            <input type="range" id="grayscale" class="slider" min="0" max="100" value="0">
+          </div>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Sepia</span>
+              <span class="filter-value" id="sepiaValue">0%</span>
+            </div>
+            <input type="range" id="sepia" class="slider" min="0" max="100" value="0">
+          </div>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Hue Rotate</span>
+              <span class="filter-value" id="hueRotateValue">0deg</span>
+            </div>
+            <input type="range" id="hueRotate" class="slider" min="0" max="360" value="0">
+          </div>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Invert</span>
+              <span class="filter-value" id="invertValue">0%</span>
+            </div>
+            <input type="range" id="invert" class="slider" min="0" max="100" value="0">
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h3>Advanced Effects</h3>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Blur</span>
+              <span class="filter-value" id="blurRadiusValue">0px</span>
+            </div>
+            <input type="range" id="blurRadius" class="slider" min="0" max="20" value="0">
+          </div>
+          
+          <div class="filter-control">
+            <div class="filter-label">
+              <span>Opacity</span>
+              <span class="filter-value" id="opacityValue">100%</span>
+            </div>
+            <input type="range" id="opacity" class="slider" min="0" max="100" value="100">
+          </div>
+        </div>
+      </div>
       
-      <label for="brightness">Brightness:</label>
-      <input type="range" id="brightness" class="slider" min="0" max="200" value="100">
-      <span class="slider-value" id="brightnessValue">100%</span><br><br>
-      
-      <label for="contrast">Contrast:</label>
-      <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
-      <span class="slider-value" id="contrastValue">100%</span><br><br>
-    
-      <label for="grayscale">Grayscale:</label>
-      <input type="range" id="grayscale" class="slider" min="0" max="100" value="0">
-      <span class="slider-value" id="grayscaleValue">0%</span><br><br>
-
-      <label for="hueRotate">Hue Rotate:</label>
-      <input type="range" id="hueRotate" class="slider" min="0" max="360" value="0">
-      <span class="slider-value" id="hueRotateValue">0deg</span><br><br>
-    </div>
-
-    <div class="group-2">
-      <label for="invert">Invert:</label>
-      <input type="range" id="invert" class="slider" min="0" max="100" value="0">
-      <span class="slider-value" id="invertValue">0%</span><br><br>
-
-      <label for="opacity">Opacity:</label>
-      <input type="range" id="opacity" class="slider" min="0" max="100" value="100">
-      <span class="slider-value" id="opacityValue">100%</span><br><br>
-      
-      <label for="saturate">Saturate:</label>
-      <input type="range" id="saturate" class="slider" min="0" max="200" value="100">
-      <span class="slider-value" id="saturateValue">100%</span><br><br>
-      
-      <label for="sepia">Sepia:</label>
-      <input type="range" id="sepia" class="slider" min="0" max="100" value="0">
-      <span class="slider-value" id="sepiaValue">0%</span><br><br>
-      <button>Reset</button>
-    </div>
-
- 
-    <div class="group-3">
-   
-    <div class="button-container">
-      <textarea id="codeOutput" rows="11"></textarea>
-    </div>
-    <div>
-      <label for="imageInput">Change Image:</label>
-      <input type="file" id="imageInput">
+      <button id="resetButton" class="reset-btn">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+          <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+        Reset All Filters
+      </button>
     </div>
   </div>
-  </div>
 
-</div>
-
-  
-  <script src="Filter.js">
+  <script>
+    // Get all DOM elements
     const previewImage = document.getElementById('previewImage');
-const sliders = document.querySelectorAll('.slider');
-const codeOutput = document.querySelector('textarea');
-const resetButton = document.querySelector('button');
+    const sliders = document.querySelectorAll('.slider');
+    const codeOutput = document.getElementById('codeOutput');
+    const resetButton = document.getElementById('resetButton');
+    const copyButton = document.getElementById('copyButton');
+    const imageInput = document.getElementById('imageInput');
+    const presetButtons = document.querySelectorAll('.preset-btn');
 
-const initialValues = {};
-sliders.forEach(slider => {
-  initialValues[slider.id] = slider.value;
-});
+    // Store initial values for reset functionality
+    const initialValues = {};
+    sliders.forEach(slider => {
+      initialValues[slider.id] = slider.value;
+    });
 
-function applyFilters() {
-  const blurRadius = document.getElementById('blurRadius').value + 'px';
-  const brightness = document.getElementById('brightness').value + '%';
-  const contrast = document.getElementById('contrast').value + '%';
-  const grayscale = document.getElementById('grayscale').value + '%';
-  const hueRotate = document.getElementById('hueRotate').value + 'deg';
-  const invert = document.getElementById('invert').value + '%';
-  const opacity = document.getElementById('opacity').value + '%';
-  const saturate = document.getElementById('saturate').value + '%';
-  const sepia = document.getElementById('sepia').value + '%';
+    // Apply filters to the preview image
+    function applyFilters() {
+      // Get all filter values
+      const blurRadius = document.getElementById('blurRadius').value + 'px';
+      const brightness = document.getElementById('brightness').value + '%';
+      const contrast = document.getElementById('contrast').value + '%';
+      const grayscale = document.getElementById('grayscale').value + '%';
+      const hueRotate = document.getElementById('hueRotate').value + 'deg';
+      const invert = document.getElementById('invert').value + '%';
+      const opacity = document.getElementById('opacity').value + '%';
+      const saturate = document.getElementById('saturate').value + '%';
+      const sepia = document.getElementById('sepia').value + '%';
 
-  previewImage.style.filter = `blur(${blurRadius}) brightness(${brightness}) contrast(${contrast}) grayscale(${grayscale}) hue-rotate(${hueRotate}) invert(${invert}) opacity(${opacity}) saturate(${saturate}) sepia(${sepia})`;
+      // Apply filters to the image
+      previewImage.style.filter = `blur(${blurRadius}) brightness(${brightness}) contrast(${contrast}) grayscale(${grayscale}) hue-rotate(${hueRotate}) invert(${invert}) opacity(${opacity}) saturate(${saturate}) sepia(${sepia})`;
 
-  updateCodeOutput();
-}
+      // Update the display values
+      document.getElementById('blurRadiusValue').textContent = blurRadius;
+      document.getElementById('brightnessValue').textContent = brightness;
+      document.getElementById('contrastValue').textContent = contrast;
+      document.getElementById('grayscaleValue').textContent = grayscale;
+      document.getElementById('hueRotateValue').textContent = hueRotate;
+      document.getElementById('invertValue').textContent = invert;
+      document.getElementById('opacityValue').textContent = opacity;
+      document.getElementById('saturateValue').textContent = saturate;
+      document.getElementById('sepiaValue').textContent = sepia;
 
-function updateCodeOutput() {
-  codeOutput.value = `
-  filter: blur(${document.getElementById('blurRadius').value}px) 
-          brightness(${document.getElementById('brightness').value}%) 
-          contrast(${document.getElementById('contrast').value}%) 
-          grayscale(${document.getElementById('grayscale').value}%) 
-          hue-rotate(${document.getElementById('hueRotate').value}deg) 
-          invert(${document.getElementById('invert').value}%) 
-          opacity(${document.getElementById('opacity').value}%) 
-          saturate(${document.getElementById('saturate').value}%) 
-          sepia(${document.getElementById('sepia').value}%);  `;
-}
+      // Update the code output
+      updateCodeOutput();
+    }
 
-// Call applyFilters once on page load
-applyFilters();
+    // Update the code output textarea
+    function updateCodeOutput() {
+      codeOutput.value = `/* CSS Filter Code */
+filter: blur(${document.getElementById('blurRadius').value}px) 
+        brightness(${document.getElementById('brightness').value}%) 
+        contrast(${document.getElementById('contrast').value}%) 
+        grayscale(${document.getElementById('grayscale').value}%) 
+        hue-rotate(${document.getElementById('hueRotate').value}deg) 
+        invert(${document.getElementById('invert').value}%) 
+        opacity(${document.getElementById('opacity').value}%) 
+        saturate(${document.getElementById('saturate').value}%) 
+        sepia(${document.getElementById('sepia').value}%);
 
-sliders.forEach(slider => {
-  slider.addEventListener('input', applyFilters);
-});
-const imageInput = document.getElementById('imageInput');
-imageInput.addEventListener('change', function(event) {
-  const file = event.target.files[0];
-  const reader = new FileReader();
+/* For older browsers */
+-webkit-filter: blur(${document.getElementById('blurRadius').value}px) 
+               brightness(${document.getElementById('brightness').value}%) 
+               contrast(${document.getElementById('contrast').value}%) 
+               grayscale(${document.getElementById('grayscale').value}%) 
+               hue-rotate(${document.getElementById('hueRotate').value}deg) 
+               invert(${document.getElementById('invert').value}%) 
+               opacity(${document.getElementById('opacity').value}%) 
+               saturate(${document.getElementById('saturate').value}%) 
+               sepia(${document.getElementById('sepia').value}%);`;
+    }
 
-  reader.onload = function(e) {
-    // Update the id of the image element to 'previewImage'
-    document.getElementById('previewImage').src = e.target.result;
-  };
+    // Apply preset filter configurations
+    function applyPreset(preset) {
+      switch(preset) {
+        case 'normal':
+          // Reset to default values
+          sliders.forEach(slider => {
+            slider.value = initialValues[slider.id];
+          });
+          break;
+          
+        case 'vintage':
+          document.getElementById('brightness').value = 110;
+          document.getElementById('contrast').value = 85;
+          document.getElementById('saturate').value = 75;
+          document.getElementById('sepia').value = 40;
+          document.getElementById('grayscale').value = 0;
+          document.getElementById('hueRotate').value = 0;
+          document.getElementById('invert').value = 0;
+          document.getElementById('blurRadius').value = 0;
+          document.getElementById('opacity').value = 100;
+          break;
+          
+        case 'bw':
+          document.getElementById('brightness').value = 100;
+          document.getElementById('contrast').value = 120;
+          document.getElementById('saturate').value = 0;
+          document.getElementById('sepia').value = 0;
+          document.getElementById('grayscale').value = 100;
+          document.getElementById('hueRotate').value = 0;
+          document.getElementById('invert').value = 0;
+          document.getElementById('blurRadius').value = 0;
+          document.getElementById('opacity').value = 100;
+          break;
+          
+        case 'dramatic':
+          document.getElementById('brightness').value = 110;
+          document.getElementById('contrast').value = 150;
+          document.getElementById('saturate').value = 120;
+          document.getElementById('sepia').value = 0;
+          document.getElementById('grayscale').value = 0;
+          document.getElementById('hueRotate').value = 0;
+          document.getElementById('invert').value = 0;
+          document.getElementById('blurRadius').value = 0;
+          document.getElementById('opacity').value = 100;
+          break;
+      }
+      
+      applyFilters();
+    }
 
-  reader.readAsDataURL(file);
-});
+    // Set up event listeners
+    function setupEventListeners() {
+      // Add input event listeners to all sliders
+      sliders.forEach(slider => {
+        slider.addEventListener('input', applyFilters);
+      });
+      
+      // Image upload functionality
+      imageInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            previewImage.src = e.target.result;
+          };
+          
+          reader.readAsDataURL(file);
+        }
+      });
+      
+      // Reset button functionality
+      resetButton.addEventListener('click', function() {
+        sliders.forEach(slider => {
+          slider.value = initialValues[slider.id];
+        });
+        
+        applyFilters();
+      });
+      
+      // Copy button functionality
+      copyButton.addEventListener('click', function() {
+        codeOutput.select();
+        document.execCommand('copy');
+        
+        // Visual feedback
+        const originalText = this.textContent;
+        this.textContent = 'Copied!';
+        this.style.backgroundColor = '#10b981';
+        
+        setTimeout(() => {
+          this.textContent = originalText;
+          this.style.backgroundColor = '';
+        }, 1500);
+      });
+      
+      // Preset buttons
+      presetButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          applyPreset(this.dataset.preset);
+        });
+      });
+    }
 
+    // Initialize the application
+    function init() {
+      setupEventListeners();
+      applyFilters();
+    }
 
-resetButton.addEventListener('click', function() {
-  sliders.forEach(slider => {
-    slider.value = initialValues[slider.id];
-  });
-
-  applyFilters();
-  previewImage.style.backgroundImage = '';
-  // Update the code output after resetting
-  updateCodeOutput();
-});
-
+    // Start the app when DOM is loaded
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>

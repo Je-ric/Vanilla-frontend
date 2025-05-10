@@ -1,0 +1,67 @@
+
+//     function insertTable() {
+//             const tableHTML = '<table><tr><td></td><td></td></tr><tr><td></td><td></td></tr></table>';
+//             execCmd('insertHTML', tableHTML);
+//         }
+
+//         function addRow() {
+//             const table = document.querySelector('table');
+//             if (table) {
+//                 const row = table.insertRow();
+//                 for (let i = 0; i < table.rows[0].cells.length; i++) {
+//                     row.insertCell();
+//                 }
+//             } else {
+//                 alert('Please insert a table first.');
+//             }
+//         }
+
+//         function addColumn() {
+//             const table = document.querySelector('table');
+//             if (table) {
+//                 for (let i = 0; i < table.rows.length; i++) {
+//                     table.rows[i].insertCell();
+//                 }
+//             } else {
+//                 alert('Please insert a table first.');
+//             }
+//         }
+
+//         function removeRow() {
+//   const table = document.querySelector('table');
+//   if (table) {
+//     if (table.rows.length > 1) {
+//       table.deleteRow(-1); // Removes the last row
+//     } else {
+//       alert('Cannot remove all rows. A table must have at least one row.');
+//     }
+//   } else {
+//     alert('Please insert a table first.');
+//   }
+// }
+
+// function removeColumn() {
+//   const table = document.querySelector('table');
+//   if (table) {
+//     if (table.rows[0].cells.length > 1) {
+//       for (let i = 0; i < table.rows.length; i++) {
+//         table.rows[i].deleteCell(-1); // Removes the last column
+//       }
+//     } else {
+//       alert('Cannot remove all columns. A table must have at least one column.');
+//     }
+//   } else {
+//     alert('Please insert a table first.');
+//   }
+// }
+
+
+
+
+      <!-- Insert Table -->
+      <!-- <button onclick="insertTable()"><i class="fas fa-table"></i></button>
+      <button onclick="addRow()"><i class="fas fa-plus-circle"></i> Add Row</button>
+      <button onclick="addColumn()"><i class="fas fa-columns"></i> Add Column</button>
+      <button onclick="removeRow()"><i class="fas fa-minus-circle"></i> Remove Row</button>
+<button onclick="removeColumn()"><i class="fas fa-minus-circle"></i> Remove Column</button> -->
+

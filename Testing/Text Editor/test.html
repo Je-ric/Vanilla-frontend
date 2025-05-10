@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rich Text Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .toolbar button, .toolbar select, .toolbar input {
+            border: 1px solid #ccc;
+            padding: 5px;
+            cursor: pointer;
+            background: white;
+            border-radius: 3px;
+        }
+        .toolbar input[type="color"] {
+            width: 30px;
+            height: 30px;
+            padding: 2px;
+        }
+        .editor {
+            margin-top: 10px;
+            padding: 10px;
+            min-height: 300px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: auto;
+        }
+
+        hr {
+      margin: 16px 0;
+      border-top: 1px solid #ccc;
+    }
+    pre code {
+      display: block;
+      background-color: #f3f4f6;
+      padding: 16px;
+      border-radius: 8px;
+    }
+    blockquote {
+      border-left: 4px solid #ccc;
+      padding-left: 16px;
+      font-style: italic;
+      color: #555;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="toolbar" id="toolbar">
+        <select onchange="execCmd('fontName', this.value)">
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+        </select>
+
+        <select onchange="execCmd('fontSize', this.value)">
+            <option value="1">Small</option>
+            <option value="3" selected>Normal</option>
+            <option value="5">Large</option>
+            <option value="7">Huge</option>
+        </select>
+
+        <button onclick="execCmd('bold')"><i class="fas fa-bold"></i></button>
+        <button onclick="execCmd('italic')"><i class="fas fa-italic"></i></button>
+        <button onclick="execCmd('underline')"><i class="fas fa-underline"></i></button>
+        <button onclick="execCmd('strikeThrough')"><i class="fas fa-strikethrough"></i></button>
+
+        <input type="color" id="textColor" onchange="applyStyle('color', this.value)">
+        <input type="color" id="highlightColor" onchange="applyStyle('backgroundColor', this.value)">
+
+
+        <button onclick="execCmd('justifyLeft')"><i class="fas fa-align-left"></i></button>
+        <button onclick="execCmd('justifyCenter')"><i class="fas fa-align-center"></i></button>
+        <button onclick="execCmd('justifyRight')"><i class="fas fa-align-right"></i></button>
+        <button onclick="execCmd('justifyFull')"><i class="fas fa-align-justify"></i></button>
+
+        <button onclick="execCmd('insertUnorderedList')"><i class="fas fa-list-ul"></i></button>
+        <button onclick="execCmd('insertOrderedList')"><i class="fas fa-list-ol"></i></button>
+
+        <button onclick="execCmd('outdent')"><i class="fas fa-outdent"></i></button>
+        <button onclick="execCmd('indent')"><i class="fas fa-indent"></i></button>
+
+        <select onchange="formatHeading(this.value)">
+            <option value="">Paragraph</option>
+            <option value="h1">H1</option>
+            <option value="h2">H2</option>
+            <option value="h3">H3</option>
+            <option value="h4">H4</option>
+            <option value="h5">H5</option>
+            <option value="h6">H6</option>
+        </select>
+
+        <button onclick="execCmd('formatBlock', 'blockquote')"><i class="fas fa-quote-left"></i></button>
+        <button onclick="execCmd('formatBlock', 'pre')"><i class="fas fa-code"></i></button>
+
+        <button onclick="execCmd('undo')"><i class="fas fa-undo"></i></button>
+        <button onclick="execCmd('redo')"><i class="fas fa-redo"></i></button>
+
+        <button onclick="execCmd('removeFormat')"><i class="fas fa-eraser"></i></button>
+
+        <button onclick="window.print()"><i class="fas fa-print"></i></button>
+        <button id="hr-btn"><i class="fas fa-minus"></i></button>
+        <button id="quote-btn"><i class="fas fa-quote-left"></i></button>
+        <button id="code-btn"><i class="fas fa-code"></i></button>
+        <button onclick="insertLink()"><i class="fas fa-link"></i></button>
+
+
+        <button onclick="insertImage()"><i class="fas fa-image"></i> Insert Image</button>
+        <button onclick="insertTable()"><i class="fas fa-table"></i> Insert Table</button>
+        <button onclick="addRow()">Add Row</button>
+        <button onclick="addColumn()">Add Column</button>
+        <button onclick="removeRow()">Remove Row</button>
+        <button onclick="removeColumn()">Remove Column</button>
+    
+    </div>
+        
+    <div id="editor" class="editor" contenteditable="true"></div>
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;" />
+
+    <div class="info">
+        <p>Word Count: <span id="wordCount">0</span></p>
+    </div>
+
+    <script>
+        function execCmd(command, value = null) {
+            document.execCommand(command, false, value);
+        }
+
+        function formatHeading(tag) {
+            execCmd('formatBlock', tag);
+        }
+
+        function applyStyle(styleProperty, value) {
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+
+        const range = selection.getRangeAt(0);
+        if (selection.isCollapsed) {
+            // If no text is selected, create a span for applying styles
+            const span = document.createElement('span');
+            span.style[styleProperty] = value;
+            span.appendChild(document.createTextNode('\u200B')); // Zero-width space
+            range.insertNode(span);
+            range.setStart(span, 0);
+            range.setEnd(span, 1);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        } else {
+            // If text is selected, wrap it with a styled span
+            const span = document.createElement('span');
+            span.style[styleProperty] = value;
+            range.surroundContents(span);
+        }
+        updateWordCount();
+        }
+
+        function updateWordCount() {
+        const text = document.getElementById('editor').innerText.trim();
+        const words = text.length > 0 ? text.split(/\s+/).length : 0;
+        document.getElementById('wordCount').innerText = words;
+        }
+
+        document.getElementById('editor').addEventListener('input', updateWordCount);
+
+        function insertLink() {
+        const url = prompt('Enter the URL:');
+        if (url) execCmd('createLink', url);
+        }
+
+        document.getElementById('hr-btn').addEventListener('click', function() {
+        document.execCommand('insertHTML', false, '<hr class="my-4 border-t border-gray-300">');
+        });
+
+        document.getElementById('code-btn').addEventListener('click', function() {
+        document.execCommand('insertHTML', false, '<pre class="bg-gray-100 p-4 rounded my-4"><code>// Your code here</code></pre><p><br></p>');
+        });
+
+        document.getElementById('quote-btn').addEventListener('click', function() {
+        document.execCommand('insertHTML', false, '<blockquote class="border-l-4 border-gray-300 pl-4 italic my-4">Quote text here</blockquote><p><br></p>');
+        });
+
+    </script>
+
+</body>
+</html>
+
+<!-- <script>
+    function insertImage() {
+      const fileInput = document.getElementById('imageUpload');
+      fileInput.click();
+      fileInput.onchange = function() {
+        const file = fileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'resizable';
+            img.style.width = '150px';
+            img.style.height = '150px';
+            img.style.position = 'relative';
+
+            makeDraggableAndResizable(img);
+            document.getElementById('editor').appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    }
+
+    function makeDraggableAndResizable(element) {
+      let offsetX, offsetY, isDragging = false, isResizing = false;
+
+      element.addEventListener('mousedown', (e) => {
+        const rect = element.getBoundingClientRect();
+        if (e.clientX >= rect.right - 16 && e.clientY >= rect.bottom - 16) {
+          isResizing = true;
+        } else {
+          isDragging = true;
+          offsetX = e.clientX - rect.left;
+          offsetY = e.clientY - rect.top;
+        }
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          const editor = document.getElementById('editor');
+          const editorRect = editor.getBoundingClientRect();
+
+          let left = e.clientX - offsetX - editorRect.left;
+          let top = e.clientY - offsetY - editorRect.top;
+
+          left = Math.max(0, Math.min(left, editorRect.width - element.offsetWidth));
+          top = Math.max(0, Math.min(top, editorRect.height - element.offsetHeight));
+
+          element.style.left = `${left}px`;
+          element.style.top = `${top}px`;
+        }
+
+        if (isResizing) {
+          const width = Math.max(50, e.clientX - element.getBoundingClientRect().left);
+          const height = Math.max(50, e.clientY - element.getBoundingClientRect().top);
+
+          element.style.width = `${width}px`;
+          element.style.height = `${height}px`;
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        isResizing = false;
+      });
+    }
+
+    function insertTable() {
+      const tableHTML = "<table><tr><td>Cell 1</td><td>Cell 2</td></tr><tr><td>Cell 3</td><td>Cell 4</td></tr></table>";
+      document.getElementById('editor').insertAdjacentHTML('beforeend', tableHTML);
+    }
+
+    function addRow() {
+      const table = document.querySelector("table");
+      if (table) {
+        const row = table.insertRow();
+        for (let i = 0; i < table.rows[0].cells.length; i++) {
+          row.insertCell().textContent = `Cell ${row.rowIndex + 1}-${i + 1}`;
+        }
+      }
+    }
+
+    function addColumn() {
+      const table = document.querySelector("table");
+      if (table) {
+        for (let i = 0; i < table.rows.length; i++) {
+          table.rows[i].insertCell().textContent = `Cell ${i + 1}-${table.rows[i].cells.length}`;
+        }
+      }
+    }
+
+    function removeRow() {
+      const table = document.querySelector("table");
+      if (table && table.rows.length > 0) table.deleteRow(-1);
+    }
+
+    function removeColumn() {
+      const table = document.querySelector("table");
+      if (table && table.rows[0].cells.length > 0) {
+        for (let i = 0; i < table.rows.length; i++) {
+          table.rows[i].deleteCell(-1);
+        }
+      }
+    }
+  </script> -->

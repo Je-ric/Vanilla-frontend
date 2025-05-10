@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-blue-200 flex justify-center items-center h-screen">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-96">
+        <h1 class="text-2xl font-bold text-center mb-4">Weather App</h1>
+        
+        <!-- Search -->
+        <form id="weatherForm" class="flex space-x-2 mb-4">
+            <input type="text" id="cityInput" class="w-full p-2 border rounded" placeholder="Enter a city name">
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded">Search</button>
+            <button id="locationBtn" class="bg-gray-500 text-white p-2 rounded">📍</button>
+        </form>
+
+        <!-- Current Weather -->
+        <div id="weatherResults" class="text-center"></div>
+
+        <!-- Weekly Forecast -->
+        <div id="weeklyForecast" class="mt-4"></div>
+    </div>
+
+    <script>
+        const API_KEY = "9505fd1df737e20152fbd78cdb289b6a";
+        const form = document.getElementById("weatherForm");
+        const cityInput = document.getElementById("cityInput");
+        const weatherResults = document.getElementById("weatherResults");
+        const weeklyForecast = document.getElementById("weeklyForecast");
+        const locationBtn = document.getElementById("locationBtn");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (cityInput.value.trim()) {
+                getWeather(cityInput.value.trim());
+            }
+        });
+
+        locationBtn.addEventListener("click", () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => getWeatherByCoords(position.coords.latitude, position.coords.longitude),
+                    (error) => alert("Location access denied")
+                );
+            }
+        });
+
+        function getWeather(city) {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+                .then(res => res.json())
+                .then(data => displayWeather(data))
+                .catch(() => weatherResults.innerHTML = "<p class='text-red-500'>City not found</p>");
+        }
+
+        function getWeatherByCoords(lat, lon) {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`)
+                .then(res => res.json())
+                .then(data => displayWeather(data));
+        }
+
+        function displayWeather(data) {
+            weatherResults.innerHTML = `
+                <h2 class="text-xl font-bold">${data.name}, ${data.sys.country}</h2>
+                <img src="https://flagsapi.com/GB/shiny/32.png">
+                <p class="text-lg">${data.weather[0].description}</p>
+                <p class="text-2xl font-bold">${data.main.temp}°C</p>
+                <div class="flex justify-center space-x-4 mt-2">
+                    <p>🌬️ Wind: ${data.wind.speed} m/s</p>
+                    <p>💧 Humidity: ${data.main.humidity}%</p>
+                    <p>🌡️ Pressure: ${data.main.pressure} hPa</p>
+                </div>
+            `;
+            getWeeklyForecast(data.coord.lat, data.coord.lon);
+        }
+
+        function getWeeklyForecast(lat, lon) {
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`)
+                .then(res => res.json())
+                .then(data => {
+                    weeklyForecast.innerHTML = "<h3 class='text-lg font-bold mt-4'>Weekly Forecast</h3>";
+                    const daily = {};
+                    data.list.forEach(entry => {
+                        let date = entry.dt_txt.split(" ")[0];
+                        if (!daily[date]) {
+                            daily[date] = entry;
+                        }
+                    });
+
+                    Object.values(daily).forEach(day => {
+                        weeklyForecast.innerHTML += `
+                            <div class="flex justify-between items-center bg-gray-100 p-2 rounded mt-2">
+                                <p>${new Date(day.dt_txt).toDateString()}</p>
+                                <p>${day.main.temp}°C</p>
+                                <p>${day.weather[0].description}</p>
+                            </div>
+                        `;
+                    });
+                });
+        }
+    </script>
+</body>
+</html>

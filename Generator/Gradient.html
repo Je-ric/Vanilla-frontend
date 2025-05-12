@@ -4,209 +4,644 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gradient Generator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #818cf8;
+            --accent-color: #c7d2fe;
+            --dark-text: #1e293b;
+            --light-text: #f8fafc;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-    margin: 0;
-    height: 100vh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(45deg, black, white);
-    color: #f8f8f8; 
-}
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, black, white);
+            color: var(--light-text);
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
 
-.container {
-    mix-blend-mode: normal;
-}
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1rem;
+            flex: 1;
+        }
 
-.controls {
-width: 550px;
-padding: 20px;
-background-color: #d8d8d827;
-color: black;
-border: 1px solid black;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-overflow-y: auto;
-}
+        header {
+            text-align: center;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
 
-#cssCode {
-position: relative;
-width: 95%;
-padding: 10px;
-margin-top: 20px;
-resize: none;
-border: 1px solid #ccc;
-border-radius: 4px;
-font-family: Arial, sans-serif;
-}
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-.generate-button {
-z-index: 1;
-position: absolute;
-top: 64%;
-right: 29%;
-padding: 8px 16px;
-background-color: #007bff;
-color: #fff;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-}
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
 
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 1.5rem;
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
 
+        .preview-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
 
-input[type="color"] {
-    height: 30px;
-    width: 30px;
-    box-sizing: border-box;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  
-  .color-input {
-    height: 30px;
-    width: 120px;
-    box-sizing: border-box;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  
+        .preview-box {
+            flex: 1;
+            min-height: 300px;
+            border-radius: var(--border-radius);
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .controls-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            color: var(--dark-text);
+        }
+
+        .controls-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-group {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .control-group:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .control-group h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .control-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            min-width: 120px;
+        }
+
+        select {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            background-color: white;
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+        }
+
+        .color-input-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .color-input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        input[type="color"] {
+            height: 40px;
+            width: 40px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: transparent;
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 4px;
+        }
+
+        input[type="text"] {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            font-family: inherit;
+            font-size: 0.9rem;
+            width: 100px;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 10px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+            max-width: 200px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .slider-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .button {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .button-secondary {
+            background-color: #e2e8f0;
+            color: var(--dark-text);
+        }
+
+        .button-secondary:hover {
+            background-color: #cbd5e1;
+        }
+
+        .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .preset-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .preset-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-section {
+            margin-top: 1.5rem;
+        }
+
+        .code-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        #cssCode {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            font-family: monospace;
+            resize: vertical;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--dark-text);
+        }
+
+        .copy-btn {
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .control-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            input[type="range"] {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            select {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
     </style>
-    </head>
-    <body>
-      <div id="header-container"></div>
+</head>
+<body>
     <div class="container">
-        <div class="adjustable-box" id="adjustableBox"></div>
-        <div class="controls">
-            <div id="gradientOptions">
-                <label for="direction">Direction:</label>
-                <select id="direction">
-                    <option value="linear">Linear</option>
-                    <option value="radial">Radial</option>  
-                </select>
-                <div id="colorInputs">
-                    <label for="color1">Color 1:</label>
-                    <input type="color" id="color1" value="#ffffff">
-                    <input type="text" class="color-input" id="color1Hex" placeholder="Hex">
-                    <label for="color2">Color 2:</label>
-                    <input type="color" id="color2" value="#f0f0f0">
-                    <input type="text" class="color-input" id="color2Hex" placeholder="Hex">
+        <header>
+            <h1>Gradient Generator</h1>
+            <p>Create beautiful gradient backgrounds with this easy-to-use tool</p>
+        </header>
+
+        <div class="main-content">
+            <div class="preview-section">
+                <div class="preview-box" id="previewBox">
+                    <div class="preview-label">Preview</div>
+                </div>
+                
+                <div class="code-section">
+                    <h3>Generated CSS Code</h3>
+                    <textarea id="cssCode" rows="5" readonly></textarea>
+                    <button id="copyButton" class="copy-btn">Copy to Clipboard</button>
                 </div>
             </div>
-            <label for="opacity">Opacity:</label>
-            <input type="range" id="opacity" min="0" max="1" step="0.1" value="1">
-            <span id="opacityValue">1</span><br>
-            <label for="gradientDirection">Gradient Direction:</label>
-            <input type="range" id="gradientDirection" min="0" max="360" value="0" step="1">
-            <span id="gradientDirectionValue">0</span><br>
-            <button onclick="shuffleColors()">Shuffle Colors</button>
-            <br>
-            <textarea id="cssCode" rows="5" cols="50" readonly></textarea>
-        </div>   
+
+            <div class="controls-section">
+                <h2 class="controls-title">Customize Gradient</h2>
+                
+                <div class="control-group">
+                    <h3>Gradient Type</h3>
+                    <div class="control-row">
+                        <label for="direction" class="control-label">Direction:</label>
+                        <select id="direction">
+                            <option value="linear">Linear</option>
+                            <option value="radial">Radial</option>  
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>Colors</h3>
+                    <div class="color-input-group">
+                        <label for="color1" class="control-label">Color 1:</label>
+                        <input type="color" id="color1" value="#000000">
+                        <input type="text" id="color1Hex" placeholder="Hex" value="#000000">
+                    </div>
+                    
+                    <div class="color-input-group">
+                        <label for="color2" class="control-label">Color 2:</label>
+                        <input type="color" id="color2" value="#ffffff">
+                        <input type="text" id="color2Hex" placeholder="Hex" value="#ffffff">
+                    </div>
+                    
+                    <button id="shuffleButton" class="button" onclick="shuffleColors()">
+                        Shuffle Colors
+                    </button>
+                    
+                    <h3 style="margin-top: 1rem;">Presets</h3>
+                    <div class="preset-buttons">
+                        <div class="preset-btn" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);" data-color1="#ff9a9e" data-color2="#fad0c4"></div>
+                        <div class="preset-btn" style="background: linear-gradient(45deg, #a18cd1, #fbc2eb);" data-color1="#a18cd1" data-color2="#fbc2eb"></div>
+                        <div class="preset-btn" style="background: linear-gradient(45deg, #84fab0, #8fd3f4);" data-color1="#84fab0" data-color2="#8fd3f4"></div>
+                        <div class="preset-btn" style="background: linear-gradient(45deg, #6a11cb, #2575fc);" data-color1="#6a11cb" data-color2="#2575fc"></div>
+                        <div class="preset-btn" style="background: linear-gradient(45deg, #ff758c, #ff7eb3);" data-color1="#ff758c" data-color2="#ff7eb3"></div>
+                        <div class="preset-btn" style="background: linear-gradient(45deg, #4facfe, #00f2fe);" data-color1="#4facfe" data-color2="#00f2fe"></div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>Properties</h3>
+                    <div class="control-row">
+                        <label for="opacity" class="control-label">Opacity:</label>
+                        <input type="range" id="opacity" min="0" max="1" step="0.1" value="1">
+                        <span id="opacityValue" class="slider-value">1</span>
+                    </div>
+                    
+                    <div class="control-row">
+                        <label for="gradientDirection" class="control-label">Angle:</label>
+                        <input type="range" id="gradientDirection" min="0" max="360" value="45" step="1">
+                        <span id="gradientDirectionValue" class="slider-value">45°</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Gradient Generator Tool &copy; 2025 | Made with ❤️</p>
+        </footer>
     </div>
 
     <script>
-        function setInitialBackgroundColor() {
-    const body = document.body;
-    const initialColor1 = '#000000';
-    const initialColor2 = '#ffffff';
-    const initialGradientDirection = 0;
+        // Get DOM elements
+        const previewBox = document.getElementById('previewBox');
+        const cssCode = document.getElementById('cssCode');
+        const copyButton = document.getElementById('copyButton');
+        const color1 = document.getElementById('color1');
+        const color2 = document.getElementById('color2');
+        const color1Hex = document.getElementById('color1Hex');
+        const color2Hex = document.getElementById('color2Hex');
+        const opacity = document.getElementById('opacity');
+        const opacityValue = document.getElementById('opacityValue');
+        const direction = document.getElementById('direction');
+        const gradientDirection = document.getElementById('gradientDirection');
+        const gradientDirectionValue = document.getElementById('gradientDirectionValue');
+        const presetButtons = document.querySelectorAll('.preset-btn');
 
-    body.style.background = `linear-gradient(${initialGradientDirection}deg, ${initialColor1}, ${initialColor2})`;
-    generateCode(); 
-}
-
-function shuffleColors() {
-    const color1 = document.getElementById('color1');
-    const color2 = document.getElementById('color2');
-    const color1Hex = document.getElementById('color1Hex');
-    const color2Hex = document.getElementById('color2Hex');
-
-    color1.value = getRandomColor();
-    color2.value = getRandomColor();
-
-    color1Hex.value = color1.value;
-    color2Hex.value = color2.value;
-
-    generateCode();
-}
-
-function getRandomColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-}
-
-function generateCode() {
-    const opacity = document.getElementById('opacity').value;
-    const direction = document.getElementById('direction').value;
-    const body = document.body;
-
-    const color1 = document.getElementById('color1').value;
-    const color2 = document.getElementById('color2').value;
-
-    const color1Hex = document.getElementById('color1Hex');
-    const color2Hex = document.getElementById('color2Hex');
-
-    // Update color inputs' hex values
-    color1Hex.value = color1;
-    color2Hex.value = color2;
-
-    const gradientDirection = document.getElementById('gradientDirection').value;
-
-    // Apply opacity to colors
-    const rgbaColor1 = hexToRGBA(color1, opacity);
-    const rgbaColor2 = hexToRGBA(color2, opacity);
-
-    switch (direction) {
-        case 'linear':
-            body.style.background = `linear-gradient(${gradientDirection}deg, ${rgbaColor1}, ${rgbaColor2})`;
-            break;
-        case 'radial':
-            body.style.background = `radial-gradient(circle, ${rgbaColor1}, ${rgbaColor2})`;
-            break;
-        default:
-            break;
-    }
-
-    const cssCode = `body {
-            background: ${body.style.background};
-            opacity: ${opacity};
+        // Initialize the application
+        function init() {
+            // Set initial values
+            color1.value = '#000000';
+            color2.value = '#ffffff';
+            color1Hex.value = '#000000';
+            color2Hex.value = '#ffffff';
+            opacity.value = 1;
+            opacityValue.textContent = '1';
+            gradientDirection.value = 45;
+            gradientDirectionValue.textContent = '45°';
+            
+            // Generate initial gradient
+            generateGradient();
+            
+            // Set up event listeners
+            setupEventListeners();
         }
-    `;
-    document.getElementById('cssCode').value = cssCode;
 
-    // Display the opacity value and gradient direction value
-    document.getElementById('opacityValue').textContent = opacity;
-    document.getElementById('gradientDirectionValue').textContent = `${gradientDirection}°`;
-}
+        // Set up event listeners
+        function setupEventListeners() {
+            // Color inputs
+            color1.addEventListener('input', function() {
+                color1Hex.value = this.value;
+                generateGradient();
+            });
+            
+            color2.addEventListener('input', function() {
+                color2Hex.value = this.value;
+                generateGradient();
+            });
+            
+            color1Hex.addEventListener('input', function() {
+                if (isValidHexColor(this.value)) {
+                    color1.value = this.value;
+                    generateGradient();
+                }
+            });
+            
+            color2Hex.addEventListener('input', function() {
+                if (isValidHexColor(this.value)) {
+                    color2.value = this.value;
+                    generateGradient();
+                }
+            });
+            
+            // Opacity slider
+            opacity.addEventListener('input', function() {
+                opacityValue.textContent = this.value;
+                generateGradient();
+            });
+            
+            // Direction select
+            direction.addEventListener('change', generateGradient);
+            
+            // Gradient direction slider
+            gradientDirection.addEventListener('input', function() {
+                gradientDirectionValue.textContent = `${this.value}°`;
+                generateGradient();
+            });
+            
+            // Copy button
+            copyButton.addEventListener('click', function() {
+                cssCode.select();
+                document.execCommand('copy');
+                
+                // Visual feedback
+                const originalText = this.textContent;
+                this.textContent = 'Copied!';
+                this.style.backgroundColor = '#10b981';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.backgroundColor = '';
+                }, 1500);
+            });
+            
+            // Preset buttons
+            presetButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const presetColor1 = this.getAttribute('data-color1');
+                    const presetColor2 = this.getAttribute('data-color2');
+                    
+                    color1.value = presetColor1;
+                    color2.value = presetColor2;
+                    color1Hex.value = presetColor1;
+                    color2Hex.value = presetColor2;
+                    
+                    generateGradient();
+                });
+            });
+        }
 
-// Convert hexadecimal color to RGBA with opacity
-function hexToRGBA(hex, opacity) {
-    hex = hex.replace('#', '');
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-}
+        // Generate gradient and update preview and code
+        function generateGradient() {
+            const opacityValue = opacity.value;
+            const directionType = direction.value;
+            const angle = gradientDirection.value;
+            
+            // Get colors
+            const color1Value = color1.value;
+            const color2Value = color2.value;
+            
+            // Apply opacity to colors
+            const rgbaColor1 = hexToRGBA(color1Value, opacityValue);
+            const rgbaColor2 = hexToRGBA(color2Value, opacityValue);
+            
+            // Create gradient based on direction type
+            let gradientStyle;
+            if (directionType === 'linear') {
+                gradientStyle = `linear-gradient(${angle}deg, ${rgbaColor1}, ${rgbaColor2})`;
+            } else {
+                gradientStyle = `radial-gradient(circle, ${rgbaColor1}, ${rgbaColor2})`;
+            }
+            
+            // Apply gradient to preview box and body
+            previewBox.style.background = gradientStyle;
+            document.body.style.background = gradientStyle;
+            
+            // Generate CSS code
+            const cssCodeText = `/* CSS Gradient Code */
+background: ${gradientStyle};
 
+/* Individual Colors */
+/* Color 1: ${color1Value} with opacity ${opacityValue} */
+/* Color 2: ${color2Value} with opacity ${opacityValue} */`;
+            
+            // Update code textarea
+            cssCode.value = cssCodeText;
+        }
 
+        // Shuffle colors randomly
+        function shuffleColors() {
+            color1.value = getRandomColor();
+            color2.value = getRandomColor();
+            color1Hex.value = color1.value;
+            color2Hex.value = color2.value;
+            
+            generateGradient();
+        }
 
-document.getElementById('direction').addEventListener('change', generateCode);
+        // Generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
 
+        // Convert hex color to RGBA
+        function hexToRGBA(hex, opacity) {
+            hex = hex.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        }
 
-document.getElementById('color1').addEventListener('input', generateCode);
-document.getElementById('color2').addEventListener('input', generateCode);
+        // Check if a string is a valid hex color
+        function isValidHexColor(hex) {
+            return /^#([0-9A-F]{3}){1,2}$/i.test(hex);
+        }
 
-
-document.getElementById('opacity').addEventListener('input', generateCode);
-
-document.getElementById('opacity').addEventListener('input', generateCode);
-
-document.getElementById('gradientDirection').addEventListener('input', generateCode);
-
-
-
-setInitialBackgroundColor();
-
+        // Initialize the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>

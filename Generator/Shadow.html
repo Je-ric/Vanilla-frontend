@@ -32,7 +32,9 @@
       color: var(--text-color);
       line-height: 1.6;
       min-height: 100vh;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
     }
 
     @keyframes gradient {
@@ -42,35 +44,56 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1600px;
+      width: 100%;
       margin: 0 auto;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      flex: 1;
     }
 
     header {
       text-align: center;
-      margin-bottom: 20px;
+      padding: 1rem 0;
       color: white;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
     }
 
     header p {
-      font-size: 1.1rem;
+      font-size: 1rem;
       opacity: 0.9;
     }
 
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.5rem;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
     .preview-section {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 2rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 20px 0 40px 0;
+      min-height: 400px;
+      box-shadow: var(--box-shadow);
     }
 
     .outer-box {
@@ -81,14 +104,13 @@
       border-radius: var(--border-radius);
       background-color: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(5px);
-      box-shadow: var(--box-shadow);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .preview {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
       width: 200px;
       height: 200px;
       border: 1px solid #000;
@@ -105,59 +127,173 @@
       font-size: 14px;
     }
 
-    .controls-section {
+    .output-section {
       background-color: white;
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
-      padding: 25px;
-      margin-top: auto;
+      padding: 1.5rem;
+    }
+
+    .output-section h3 {
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+
+    #codeOutput {
+      width: 100%;
+      min-height: 120px;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      border: 1px solid #ddd;
+      background-color: #f8f9fa;
+      font-family: monospace;
+      resize: vertical;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .copy-btn:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .right-panel {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .controls-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .controls-title {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .preset-dropdown {
+      position: relative;
+    }
+
+    .preset-btn {
+      padding: 0.5rem 1rem;
+      background-color: var(--light-bg);
+      border: 1px solid var(--accent-color);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .preset-btn:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .preset-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 200px;
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 0.5rem;
+      z-index: 10;
+      display: none;
+    }
+
+    .preset-menu.show {
+      display: block;
+    }
+
+    .preset-item {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    .preset-item:hover {
+      background-color: var(--light-bg);
     }
 
     .controls {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
+      gap: 1.5rem;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      flex: 1;
     }
 
     .control-group {
       background-color: var(--light-bg);
-      padding: 20px;
+      padding: 1.5rem;
       border-radius: var(--border-radius);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
 
     .control-group h3 {
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
       color: var(--primary-color);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.5rem;
     }
 
     .control {
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
     }
 
     .control-row {
       display: flex;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.5rem;
     }
 
     .control-label {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.5rem;
       font-weight: 500;
       min-width: 120px;
     }
 
     .control-label svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       fill: var(--primary-color);
     }
 
@@ -193,9 +329,9 @@
     .color-control {
       display: flex;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.5rem;
     }
 
     .color-label {
@@ -251,7 +387,7 @@
     }
 
     .border-options {
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
     }
 
     .border-btn {
@@ -277,80 +413,31 @@
       border-color: var(--primary-color);
     }
 
-    .output-section {
-      background-color: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 25px;
-    }
-
-    .output-section h3 {
-      margin-bottom: 15px;
-      color: var(--primary-color);
-    }
-
-    #codeOutput {
-      width: 100%;
-      min-height: 120px;
-      padding: 15px;
-      border-radius: var(--border-radius);
-      border: 1px solid #ddd;
-      background-color: #f8f9fa;
-      font-family: monospace;
-      resize: vertical;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .copy-btn {
-      margin-top: 10px;
-      padding: 8px 16px;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: var(--transition);
-    }
-
-    .copy-btn:hover {
-      background-color: var(--secondary-color);
-    }
-
-    .preset-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .preset-btn {
-      padding: 8px 16px;
-      background-color: var(--light-bg);
-      border: 1px solid var(--accent-color);
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: var(--transition);
-    }
-
-    .preset-btn:hover {
-      background-color: var(--accent-color);
-      color: white;
-    }
-
     footer {
       text-align: center;
-      margin-top: 30px;
+      padding: 1rem 0;
       color: white;
       font-size: 0.9rem;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      margin-top: auto;
+    }
+
+    @media (max-width: 1200px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .left-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 768px) {
+      .left-panel {
+        grid-template-columns: 1fr;
+      }
+      
       .controls {
         grid-template-columns: 1fr;
       }
@@ -373,144 +460,166 @@
       <p>Create beautiful CSS shadows with this easy-to-use tool</p>
     </header>
 
-    <div class="preview-section">
-      <div class="outer-box">
-        <div class="preview" id="preview"></div>
-      </div>
-    </div>
-
-    <div class="output-section">
-      <h3>Generated CSS Code</h3>
-      <textarea id="codeOutput" readonly></textarea>
-      <button id="copyButton" class="copy-btn">Copy to Clipboard</button>
-    </div>
-
-    <div class="controls-section">
-      <div class="preset-buttons">
-        <button class="preset-btn" data-preset="subtle">Subtle Shadow</button>
-        <button class="preset-btn" data-preset="medium">Medium Shadow</button>
-        <button class="preset-btn" data-preset="harsh">Harsh Shadow</button>
-        <button class="preset-btn" data-preset="inset">Inset Shadow</button>
-        <button class="preset-btn" data-preset="neon">Neon Glow</button>
-        <button class="preset-btn" data-preset="reset">Reset</button>
-      </div>
-      
-      <div class="controls">
-        <!-- Box Shadow Controls -->
-        <div class="control-group">
-          <h3>
-            <svg viewBox="0 0 24 24" width="24" height="24">
-              <path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/>
-              <path d="M14 14h5v5h-5v-5z" fill-opacity="0.3"/>
-            </svg>
-            Box Shadow
-          </h3>
-          
-          <div class="color-control">
-            <label class="color-label">Shadow Color:</label>
-            <input type="color" id="boxShadowColor" value="#000000">
-            <input type="text" class="color-input" id="boxShadowColorHex" placeholder="#000000" value="#000000">
-          </div>
-          
-          <div class="control-row">
-            <label class="control-label">Horizontal:</label>
-            <input type="range" id="boxShadowHorizontal" min="-50" max="50" value="0">
-            <span class="slider-value" id="boxShadowHorizontalValue">0px</span>
-          </div>
-          
-          <div class="control-row">
-            <label class="control-label">Vertical:</label>
-            <input type="range" id="boxShadowVertical" min="-50" max="50" value="0">
-            <span class="slider-value" id="boxShadowVerticalValue">0px</span>
-          </div>
-          
-          <div class="control-row">
-            <label class="control-label">Blur:</label>
-            <input type="range" id="boxShadowBlur" min="0" max="100" value="10">
-            <span class="slider-value" id="boxShadowBlurValue">10px</span>
-          </div>
-          
-          <div class="control-row">
-            <label class="control-label">Spread:</label>
-            <input type="range" id="boxShadowSpread" min="-50" max="100" value="0">
-            <span class="slider-value" id="boxShadowSpreadValue">0px</span>
-          </div>
-          
-          <div class="control-row">
-            <label class="control-label">Shadow Type:</label>
-            <select id="shadowType">
-              <option value="outset">Outset</option>
-              <option value="inset">Inset</option>
-            </select>
+    <div class="main-content">
+      <div class="left-panel">
+        <div class="preview-section">
+          <div class="outer-box">
+            <div class="preview" id="preview"></div>
           </div>
         </div>
         
-        <!-- Border Controls -->
-        <div class="control-group">
-          <h3>
+        <div class="output-section">
+          <h3>Generated CSS Code</h3>
+          <textarea id="codeOutput" readonly></textarea>
+          <button id="copyButton" class="copy-btn">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="controls-header">
+          <h3 class="controls-title">
             <svg viewBox="0 0 24 24" width="24" height="24">
-              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+              <circle cx="12" cy="12" r="3"/>
             </svg>
-            Border
+            Shadow Controls
           </h3>
           
-          <div class="border-options">
-            <label>Border Sides:</label>
-            <div style="margin-top: 8px;">
-              <button class="border-btn" data-side="top">Top</button>
-              <button class="border-btn" data-side="right">Right</button>
-              <button class="border-btn" data-side="bottom">Bottom</button>
-              <button class="border-btn" data-side="left">Left</button>
+          <div class="preset-dropdown">
+            <button id="presetToggle" class="preset-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+              </svg>
+              Presets
+            </button>
+            <div id="presetMenu" class="preset-menu">
+              <div class="preset-item" data-preset="subtle">Subtle Shadow</div>
+              <div class="preset-item" data-preset="medium">Medium Shadow</div>
+              <div class="preset-item" data-preset="harsh">Harsh Shadow</div>
+              <div class="preset-item" data-preset="inset">Inset Shadow</div>
+              <div class="preset-item" data-preset="neon">Neon Glow</div>
+              <div class="preset-item" data-preset="reset">Reset</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="controls">
+          <!-- Box Shadow Controls -->
+          <div class="control-group">
+            <h3>
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M3 3h18v18H3V3zm16 16V5H5v14h14z"/>
+                <path d="M14 14h5v5h-5v-5z" fill-opacity="0.3"/>
+              </svg>
+              Box Shadow
+            </h3>
+            
+            <div class="color-control">
+              <label class="color-label">Shadow Color:</label>
+              <input type="color" id="boxShadowColor" value="#000000">
+              <input type="text" class="color-input" id="boxShadowColorHex" placeholder="#000000" value="#000000">
+            </div>
+            
+            <div class="control-row">
+              <label class="control-label">Horizontal:</label>
+              <input type="range" id="boxShadowHorizontal" min="-50" max="50" value="0">
+              <span class="slider-value" id="boxShadowHorizontalValue">0px</span>
+            </div>
+            
+            <div class="control-row">
+              <label class="control-label">Vertical:</label>
+              <input type="range" id="boxShadowVertical" min="-50" max="50" value="0">
+              <span class="slider-value" id="boxShadowVerticalValue">0px</span>
+            </div>
+            
+            <div class="control-row">
+              <label class="control-label">Blur:</label>
+              <input type="range" id="boxShadowBlur" min="0" max="100" value="10">
+              <span class="slider-value" id="boxShadowBlurValue">10px</span>
+            </div>
+            
+            <div class="control-row">
+              <label class="control-label">Spread:</label>
+              <input type="range" id="boxShadowSpread" min="-50" max="100" value="0">
+              <span class="slider-value" id="boxShadowSpreadValue">0px</span>
+            </div>
+            
+            <div class="control-row">
+              <label class="control-label">Shadow Type:</label>
+              <select id="shadowType">
+                <option value="outset">Outset</option>
+                <option value="inset">Inset</option>
+              </select>
             </div>
           </div>
           
-          <div class="color-control">
-            <label class="color-label">Border Color:</label>
-            <input type="color" id="borderColor" value="#000000">
-            <input type="text" class="color-input" id="borderColorHex" placeholder="#000000" value="#000000">
+          <!-- Border Controls -->
+          <div class="control-group">
+            <h3>
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+              Border
+            </h3>
+            
+            <div class="border-options">
+              <label>Border Sides:</label>
+              <div style="margin-top: 8px;">
+                <button class="border-btn" data-side="top">Top</button>
+                <button class="border-btn" data-side="right">Right</button>
+                <button class="border-btn" data-side="bottom">Bottom</button>
+                <button class="border-btn" data-side="left">Left</button>
+              </div>
+            </div>
+            
+            <div class="color-control">
+              <label class="color-label">Border Color:</label>
+              <input type="color" id="borderColor" value="#000000">
+              <input type="text" class="color-input" id="borderColorHex" placeholder="#000000" value="#000000">
+            </div>
+            
+            <div class="control-row">
+              <label class="control-label">Border Style:</label>
+              <select id="borderStyle">
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+                <option value="double">Double</option>
+                <option value="groove">Groove</option>
+                <option value="ridge">Ridge</option>
+                <option value="inset">Inset</option>
+                <option value="outset">Outset</option>
+                <option value="none">None</option>
+              </select>
+            </div>
+            
+            <div class="control-row">
+              <label class="control-label">Border Size:</label>
+              <input type="range" id="borderSize" min="0" max="25" value="1">
+              <span class="slider-value" id="borderSizeValue">1px</span>
+            </div>
+            
+            <div class="control-row">
+              <label class="control-label">Border Radius:</label>
+              <input type="range" id="borderRadius" min="0" max="100" value="0">
+              <span class="slider-value" id="borderRadiusValue">0px</span>
+            </div>
           </div>
           
-          <div class="control-row">
-            <label class="control-label">Border Style:</label>
-            <select id="borderStyle">
-              <option value="solid">Solid</option>
-              <option value="dashed">Dashed</option>
-              <option value="dotted">Dotted</option>
-              <option value="double">Double</option>
-              <option value="groove">Groove</option>
-              <option value="ridge">Ridge</option>
-              <option value="inset">Inset</option>
-              <option value="outset">Outset</option>
-              <option value="none">None</option>
-            </select>
-          </div>
-          
-          <div class="control-row">
-            <label class="control-label">Border Size:</label>
-            <input type="range" id="borderSize" min="0" max="25" value="1">
-            <span class="slider-value" id="borderSizeValue">1px</span>
-          </div>
-          
-          <div class="control-row">
-            <label class="control-label">Border Radius:</label>
-            <input type="range" id="borderRadius" min="0" max="100" value="0">
-            <span class="slider-value" id="borderRadiusValue">0px</span>
-          </div>
-        </div>
-        
-        <!-- Background Controls -->
-        <div class="control-group">
-          <h3>
-            <svg viewBox="0 0 24 24" width="24" height="24">
-              <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor"/>
-            </svg>
-            Background
-          </h3>
-          
-          <div class="color-control">
-            <label class="color-label">Background Color:</label>
-            <input type="color" id="bgColor" value="#FFFFFF">
-            <input type="text" class="color-input" id="bgColorHex" placeholder="#FFFFFF" value="#FFFFFF">
+          <!-- Background Controls -->
+          <div class="control-group">
+            <h3>
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor"/>
+              </svg>
+              Background
+            </h3>
+            
+            <div class="color-control">
+              <label class="color-label">Background Color:</label>
+              <input type="color" id="bgColor" value="#FFFFFF">
+              <input type="text" class="color-input" id="bgColorHex" placeholder="#FFFFFF" value="#FFFFFF">
+            </div>
           </div>
         </div>
       </div>
@@ -560,8 +669,10 @@
       // Copy button
       copyButton: document.getElementById('copyButton'),
       
-      // Preset buttons
-      presetButtons: document.querySelectorAll('.preset-btn')
+      // Preset elements
+      presetToggle: document.getElementById('presetToggle'),
+      presetMenu: document.getElementById('presetMenu'),
+      presetItems: document.querySelectorAll('.preset-item')
     };
     
     // Update the preview and code output
@@ -720,10 +831,23 @@ box-shadow: ${boxShadowValue};`;
         }, 1500);
       });
       
-      // Preset buttons
-      elements.presetButtons.forEach(button => {
-        button.addEventListener('click', function() {
+      // Preset dropdown toggle
+      elements.presetToggle.addEventListener('click', function() {
+        elements.presetMenu.classList.toggle('show');
+      });
+      
+      // Close preset menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!elements.presetToggle.contains(event.target) && !elements.presetMenu.contains(event.target)) {
+          elements.presetMenu.classList.remove('show');
+        }
+      });
+      
+      // Preset items
+      elements.presetItems.forEach(item => {
+        item.addEventListener('click', function() {
           applyPreset(this.dataset.preset);
+          elements.presetMenu.classList.remove('show');
         });
       });
     }

@@ -35,15 +35,18 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.5rem;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 3rem);
     }
 
     header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     header h1 {
@@ -59,20 +62,42 @@
     }
 
     .main-content {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr;
+      gap: 1.5rem;
       flex: 1;
+      overflow: hidden;
     }
 
-    .preview-section {
+    .left-panel {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .right-panel {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      overflow-y: auto;
+      padding-left: 0.5rem;
+    }
+
+    .preview-section, .controls-section, .code-section, .presets-section {
       background-color: white;
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
-    .preview-title {
+    .section-title {
       font-size: 1.2rem;
       color: var(--primary-color);
       margin-bottom: 1.5rem;
@@ -81,7 +106,7 @@
       gap: 0.5rem;
     }
 
-    .preview-title svg {
+    .section-title svg {
       width: 1.2rem;
       height: 1.2rem;
     }
@@ -100,6 +125,10 @@
       text-align: center;
       transition: var(--transition);
       border: 1px solid #e2e8f0;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .text-preview:hover {
@@ -108,9 +137,8 @@
 
     .preset-examples {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 1rem;
-      margin-top: 1.5rem;
     }
 
     .preset-example {
@@ -133,17 +161,7 @@
       background-color: rgba(99, 102, 241, 0.05);
     }
 
-    .code-section {
-      background-color: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 2rem;
-    }
-
     .code-title {
-      font-size: 1.2rem;
-      color: var(--primary-color);
-      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -153,11 +171,6 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-    }
-
-    .code-title svg {
-      width: 1.2rem;
-      height: 1.2rem;
     }
 
     .code-display {
@@ -196,31 +209,9 @@
       height: 1rem;
     }
 
-    .controls-section {
-      background-color: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 2rem;
-      margin-top: auto;
-    }
-
-    .controls-title {
-      font-size: 1.2rem;
-      color: var(--primary-color);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .controls-title svg {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-
     .controls-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
     }
 
@@ -277,7 +268,7 @@
     }
 
     .custom-text-input {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
     }
 
     .custom-text-label {
@@ -310,13 +301,33 @@
       opacity: 1;
     }
 
+    @media (max-width: 992px) {
+      .main-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+      
+      .left-panel, .right-panel {
+        grid-column: 1;
+        padding: 0;
+      }
+      
+      .left-panel {
+        grid-row: 1;
+      }
+      
+      .right-panel {
+        grid-row: 2;
+      }
+    }
+
     @media (max-width: 768px) {
       .controls-grid {
         grid-template-columns: 1fr;
       }
       
       .preset-examples {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       }
     }
   </style>
@@ -329,25 +340,109 @@
     </header>
 
     <div class="main-content">
-      <section class="preview-section">
-        <div class="preview-title">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-          Preview
-        </div>
-        <div class="preview-container">
-          <div id="outputText" class="text-preview">
-            Sample Text
+      <div class="left-panel">
+        <section class="preview-section">
+          <div class="section-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            Preview
           </div>
-          
-          <div class="custom-text-input">
-            <label for="customText" class="custom-text-label">Custom Text:</label>
-            <input type="text" id="customText" placeholder="Enter your text here" value="Sample Text">
+          <div class="preview-container">
+            <div id="outputText" class="text-preview">
+              Sample Text
+            </div>
+            
+            <div class="custom-text-input">
+              <label for="customText" class="custom-text-label">Custom Text:</label>
+              <input type="text" id="customText" placeholder="Enter your text here" value="Sample Text">
+            </div>
           </div>
-          
-          <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Preset Examples</h3>
+        </section>
+
+        <section class="controls-section">
+          <div class="section-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            Controls
+          </div>
+          <div class="controls-grid">
+            <div class="control-group">
+              <label for="textDecoration" class="control-label">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"></path>
+                  <line x1="4" y1="21" x2="20" y2="21"></line>
+                </svg>
+                Text Decoration
+              </label>
+              <select id="textDecoration">
+                <option value="none">None</option>
+                <option value="underline">Underline</option>
+                <option value="overline">Overline</option>
+                <option value="line-through">Line Through</option>
+                <option value="underline overline">Underline Overline</option>
+                <option value="underline line-through">Underline Line Through</option>
+                <option value="overline line-through">Overline Line Through</option>
+                <option value="underline overline line-through">All Three</option>
+              </select>
+            </div>
+            
+            <div class="control-group">
+              <label for="lineStyle" class="control-label">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 6h18"></path>
+                  <path d="M7 12h10"></path>
+                  <path d="M3 18h18"></path>
+                </svg>
+                Line Style
+              </label>
+              <select id="lineStyle">
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+                <option value="double">Double</option>
+                <option value="wavy">Wavy</option>
+              </select>
+            </div>
+            
+            <div class="control-group">
+              <label for="color" class="control-label">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="13.5" cy="6.5" r="2.5"></circle>
+                  <circle cx="17.5" cy="10.5" r="2.5"></circle>
+                  <circle cx="8.5" cy="7.5" r="2.5"></circle>
+                  <circle cx="6.5" cy="12.5" r="2.5"></circle>
+                  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+                </svg>
+                Color
+              </label>
+              <input type="color" id="color" value="#6366f1">
+            </div>
+            
+            <div class="control-group">
+              <label for="thickness" class="control-label">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-9 11-9 11s-9-5-9-11a6.5 6.5 0 0 1 5-6.33"></path>
+                </svg>
+                Thickness (px)
+              </label>
+              <input type="number" id="thickness" placeholder="Auto" min="1" max="20" value="2">
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="right-panel">
+        <section class="presets-section">
+          <div class="section-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path>
+            </svg>
+            Preset Examples
+          </div>
           <div class="preset-examples">
             <div class="preset-example" data-decoration="underline" data-style="solid" data-color="#6366f1" data-thickness="2">
               Solid Underline
@@ -365,101 +460,28 @@
               Dashed Combo
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="code-section">
-        <div class="code-title">
-          <div class="code-title-left">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-            Generated CSS Code
-          </div>
-          <button id="copyButton" class="copy-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            Copy Code
-          </button>
-        </div>
-        <pre class="code-display" id="codeDisplay">/* CSS code will appear here */</pre>
-      </section>
-
-      <section class="controls-section">
-        <div class="controls-title">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-          Controls
-        </div>
-        <div class="controls-grid">
-          <div class="control-group">
-            <label for="textDecoration" class="control-label">
+        <section class="code-section">
+          <div class="section-title code-title">
+            <div class="code-title-left">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"></path>
-                <line x1="4" y1="21" x2="20" y2="21"></line>
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
               </svg>
-              Text Decoration
-            </label>
-            <select id="textDecoration">
-              <option value="none">None</option>
-              <option value="underline">Underline</option>
-              <option value="overline">Overline</option>
-              <option value="line-through">Line Through</option>
-              <option value="underline overline">Underline Overline</option>
-              <option value="underline line-through">Underline Line Through</option>
-              <option value="overline line-through">Overline Line Through</option>
-              <option value="underline overline line-through">All Three</option>
-            </select>
-          </div>
-          
-          <div class="control-group">
-            <label for="lineStyle" class="control-label">
+              Generated CSS Code
+            </div>
+            <button id="copyButton" class="copy-btn">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 6h18"></path>
-                <path d="M7 12h10"></path>
-                <path d="M3 18h18"></path>
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
               </svg>
-              Line Style
-            </label>
-            <select id="lineStyle">
-              <option value="solid">Solid</option>
-              <option value="dashed">Dashed</option>
-              <option value="dotted">Dotted</option>
-              <option value="double">Double</option>
-              <option value="wavy">Wavy</option>
-            </select>
+              Copy Code
+            </button>
           </div>
-          
-          <div class="control-group">
-            <label for="color" class="control-label">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="13.5" cy="6.5" r="2.5"></circle>
-                <circle cx="17.5" cy="10.5" r="2.5"></circle>
-                <circle cx="8.5" cy="7.5" r="2.5"></circle>
-                <circle cx="6.5" cy="12.5" r="2.5"></circle>
-                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
-              </svg>
-              Color
-            </label>
-            <input type="color" id="color" value="#6366f1">
-          </div>
-          
-          <div class="control-group">
-            <label for="thickness" class="control-label">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-9 11-9 11s-9-5-9-11a6.5 6.5 0 0 1 5-6.33"></path>
-              </svg>
-              Thickness (px)
-            </label>
-            <input type="number" id="thickness" placeholder="Auto" min="1" max="20" value="2">
-          </div>
-        </div>
-      </section>
+          <pre class="code-display" id="codeDisplay">/* CSS code will appear here */</pre>
+        </section>
+      </div>
     </div>
   </div>
 

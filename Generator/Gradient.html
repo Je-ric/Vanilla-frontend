@@ -4,16 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gradient Generator</title>
-    <link rel="stylesheet" href="Gradient.css">
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('../header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-container').innerHTML = data;
-                });
-        });
-    </script>
     <style>
         body {
     margin: 0;
@@ -115,7 +105,7 @@ input[type="color"] {
         </div>   
     </div>
 
-    <script src="Gradient.js">
+    <script>
         function setInitialBackgroundColor() {
     const body = document.body;
     const initialColor1 = '#000000';

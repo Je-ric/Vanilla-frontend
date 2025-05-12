@@ -34,6 +34,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
     @keyframes gradient {
@@ -42,26 +43,26 @@
       100% { background-position: 0% 50%; }
     }
 
-    .app-container {
+    .container {
+      max-width: 1600px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1rem;
       display: flex;
-      flex-direction: row;
-      height: calc(100vh - 80px);
-      position: relative;
-      overflow: hidden;
+      flex-direction: column;
+      flex: 1;
     }
 
     header {
       text-align: center;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1rem 0;
+      margin-bottom: 1rem;
     }
 
     header h1 {
       color: white;
       font-size: 2.2rem;
-      margin-bottom: 5px;
+      margin-bottom: 0.5rem;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
@@ -71,34 +72,38 @@
     }
 
     .main-content {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 1.5rem;
       flex: 1;
-      padding: 30px;
+      margin-bottom: 1.5rem;
+    }
+
+    .left-panel {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow-y: auto;
+      gap: 1.5rem;
     }
 
     .preview-container {
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
       border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 20px;
-      margin-bottom: 30px;
-      width: 100%;
-      max-width: 600px;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 1.5rem;
+      box-shadow: var(--box-shadow);
+      flex: 1;
     }
 
     .preview {
-      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 20px;
+      flex: 1;
+      min-height: 300px;
+      position: relative;
     }
 
     .preview img {
@@ -107,12 +112,12 @@
       object-fit: contain;
       border-radius: 8px;
       transition: filter 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .image-upload {
-      width: 100%;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
     }
 
@@ -124,9 +129,9 @@
     }
 
     .btn {
-      border: 2px solid var(--primary-color);
-      color: var(--primary-color);
-      background-color: white;
+      border: 2px solid white;
+      color: white;
+      background-color: rgba(255, 255, 255, 0.1);
       padding: 8px 20px;
       border-radius: 8px;
       font-size: 16px;
@@ -136,8 +141,7 @@
     }
 
     .btn:hover {
-      background-color: var(--primary-color);
-      color: white;
+      background-color: rgba(255, 255, 255, 0.2);
     }
 
     .upload-btn-wrapper input[type=file] {
@@ -153,21 +157,19 @@
       background-color: white;
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
-      padding: 20px;
-      width: 100%;
-      max-width: 600px;
+      padding: 1.5rem;
     }
 
     .code-output-container h3 {
       color: var(--primary-color);
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
       font-size: 1.2rem;
     }
 
     #codeOutput {
       width: 100%;
       min-height: 120px;
-      padding: 15px;
+      padding: 1rem;
       border-radius: 8px;
       border: 1px solid #e2e8f0;
       background-color: #f8fafc;
@@ -178,7 +180,7 @@
     }
 
     .copy-btn {
-      margin-top: 10px;
+      margin-top: 1rem;
       padding: 8px 16px;
       background-color: var(--primary-color);
       color: white;
@@ -194,38 +196,106 @@
       background-color: var(--secondary-color);
     }
 
-    .sidebar {
-      width: 350px;
+    .controls-section {
       background-color: white;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      overflow-y: auto;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
-    .sidebar h2 {
+    .controls-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .controls-title {
+      font-size: 1.2rem;
       color: var(--primary-color);
-      margin-bottom: 20px;
-      font-size: 1.5rem;
-      text-align: center;
+    }
+
+    .preset-dropdown {
+      position: relative;
+    }
+
+    .preset-btn-toggle {
+      padding: 0.5rem 1rem;
+      background-color: var(--light-bg);
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .preset-btn-toggle:hover {
+      background-color: #e2e8f0;
+    }
+
+    .preset-btn-toggle svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .preset-dropdown.open .preset-btn-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .preset-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 150px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 0.5rem;
+      z-index: 10;
+      display: none;
+    }
+
+    .preset-dropdown.open .preset-menu {
+      display: block;
+    }
+
+    .preset-item {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .preset-item:hover {
+      background-color: var(--light-bg);
     }
 
     .filter-controls {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 0.5rem;
     }
 
     .filter-group {
-      background-color: #f8fafc;
+      background-color: var(--light-bg);
       border-radius: 8px;
-      padding: 15px;
+      padding: 1.5rem;
     }
 
     .filter-group h3 {
       color: var(--primary-color);
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
       font-size: 1.1rem;
       display: flex;
       align-items: center;
@@ -233,7 +303,7 @@
     }
 
     .filter-control {
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
     }
 
     .filter-control:last-child {
@@ -243,7 +313,7 @@
     .filter-label {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
+      margin-bottom: 0.5rem;
       font-weight: 500;
     }
 
@@ -270,35 +340,9 @@
       cursor: pointer;
     }
 
-    .preset-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .preset-btn {
-      padding: 8px 16px;
-      background-color: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: var(--transition);
-      flex: 1;
-      min-width: 80px;
-      text-align: center;
-    }
-
-    .preset-btn:hover {
-      background-color: var(--accent-color);
-      color: var(--secondary-color);
-    }
-
     .reset-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1rem;
       background-color: #f1f5f9;
       color: var(--text-color);
       border: 1px solid #e2e8f0;
@@ -322,160 +366,179 @@
       height: 16px;
     }
 
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      color: white;
+      font-size: 0.9rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      margin-top: auto;
+    }
+
     @media (max-width: 1024px) {
-      .app-container {
-        flex-direction: column;
-        height: auto;
-      }
-      
-      .sidebar {
-        width: 100%;
-        order: 2;
-      }
-      
       .main-content {
-        order: 1;
+        grid-template-columns: 1fr;
+      }
+      
+      .controls-section {
+        height: auto;
       }
     }
 
     @media (max-width: 768px) {
-      .preview-container, .code-output-container {
-        max-width: 100%;
+      .filter-controls {
+        max-height: none;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>CSS Filter Generator</h1>
-    <p>Create beautiful image filters with this easy-to-use tool</p>
-  </header>
+  <div class="container">
+    <header>
+      <h1>CSS Filter Generator</h1>
+      <p>Create beautiful image filters with this easy-to-use tool</p>
+    </header>
 
-  <div class="app-container">
     <div class="main-content">
-      <div class="preview-container">
-        <div class="preview">
-          <img id="previewImage" src="https://images.unsplash.com/photo-1682687982501-1e58ab814714" alt="Preview Image">
-        </div>
-        <div class="image-upload">
-          <div class="upload-btn-wrapper">
-            <button class="btn">Upload Your Image</button>
-            <input type="file" id="imageInput" accept="image/*" />
+      <div class="left-panel">
+        <div class="preview-container">
+          <div class="preview">
+            <img id="previewImage" src="https://images.unsplash.com/photo-1682687982501-1e58ab814714" alt="Preview Image">
           </div>
-        </div>
-      </div>
-
-      <div class="code-output-container">
-        <h3>Generated CSS Code</h3>
-        <textarea id="codeOutput" readonly></textarea>
-        <button id="copyButton" class="copy-btn">Copy to Clipboard</button>
-      </div>
-    </div>
-
-    <div class="sidebar">
-      <h2>Filter Controls</h2>
-      
-      <div class="preset-buttons">
-        <button class="preset-btn" data-preset="normal">Normal</button>
-        <button class="preset-btn" data-preset="vintage">Vintage</button>
-        <button class="preset-btn" data-preset="bw">B&W</button>
-        <button class="preset-btn" data-preset="dramatic">Dramatic</button>
-      </div>
-      
-      <div class="filter-controls">
-        <div class="filter-group">
-          <h3>Basic Adjustments</h3>
-          
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Brightness</span>
-              <span class="filter-value" id="brightnessValue">100%</span>
+          <div class="image-upload">
+            <div class="upload-btn-wrapper">
+              <button class="btn">Upload Your Image</button>
+              <input type="file" id="imageInput" accept="image/*" />
             </div>
-            <input type="range" id="brightness" class="slider" min="0" max="200" value="100">
-          </div>
-          
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Contrast</span>
-              <span class="filter-value" id="contrastValue">100%</span>
-            </div>
-            <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
-          </div>
-          
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Saturation</span>
-              <span class="filter-value" id="saturateValue">100%</span>
-            </div>
-            <input type="range" id="saturate" class="slider" min="0" max="200" value="100">
           </div>
         </div>
         
-        <div class="filter-group">
-          <h3>Color Effects</h3>
+        <div class="code-output-container">
+          <h3>Generated CSS Code</h3>
+          <textarea id="codeOutput" readonly></textarea>
+          <button id="copyButton" class="copy-btn">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <div class="controls-section">
+        <div class="controls-header">
+          <h2 class="controls-title">Filter Controls</h2>
           
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Grayscale</span>
-              <span class="filter-value" id="grayscaleValue">0%</span>
+          <div class="preset-dropdown" id="presetDropdown">
+            <button class="preset-btn-toggle" id="presetToggle">
+              Presets
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="preset-menu" id="presetMenu">
+              <div class="preset-item" data-preset="normal">Normal</div>
+              <div class="preset-item" data-preset="vintage">Vintage</div>
+              <div class="preset-item" data-preset="bw">B&W</div>
+              <div class="preset-item" data-preset="dramatic">Dramatic</div>
             </div>
-            <input type="range" id="grayscale" class="slider" min="0" max="100" value="0">
-          </div>
-          
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Sepia</span>
-              <span class="filter-value" id="sepiaValue">0%</span>
-            </div>
-            <input type="range" id="sepia" class="slider" min="0" max="100" value="0">
-          </div>
-          
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Hue Rotate</span>
-              <span class="filter-value" id="hueRotateValue">0deg</span>
-            </div>
-            <input type="range" id="hueRotate" class="slider" min="0" max="360" value="0">
-          </div>
-          
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Invert</span>
-              <span class="filter-value" id="invertValue">0%</span>
-            </div>
-            <input type="range" id="invert" class="slider" min="0" max="100" value="0">
           </div>
         </div>
         
-        <div class="filter-group">
-          <h3>Advanced Effects</h3>
-          
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Blur</span>
-              <span class="filter-value" id="blurRadiusValue">0px</span>
+        <div class="filter-controls">
+          <div class="filter-group">
+            <h3>Basic Adjustments</h3>
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Brightness</span>
+                <span class="filter-value" id="brightnessValue">100%</span>
+              </div>
+              <input type="range" id="brightness" class="slider" min="0" max="200" value="100">
             </div>
-            <input type="range" id="blurRadius" class="slider" min="0" max="20" value="0">
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Contrast</span>
+                <span class="filter-value" id="contrastValue">100%</span>
+              </div>
+              <input type="range" id="contrast" class="slider" min="0" max="200" value="100">
+            </div>
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Saturation</span>
+                <span class="filter-value" id="saturateValue">100%</span>
+              </div>
+              <input type="range" id="saturate" class="slider" min="0" max="200" value="100">
+            </div>
           </div>
           
-          <div class="filter-control">
-            <div class="filter-label">
-              <span>Opacity</span>
-              <span class="filter-value" id="opacityValue">100%</span>
+          <div class="filter-group">
+            <h3>Color Effects</h3>
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Grayscale</span>
+                <span class="filter-value" id="grayscaleValue">0%</span>
+              </div>
+              <input type="range" id="grayscale" class="slider" min="0" max="100" value="0">
             </div>
-            <input type="range" id="opacity" class="slider" min="0" max="100" value="100">
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Sepia</span>
+                <span class="filter-value" id="sepiaValue">0%</span>
+              </div>
+              <input type="range" id="sepia" class="slider" min="0" max="100" value="0">
+            </div>
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Hue Rotate</span>
+                <span class="filter-value" id="hueRotateValue">0deg</span>
+              </div>
+              <input type="range" id="hueRotate" class="slider" min="0" max="360" value="0">
+            </div>
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Invert</span>
+                <span class="filter-value" id="invertValue">0%</span>
+              </div>
+              <input type="range" id="invert" class="slider" min="0" max="100" value="0">
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <h3>Advanced Effects</h3>
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Blur</span>
+                <span class="filter-value" id="blurRadiusValue">0px</span>
+              </div>
+              <input type="range" id="blurRadius" class="slider" min="0" max="20" value="0">
+            </div>
+            
+            <div class="filter-control">
+              <div class="filter-label">
+                <span>Opacity</span>
+                <span class="filter-value" id="opacityValue">100%</span>
+              </div>
+              <input type="range" id="opacity" class="slider" min="0" max="100" value="100">
+            </div>
           </div>
         </div>
+        
+        <button id="resetButton" class="reset-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+            <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"></path>
+            <path d="M9 12l2 2 4-4"></path>
+          </svg>
+          Reset All Filters
+        </button>
       </div>
-      
-      <button id="resetButton" class="reset-btn">
-        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
-          <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"></path>
-          <path d="M9 12l2 2 4-4"></path>
-        </svg>
-        Reset All Filters
-      </button>
     </div>
+
+    <footer>
+      <p>CSS Filter Generator Tool &copy; 2025 | Made with ❤️</p>
+    </footer>
   </div>
 
   <script>
@@ -486,7 +549,10 @@
     const resetButton = document.getElementById('resetButton');
     const copyButton = document.getElementById('copyButton');
     const imageInput = document.getElementById('imageInput');
-    const presetButtons = document.querySelectorAll('.preset-btn');
+    const presetDropdown = document.getElementById('presetDropdown');
+    const presetToggle = document.getElementById('presetToggle');
+    const presetMenu = document.getElementById('presetMenu');
+    const presetItems = document.querySelectorAll('.preset-item');
 
     // Store initial values for reset functionality
     const initialValues = {};
@@ -598,6 +664,9 @@ filter: blur(${document.getElementById('blurRadius').value}px)
       }
       
       applyFilters();
+      
+      // Close the preset dropdown
+      presetDropdown.classList.remove('open');
     }
 
     // Set up event listeners
@@ -646,9 +715,21 @@ filter: blur(${document.getElementById('blurRadius').value}px)
         }, 1500);
       });
       
-      // Preset buttons
-      presetButtons.forEach(button => {
-        button.addEventListener('click', function() {
+      // Preset dropdown toggle
+      presetToggle.addEventListener('click', function() {
+        presetDropdown.classList.toggle('open');
+      });
+      
+      // Close preset dropdown when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!presetDropdown.contains(event.target)) {
+          presetDropdown.classList.remove('open');
+        }
+      });
+      
+      // Preset items
+      presetItems.forEach(item => {
+        item.addEventListener('click', function() {
           applyPreset(this.dataset.preset);
         });
       });

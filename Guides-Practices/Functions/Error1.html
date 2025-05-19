@@ -1,56 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Indicator Sidebar</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Indicator Sidebar</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
 
-    #sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 10px;
-      background-color: #333;
-      overflow: hidden;
-      transition: width 0.3s;
-      z-index: 1;
-    }
+      #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 10px;
+        background-color: #333;
+        overflow: hidden;
+        transition: width 0.3s;
+        z-index: 1;
+      }
 
-    #content {
-      margin-left: 10px;
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
+      #content {
+        margin-left: 10px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sidebar"></div>
+    <div id="content">
+      <h1>Your Website Content</h1>
+      <img src="https://placehold.co/600x400" alt="imageeee" />
+      <img src="https://placehold.co/600x400" alt="imageeee" />
+      <img src="https://placehold.co/600x400" alt="imageeee" />
+      <img src="https://placehold.co/600x400" alt="imageeee" />
+    </div>
 
-<div id="sidebar"></div>
-<div id="content">
-  <h1>Your Website Content</h1>
-  <img src="https://placehold.co/600x400" alt="imageeee">
-  <img src="https://placehold.co/600x400" alt="imageeee">
-  <img src="https://placehold.co/600x400" alt="imageeee">
-  <img src="https://placehold.co/600x400" alt="imageeee">
-</div>
+    <script>
+      window.addEventListener("scroll", function () {
+        const scrollTop = window.scrollY;
+        const documentHeight = document.body.scrollHeight - window.innerHeight;
+        const percentageScrolled = (scrollTop / documentHeight) * 100;
+        const sidebar = document.getElementById("sidebar");
 
-<script>
-  window.addEventListener('scroll', function () {
-    const scrollTop = window.scrollY;
-    const documentHeight = document.body.scrollHeight - window.innerHeight;
-    const percentageScrolled = (scrollTop / documentHeight) * 100;
-    const sidebar = document.getElementById('sidebar');
-
-    sidebar.style.width = percentageScrolled + 'vw';
-  });
-</script>
-
-</body>
+        sidebar.style.width = percentageScrolled + "vw";
+      });
+    </script>
+  </body>
 </html>
 <!-- ----------------------------------------------------------------------------------------------------- -->
- 

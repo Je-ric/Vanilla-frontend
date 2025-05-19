@@ -1,83 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        h1, h2, h3, h4, h5, h6 {
-            text-align: center;
-            margin-top: 100px;
-        }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        text-align: center;
+        margin-top: 100px;
+      }
 
-        h1{
-            color: red;
-        }
+      h1 {
+        color: red;
+      }
 
-        .scroll-top-btn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
+      .scroll-top-btn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+      }
     </style>
-</head>
-<body>
-    
-    <h1>Top...</h1><br>
-    <h2>Content Here...</h2><br>
-    <h3>Content Here...</h3><br>
-    <h4>Content Here...</h4><br>
-    <h5>Content Here...</h5><br>
-    <h6>Content Here...</h6><br>
-    <h1>Middle...</h1><br>
-    <h2>Content Here...</h2><br>
-    <h3>Content Here...</h3><br>
-    <h4>Content Here...</h4><br>
-    <h5>Content Here...</h5><br>
-    <h6>Content Here...</h6><br>
-    <h1>Bottom...</h1><br>
+  </head>
+  <body>
+    <h1>Top...</h1>
+    <br />
+    <h2>Content Here...</h2>
+    <br />
+    <h3>Content Here...</h3>
+    <br />
+    <h4>Content Here...</h4>
+    <br />
+    <h5>Content Here...</h5>
+    <br />
+    <h6>Content Here...</h6>
+    <br />
+    <h1>Middle...</h1>
+    <br />
+    <h2>Content Here...</h2>
+    <br />
+    <h3>Content Here...</h3>
+    <br />
+    <h4>Content Here...</h4>
+    <br />
+    <h5>Content Here...</h5>
+    <br />
+    <h6>Content Here...</h6>
+    <br />
+    <h1>Bottom...</h1>
+    <br />
 
-    <button onclick="goToTop()" class="scroll-top-btn" id="scroll-top-btn">Top</button>
+    <button onclick="goToTop()" class="scroll-top-btn" id="scroll-top-btn">
+      Top
+    </button>
 
     <script>
-        window.onscroll = function() {
-            scrollFunction();
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        var btn = document.getElementById("scroll-top-btn");
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          btn.style.display = "block";
+        } else {
+          btn.style.display = "none";
+        }
+      }
+
+      function goToTop() {
+        const scrollToTop = () => {
+          const c =
+            document.documentElement.scrollTop || document.body.scrollTop;
+          if (c > 0) {
+            window.requestAnimationFrame(scrollToTop);
+            window.scrollTo(0, c - c / 8);
+          }
         };
-  
-        function scrollFunction() {
-            var btn = document.getElementById("scroll-top-btn");
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                btn.style.display = "block";
-            } else {
-                btn.style.display = "none";
-            }
-        }
-  
-        function goToTop() {
-            const scrollToTop = () => {
-                const c = document.documentElement.scrollTop || document.body.scrollTop;
-                if (c > 0) {
-                    window.requestAnimationFrame(scrollToTop);
-                    window.scrollTo(0, c - c / 8);
-                }
-            };
-            scrollToTop();
-        }
+        scrollToTop();
+      }
     </script>
-</body>
+  </body>
 </html>

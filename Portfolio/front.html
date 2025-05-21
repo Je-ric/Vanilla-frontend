@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
-  <style>
-    body {
-      font-family: 'Oswald', sans-serif;
-      color: #000;
-      background-color: #e0e5ec;
-      position: relative;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <style>
+      body {
+        font-family: "Oswald", sans-serif;
+        color: #000;
+        background-color: #e0e5ec;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-    .hero-shape {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      animation: morph 10s ease-in-out infinite;
-      box-shadow: -5px 5px 10px #bebebe, 5px -5px 10px #ffffff;
-    }
-
-    @keyframes morph {
-      0% {
+      .hero-shape {
+        position: absolute;
+        width: 300px;
+        height: 300px;
         border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        animation: morph 10s ease-in-out infinite;
+        box-shadow: -5px 5px 10px #bebebe, 5px -5px 10px #ffffff;
       }
-      50% {
-        border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
-      }
-      100% {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      }
-    }
-  </style>
-</head>
-<body>
 
-  <div class="hero-shape">
-  </div>
-
-</body>
+      @keyframes morph {
+        0% {
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        50% {
+          border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+        }
+        100% {
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero-shape"></div>
+  </body>
 </html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Sections</title>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Experience Section Styles */
+        .experience-container {
+            border-left: 2px solid #ddd;
+        }
+
+        .exp-head1 {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .exp-title {
+            font-size: 5rem; 
+            letter-spacing: 12px; 
+            padding-left: 18px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .exp-title span {
+            color: #e8e8e8; 
+            text-shadow: 
+                1px 1px 0 #000,  
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000;
+        }
+
+        .skill-title {
+            padding-left: 20px;
+            font-size: 4rem; 
+            text-align: start;
+            letter-spacing: 20px; 
+            color: #e8e8e8;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .experience-note {
+            font-size: 16px;
+            color: #333; 
+            text-align: justify;
+            text-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+            padding: 20px;
+            border-top: 2px solid #ddd;
+            border-bottom: 2px solid #ddd;
+        }
+
+        #experience {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .language {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px; 
+            width: 100%;
+        }
+
+        .content-wrapper {
+            display: flex;
+            gap: 20px; 
+            width: 100%; 
+        }
+
+        .neumorphism-3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90px;
+            width: 90px;
+            background: #dde1e7;
+            border-radius: 50%;
+            box-shadow: -3px -3px 7px #ffffffa6, 3px 3px 5px rgba(94, 104, 121, 0.712);
+            position: relative;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .neumorphism-3:hover {
+            transform: translateX(5px);
+        }
+
+        .neumorphism-3 img {
+            width: 50%;
+            height: 50%;
+            object-fit: contain; 
+        }
+
+        .neumorphism-3:after {
+            content: '';
+            position: absolute;
+            height: 80%;
+            width: 80%;
+            background-color: transparent;
+            border-radius: 50%;
+            box-shadow: inset -3px -3px 7px #ffffffb0, inset 3px 3px 5px rgba(94, 104, 121, 0.671);
+        }
+
+        .text-content {
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            flex-grow: 1; 
+        }
+
+        .text-content h3 {
+            font-size: 1rem;
+            text-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+            margin: 0;
+        }
+
+        .text-content p {
+            margin: 5px 0 0;
+            font-size: 0.8rem;
+            color: #797979;
+        }
+
+        .progress-bar {
+            margin-top: 20px;
+            background: #f4f4f4;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 16px;
+            width: 100%;
+            position: relative;
+            box-shadow:
+                9px 9px 9px rgba(0, 0, 0, 0.05),
+                -9px -9px 9px rgba(255, 255, 255, 0.5),
+                inset 4px 4px 4px rgba(0, 0, 0, 0.05),
+                inset -4px -4px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .progress {
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #40b6ff, #95ffe0, #40b6ff);
+            background-size: 200% 100%;
+            animation: grow 3s linear infinite alternate, gradient-move 6s linear infinite;
+        }
+
+        @keyframes grow {
+            0% { width: 0; }
+            100% { width: var(--final-width); }
+        }
+
+        @keyframes gradient-move {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start; 
+            align-items: center;
+            margin: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            cursor: pointer;
+            background-color: transparent;
+            transform: skew(-5deg);
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:nth-child(1) {background: linear-gradient(45deg, #f9d423, #ff4e50);}
+        .filter-btn:nth-child(2) {background: linear-gradient(45deg, #7F00FF, #E100FF);}
+        .filter-btn:nth-child(3) {background: linear-gradient(45deg, #00c6ff, #1c84d2);}
+        .filter-btn:nth-child(4) {background: linear-gradient(45deg, #16e06a, #29b6f6);}
+        .filter-btn:nth-child(5) {background: linear-gradient(45deg, #c31432, #240b36);}
+
+        .filter-btn:hover {
+            transform: skew(-5deg) translateY(-6px);
+            color: #333;
+        }
+
+        .filter-btn.active {
+            background: transparent;
+            box-shadow: inset 4px 4px 6px #bebebe, inset -5px -5px 10px #ffffff;
+            color: #000;
+        }
+
+        .filter-btn span {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            display: block;
+            text-transform: capitalize;
+            font-size: 0.8rem;
+        }
+
+        /* Hobbies Section Styles */
+        .hobbies-container {
+            display: flex; 
+            border-bottom: 2px solid #ddd;
+            flex-wrap: wrap;
+        }
+
+        .hobbies-left {
+            text-align: center; 
+            flex: 0 0 auto;
+        }
+
+        .hobbies-right {
+            display: flex;
+            justify-content: space-evenly;
+            flex-flow: column wrap;
+            flex: 1; 
+            min-width: 0;
+        }
+
+        .hobbies-grid {
+            display: flex;
+            gap: 20px; 
+            padding-left: 20px;
+            padding-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .group-1 {
+            flex: 0 0 auto;
+            gap: 10px; 
+        }
+
+        .group-2 {   
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px; 
+            min-width: 0;
+        }
+
+        .floating-tags {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: baseline;
+            gap: 15px;
+        }
+
+        .floating-tag {
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: #333;
+            font-weight: bold;
+            box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+            text-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .floating-tag:hover {
+            background: linear-gradient(145deg,  #4a90e2, #6fbaf0);
+            color: white;
+            transform: translateY(-5px) rotate(5deg);
+        }
+
+        .icon-module {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px;
+            border-radius: 0.5rem;
+            box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.7),
+                        -6px -6px 10px rgba(255, 255, 255, 0.5),
+                        6px 6px 8px rgba(255, 255, 255, 0.075),
+                        6px 6px 10px rgba(0, 0, 0, 0.15);
+            transition: .2s ease-in-out;
+            cursor: text;
+            margin-bottom: 20px;
+        }
+
+        .icon-module:hover {
+            color: #1da1f2;
+            box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
+                        -2px -2px 4px rgba(255, 255, 255, 0.4),
+                        2px 2px 2px rgba(255, 255, 255, 0.05),
+                        2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-img {
+            width: 50px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .icon-label {
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+        } 
+
+        .logo-tags {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px;
+        }
+
+        .logo-tags img {
+            width: 50px;
+            height: auto;
+            transition: all 0.2s ease;
+        }
+
+        .logo-tags img:hover {
+            transform: scale(1.1);
+        }
+
+        .hobbies-title {
+            writing-mode: vertical-rl; 
+            text-orientation: sideways-right; 
+            border-left: 2px solid #ddd;
+            transform: rotate(180deg); 
+            padding-top: 20px;
+            font-size: 4rem;
+            letter-spacing: 18px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .interests-title {
+            padding-left: 20px;
+            padding-bottom: 20px;
+            font-size: 4rem;
+            line-height: 1;
+            text-align: start;
+            letter-spacing: 20px; 
+            color: #e8e8e8;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .interests-title span {
+            color: #e8e8e8; 
+            text-shadow: 
+              1px 1px 0 #000,  
+              -1px -1px 0 #000,
+              1px -1px 0 #000,
+              -1px 1px 0 #000;
+        }
+
+        .hobbies-right-top {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #ddd;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .hobbies-tags1 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            align-items: center;
+            gap: 10px; 
+        }
+
+        .h-tag1 {
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.9);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            padding: 6px 10px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .h-tag1:nth-child(1) {background: linear-gradient(45deg, #ff6a00, #ffb300);}
+        .h-tag1:nth-child(2) {background: linear-gradient(45deg, #00b5ff, #1e90ff);}
+        .h-tag1:nth-child(3) {background: linear-gradient(45deg, #9c27b0, #e91e63);}
+
+        .h-tag1:hover {
+            transform: translateY(-5px) rotate(5deg);
+        }
+
+        .marquee {
+            border-bottom: 2px solid #ddd;
+            margin-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .hobbies-tags {
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; 
+        }
+
+        .h-tag {
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.9);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            padding: 6px 10px;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .h-tag:hover {
+            transform: translateY(-5px) rotate(5deg);
+        }
+
+        .h-tag:nth-child(1) {background: linear-gradient(45deg, #ff6b6b, #f06a90);}
+        .h-tag:nth-child(2) {background: linear-gradient(45deg, #ff9f00, #ff5e00);}
+        .h-tag:nth-child(3) {background: linear-gradient(45deg, #1da1f2, #1c84d2);}
+        .h-tag:nth-child(4) {background: linear-gradient(45deg, #8bedb4, #29b6f6);}
+        .h-tag:nth-child(5) {background: linear-gradient(45deg, #9c27b0, #5e35b1);}
+        .h-tag:nth-child(6) {background: linear-gradient(45deg, #76c7c0, #388e3c);}
+        .h-tag:nth-child(7) {background: linear-gradient(45deg, #f9d423, #ff4e50);}
+
+        /* Profile Section Styles */
+        .profile-top {
+            text-align: center;
+            flex-basis: auto;
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+        }
+
+        .profile-mid {
+            flex-grow: 1; 
+            box-sizing: border-box; 
+            width: 100%;
+        } 
+
+        .profile-bottom {
+            text-align: center;
+            flex-grow: 0;  
+            margin-top: auto;  
+            margin-bottom: 30px;  
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+        }
+
+        .profile {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: inset 8px 8px 17px 0 rgba(0, 0, 0, 0.05), 
+                        inset -13px -13px 12px 0 hsla(0, 0%, 100%, 0.65), 
+                        -11px -11px 40px 3px #fff, 
+                        8px 14px 40px -20px rgba(0, 0, 0, 0.19);
+        }
+
+        .neumorphism-circle {
+            width: 180px; 
+            height: 180px; 
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 8px 8px 16px #b9b9b9, -8px -8px 16px #ffffff; 
+        }
+
+        .circle-image {
+            width: 160px; 
+            height: 160px; 
+            padding: 10px; 
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: inset 4px 4px 8px #b9b9b9, inset -4px -4px 8px #ffffff; 
+        }
+
+        .circle-again {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .2s ease-in-out;
+            border-radius: 50%;
+        }
+
+        .profile:hover,
+        .profile:hover .neumorphism-circle,
+        .profile:hover .circle-image,
+        .profile:hover .circle-again {
+            background: linear-gradient(-60deg, #40b6ff, #95ffe0);
+        }
+
+        .profile:hover img {
+            transform: scale(0.9);
+            object-fit: fill;
+        }
+
+        .profile,
+        .profile .neumorphism-circle,
+        .profile .circle-image,
+        .profile .circle-again,
+        .profile img {
+            transition: all 0.3s ease;
+        }
+
+        .highlight {
+            background: -webkit-linear-gradient(-60deg, #D4145A , #FBB03B );
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hi {
+            margin-bottom: 10px;
+        }
+
+        .profile-bullet-text li {
+            padding: 3px;
+            padding-left: 8px;
+            margin-right: 30px;
+            margin-bottom: 8px;
+            transition: .2s ease-in-out;
+            border-radius: 25px;
+            box-shadow: inset 5px 5px 10px #c7c7c7, inset -5px -5px 10px #ffffff;
+        }
+
+        #custom-list {
+            flex-grow: 1;
+            box-sizing: border-box;
+            width: 100%; 
+        }
+
+        .info {
+            background: -webkit-linear-gradient(180deg, #00c64f, #0575E6);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-bullet-text li {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+
+        .profile-bullet-text {
+            padding-top: 5px;
+        }
+
+        .motto {
+            margin-top: 10px;
+            padding-left: 20px;
+            text-align: center;
+            color: #666666;
+            font-weight: lighter;
+        }
+
+        .profile-bottom p {
+            padding-bottom: 6px;
+            color: #2f2e2e;
+        }
+
+        .profile-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        #social-icon {
+            box-shadow: -3px -3px 7px #ffffffb2, 3px 3px 5px rgba(94, 104, 121, 0.945);
+            border-radius: 6px;
+            font-size: 20px;
+            color: #9f9f9f;
+            background-color: transparent;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex; 
+            justify-content: center;
+            align-items: center; 
+        }
+
+        #social-icon:hover {
+            transform: scale(1.2);
+            color: #1da1f2;
+            box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+                        -2px -2px 4px rgba(255, 255, 255, .4),
+                        2px 2px 2px rgba(255, 255, 255, .05),
+                        2px 2px 4px rgba(0, 0, 0, .1);
+        }
+
+        .profile-buttons a:nth-child(1) i { color: #3b5998; }
+        .profile-buttons a:nth-child(2) i { color: #e1306c; }
+        .profile-buttons a:nth-child(3) i { color: #171515; }
+        .profile-buttons a:nth-child(4) i { color: #d44638; }
+
+        #social-icon:active {
+            box-shadow: 
+                inset -2px -2px 6px rgba(255, 255, 255, .7),
+                inset -2px -2px 4px rgba(255, 255, 255, .5),
+                inset 2px 2px 2px rgba(255, 255, 255, .075),
+                inset 2px 2px 4px rgba(0, 0, 0, .15),
+                inset 5px 5px 15px rgba(64, 182, 255, 0.5), 
+                inset -5px -5px 15px rgba(149, 255, 224, 0.5);
+            color: blue;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #e8e8e8;
+        }
+
+        *::selection {
+            background-color: rgb(74, 74, 74);
+            color: rgb(255, 255, 255) !important;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .exp-title, .skill-title, .hobbies-title, .interests-title {
+                font-size: 2rem;
+                letter-spacing: 8px;
+            }
+            
+            .hobbies-container {
+                flex-direction: column;
+            }
+            
+            .hobbies-left {
+                order: 2;
+            }
+            
+            .hobbies-right {
+                order: 1;
+            }
+            
+            .hobbies-title {
+                writing-mode: horizontal-tb;
+                text-orientation: mixed;
+                transform: none;
+                border-left: none;
+                border-bottom: 2px solid #ddd;
+                padding: 20px 0;
+                text-align: center;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+            
+            #experience {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-200 p-4">
+
+    <!-- Profile Section -->
+    <div class="max-w-sm mx-auto mb-8 bg-gray-200 rounded-xl p-6">
+        <div class="profile-top">
+            <h3 class="text-xl font-semibold mb-6 text-gray-800">About Me</h3>
+            <div class="profile">
+                <div class="neumorphism-circle">
+                    <div class="circle-image">
+                        <div class="circle-again">
+                            <img src="/placeholder.svg?height=160&width=160" alt="Profile Picture">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="hi text-lg font-medium text-gray-800 leading-relaxed">
+                Hi, I'm <span class="highlight">Jeric</span> a 
+                <span class="highlight">Developer</span>
+            </h2>
+        </div>
+
+        <div class="profile-mid">
+            <div class="profile-bullet-text">
+                <ul id="custom-list" class="space-y-2">
+                    <li class="flex items-center text-sm">
+                        <i class='bx bxs-cake text-lg mr-3'></i>
+                        <span class="info">09/22/2004</span>
+                    </li>
+                    <li class="flex items-center text-sm">
+                        <i class='bx bxs-home text-lg mr-3'></i>
+                        <span class="info">Science City of Munoz, Nueva Ecija, 3119</span>
+                    </li>
+                    <li class="flex items-center text-sm">
+                        <i class='bx bxs-phone text-lg mr-3'></i>
+                        <span class="info">+63 975-880-6128</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="motto">
+                <p>"If I have something to do today, I will do it now. To do something else tomorrow."</p>
+            </div>
+        </div>
+
+        <div class="profile-bottom">
+            <p>Reach Me</p>
+            <div class="profile-buttons">
+                <a href="https://www.facebook.com/jeric.delacruz.18294" id="social-icon" target="_blank">
+                    <i class='bx bxl-facebook-circle'></i>
+                </a>
+                <a href="https://www.instagram.com/hiro.deecee/" id="social-icon" target="_blank">
+                    <i class='bx bxl-instagram-alt'></i>
+                </a>
+                <a href="https://github.com/Je-ric" id="social-icon" target="_blank">
+                    <i class='bx bxl-github'></i>
+                </a>
+                <a href="mailto:jericjdelacruz@gmail.com" id="social-icon" target="_blank">
+                    <i class='bx bxs-envelope'></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hobbies Section -->
+    <div class="max-w-6xl mx-auto mb-8 bg-gray-100 rounded-xl p-6">
+        <div class="hobbies-container">
+            <div class="hobbies-left">
+                <h1 class="hobbies-title text-gray-800">HOBBIES</h1>
+            </div>
+
+            <div class="hobbies-right">
+                <div class="hobbies-right-top">
+                    <h1 class="interests-title"><span>&</span> INTERESTS</h1>
+                    
+                    <div class="hobbies-tags1">
+                        <span class="h-tag1">Life</span>
+                        <span class="h-tag1">Beyond</span>
+                        <span class="h-tag1">Design</span>
+                    </div>
+                </div>
+
+                <div class="hobbies-grid">
+                    <div class="group-1">
+                        <div class="floating-tags">
+                            <div class="floating-tag">
+                                <i class='bx bx-music'></i> Listening to Music
+                            </div>
+                            <div class="floating-tag">
+                                <i class='bx bx-leaf'></i> Nature
+                            </div>
+                            <div class="floating-tag">
+                                <i class='bx bx-chip'></i> Technology
+                            </div>
+                            <div class="floating-tag">
+                                <i class='bx bx-cart'></i> E-Commerce
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group-2">
+                        <div class="icon-module">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Drums" class="icon-img">
+                            <span class="icon-label">Playing Drums</span>
+                        </div>
+                        <div class="icon-module">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Sci-Fi" class="icon-img">
+                            <span class="icon-label">Science Fiction</span>
+                        </div>
+                        <div class="icon-module">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Browse" class="icon-img">
+                            <span class="icon-label">Browsing Internet</span>
+                        </div>
+                        <div class="icon-module">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Movies" class="icon-img">
+                            <span class="icon-label">Watching Movies</span>
+                        </div>
+                        <div class="icon-module">
+                            <img src="/placeholder.svg?height=50&width=50" alt="Games" class="icon-img">
+                            <span class="icon-label">Online Games</span>
+                        </div>
+                        <div class="icon-module">
+                            <div class="logo-tags">
+                                <img src="/placeholder.svg?height=50&width=50" alt="Supercell">
+                                <img src="/placeholder.svg?height=50&width=50" alt="CS">
+                                <img src="/placeholder.svg?height=50&width=50" alt="EA">
+                                <img src="/placeholder.svg?height=50&width=50" alt="AC">
+                                <img src="/placeholder.svg?height=50&width=50" alt="LOL">
+                                <img src="/placeholder.svg?height=50&width=50" alt="COD">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="marquee">
+            <div class="hobbies-tags">
+                <span class="h-tag">Gadgets</span>
+                <span class="h-tag">Stationery</span>
+                <span class="h-tag">Marvel</span>
+                <span class="h-tag">Neumorphism</span>
+                <span class="h-tag">K-Drama</span>
+                <span class="h-tag">Animation</span>
+                <span class="h-tag">Technology</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="max-w-6xl mx-auto bg-gray-100 rounded-xl p-6">
+        <div class="experience-container">
+            <div class="mb-8">
+                <h1 class="exp-title">EXPERIENCE <span>OVERVIEW</span></h1>
+
+                <div class="experience-note">
+                    The languages and experience listed below represent an estimate of my usage with each language and tool. 
+                    It does not reflect my level of expertise, but rather the time I have spent working with each language. 
+                    The timeframes exclude vacation days, holidays, and other breaks.
+                </div>
+                
+                <div class="exp-head1">
+                    <h1 class="skill-title">SKILLS</h1>
+                
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterSkills('')"><span>All</span></button>
+                        <button class="filter-btn" onclick="filterSkills('frontend')"><span>Frontend</span></button>
+                        <button class="filter-btn" onclick="filterSkills('backend')"><span>Backend</span></button>
+                        <button class="filter-btn" onclick="filterSkills('sp')"><span>System Programming</span></button>
+                        <button class="filter-btn" onclick="filterSkills('framework')"><span>Framework</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="experience">
+                <div class="language" data-category="sp">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="C Language Icon">
+                        </div>
+                        <div class="text-content">
+                            <h3>C Language</h3>
+                            <p>Experience: Sep. 2022 - April 2023</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="language" data-category="backend,sp">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="Java">
+                        </div>
+                        <div class="text-content">
+                            <h3>Java</h3>
+                            <p>Experience: Sep - Dec 2023</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 30%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="language" data-category="frontend">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="HTML">
+                        </div>
+                        <div class="text-content">
+                            <h3>HTML</h3>
+                            <p>Experience: Oct. 2023 - Present</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="language" data-category="frontend">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="CSS">
+                        </div>
+                        <div class="text-content">
+                            <h3>CSS</h3>
+                            <p>Experience: Oct. 2023 - Present</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="language" data-category="frontend">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="JavaScript">
+                        </div>
+                        <div class="text-content">
+                            <h3>JavaScript</h3>
+                            <p>Experience: Nov. 2023</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="language" data-category="backend">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="MySQL">
+                        </div>
+                        <div class="text-content">
+                            <h3>MySQL</h3>
+                            <p>Experience: July 2023 - Dec 2024</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 50%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="language" data-category="backend">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="PHP">
+                        </div>
+                        <div class="text-content">
+                            <h3>PHP</h3>
+                            <p>Experience: Jan. - Dec. 2024</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 50%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="language" data-category="backend,sp">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="Python">
+                        </div>
+                        <div class="text-content">
+                            <h3>Python</h3>
+                            <p>Experience: Aug. - Dec. 2024</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 30%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="language" data-category="framework">
+                    <div class="content-wrapper">
+                        <div class="neumorphism-3">
+                            <img src="/placeholder.svg?height=45&width=45" alt="Django">
+                        </div>
+                        <div class="text-content">
+                            <h3>Django</h3>
+                            <p>Experience: Nov. - Dec. 2024</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="--final-width: 10%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterSkills(category) {
+            const languages = document.querySelectorAll('.language');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.closest('.filter-btn').classList.add('active');
+            
+            languages.forEach(lang => {
+                if (category === '' || lang.dataset.category.includes(category)) {
+                    lang.style.display = 'flex';
+                } else {
+                    lang.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

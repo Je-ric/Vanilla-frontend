@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Timeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #e8e8e8;
+
+  --text-color: #333;
+  --highlight-color: #4a90e2;
+  --shadow-color: #a3b1c6;
+  --light-shadow: #ffffff;
+}
+
+
+*::selection{
+  background-color: rgb(74, 74, 74);
+  color: rgb(255, 255, 255) !important;
+}
+
+        body {
+    font-family: 'Oswald', sans-serif;
+    color: #000;
+    background-color: var(--bg-color);
+}
+
+        /* Neumorphism Box Shadows */
+        .neu-circle {
+            box-shadow: 9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff;
+        }
+
+        .neu-circle:hover {
+            box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
+                        -2px -2px 4px rgba(255, 255, 255, 0.4),
+                        2px 2px 2px rgba(255, 255, 255, 0.05),
+                        2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .neu-inner {
+            box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+        }
+
+        .neu-description {
+            box-shadow: 2px 2px 2px rgb(207, 206, 206) inset, -2px -2px 2px white inset;
+        }
+
+        .neu-image {
+            box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+        }
+
+        /* Gradient Backgrounds for Circles */
+        .circle-gradient-1::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fc00ff, #00dbde);
+        }
+
+        .circle-gradient-2::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f12711, #f5af19);
+        }
+
+        .circle-gradient-3::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f4c4f3, #fc67fa);
+        }
+
+        .circle-gradient-4::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #DCE35B, #45B649);
+        }
+
+        /* Text Shadows */
+        .text-shadow-neu {
+            text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+        }
+
+        .text-shadow-dark {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Hover Effects */
+        .timeline-img img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Custom Responsive Breakpoints */
+        @media (max-width: 640px) {
+            .timeline-title {
+                font-size: 2.5rem !important;
+                letter-spacing: 4px !important;
+            }
+            
+            .circle {
+                width: 120px !important;
+                height: 120px !important;
+            }
+            
+            .circle::before {
+                width: 100px !important;
+                height: 100px !important;
+                top: 10px !important;
+                left: 10px !important;
+            }
+            
+            .inner-circle {
+                width: 90px !important;
+                height: 90px !important;
+            }
+            
+            .timeline-item {
+                height: 320px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-title {
+                font-size: 2rem !important;
+                letter-spacing: 2px !important;
+            }
+            
+            .timeline-img {
+                flex-wrap: wrap !important;
+                gap: 10px !important;
+            }
+            
+            .timeline-img img {
+                width: 60px !important;
+                height: 60px !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-200 min-h-screen p-4">
+    <div class="max-w-7xl mx-auto">
+        <!-- Section Title -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl lg:text-5xl font-bold uppercase text-gray-200 tracking-widest text-shadow-dark">
+                Educational Background
+            </h1>
+        </div>
+
+        <!-- Main Timeline Container -->
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12">
+            
+            <!-- Timeline Grid (Left Side) -->
+            <div class="lg:col-span-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
+                    
+                    <!-- College -->
+                    <div class="flex flex-col items-center justify-between h-80 sm:h-96">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-gray-200 neu-circle transition-all duration-300 flex items-center justify-center relative circle-gradient-1">
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gray-200 neu-inner border border-white flex items-center justify-center relative z-10">
+                                    <span class="text-center font-bold text-gray-800 text-shadow-neu text-sm lg:text-base">College</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center flex-grow flex flex-col justify-center">
+                            <p class="text-sm text-gray-600 border-t-2 border-b-2 border-gray-600 py-2 mb-4 font-medium">
+                                2022 - Present
+                            </p>
+                            <ul class="text-sm text-left space-y-1">
+                                <li>• Junior - BSIT</li>
+                                <li>• Sophomore - BSIT</li>
+                                <li>• Freshman - BSIT</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-center text-sm bg-gray-200 neu-description rounded-2xl p-3 mt-4 font-medium">
+                            Central Luzon State University
+                        </p>
+                    </div>
+
+                    <!-- Senior High School -->
+                    <div class="flex flex-col items-center justify-between h-80 sm:h-96">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-gray-200 neu-circle transition-all duration-300 flex items-center justify-center relative circle-gradient-2">
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gray-200 neu-inner border border-white flex items-center justify-center relative z-10">
+                                    <span class="text-center font-bold text-gray-800 text-shadow-neu text-sm lg:text-base">SHS</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center flex-grow flex flex-col justify-center">
+                            <p class="text-sm text-gray-600 border-t-2 border-b-2 border-gray-600 py-2 mb-4 font-medium">
+                                2020 - 2022
+                            </p>
+                            <ul class="text-sm text-left space-y-1">
+                                <li>• Grade 12 - STEM B</li>
+                                <li>• Grade 11 - STEM B</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-center text-sm bg-gray-200 neu-description rounded-2xl p-3 mt-4 font-medium">
+                            Munoz National High School
+                        </p>
+                    </div>
+
+                    <!-- Junior High School -->
+                    <div class="flex flex-col items-center justify-between h-80 sm:h-96">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-gray-200 neu-circle transition-all duration-300 flex items-center justify-center relative circle-gradient-3">
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gray-200 neu-inner border border-white flex items-center justify-center relative z-10">
+                                    <span class="text-center font-bold text-gray-800 text-shadow-neu text-sm lg:text-base">JHS</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center flex-grow flex flex-col justify-center">
+                            <p class="text-sm text-gray-600 border-t-2 border-b-2 border-gray-600 py-2 mb-4 font-medium">
+                                2016 - 2020
+                            </p>
+                            <ul class="text-sm text-left space-y-1">
+                                <li>• Grade 10 - Balite</li>
+                                <li>• Grade 9 - Ruby</li>
+                                <li>• Grade 8 - Chico</li>
+                                <li>• Grade 7 - Lavender</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-center text-sm bg-gray-200 neu-description rounded-2xl p-3 mt-4 font-medium">
+                            Munoz National High School
+                        </p>
+                    </div>
+
+                    <!-- Elementary -->
+                    <div class="flex flex-col items-center justify-between h-80 sm:h-96">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-gray-200 neu-circle transition-all duration-300 flex items-center justify-center relative circle-gradient-4">
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full bg-gray-200 neu-inner border border-white flex items-center justify-center relative z-10">
+                                    <span class="text-center font-bold text-gray-800 text-shadow-neu text-xs lg:text-sm">Elementary</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center flex-grow flex flex-col justify-center">
+                            <p class="text-sm text-gray-600 border-t-2 border-b-2 border-gray-600 py-2 mb-4 font-medium">
+                                2010 - 2016
+                            </p>
+                            <ul class="text-sm text-left space-y-1">
+                                <li>• Grade 1-6 : Section A</li>
+                                <li>• Kindergarten</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="text-center text-sm bg-gray-200 neu-description rounded-2xl p-3 mt-4 font-medium">
+                            Bantug Elementary School
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Container (Right Side) -->
+            <div class="lg:col-span-1 flex justify-center lg:justify-end">
+                <div class="w-full max-w-xs h-80 sm:h-96 rounded-t-full rounded-b-lg bg-gray-200 neu-image p-4 overflow-hidden">
+                    <img src="images/education/Siever.jpg" alt="Education" class="w-full h-full object-cover rounded-t-full rounded-b-lg">
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0 pt-8 border-t-2 border-gray-300">
+            <!-- School Logos -->
+            <div class="flex justify-center lg:justify-start flex-wrap gap-4 lg:gap-6">
+                <img src="images/education/CLSU.png" alt="CLSU" class="w-16 h-16 lg:w-20 lg:h-20 rounded-full shadow-lg transition-transform duration-300 hover:scale-110">
+                <img src="images/education/JHS.png" alt="SHS" class="w-16 h-16 lg:w-20 lg:h-20 rounded-full shadow-lg transition-transform duration-300 hover:scale-110">
+                <img src="images/education/SHS.png" alt="JHS" class="w-16 h-16 lg:w-20 lg:h-20 rounded-full shadow-lg transition-transform duration-300 hover:scale-110">
+                <img src="images/education/Bantug.jpg" alt="Bantug" class="w-16 h-16 lg:w-20 lg:h-20 rounded-full shadow-lg transition-transform duration-300 hover:scale-110">
+            </div>
+            
+            <!-- Large Title -->
+            <h1 class="timeline-title text-3xl sm:text-4xl lg:text-6xl font-bold uppercase text-gray-200 tracking-widest text-shadow-dark text-center lg:text-right">
+                EDUCATION
+            </h1>
+        </div>
+    </div>
+</body>
+</html>

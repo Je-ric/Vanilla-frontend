@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbies & Interests</title>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #e8e8e8;
+
+  --text-color: #333;
+  --highlight-color: #4a90e2;
+  --shadow-color: #a3b1c6;
+  --light-shadow: #ffffff;
+}
+
+
+*::selection{
+  background-color: rgb(74, 74, 74);
+  color: rgb(255, 255, 255) !important;
+}
+
+        body {
+    font-family: 'Oswald', sans-serif;
+    color: #000;
+    background-color: var(--bg-color);
+}
+
+        /* Keep original neumorphism box shadows and specific effects */
+        .floating-tag {
+            box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+            text-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+        }
+
+        .floating-tag:hover {
+            background: linear-gradient(145deg, #4a90e2, #6fbaf0);
+            transform: translateY(-5px) rotate(5deg);
+        }
+
+        .icon-module {
+            box-shadow: -6px -6px 14px rgba(255, 255, 255, 0.7),
+                        -6px -6px 10px rgba(255, 255, 255, 0.5),
+                        6px 6px 8px rgba(255, 255, 255, 0.075),
+                        6px 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon-module:hover {
+            box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
+                        -2px -2px 4px rgba(255, 255, 255, 0.4),
+                        2px 2px 2px rgba(255, 255, 255, 0.05),
+                        2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-module:active {
+            box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7),
+                        inset -2px -2px 4px rgba(255, 255, 255, 0.5),
+                        inset 2px 2px 2px rgba(255, 255, 255, 0.075),
+                        inset 2px 2px 4px rgba(0, 0, 0, 0.15),
+                        inset 5px 5px 15px rgba(64, 182, 255, 0.5), 
+                        inset -5px -5px 15px rgba(149, 255, 224, 0.5);
+        }
+
+        .icon-label {
+            text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+        }
+
+        .hobbies-title {
+            writing-mode: vertical-rl; 
+            text-orientation: sideways-right; 
+            transform: rotate(180deg);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .interests-title {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .interests-title span {
+            text-shadow: 
+              1px 1px 0 #000,  
+              -1px -1px 0 #000,
+              1px -1px 0 #000,
+              -1px 1px 0 #000;
+        }
+
+        .h-tag1, .h-tag {
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px -4px 6px rgba(255, 255, 255, 0.9);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .h-tag1:hover, .h-tag:hover {
+            transform: translateY(-5px) rotate(5deg);
+        }
+
+        /* Gradient backgrounds */
+        .h-tag1:nth-child(1) {background: linear-gradient(45deg, #ff6a00, #ffb300);}
+        .h-tag1:nth-child(2) {background: linear-gradient(45deg, #00b5ff, #1e90ff);}
+        .h-tag1:nth-child(3) {background: linear-gradient(45deg, #9c27b0, #e91e63);}
+
+        .h-tag:nth-child(1) {background: linear-gradient(45deg, #ff6b6b, #f06a90);}
+        .h-tag:nth-child(2) {background: linear-gradient(45deg, #ff9f00, #ff5e00);}
+        .h-tag:nth-child(3) {background: linear-gradient(45deg, #1da1f2, #1c84d2);}
+        .h-tag:nth-child(4) {background: linear-gradient(45deg, #8bedb4, #29b6f6);}
+        .h-tag:nth-child(5) {background: linear-gradient(45deg, #9c27b0, #5e35b1);}
+        .h-tag:nth-child(6) {background: linear-gradient(45deg, #76c7c0, #388e3c);}
+        .h-tag:nth-child(7) {background: linear-gradient(45deg, #f9d423, #ff4e50);}
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hobbies-title {
+                writing-mode: horizontal-tb;
+                text-orientation: mixed;
+                transform: none;
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+            }
+            
+            .interests-title {
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hobbies-title {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+            
+            .interests-title {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+    <div class="w-full" id="hobbiesinterest-container">
+        <!-- Main Hobbies Container -->
+        <div class="flex flex-col lg:flex-row border-b-2 border-gray-300">
+            <!-- Left Section - Hobbies Title -->
+            <div class="text-center lg:text-left order-2 lg:order-1">
+                <h1 class="hobbies-title text-4xl lg:text-6xl font-normal tracking-widest pt-5 lg:pt-5 border-l-0 lg:border-l-2 border-gray-300 text-gray-800">
+                    HOBBIES
+                </h1>
+            </div>
+
+            <!-- Right Section - Interests Content -->
+            <div class="flex-1 flex flex-col justify-evenly order-1 lg:order-2">
+                
+                <!-- Top Section with Title and Tags -->
+                <div class="flex flex-col lg:flex-row justify-between border-b-2 border-gray-300 pb-4 lg:pb-5 space-y-4 lg:space-y-0">
+                    <h1 class="interests-title text-4xl lg:text-6xl leading-none text-left tracking-widest text-gray-200 pl-5 lg:pl-5 pb-5 lg:pb-5">
+                        <span>&</span> INTERESTS
+                    </h1>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-2 items-center px-4 lg:px-0">
+                        <span class="h-tag1 px-2 py-1 lg:px-2 lg:py-1 text-white font-bold text-center rounded-2xl transition-all duration-200 text-sm lg:text-base">Life</span>
+                        <span class="h-tag1 px-2 py-1 lg:px-2 lg:py-1 text-white font-bold text-center rounded-2xl transition-all duration-200 text-sm lg:text-base">Beyond</span>
+                        <span class="h-tag1 px-2 py-1 lg:px-2 lg:py-1 text-white font-bold text-center rounded-2xl transition-all duration-200 text-sm lg:text-base">Design</span>
+                    </div>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="flex flex-col lg:flex-row gap-5 pl-5 lg:pl-5 pt-5 lg:pt-5">
+                    <!-- Group 1 - Floating Tags -->
+                    <div class="lg:flex-shrink-0">
+                        <div class="flex flex-row lg:flex-col flex-wrap lg:flex-nowrap justify-start lg:justify-baseline gap-4 lg:gap-4">
+                            <div class="floating-tag px-5 py-2 lg:px-5 lg:py-2 rounded-3xl text-gray-800 font-bold transition-all duration-300 text-sm lg:text-base">
+                                <i class='bx bx-music'></i> Listening to Music
+                            </div>
+                            <div class="floating-tag px-5 py-2 lg:px-5 lg:py-2 rounded-3xl text-gray-800 font-bold transition-all duration-300 text-sm lg:text-base">
+                                <i class='bx bx-leaf'></i> Nature
+                            </div>
+                            <div class="floating-tag px-5 py-2 lg:px-5 lg:py-2 rounded-3xl text-gray-800 font-bold transition-all duration-300 text-sm lg:text-base">
+                                <i class='bx bx-chip'></i> Technology
+                            </div>
+                            <div class="floating-tag px-5 py-2 lg:px-5 lg:py-2 rounded-3xl text-gray-800 font-bold transition-all duration-300 text-sm lg:text-base">
+                                <i class='bx bx-cart'></i> E-Commerce
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 2 - Icon Modules -->
+                    <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-5">
+                        <div class="icon-module flex justify-around items-center p-4 lg:p-4 rounded-lg transition-all duration-200 cursor-text mb-5 lg:mb-5 hover:text-blue-400">
+                            <div class="icon-link">
+                                <img src="images/hobby_interest/drums.png" alt="Drums" class="icon-img w-12 h-auto rounded-full">
+                            </div>
+                            <span class="icon-label text-base lg:text-base text-center font-bold">Playing Drums</span>
+                        </div>
+                        
+                        <div class="icon-module flex justify-around items-center p-4 lg:p-4 rounded-lg transition-all duration-200 cursor-text mb-5 lg:mb-5 hover:text-blue-400">
+                            <div class="icon-link">
+                                <img src="images/hobby_interest/scifi.png" alt="Sci-Fi" class="icon-img w-12 h-auto rounded-full">
+                            </div>
+                            <span class="icon-label text-base lg:text-base text-center font-bold">Science Fiction</span>
+                        </div>
+                        
+                        <div class="icon-module flex justify-around items-center p-4 lg:p-4 rounded-lg transition-all duration-200 cursor-text mb-5 lg:mb-5 hover:text-blue-400">
+                            <div class="icon-link">
+                                <img src="images/hobby_interest/browse.png" alt="Browse" class="icon-img w-12 h-auto rounded-full">
+                            </div>
+                            <span class="icon-label text-base lg:text-base text-center font-bold">Browsing Internet</span>
+                        </div>
+                        
+                        <div class="icon-module flex justify-around items-center p-4 lg:p-4 rounded-lg transition-all duration-200 cursor-text mb-5 lg:mb-5 hover:text-blue-400">
+                            <div class="icon-link">
+                                <img src="images/hobby_interest/watch.png" alt="Movies" class="icon-img w-12 h-auto rounded-full">
+                            </div>
+                            <span class="icon-label text-base lg:text-base text-center font-bold">Watching Movies</span>
+                        </div>
+                        
+                        <div class="icon-module flex justify-around items-center p-4 lg:p-4 rounded-lg transition-all duration-200 cursor-text mb-5 lg:mb-5 hover:text-blue-400">
+                            <div class="icon-link">
+                                <img src="images/hobby_interest/games.png" alt="Games" class="icon-img w-12 h-auto rounded-full">
+                            </div>
+                            <span class="icon-label text-base lg:text-base text-center font-bold">Online Games</span>
+                        </div>
+                        
+                        <div class="icon-logo">
+                            <div class="logo-tags grid grid-cols-3 gap-2">
+                                <span class="l-tag"><img src="images/hobby_interest/supercell.jpg" alt="Supercell" class="w-12 h-auto transition-all duration-200 hover:scale-110"></span>
+                                <span class="l-tag"><img src="images/hobby_interest/cs.png" alt="CS" class="w-12 h-auto transition-all duration-200 hover:scale-110"></span>
+                                <span class="l-tag"><img src="images/hobby_interest/ea.png" alt="EA" class="w-12 h-auto transition-all duration-200 hover:scale-110"></span>
+                                <span class="l-tag"><img src="images/hobby_interest/ac.png" alt="AC" class="w-12 h-auto transition-all duration-200 hover:scale-110"></span>
+                                <span class="l-tag"><img src="images/hobby_interest/lol-logo.png" alt="LOL" class="w-12 h-auto transition-all duration-200 hover:scale-110"></span>
+                                <span class="l-tag"><img src="images/hobby_interest/cod.svg" alt="COD" class="w-12 h-auto transition-all duration-200 hover:scale-110"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Marquee Section -->
+        <div class="marquee border-b-2 border-gray-300 mt-2 pb-2">
+            <div class="hobbies-tags flex justify-center flex-wrap gap-8 lg:gap-15">
+                <span class="h-tag px-2 py-1 lg:px-2 lg:py-1 text-white font-bold rounded-2xl transition-all duration-200 text-sm lg:text-base">Gadgets</span>
+                <span class="h-tag px-2 py-1 lg:px-2 lg:py-1 text-white font-bold rounded-2xl transition-all duration-200 text-sm lg:text-base">Stationery</span>
+                <span class="h-tag px-2 py-1 lg:px-2 lg:py-1 text-white font-bold rounded-2xl transition-all duration-200 text-sm lg:text-base">Marvel</span>
+                <span class="h-tag px-2 py-1 lg:px-2 lg:py-1 text-white font-bold rounded-2xl transition-all duration-200 text-sm lg:text-base">Neumorphism</span>
+                <span class="h-tag px-2 py-1 lg:px-2 lg:py-1 text-white font-bold rounded-2xl transition-all duration-200 text-sm lg:text-base">K-Drama</span>
+                <span class="h-tag px-2 py-1 lg:px-2 lg:py-1 text-white font-bold rounded-2xl transition-all duration-200 text-sm lg:text-base">Animation</span>
+                <span class="h-tag px-2 py-1 lg:px-2 lg:py-1 text-white font-bold rounded-2xl transition-all duration-200 text-sm lg:text-base">Technology</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

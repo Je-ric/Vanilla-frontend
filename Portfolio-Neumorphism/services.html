@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #e8e8e8;
+
+  --text-color: #333;
+  --highlight-color: #4a90e2;
+  --shadow-color: #a3b1c6;
+  --light-shadow: #ffffff;
+}
+
+
+*::selection{
+  background-color: rgb(74, 74, 74);
+  color: rgb(255, 255, 255) !important;
+}
+
+        body {
+    font-family: 'Oswald', sans-serif;
+    color: #000;
+    background-color: var(--bg-color);
+}
+        /* Keep original neumorphism box shadows and specific effects */
+        .service-item {
+            box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+        }
+
+        .service-item:hover .service-content h3,
+        .service-item:hover .service-content p,
+        .service-item:hover i {
+            background: -webkit-linear-gradient(-60deg, #FC466B, #3F5EFB);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+
+        .service-item i {
+            text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+        }
+
+        .service-content h3,
+        .service-content p {
+            text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+        }
+
+        .service-group:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-group i {
+            box-shadow: 5px 5px 10px #b8bec5, -5px -5px 10px #ffffff;
+            border: 2px solid #ffffff;
+            transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+
+        .service-group:nth-child(1) i {
+            background: linear-gradient(135deg, #F7ACCF, #FF1053); 
+        }
+        .service-group:nth-child(2) i {
+            background: linear-gradient(135deg, #00c6ff, #0072ff, #ac34f1); 
+        }
+        .service-group:nth-child(3) i {
+            background: linear-gradient(135deg, #ffcc00, #ff6600, #e56b46); 
+        }
+
+        .services-title.v2 {
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-left h1 {
+            text-shadow: 2px 2px 5px #bebebe, -2px -2px 5px #ffffff;
+        }
+
+        .service-left p {
+            text-shadow: 1px 1px 3px #bebebe, -1px -1px 3px #ffffff;
+        }
+
+        .whatido .v1 {
+            text-shadow: 
+                1px 1px 0 #000,  
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .services-title.v2 {
+                writing-mode: horizontal-tb;
+                text-orientation: mixed;
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-left h1 {
+                font-size: 2rem;
+            }
+            
+            .services-title.v2 {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .service-left h1 {
+                font-size: 1.5rem;
+            }
+            
+            .services-title.v2 {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+    <div class="w-full" id="service-container">
+        <div class="flex flex-col lg:flex-row">
+            
+            <!-- Left Section -->
+            <div class="flex-1 lg:flex-[2] border-r-0 lg:border-r-2 border-gray-300 flex flex-col justify-between order-1 lg:order-1 p-4 lg:p-6">
+                <p class="text-base text-gray-800 text-left mb-6 lg:mb-8">
+                    These services reflect my growing abilities in web development, 
+                    as I continue to refine and expand my skills.
+                    I am dedicated to delivering thoughtful and functional web solutions.
+                </p>
+
+                <div class="whatido flex flex-col sm:flex-row justify-between border-b-2 border-t-2 border-gray-300 py-2 mb-6 lg:mb-8">
+                    <h1 class="text-3xl sm:text-4xl lg:text-6xl leading-none text-gray-800 mb-2 sm:mb-0">WHAT I DO?</h1> 
+                    <h1 class="v1 text-3xl sm:text-4xl lg:text-6xl leading-none text-gray-200 mb-2 sm:mb-0">WHAT I DO?</h1>
+                </div>
+                
+                <div class="space-y-4 lg:space-y-6">
+                    <div class="service-group flex items-center p-4 lg:p-4 pb-4 lg:pb-4 transition-all duration-300">
+                        <i class='bx bx-search flex justify-center items-center w-12 h-12 lg:w-12 lg:h-12 mr-4 lg:mr-4 rounded-full text-white text-2xl lg:text-2xl'></i>
+                        <span class="flex-1 flex flex-col">
+                            <h3 class="text-lg lg:text-lg font-semibold text-gray-800 mb-2">User Research & Analysis</h3>
+                            <p class="text-sm lg:text-sm text-gray-800">Analyzing user needs to guide design decisions and improve user experience.</p>
+                        </span>
+                    </div>
+                    <div class="service-group flex items-center p-4 lg:p-4 pb-4 lg:pb-4 transition-all duration-300">
+                        <i class='bx bx-paint flex justify-center items-center w-12 h-12 lg:w-12 lg:h-12 mr-4 lg:mr-4 rounded-full text-white text-2xl lg:text-2xl'></i>
+                        <span class="flex-1 flex flex-col">
+                            <h3 class="text-lg lg:text-lg font-semibold text-gray-800 mb-2">UI/UX & Visual Design</h3>
+                            <p class="text-sm lg:text-sm text-gray-800">Crafting engaging, user-centric interfaces and visually compelling designs.</p>
+                        </span>
+                    </div>
+                    <div class="service-group flex items-center p-4 lg:p-4 pb-4 lg:pb-4 transition-all duration-300">
+                        <i class='bx bx-mobile-alt flex justify-center items-center w-12 h-12 lg:w-12 lg:h-12 mr-4 lg:mr-4 rounded-full text-white text-2xl lg:text-2xl'></i>
+                        <span class="flex-1 flex flex-col">
+                            <h3 class="text-lg lg:text-lg font-semibold text-gray-800 mb-2">Responsive Design</h3>
+                            <p class="text-sm lg:text-sm text-gray-800">Ensuring designs are adaptable across all devices and screen sizes for seamless user experience.</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Section - Vertical Title -->
+            <div class="right-service flex justify-center items-center order-3 lg:order-2 py-4 lg:py-0">
+                <div class="services-title v2 rotate text-4xl lg:text-6xl font-bold text-gray-200 tracking-widest text-center uppercase mx-2 lg:mx-2 relative self-start">
+                    <span>SERVICES</span>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="service-right flex-1 lg:flex-1 order-2 lg:order-3 p-4 lg:p-6">
+                <div class="space-y-5 lg:space-y-5">
+                    <div class="service-item flex p-2 lg:p-2 mb-5 lg:mb-5 rounded-lg transition-all duration-300">
+                        <i class='bx bx-network-chart text-center align-middle text-6xl lg:text-8xl mr-2 lg:mr-2 rounded-lg text-gray-800'></i>
+                        <div class="service-content flex-1">
+                            <h3 class="text-lg lg:text-lg font-semibold mb-2 lg:mb-2 text-gray-800">Code Architecture</h3>
+                            <p class="text-sm lg:text-sm text-gray-800">Structuring projects with organized directories for scalability and maintainability.</p>
+                        </div>
+                    </div>
+                    <div class="service-item flex p-2 lg:p-2 mb-5 lg:mb-5 rounded-lg transition-all duration-300">
+                        <i class='bx bx-code-alt text-center align-middle text-6xl lg:text-8xl mr-2 lg:mr-2 rounded-lg text-gray-800'></i>
+                        <div class="service-content flex-1">
+                            <h3 class="text-lg lg:text-lg font-semibold mb-2 lg:mb-2 text-gray-800">Clean Code</h3>
+                            <p class="text-sm lg:text-sm text-gray-800">Focusing on writing clean, readable, and efficient code for long-term maintainability.</p>
+                        </div>
+                    </div>
+                    <div class="service-item flex p-2 lg:p-2 mb-5 lg:mb-5 rounded-lg transition-all duration-300">  
+                        <i class='bx bx-cube text-center align-middle text-6xl lg:text-8xl mr-2 lg:mr-2 rounded-lg text-gray-800'></i>
+                        <div class="service-content flex-1">
+                            <h3 class="text-lg lg:text-lg font-semibold mb-2 lg:mb-2 text-gray-800">Component-Based</h3>
+                            <p class="text-sm lg:text-sm text-gray-800">Emphasizing modular, reusable components to enhance code flexibility and scalability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

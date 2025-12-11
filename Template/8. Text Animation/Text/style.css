@@ -1,0 +1,475 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: "Poppins", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: 12pt;
+  font-weight: 400;
+  color: black;
+  background: black;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body>div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(30deg,
+      #000000,
+      #0e0e0e,
+      #181818,
+      #202020,
+      #292929,
+      #313131,
+      #3b3b3b,
+      #444444,
+      #4d4d4d,
+      #575757,
+      #616161,
+      #6b6b6b);
+}
+
+div>ul {
+  position: relative;
+  left: 70px;
+  list-style: none;
+  padding: 20px 0px;
+  margin: 0;
+  border-left: 60px solid MediumSpringGreen;
+  padding-left: 40px;
+  width: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px -3px 0px inset,
+    rgba(0, 0, 0, 0.3) 0px 3px 0px inset;
+}
+
+div>ul>li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 50px;
+  color: white;
+  text-transform: uppercase;
+}
+
+div>ul>li:nth-child(2) {
+  --itemcolor: red;
+}
+
+div>ul>li:nth-child(4) {
+  --itemcolor: orange;
+}
+
+div>ul>li:nth-child(6) {
+  --itemcolor: yellow;
+}
+
+div>ul>li:nth-child(8) {
+  --itemcolor: lawngreen;
+}
+
+div>ul>li:nth-child(10) {
+  --itemcolor: dodgerblue;
+}
+
+div>ul>li:nth-child(12) {
+  --itemcolor: violet;
+}
+
+div>ul>li::before {
+  content: "";
+  position: absolute;
+  left: -75px;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px;
+  border-style: double dotted solid dashed;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+div>ul>li::after {
+  color: var(--itemcolor);
+  position: absolute;
+  left: -75px;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  content: "#1";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div>ul>li:nth-child(2)::before {
+  border-color: var(--itemcolor);
+  color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(4)::before {
+  border-color: var(--itemcolor);
+  color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(4)::after {
+  content: "#2";
+  color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(6)::before {
+  border-color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(6)::after {
+  content: "#3";
+  color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(8)::before {
+  border-color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(8)::after {
+  content: "#4";
+  color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(10)::before {
+  border-color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(10)::after {
+  content: "#5";
+  color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(12)::before {
+  border-color: var(--itemcolor);
+}
+
+div>ul>li:nth-child(12)::after {
+  content: "#6";
+  color: var(--itemcolor);
+}
+
+div>ul>li:hover::before {
+  background: var(--itemcolor);
+  border-color: black;
+  animation: bulletspin 5s linear infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bulletspin {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+div>ul>li:hover::after {
+  color: white;
+}
+
+div>ul>li:nth-child(4):hover::after,
+div>ul>li:nth-child(6):hover::after,
+div>ul>li:nth-child(8):hover::after {
+  color: black;
+}
+
+div>ul>li>p {
+  position: relative;
+  font-size: 12pt;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.1s ease-in-out;
+}
+
+div>ul>li>p::after {
+  position: absolute;
+  background: var(--itemcolor);
+  content: "";
+  bottom: 10px;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  transition: all 0.2s ease-in-out;
+}
+
+div>ul>li:hover>p::after {
+  left: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+div>ul>li:active>p {
+  transform: scale(0.95);
+}
+
+div>ul>input {
+  position: absolute;
+  display: none;
+  z-index: 3;
+}
+
+div>ul>li>label {
+  position: absolute;
+  width: 120%;
+  height: 100%;
+  right: 0;
+  z-index: 4;
+}
+
+div>ul>li>label::before {
+  position: absolute;
+  content: "Quinoa irony vape, mixtape viral mumblecore readymade street art pork belly salvia yuccie paleo butcher selfies.";
+  top: -70px;
+  left: -100%;
+  width: 250px;
+  min-height: 200px;
+  padding: 30px 20px;
+  background: var(--itemcolor);
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11pt;
+  color: white;
+  text-align: center;
+  text-transform: none;
+  line-height: 16pt;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px -3px 0px inset;
+  transition: all 0.3s ease-in-out;
+}
+
+div>ul>li:nth-child(2)>label::before {
+  content: "Who moved my cheese smelly cheese bocconcini. Caerphilly cream cheese cheeseburger gouda cheesy grin ricotta stilton the big cheese.";
+  top: 0;
+}
+
+div>ul>li:nth-child(4)>label::before {
+  content: "I was having the most wonderful dream. Except you were there, and you were there, and you were there! I daresay that Fry has discovered the smelliest object in the known universe! The alien mothership is in orbit here.";
+  top: -50px;
+}
+
+div>ul>li:nth-child(6)>label::before {
+  content: "I'm baby copper mug chillwave shaman freegan normcore, hell of man braid marfa tacos meh. Fam tacos tbh readymade biodiesel 90's vaporware small batch swag locavore chambray DIY.";
+}
+
+div>ul>li:nth-child(4)>label::before,
+div>ul>li:nth-child(6)>label::before,
+div>ul>li:nth-child(8)>label::before {
+  color: black;
+}
+
+div>ul>li:nth-child(8)>label::before {
+  content: "But anyhoo, can you believe that the only reason the club is going under is because it's in a terrifying neighborhood? I know, I just call her Annabelle cause she's shaped like a…she's the belle of the ball!";
+}
+
+div>ul>li:nth-child(10)>label::before {
+  top: -120px;
+  content: "You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Wow!";
+}
+
+div>ul>li:nth-child(12)>label::before {
+  top: unset;
+  bottom: 0;
+  content: "The Work has the right to modify or distribute the Program (or any work based on the Internet using the software, or if you distribute are governed by the Copyright Holder of the initial Agreement Steward.)";
+}
+
+div>ul>li>label::after {
+  position: absolute;
+  top: 20%;
+  left: -20%;
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 30px solid var(--itemcolor);
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+}
+
+div>ul>li>label:hover {
+  cursor: pointer;
+}
+
+div>ul>input:checked+li>label::before,
+div>ul>input:checked+li>label::after {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+div>ul>input:checked+li>label::before {
+  left: -64%;
+}
+
+div>ul>input:checked+li>label::after {
+  left: -12%;
+  transform: scale(1);
+}
+
+div>ul>input:checked+li>p {
+  color: var(--itemcolor);
+  font-weight: 700;
+  font-size: 14pt;
+  transition: all 0.1s ease-in-out;
+}
+
+/* Make Responsive */
+
+@media (max-width: 990px) {
+  body {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  div {
+    min-height: 100vh;
+    padding: 20px 0px;
+  }
+
+  div>ul {
+    left: 20px;
+    align-self: flex-start;
+  }
+
+  div>ul>li>label::before {
+    width: 300px;
+    left: 100%;
+    top: 100% !important;
+  }
+
+  div>ul>li>label::after {
+    left: 0;
+    top: 230%;
+  }
+
+  div>ul>input:checked+li {
+    margin-bottom: 220px;
+  }
+
+  div>ul>input:checked+li>label::before {
+    left: 21%;
+  }
+
+  div>ul>input:checked+li>label::after {
+    left: 12%;
+    top: 230%;
+  }
+}
+
+@media (max-width: 630px) {
+  div>ul>li {
+    height: 70px;
+  }
+
+  div>ul>li>p {
+    font-size: 11pt;
+  }
+
+  div>ul>input:checked+li>p {
+    font-size: 12pt;
+  }
+
+  div>ul>li>label::before {
+    padding: 20px;
+    left: 10% !important;
+  }
+
+  div>ul>li>label::after {
+    left: 0 !important;
+    filter: drop-shadow(1px 1px 2px black);
+  }
+}
+
+@media (max-width: 550px) {
+  div>ul {
+    width: 320px;
+  }
+
+  div>ul>li {
+    white-space: normal !important;
+  }
+
+  div>ul>li>p {
+    white-space: normal !important;
+    line-height: 11pt;
+  }
+
+  div>ul>li>label::before {
+    padding: 20px;
+    left: -10% !important;
+  }
+
+  div>ul>li>label::after {
+    left: -16% !important;
+  }
+}
+
+@media (max-width: 375px) {
+  div>ul {
+    width: 290px;
+  }
+
+  div>ul>li>label::before {
+    width: 230px;
+    min-height: 260px;
+  }
+
+  div>ul>input:checked+li {
+    margin-bottom: 270px;
+  }
+}

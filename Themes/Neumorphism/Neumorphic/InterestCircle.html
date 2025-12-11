@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e4e9f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background-color: #e4e9f2;
+            border-radius: 50%;
+            box-shadow: 10px 10px 20px #c2c7cf, -10px -10px 20px #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .center {
+            width: 200px;
+            height: 200px;
+            background-color: #e4e9f2;
+            border-radius: 50%;
+            box-shadow: inset 5px 5px 10px #c2c7cf, inset -5px -5px 10px #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4a5568;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-color: #e4e9f2;
+            border-radius: 50%;
+            box-shadow: 5px 5px 10px #c2c7cf, -5px -5px 10px #ffffff;
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+        .item h3 {
+            color: #2d3748;
+            margin: 0 0 5px 0;
+            font-size: 14px;
+        }
+        .item p {
+            color: #4a5568;
+            margin: 0;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="center">Education & Interests</div>
+        <div class="item" style="top: 50px; left: 240px;">
+            <h3>Computer Science Degree</h3>
+            <p>Tech University</p>
+            <p>2018 - 2022</p>
+        </div>
+        <div class="item" style="top: 240px; right: 50px;">
+            <h3>Web Development</h3>
+            <p>Building responsive websites</p>
+        </div>
+        <div class="item" style="bottom: 50px; right: 240px;">
+            <h3>Machine Learning</h3>
+            <p>Exploring AI algorithms</p>
+        </div>
+        <div class="item" style="bottom: 240px; left: 50px;">
+            <h3>Data Science Certificate</h3>
+            <p>Online Course</p>
+            <p>2022</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&subset=cyrillic");
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    transition: 0.5s;
+    overflow: hidden;
+    background-color: #191629;;
+}
+
+.overlay {
+    height: 200vw;
+    width: 200vw;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.nav {
+    padding: 12px 5px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 15px #292442e0;
+    border: 1px solid #8f44fd;
+    position: relative;
+    z-index: 99;
+}
+
+.tabs {
+    display: flex;
+    width: 490px;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+.tab {
+    padding: 12px 22px;
+    background-color: #e0efff;
+    color: #58a6ff;
+    margin-right: 15px;
+    border-radius: 55px;
+    text-align: center;
+    white-space: nowrap;
+    transition: 0.3s ease;
+    overflow: hidden;
+    max-width: 0px;
+    cursor: pointer;
+    position: relative;
+    flex-basis: 120px;
+}
+
+.tab-is-active {
+    max-width: 100px;
+   box-shadow: 2px 2px 12px currentColor;
+
+}
+
+.tab-is-active .tab-name {
+    opacity: 1;
+}
+
+.tab-circle {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 2px solid #95c5fd;
+    z-index: 10;
+    opacity: 0;
+    left: 30px;
+    pointer-events: none;
+}
+
+.tab-icon {
+    margin-right: 1px;
+    font-size: 18px;
+    vertical-align: middle;
+    position: relative;
+    right: 8px;
+    top: -1px;
+}
+
+.tab-name {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    transition: 0.3s ease;
+    top: 1px;
+    opacity: 0;
+}
+
+.tab-bookmark {
+    background: rgba(33, 84, 151, 0.386);
+    color: #009ffb;
+    border: 2px solid currentColor;
+}
+
+.tab-burn {
+    background: rgba(111, 86, 170, 0.3);
+    color: #8f44fd;
+    border: 2px solid currentColor;
+    
+}
+
+
+.tab-clipboard {
+    background: rgba(164, 29, 110, 0.3);
+    color: #d93479;
+    border: 2px solid currentColor;
+}
+
+.tab-comment {
+    background:rgba(51, 139, 7, 0.3);
+    color: #16c730;
+    border: 2px solid currentColor;
+}
+
+.tab-bell{
+    background: rgba(131, 139, 7, 0.3);
+    border: 2px solid currentColor;
+    color: #add934;
+}
+
+a {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 18px;
+	background-color: rgba(255, 255, 255, 0.06);
+	-webkit-backdrop-filter: blur(15px);
+	backdrop-filter: blur(15px);
+	padding: 10px 0;
+	margin-top: 20px;
+	-webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+	border: 1.5px solid rgba(255, 255, 255, 0.06);
+	border-radius: 8px;
+}
+i.fab {
+	color: #ff0000;
+}
+
+    </style>
+</head>
+<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Animated Tabs</title>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="nav">
+      <ul class="tabs">
+        <li class="tabs-item tab tab-comment tab-is-active">
+          <div class="tab-circle"></div>
+          <i class="fa fa-comment tab-icon"></i>
+          <span class="tab-name">Comment</span>
+        </li>
+        
+        <li class="tabs-item tab tab-clipboard">
+          <div class="tab-circle"></div>
+          <i class="fa fa-clipboard tab-icon"></i>
+          <span class="tab-name">Clipboard</span>
+        </li>
+        <li class="tabs-item tab tab-burn">
+          <div class="tab-circle"></div>
+          <i class="fa fa-cloud-upload tab-icon"></i>
+          <span class="tab-name">Upload</span>
+        </li>
+        <li class="tabs-item tab tab-bell">
+          <div class="tab-circle"></div>
+          <i class="fa fa-bell tab-icon"></i>
+          <span class="tab-name">Notification</span>
+        </li>
+        <li class="tabs-item tab tab-bookmark ">
+          <div class="tab-circle"></div>
+          <i class="fa fa-bookmark tab-icon"></i>
+          <span class="tab-name">Bookmark</span>
+        </li>
+        
+      </ul>
+    </div>
+    <br>
+     <br>
+    
+ 
+  <!-- gsap CDN -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
+    integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    let tabs = document.querySelectorAll(".tab");
+    let overlay = document.querySelector(".overlay");
+
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", function () {
+            tabs.forEach((tab) => {
+                tab.classList.remove("tab-is-active");
+            });
+            this.classList.add("tab-is-active");
+        });
+    });
+</script>
+
+</body>
+</html>

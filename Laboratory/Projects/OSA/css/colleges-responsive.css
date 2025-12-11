@@ -1,0 +1,51 @@
+
+@media (max-width: 480px) {
+    .colleges-container {
+      grid-template-columns: 1fr;
+    }
+  
+    .college,
+    .college img {
+      width: 100%;
+      height: auto;
+      border-radius: 11px;
+    }
+  
+    .college {
+      padding: 15px;
+    }
+  
+    .college-info {
+      padding-bottom: 20px;
+    }
+  
+    .college h2 {
+      font-size: 20px;
+      padding-bottom: 15px;
+      padding-top: 5px;
+    }
+  
+    .college p {
+      font-size: 14px;
+      padding-bottom: 15px;
+      margin-bottom: 10px;
+    }
+    
+    .college a {
+      padding: 6px 12px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .colleges-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Adjustments for tablet and larger screens */
+  @media (min-width: 769px) {
+    .colleges-container {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  }
+  

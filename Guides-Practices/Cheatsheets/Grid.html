@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            color: #007bff;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(3, 100px);
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            width: 80%;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .box {
+            background-color: #007bff;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90px;
+            height: 90px;
+            font-size: 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .box:hover {
+            background-color: #0056b3;
+        }
+
+        .inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px auto;
+            width: 80%;
+            text-align: center;
+        }
+
+        .input-container {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+            transition: background-color 0.3s;
+        }
+
+        .input-container:hover {
+            background-color: #f0f0f0;
+        }
+
+        input[type="number"], select {
+            padding: 8px 16px;
+            font-size: 16px;
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus, select:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .instructions {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<h1>CSS Grid Playground</h1>
+<div class="instructions">
+    <p>Change the grid properties below and watch the grid update in real time!</p>
+</div>
+
+<div class="inputs">
+    <div class="input-container">
+        <label for="rows">Number of Rows:</label>
+        <input type="number" id="rows" min="1" value="3" oninput="changeGridTemplate('rows')">
+    </div>
+
+    <div class="input-container">
+        <label for="columns">Number of Columns:</label>
+        <input type="number" id="columns" min="1" value="4" oninput="changeGridTemplate('columns')">
+    </div>
+
+    <div class="input-container">
+        <label for="gap">Grid Gap (px):</label>
+        <input type="number" id="gap" min="0" value="10" oninput="changeGap()">
+    </div>
+</div>
+
+<div class="inputs">
+    <div class="input-container">
+        <label for="justify-content">Justify Content:</label>
+        <select id="justify-content" onchange="changeJustifyContent()">
+            <option value="center">Center</option>
+            <option value="flex-start">Start</option>
+            <option value="flex-end">End</option>
+            <option value="space-between">Space Between</option>
+            <option value="space-around">Space Around</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="align-items">Align Items:</label>
+        <select id="align-items" onchange="changeAlignItems()">
+            <option value="center">Center</option>
+            <option value="flex-start">Start</option>
+            <option value="flex-end">End</option>
+            <option value="stretch">Stretch</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="box-count">Number of Boxes:</label>
+        <input type="number" id="box-count" min="1" value="12" oninput="updateBoxCount()">
+    </div>
+</div>
+
+<div class="container" id="container">
+</div>
+
+<script>
+    // Function to update grid template based on rows and columns
+    function changeGridTemplate(property) {
+        const value = document.getElementById(property).value;
+        const container = document.querySelector('.container');
+        if (property === 'rows') {
+            container.style.gridTemplateRows = `repeat(${value}, 100px)`;
+        } else if (property === 'columns') {
+            container.style.gridTemplateColumns = `repeat(${value}, 100px)`;
+        }
+    }
+
+    // Function to change the gap between grid items
+    function changeGap() {
+        const gap = document.getElementById('gap').value;
+        const container = document.querySelector('.container');
+        container.style.gap = `${gap}px`;
+    }
+
+    // Function to change the justify content property of the grid
+    function changeJustifyContent() {
+        const justifyContent = document.getElementById('justify-content').value;
+        const container = document.querySelector('.container');
+        container.style.justifyContent = justifyContent;
+    }
+
+    // Function to change the align items property of the grid
+    function changeAlignItems() {
+        const alignItems = document.getElementById('align-items').value;
+        const container = document.querySelector('.container');
+        container.style.alignItems = alignItems;
+    }
+
+    // Function to dynamically update the number of boxes in the grid
+    function updateBoxCount() {
+        const count = document.getElementById('box-count').value;
+        const container = document.getElementById('container');
+        container.innerHTML = '';
+        for (let i = 0; i < count; i++) {
+            const box = document.createElement('div');
+            box.className = 'box';
+            box.textContent = i + 1;
+            container.appendChild(box);
+        }
+    }
+
+    // Initialize the grid with default box count
+    updateBoxCount();
+</script>
+
+</body>
+</html>

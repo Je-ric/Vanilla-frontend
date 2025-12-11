@@ -1,0 +1,234 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: #191629;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 900px;
+  height: 550px;
+  border-radius: 20px;
+  overflow: hidden;
+  -webkit-box-shadow: -7px 10px 111px -33px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -7px 10px 111px -33px rgba(0, 0, 0, 0.75);
+  box-shadow: -7px 10px 111px -33px rgba(0, 0, 0, 0.75);
+  background: rgb(228, 218, 218);
+}
+.col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.col-1 {
+  width: 33.33%;
+  transition: width 0.6s;
+  background-color: rgb(212, 67, 67);
+}
+.col-2 {
+  width: 0%;
+  width: 33.33%;
+  transition: width 0.6s;
+  background-color: rgb(107, 192, 50);
+}
+.col-3 {
+  width: 0%;
+  width: 33.33%;
+  transition: width 0.6s;
+  background-color: rgb(70, 63, 156);
+}
+.ice-cream {
+  width: 550px;
+  height: 450px;
+  z-index: 1;
+}
+
+.str {
+  width: 200px;
+  position: absolute;
+  transition: all 0.5s;
+}
+.kwi {
+  width: 250px;
+  position: absolute;
+  transition: all 0.5s;
+}
+.ble {
+  width: 220px;
+  position: absolute;
+  transition: all 0.5s;
+}
+
+.str-1 {
+  top: -20%;
+  left: 10%;
+  transform: rotate(-55deg);
+}
+.str-2 {
+  top: 40%;
+  left: -30%;
+  transform: rotate(-120deg);
+}
+.str-3 {
+  bottom: -17%;
+  right: 10%;
+  transform: rotate(-200deg);
+}
+.kwi-1 {
+  top: -20%;
+  left: 10%;
+  transform: rotate(-55deg);
+}
+.kwi-2 {
+  top: 40%;
+  left: -40%;
+  transform: rotate(-120deg);
+}
+.kwi-3 {
+  bottom: -17%;
+  right: 10%;
+  transform: rotate(-200deg);
+}
+.ble-1 {
+  top: -20%;
+  left: 10%;
+  transform: rotate(-55deg);
+}
+.ble-2 {
+  top: 40%;
+  left: -40%;
+  transform: rotate(-120deg);
+}
+.ble-3 {
+  bottom: -17%;
+  right: 10%;
+  transform: rotate(-200deg);
+}
+.info {
+  visibility: hidden;
+  position: absolute;
+  width: 300px;
+  right: 4%;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+h2 {
+  font-size: 40px;
+  color: white;
+}
+p {
+  color: rgba(255, 255, 255, 0.911);
+  line-height: 20px;
+}
+span {
+  font-size: 30px;
+  font-weight: 600;
+  color: white;
+}
+button {
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+#prevbtn , #nxtbutton{
+  border-radius: 5px;
+  outline: none;
+  color: rgb(70, 69, 69);
+  font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: linear-gradient(#ffffff76,transparent);
+  border: .1px solid #ccc;
+  backdrop-filter: blur(30px);
+  overflow: hidden;
+}
+#prevbtn::before{
+  content: '';
+  position: absolute;
+  display: flex;
+  width: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 70px;
+  background:linear-gradient(145deg,#0f0,#00f,#ff0);
+  background-size: 500%;
+  overflow: hidden;
+  z-index: -1;
+  border-radius: 50%;
+  transition: .3s ease-in;
+}
+#prevbtn:hover::before{
+  width: 200px;
+}
+#nxtbutton::before{
+  content: '';
+  position: absolute;
+  display: flex;
+  width: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 70px;
+  background:linear-gradient(145deg,#0f0,#00f,#ff0);
+  background-size: 500%;
+  overflow: hidden;
+  z-index: -1;
+  border-radius: 50%;
+  transition: .3s ease-in;
+}
+#nxtbutton:hover::before{
+  width: 200px;
+}
+
+.info .cart{
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 7px;
+  background: transparent;
+  backdrop-filter: blur(30px);
+  background-size: 500px;
+  color: rgb(40, 247, 68);
+  border: .1px solid #ccc;
+  z-index: 99;
+ 
+}
+.cart:hover h5{
+  display: none;
+  transition: all .3s ease-in;
+ 
+}
+.cart:hover ion-icon{
+
+  font-size: 1.5em;
+}
+.cart h5{
+  font-size: 1.0em;
+  text-align: center;
+  align-items: center;
+  transition: .3s ease-in;
+}
+.cart ion-icon{
+  font-size: 1.2em;
+  font-weight: 800;
+  
+ 
+  
+}

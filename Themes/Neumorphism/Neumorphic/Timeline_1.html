@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumorphic Profile 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #edf0f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #edf0f4;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px #c3c6ca, -10px -10px 20px #ffffff;
+            padding: 30px;
+        }
+        h2 {
+            color: #4a5568;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #cbd5e0;
+        }
+        .item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #edf0f4;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px #c3c6ca, -5px -5px 10px #ffffff;
+        }
+        .item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4a5568;
+            box-shadow: 0 0 0 4px #edf0f4, 0 0 0 6px #cbd5e0;
+        }
+        .item h3 {
+            color: #2d3748;
+            margin: 0 0 10px 0;
+        }
+        .item p {
+            color: #4a5568;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Education & Interests Timeline</h2>
+        <div class="timeline">
+            <div class="item">
+                <h3>Ph.D. in Environmental Science</h3>
+                <p>Green University</p>
+                <p>2018 - 2022</p>
+            </div>
+            <div class="item">
+                <h3>Volunteer Work</h3>
+                <p>Local Wildlife Conservation</p>
+                <p>2017 - Present</p>
+            </div>
+            <div class="item">
+                <h3>Master's in Ecology</h3>
+                <p>Nature College</p>
+                <p>2016 - 2018</p>
+            </div>
+            <div class="item">
+                <h3>Birdwatching</h3>
+                <p>Passionate about ornithology</p>
+            </div>
+            <div class="item">
+                <h3>Bachelor's in Biology</h3>
+                <p>State University</p>
+                <p>2012 - 2016</p>
+            </div>
+            <div class="item">
+                <h3>Nature Photography</h3>
+                <p>Capturing wildlife and landscapes</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word & Character Counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-6 gap-6">
+
+    <!-- Title -->
+    <h1 class="text-3xl font-bold">Text Analyzer</h1>
+
+    <!-- Input area -->
+    <textarea id="textInput" placeholder="Type your text here..."
+        class="w-full max-w-4xl h-64 sm:h-96 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"></textarea>
+
+    <!-- Counters -->
+    <div class="w-full max-w-4xl grid grid-cols-2 sm:grid-cols-5 gap-4 text-center bg-white p-4 rounded-lg shadow-md">
+        <div>
+            <span class="font-bold text-lg" id="wordCount">0</span>
+            <p class="text-gray-600">Words</p>
+        </div>
+        <div>
+            <span class="font-bold text-lg" id="charCount">0</span>
+            <p class="text-gray-600">Characters</p>
+        </div>
+        <div>
+            <span class="font-bold text-lg" id="letterCount">0</span>
+            <p class="text-gray-600">Letters</p>
+        </div>
+        <div>
+            <span class="font-bold text-lg" id="numberCount">0</span>
+            <p class="text-gray-600">Numbers</p>
+        </div>
+        <div>
+            <span class="font-bold text-lg" id="spaceCount">0</span>
+            <p class="text-gray-600">Spaces</p>
+        </div>
+    </div>
+
+    <script>
+        var textInput = document.getElementById("textInput");
+        var wordCount = document.getElementById("wordCount");
+        var charCount = document.getElementById("charCount");
+        var letterCount = document.getElementById("letterCount");
+        var numberCount = document.getElementById("numberCount");
+        var spaceCount = document.getElementById("spaceCount");
+
+        // Update counters
+        textInput.addEventListener("input", function () {
+            var text = textInput.value;
+
+            // Words
+            var words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+            wordCount.textContent = words;
+
+            // All Characters (with spaces)
+            charCount.textContent = text.length;
+
+            // Letters
+            var letters = text.match(/[a-zA-Z]/g);
+            letterCount.textContent = letters ? letters.length : 0;
+
+            // Numbers
+            var numbers = text.match(/[0-9]/g);
+            numberCount.textContent = numbers ? numbers.length : 0;
+
+            // Spaces
+            var spaces = text.match(/\s/g);
+            spaceCount.textContent = spaces ? spaces.length : 0;
+        });
+    </script>
+
+</body>
+
+</html>

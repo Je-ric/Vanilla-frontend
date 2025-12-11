@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bingo Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-gray-100 to-blue-50 min-h-screen flex flex-col items-center p-6 gap-6">
+
+    <h1 class="text-4xl font-bold text-blue-600 flex items-center gap-2">
+        <i class='bx bx-dice-5 text-5xl'></i>
+        B.I.N.G.O.
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-8xl">
+
+        <!-- Left: Bingo Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center gap-4 border border-gray-200">
+            <h2 class="text-2xl font-semibold text-blue-600 flex items-center gap-2">
+                <i class='bx bx-grid-alt'></i>
+                Your Bingo Card
+            </h2>
+            <div id="bingoCard"
+                class="grid grid-cols-5 gap-3 p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border-2 border-blue-200 shadow-inner">
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 mt-4">
+                <button id="checkBtn"
+                    class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center gap-2 shadow-md">
+                    <i class='bx bx-check-circle'></i>
+                    Check BINGO
+                </button>
+                <button id="newCardBtn"
+                    class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center gap-2 shadow-md">
+                    <i class='bx bx-refresh'></i>
+                    New Card
+                </button>
+            </div>
+            <div id="result" class="text-lg font-bold text-gray-700 mt-2"></div>
+        </div>
+
+        <!-- Right: Randomizer -->
+        <div class="lg:col-span-2 flex flex-col gap-4">
+            <div
+                class="bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row justify-between items-center gap-8 border border-gray-200 w-full max-w-6xl mx-auto">
+
+                <!-- 🎲 Number Caller Section -->
+                <div class="flex flex-col items-center gap-6 w-full md:w-auto">
+                    <h2 class="text-2xl font-semibold text-purple-600 flex items-center gap-2">
+                        <i class="bx bx-shuffle"></i>
+                        Number Caller
+                    </h2>
+
+                    <div id="currentNumber"
+                        class="text-6xl font-bold text-purple-700 bg-gradient-to-r from-purple-100 to-purple-200 px-12 py-6 rounded-xl shadow-inner border-2 border-purple-300 min-w-[160px] text-center">
+                        -
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button id="callNumberBtn"
+                            class="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center gap-2 shadow-md">
+                            <i class="bx bx-play-circle"></i>
+                            Call Next Number
+                        </button>
+
+                        <button id="resetNumbersBtn"
+                            class="bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-800 font-semibold px-6 py-3 rounded-lg transition-all duration-200 flex items-center gap-2 shadow-md">
+                            <i class="bx bx-reset"></i>
+                            Reset Numbers
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 🎨 Legend Section -->
+                <div class="flex flex-col justify-center gap-4 md:gap-6 text-gray-700 w-full md:w-auto">
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 bg-blue-500 rounded"></div>
+                        <span class="text-sm font-medium">B (1–15)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 bg-green-500 rounded"></div>
+                        <span class="text-sm font-medium">I (16–30)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 bg-yellow-500 rounded"></div>
+                        <span class="text-sm font-medium">N (31–45)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 bg-red-500 rounded"></div>
+                        <span class="text-sm font-medium">G (46–60)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 bg-purple-500 rounded"></div>
+                        <span class="text-sm font-medium">O (61–75)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Number History -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
+                <div class="flex justify-between">
+                    <h3
+                        class="text-xl font-semibold mb-4 text-center text-gray-700 flex items-center justify-center gap-2">
+                        <i class='bx bx-history'></i>
+                        Called Numbers
+                    </h3>
+                    <!-- Legend -->
+
+                </div>
+                <div id="calledNumbers"
+                    class="grid grid-cols-10 sm:grid-cols-15 gap-2 text-sm font-semibold text-center"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bingoCard = document.getElementById("bingoCard");
+        const result = document.getElementById("result");
+        const checkBtn = document.getElementById("checkBtn");
+        const newCardBtn = document.getElementById("newCardBtn");
+
+        const callNumberBtn = document.getElementById("callNumberBtn");
+        const resetNumbersBtn = document.getElementById("resetNumbersBtn");
+        const currentNumber = document.getElementById("currentNumber");
+        const calledNumbersContainer = document.getElementById("calledNumbers");
+
+        const letters = ["B", "I", "N", "G", "O"];
+        let calledNumbers = [];
+        let allNumbers = Array.from({ length: 75 }, (_, i) => i + 1);
+
+        // Function to get letter for a number
+        function getLetter(num) {
+            if (num >= 1 && num <= 15) return "B";
+            if (num >= 16 && num <= 30) return "I";
+            if (num >= 31 && num <= 45) return "N";
+            if (num >= 46 && num <= 60) return "G";
+            if (num >= 61 && num <= 75) return "O";
+            return "";
+        }
+
+        // Function to get color class for a number
+        function getColorClass(num) {
+            const letter = getLetter(num);
+            switch (letter) {
+                case "B": return "bg-blue-500";
+                case "I": return "bg-green-500";
+                case "N": return "bg-yellow-500";
+                case "G": return "bg-red-500";
+                case "O": return "bg-purple-500";
+                default: return "bg-gray-200";
+            }
+        }
+
+        // Generate unique random numbers within a range
+        function generateColumn(min, max, count) {
+            const nums = new Set();
+            while (nums.size < count) {
+                nums.add(Math.floor(Math.random() * (max - min + 1)) + min);
+            }
+            return [...nums];
+        }
+
+        // Create a new Bingo card
+        function generateBingoCard() {
+            bingoCard.innerHTML = "";
+            result.textContent = "";
+
+            let cardNumbers = [];
+
+            for (let i = 0; i < 5; i++) {
+                const min = i * 15 + 1;
+                const max = i * 15 + 15;
+                let column = generateColumn(min, max, 5);
+                cardNumbers.push(column);
+            }
+
+            // Create header (B I N G O)
+            letters.forEach(letter => {
+                const cell = document.createElement("div");
+                cell.textContent = letter;
+                cell.className = "text-center font-bold text-xl text-white bg-gradient-to-b from-blue-500 to-blue-700 py-3 rounded-lg shadow-md border-2 border-blue-800";
+                bingoCard.appendChild(cell);
+            });
+
+            // Fill numbers
+            for (let row = 0; row < 5; row++) {
+                for (let col = 0; col < 5; col++) {
+                    const cell = document.createElement("div");
+                    let num = cardNumbers[col][row];
+                    if (row === 2 && col === 2) {
+                        cell.textContent = "FREE";
+                        cell.className = "bg-gradient-to-br from-green-400 to-green-600 text-white font-bold text-center py-6 px-4 rounded-xl cursor-pointer marked shadow-lg border-2 border-green-700 transform hover:scale-105 transition-all duration-200";
+                    } else {
+                        cell.textContent = num;
+                        cell.className = "bg-gradient-to-br from-white to-gray-100 hover:from-gray-100 hover:to-gray-200 text-center py-6 px-4 rounded-xl cursor-pointer transition-all duration-200 shadow-md border-2 border-gray-300 font-semibold text-gray-800 hover:shadow-lg hover:border-gray-400";
+                    }
+
+                    cell.addEventListener("click", () => {
+                        if (cell.textContent !== "FREE") {
+                            cell.classList.toggle("bg-gradient-to-br");
+                            cell.classList.toggle("from-green-400");
+                            cell.classList.toggle("to-green-600");
+                            cell.classList.toggle("text-red-500");
+                            cell.classList.toggle("font-extrabold");
+                            cell.classList.toggle("marked");
+                            cell.classList.toggle("shadow-lg");
+                            cell.classList.toggle("border-green-700");
+                            cell.classList.toggle("transform");
+                            cell.classList.toggle("hover:scale-105");
+                        }
+                    });
+
+                    bingoCard.appendChild(cell);
+                }
+            }
+        }
+
+        // Check if player has a Bingo
+        function checkBingo() {
+            const cells = Array.from(bingoCard.querySelectorAll("div"));
+            const grid = cells.slice(5); // Skip header
+            const matrix = [];
+
+            for (let i = 0; i < 25; i += 5) {
+                matrix.push(grid.slice(i, i + 5));
+            }
+
+            let bingoFound = false;
+
+            // Rows
+            for (let row = 0; row < 5; row++) {
+                if (matrix[row].every(c => c.classList.contains("marked"))) bingoFound = true;
+            }
+
+            // Columns
+            for (let col = 0; col < 5; col++) {
+                if (matrix.every(row => row[col].classList.contains("marked"))) bingoFound = true;
+            }
+
+            // Diagonals
+            if (matrix.every((row, i) => row[i].classList.contains("marked"))) bingoFound = true;
+            if (matrix.every((row, i) => row[4 - i].classList.contains("marked"))) bingoFound = true;
+
+            result.textContent = bingoFound ? "🎉 BINGO! You won!" : "❌ No BINGO yet!";
+            result.className = bingoFound
+                ? "text-2xl font-bold text-green-600"
+                : "text-2xl font-bold text-red-600";
+        }
+
+        // --- Number Caller Logic ---
+        function setupNumberGrid() {
+            calledNumbersContainer.innerHTML = "";
+
+            for (let i = 1; i <= 75; i++) {
+                const numDiv = document.createElement("div");
+                numDiv.textContent = i;
+
+                numDiv.className =
+                    "w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg text-gray-700 shadow-sm transition-all duration-200 font-semibold";
+
+                if (i <= 15) {
+                    numDiv.classList.add("bg-blue-200", "hover:bg-green-300"); // B
+                } else if (i <= 30) {
+                    numDiv.classList.add("bg-green-200", "hover:bg-blue-300"); // I
+                } else if (i <= 45) {
+                    numDiv.classList.add("bg-yellow-200", "hover:bg-yellow-300"); // N
+                } else if (i <= 60) {
+                    numDiv.classList.add("bg-red-200", "hover:bg-pink-300"); // G
+                } else {
+                    numDiv.classList.add("bg-purple-200", "hover:bg-purple-300"); // O
+                }
+
+                calledNumbersContainer.appendChild(numDiv);
+            }
+        }
+
+        function callNextNumber() {
+            if (calledNumbers.length >= 75) {
+                currentNumber.textContent = "🏁 Done!";
+                return;
+            }
+
+            let available = allNumbers.filter(n => !calledNumbers.includes(n));
+            let next = available[Math.floor(Math.random() * available.length)];
+            calledNumbers.push(next);
+            const letter = getLetter(next);
+            currentNumber.textContent = `${letter}-${next}`;
+
+            // Highlight in grid with color
+            const numDivs = calledNumbersContainer.querySelectorAll("div");
+            const colorClass = getColorClass(next);
+            numDivs[next - 1].classList.add(colorClass, "text-white", "font-bold", "shadow-md");
+        }
+
+        function resetNumbers() {
+            calledNumbers = [];
+            currentNumber.textContent = "-";
+            setupNumberGrid();
+        }
+
+        checkBtn.addEventListener("click", checkBingo);
+        newCardBtn.addEventListener("click", generateBingoCard);
+        callNumberBtn.addEventListener("click", callNextNumber);
+        resetNumbersBtn.addEventListener("click", resetNumbers);
+
+        // Init
+        generateBingoCard();
+        setupNumberGrid();
+    </script>
+
+</body>
+
+</html>

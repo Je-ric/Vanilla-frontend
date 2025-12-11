@@ -1,0 +1,11 @@
+.banner {
+  position: relative; 
+  width: 550px;
+  height: 100px; 
+}
+
+.CLSU_Logo {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+}

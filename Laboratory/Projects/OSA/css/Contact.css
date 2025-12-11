@@ -1,0 +1,201 @@
+* {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+body{
+  overflow-x: hidden;
+  background-color: #e9e9e9;
+}
+
+.top-logo {
+  width: 130px;
+  height: 130px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.contact {
+  margin-top: 120px;
+  text-align: center;
+  font-size: 50px;
+  border-top: 5px solid #ffd700;
+  margin-left: 24%;
+  width: 700px;
+}
+
+.contact body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.contact-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+  width: 600px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.contact-form h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: green;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: calc(100% - 10px);
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"],
+.form-group select,
+.form-group textarea {
+  width: calc(100% - 10px);
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px; 
+}
+
+.form-group #firstName,
+.form-group #lastName,
+.form-group #phone,
+.form-group #studentID {
+  width: 273px; 
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"],
+.form-group select,
+.form-group textarea {
+  width: 590px; 
+}
+
+.fullname,
+.id-email {
+  display: flex;
+  gap: 25px;
+}
+
+.form-group input[type="text"]:hover,
+.form-group input[type="email"]:hover,
+.form-group input[type="tel"]:hover,
+.form-group input[type="password"]:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: green; 
+}
+
+.sub  {
+  width: 100%;
+  padding: 12px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+
+
+
+
+
+
+
+.placement {
+  background-image: linear-gradient(90deg, #009d02 8%, #c0f900 90%);
+  padding: 8px;
+  height: 30px;
+  padding-left: 30px;
+  color: #fff;
+}
+
+
+.map-section {
+  margin-top: 20%;
+}
+
+.map-section h1,
+.map-section h2 {
+  margin: 10px 0;
+}
+
+.map-section,
+.reports-section {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.interactive-map {
+  border: 2px solid black;
+  margin-top: 30px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.interactive-map img {
+  max-width: 100%;
+  display: block;
+}
+
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.map-overlay p {
+  text-align: center;
+}
+
+.interactive-map:hover .map-overlay {
+  opacity: 1;
+}

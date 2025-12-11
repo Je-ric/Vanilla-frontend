@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Advanced HTML Form</title>
+    </head>
+    <body>
+        <h1>Employee Information</h1>
+        <form action="submit_form.php" method="post">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="name" required></td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <input type="radio" name="gender" value="male"> Male
+                        <input type="radio" name="gender" value="female"> Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>Department:</td>
+                    <td>
+                        <select name="department">
+                            <option value="hr">HR</option>
+                            <option value="it">IT</option>
+                            <option value="finance">Finance</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Skills:</td>
+                    <td>
+                        <input type="checkbox" name="skills[]" value="html"> HTML
+                        <input type="checkbox" name="skills[]" value="css"> CSS
+                        <input type="checkbox" name="skills[]" value="javascript"> JavaScript
+                    </td>
+                </tr>
+                <tr>
+                    <td>Experience:</td>
+                    <td>
+                        <input type="range" name="experience" min="1" max="10" step="1">
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+    </html>
+</body>
+</html>

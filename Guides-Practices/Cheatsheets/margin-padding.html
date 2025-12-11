@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Margin vs Padding</title>
+<style>
+  body{
+    overflow: hidden;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .box {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    border: 2px solid #333;
+    margin: 50px; 
+    padding: 30px; 
+    position: relative;
+  }
+  
+  .margin-top,
+  .margin-right,
+  .margin-bottom,
+  .margin-left {
+    position: absolute;
+    background-color: red;
+  }
+
+  .padding-top,
+  .padding-right,
+  .padding-bottom,
+  .padding-left {
+    position: absolute;
+    background-color: blue; 
+  }
+
+  .margin-top { top: -2px; left: -50px; width: calc(100% + 100px); height: 2px; }
+  .margin-right { top: -50px; right: -2px; width: 2px; height: calc(100% + 100px); }
+  .margin-bottom { bottom: -2px; left: -50px; width: calc(100% + 100px); height: 2px; }
+  .margin-left { top: -50px; left: -2px; width: 2px; height: calc(100% + 100px); }
+  
+  .padding-top { top: 28px; left: 28px; right: 28px; height: 2px; }
+  .padding-right { top: 28px; right: 28px; bottom: 28px; width: 2px; }
+  .padding-bottom { bottom: 28px; left: 28px; right: 28px; height: 2px; }
+  .padding-left { top: 28px; left: 28px; bottom: 28px; width: 2px; }
+  
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #333;
+  }
+  
+  .margin-text {
+    top: -70px;
+  }
+
+  .padding-text {
+    bottom: -50px;
+  }
+
+  .m{
+    color: red;
+  }
+
+  .p{
+    color: blue;
+  }
+</style>
+</head>
+<body>
+  <p><b>Margin:</b> <span class="m">top right bottom left</span></p>
+  <p><b>Padding:</b> <span class="p">top right bottom left</span></p>
+<div class="container">
+  <div class="box">
+    <div class="margin-top"></div>
+    <div class="margin-right"></div>
+    <div class="margin-bottom"></div>
+    <div class="margin-left"></div>
+    
+    <div class="padding-top"></div>
+    <div class="padding-right"></div>
+    <div class="padding-bottom"></div>
+    <div class="padding-left"></div>
+    
+    <div class="text margin-text">Margin</div>
+    <div class="text padding-text">Padding</div>
+  </div>
+</div>
+
+</body>
+</html>

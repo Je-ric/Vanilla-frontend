@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .radius-box{
+            background-color: #007bff;
+        }
+        .radius-box,
+        .style-box {
+            width: 100px;
+            height: 100px;
+            border: 12px solid #007bff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 10px;    
+        }
+
+        .outer {
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+            transition: border-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+        }
+
+        .outer span {
+            display: block;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .outer:hover {
+            border-color: red; 
+            border-radius: 15px;
+            transition: border-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+        }
+
+        .outer:hover .radius-box{
+            border-color: red;
+            background-color: red;
+            transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
+
+        .outer:hover .style-box{
+            border-color: red;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="outer">
+            <span>border-radius: 0;</span>
+            <div class="radius-box"></div>
+        </div>
+        <div class="outer">
+            <span>border-radius: 10px;</span>
+            <div class="radius-box" style=" border-radius: 10px;"></div>
+        </div>
+        <div class="outer">
+            <span>border-top-left-radius: 30px;</span>
+            <div class="radius-box" style=" border-top-left-radius: 30px;"></div>
+        </div>
+        <div class="outer">
+            <span>border-top-right-radius: 30px;</span>
+            <div class="radius-box" style=" border-top-right-radius: 30px;"></div>
+        </div>
+        <div class="outer">
+            <span>border-bottom-left-radius: 30px;</span>
+            <div class="radius-box" style=" border-bottom-left-radius: 30px;"></div>
+        </div>
+        <div class="outer">
+            <span>border-bottom-right-radius: 30px;</span>
+            <div class="radius-box" style=" border-bottom-right-radius: 30px;"></div>
+        </div>
+        <div class="outer">
+            <span>border-radius: 50%;</span>
+            <div class="radius-box" style=" border-radius: 50%;"></div>
+        </div>  
+
+        <div class="outer">
+            <span>border-style: solid;</span>
+            <div class="style-box" style="border-style: solid;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: dotted;</span>
+            <div class="style-box" style="border-style: dotted;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: dashed;</span>
+            <div class="style-box" style="border-style: dashed;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: double;</span>
+            <div class="style-box" style="border-style: double;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: groove;</span>
+            <div class="style-box" style="border-style: groove;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: ridge;</span>
+            <div class="style-box" style="border-style: ridge;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: inset;</span>
+            <div class="style-box" style="border-style: inset;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: outset;</span>
+            <div class="style-box" style="border-style: outset;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: hidden;</span>
+            <div class="style-box" style="background-color: #007bff; border-style: hidden;"></div>
+        </div>
+        <div class="outer">
+            <span>border-style: none;</span>
+            <div class="style-box" style="background-color: #007bff; border-style: none;"></div>
+        </div>
+    </div>
+</body>
+</html>

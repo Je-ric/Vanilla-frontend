@@ -1,0 +1,139 @@
+* {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+
+  body{
+    overflow-x: hidden;
+  }
+  
+  .placement{
+    background-image: linear-gradient(90deg, #009d02 8%, #c0f900 90%);
+    padding: 8px;
+    height: 40px;
+    padding-left: 30px;
+    color: #fff;
+  }    
+
+  body {
+    line-height: 1.6;
+  }
+
+  .main-content{
+    margin-top: 80px;
+  }
+
+  .main-content h2,
+  .other-news h3{
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 5px solid #ffd700;
+    padding-left: 1rem;
+  }
+
+  .main-content p,
+  .other-news p,
+  .announcement p{
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: justify;
+  }
+
+  .main-content {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+
+ /* .other-news h2{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }*/
+  
+  .news {
+    flex-grow: 2;
+    margin-right: 20px;;
+  }
+
+  .sidebar li{
+    margin-left: 20px;
+  }
+  
+  .announcement {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 20px;
+    height: 270px;
+  }
+  
+  .read-more {
+    text-align: right;
+  }
+  
+  .sidebar {
+    flex-basis: 30%;
+  }
+  
+  .related-articles,
+  .upcoming-events {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 270px;
+  }
+  
+.sidebar h2{
+  margin-bottom: 10px;
+}  
+
+  .other-news {
+      background-color: #eaeaea;
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+
+    .other-news h2 {
+      color: #333;
+    }   
+
+
+
+
+
+.news-article video{
+  width: 100%;
+    display: block;
+}
+    
+
+
+   .breaking-news {
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+  
+  .ticker {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    animation: ticker 10s infinite linear;
+  }
+  
+  .ticker li {
+    display: inline-block;
+    margin-right: 20px;
+    font-weight: bold;
+  }
+  
+  @keyframes ticker {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+  }

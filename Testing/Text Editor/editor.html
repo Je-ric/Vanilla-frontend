@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Rich Text Editor</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+  <style>
+    /* Custom styles for the editor */
+    .editor-content img {
+      cursor: move;
+      max-width: 100%;
+    }
+    .editor-content img.float-left {
+      float: left;
+      margin: 0 15px 15px 0;
+    }
+    .editor-content img.float-right {
+      float: right;
+      margin: 0 0 15px 15px;
+    }
+    .editor-content .text-highlight {
+      background-color: #fff566;
+    }
+    .floating-controls {
+      position: absolute;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 5px;
+      z-index: 100;
+      display: none;
+    }
+    .color-picker {
+      display: flex;
+      flex-wrap: wrap;
+      width: 120px;
+    }
+    .color-option {
+      width: 20px;
+      height: 20px;
+      margin: 2px;
+      cursor: pointer;
+    }
+    .dropdown-menu {
+      position: absolute;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 100;
+      display: none;
+    }
+    .dropdown-item {
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+    .dropdown-item:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+  <div class="container mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <!-- Editor Header -->
+    <div class="bg-gray-800 text-white p-3 flex justify-between items-center">
+      <h1 class="text-xl font-semibold">CMS Article Editor</h1>
+      <div>
+        <button id="preview-btn" class="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded text-sm mr-2">Preview</button>
+        <button id="save-btn" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-sm">Save</button>
+        <button id="publish-btn" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-sm ml-2">Publish</button>
+      </div>
+    </div>
+    
+    <!-- Ribbon Controls -->
+    <div class="border-b">
+      <!-- Tab Navigation -->
+      <div class="flex border-b">
+        <button class="px-4 py-2 bg-gray-200 font-medium">Text</button>
+        <button class="px-4 py-2 hover:bg-gray-100">Insert</button>
+        <button class="px-4 py-2 hover:bg-gray-100">Layout</button>
+      </div>
+      
+      <!-- Text Tab Ribbon -->
+      <div id="text-ribbon" class="p-2 flex flex-wrap gap-2 items-center">
+        <!-- Font Group -->
+        <div class="border-r pr-2 flex items-center space-x-2">
+          <select id="font-family" class="border rounded p-1 text-sm">
+            <option>Arial</option>
+            <option>Times New Roman</option>
+            <option>Helvetica</option>
+            <option>Georgia</option>
+            <option>Verdana</option>
+            <option>Calibri</option>
+          </select>
+          <select id="font-size" class="border rounded p-1 w-14 text-sm">
+            <option>10</option>
+            <option>12</option>
+            <option>14</option>
+            <option>16</option>
+            <option>18</option>
+            <option>24</option>
+            <option>36</option>
+          </select>
+        </div>
+        
+        <!-- Style Group -->
+        <div class="border-r pr-2 flex items-center space-x-2">
+          <button id="bold-btn" class="p-1 hover:bg-gray-200 rounded" title="Bold"><i class="fas fa-bold"></i></button>
+          <button id="italic-btn" class="p-1 hover:bg-gray-200 rounded" title="Italic"><i class="fas fa-italic"></i></button>
+          <button id="underline-btn" class="p-1 hover:bg-gray-200 rounded" title="Underline"><i class="fas fa-underline"></i></button>
+          <button id="strikethrough-btn" class="p-1 hover:bg-gray-200 rounded" title="Strikethrough"><i class="fas fa-strikethrough"></i></button>
+          <button id="text-color-btn" class="p-1 hover:bg-gray-200 rounded" title="Text Color"><i class="fas fa-palette"></i></button>
+          <div id="text-color-picker" class="floating-controls">
+            <div class="color-picker">
+              <div class="color-option" style="background-color: #000000;" data-color="#000000"></div>
+              <div class="color-option" style="background-color: #e60000;" data-color="#e60000"></div>
+              <div class="color-option" style="background-color: #ff9900;" data-color="#ff9900"></div>
+              <div class="color-option" style="background-color: #ffff00;" data-color="#ffff00"></div>
+              <div class="color-option" style="background-color: #008a00;" data-color="#008a00"></div>
+              <div class="color-option" style="background-color: #0066cc;" data-color="#0066cc"></div>
+              <div class="color-option" style="background-color: #9933ff;" data-color="#9933ff"></div>
+              <div class="color-option" style="background-color: #ffffff;" data-color="#ffffff" style="border: 1px solid #ddd;"></div>
+              <div class="color-option" style="background-color: #facccc;" data-color="#facccc"></div>
+              <div class="color-option" style="background-color: #ffebcc;" data-color="#ffebcc"></div>
+              <div class="color-option" style="background-color: #ffffcc;" data-color="#ffffcc"></div>
+              <div class="color-option" style="background-color: #cce8cc;" data-color="#cce8cc"></div>
+              <div class="color-option" style="background-color: #cce0f5;" data-color="#cce0f5"></div>
+              <div class="color-option" style="background-color: #ebd6ff;" data-color="#ebd6ff"></div>
+            </div>
+          </div>
+          <button id="highlight-btn" class="p-1 hover:bg-gray-200 rounded" title="Highlight"><i class="fas fa-highlighter"></i></button>
+          <div id="highlight-color-picker" class="floating-controls">
+            <div class="color-picker">
+              <div class="color-option" style="background-color: #ffff00;" data-color="#ffff00"></div>
+              <div class="color-option" style="background-color: #00ffff;" data-color="#00ffff"></div>
+              <div class="color-option" style="background-color: #ff99cc;" data-color="#ff99cc"></div>
+              <div class="color-option" style="background-color: #99ff99;" data-color="#99ff99"></div>
+              <div class="color-option" style="background-color: none;" data-color="transparent">None</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Paragraph Group -->
+        <div class="border-r pr-2 flex items-center space-x-2">
+          <button id="align-left-btn" class="p-1 hover:bg-gray-200 rounded" title="Align Left"><i class="fas fa-align-left"></i></button>
+          <button id="align-center-btn" class="p-1 hover:bg-gray-200 rounded" title="Align Center"><i class="fas fa-align-center"></i></button>
+          <button id="align-right-btn" class="p-1 hover:bg-gray-200 rounded" title="Align Right"><i class="fas fa-align-right"></i></button>
+          <button id="align-justify-btn" class="p-1 hover:bg-gray-200 rounded" title="Justify"><i class="fas fa-align-justify"></i></button>
+        </div>
+        
+        <!-- List Group -->
+        <div class="border-r pr-2 flex items-center space-x-2">
+          <button id="bullet-list-btn" class="p-1 hover:bg-gray-200 rounded" title="Bullets"><i class="fas fa-list-ul"></i></button>
+          <button id="number-list-btn" class="p-1 hover:bg-gray-200 rounded" title="Numbering"><i class="fas fa-list-ol"></i></button>
+          <button id="decrease-indent-btn" class="p-1 hover:bg-gray-200 rounded" title="Decrease Indent"><i class="fas fa-outdent"></i></button>
+          <button id="increase-indent-btn" class="p-1 hover:bg-gray-200 rounded" title="Increase Indent"><i class="fas fa-indent"></i></button>
+        </div>
+        
+        <!-- Styles Group -->
+        <div class="flex items-center space-x-2">
+          <select id="text-style" class="border rounded p-1 text-sm w-28">
+            <option value="p">Normal</option>
+            <option value="h1">Heading 1</option>
+            <option value="h2">Heading 2</option>
+            <option value="h3">Heading 3</option>
+            <option value="h4">Heading 4</option>
+            <option value="blockquote">Blockquote</option>
+            <option value="pre">Code Block</option>
+          </select>
+          <button id="clear-format-btn" class="p-1 hover:bg-gray-200 rounded" title="Clear Formatting"><i class="fas fa-eraser"></i></button>
+        </div>
+      </div>
+      
+      <!-- Insert Tab Ribbon -->
+      <div id="insert-ribbon" class="p-2 flex flex-wrap gap-2 items-center hidden">
+        <!-- Media Group -->
+        <div class="border-r pr-2 flex items-center space-x-2">
+          <button id="image-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-image text-lg"></i>
+            <span>Image</span>
+          </button>
+          <input type="file" id="image-upload" accept="image/*" class="hidden">
+          <button id="table-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-table text-lg"></i>
+            <span>Table</span>
+          </button>
+          <div id="table-creator" class="floating-controls" style="width: 180px;">
+            <div class="flex flex-col">
+              <div class="text-sm font-medium mb-2">Insert Table</div>
+              <div class="flex mb-2">
+                <input type="number" id="table-rows" min="1" max="10" value="3" class="border w-16 px-2 py-1 text-sm">
+                <span class="mx-2 text-sm">×</span>
+                <input type="number" id="table-cols" min="1" max="10" value="3" class="border w-16 px-2 py-1 text-sm">
+              </div>
+              <button id="insert-table-btn" class="bg-blue-500 text-white px-3 py-1 rounded text-sm">Insert</button>
+            </div>
+          </div>
+          <button id="link-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-link text-lg"></i>
+            <span>Link</span>
+          </button>
+          <div id="link-editor" class="floating-controls" style="width: 250px;">
+            <div class="flex flex-col">
+              <div class="text-sm font-medium mb-2">Insert Link</div>
+              <input type="text" id="link-url" placeholder="https://" class="border mb-2 px-2 py-1 text-sm">
+              <input type="text" id="link-text" placeholder="Link text" class="border mb-2 px-2 py-1 text-sm">
+              <button id="insert-link-btn" class="bg-blue-500 text-white px-3 py-1 rounded text-sm">Insert</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Elements Group -->
+        <div class="flex items-center space-x-2">
+          <button id="hr-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-minus text-lg"></i>
+            <span>Divider</span>
+          </button>
+          <button id="code-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-code text-lg"></i>
+            <span>Code</span>
+          </button>
+          <button id="quote-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-quote-right text-lg"></i>
+            <span>Quote</span>
+          </button>
+          <button id="emoji-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-smile text-lg"></i>
+            <span>Emoji</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Layout Tab Ribbon -->
+      <div id="layout-ribbon" class="p-2 flex flex-wrap gap-2 items-center hidden">
+        <!-- Layout Group -->
+        <div class="border-r pr-2 flex items-center space-x-2">
+          <button id="column-layout-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-columns text-lg"></i>
+            <span>Columns</span>
+          </button>
+          <div id="column-dropdown" class="dropdown-menu">
+            <div class="dropdown-item" data-cols="1">Single Column</div>
+            <div class="dropdown-item" data-cols="2">Two Columns</div>
+            <div class="dropdown-item" data-cols="3">Three Columns</div>
+          </div>
+        </div>
+        
+        <!-- Image Position Group -->
+        <div class="flex items-center space-x-2">
+          <button id="image-left-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-image text-lg"></i>
+            <span>Left</span>
+          </button>
+          <button id="image-center-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-image text-lg"></i>
+            <span>Center</span>
+          </button>
+          <button id="image-right-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-image text-lg"></i>
+            <span>Right</span>
+          </button>
+          <button id="image-wrap-btn" class="p-1 hover:bg-gray-200 rounded flex flex-col items-center text-xs">
+            <i class="fas fa-compress-arrows-alt text-lg"></i>
+            <span>Text Wrap</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Article Title -->
+    <div class="p-4 border-b">
+      <input type="text" id="article-title" placeholder="Article Title" class="text-3xl font-bold w-full focus:outline-none">
+    </div>
+    
+    <!-- Content Editing Area -->
+    <div class="flex flex-1">
+      <!-- Main Editor -->
+      <div class="w-full">
+        <div id="editor" contenteditable="true" class="editor-content p-6 min-h-screen focus:outline-none">
+          <p>Start writing your article here...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Controls (appears when an image is selected) -->
+    <div id="image-controls" class="floating-controls">
+      <button id="image-edit-btn" class="p-1 hover:bg-gray-200 rounded" title="Edit Image"><i class="fas fa-pen"></i></button>
+      <button id="image-left-align-btn" class="p-1 hover:bg-gray-200 rounded" title="Align Left"><i class="fas fa-align-left"></i></button>
+      <button id="image-center-align-btn" class="p-1 hover:bg-gray-200 rounded" title="Align Center"><i class="fas fa-align-center"></i></button>
+      <button id="image-right-align-btn" class="p-1 hover:bg-gray-200 rounded" title="Align Right"><i class="fas fa-align-right"></i></button>
+      <button id="image-float-left-btn" class="p-1 hover:bg-gray-200 rounded" title="Float Left"><i class="fas fa-arrow-left"></i></button>
+      <button id="image-float-right-btn" class="p-1 hover:bg-gray-200 rounded" title="Float Right"><i class="fas fa-arrow-right"></i></button>
+      <input type="number" id="image-width" placeholder="Width" class="border mx-1 p-1 w-16 text-sm">
+      <button id="image-remove-btn" class="p-1 hover:bg-gray-200 rounded" title="Remove Image"><i class="fas fa-trash"></i></button>
+    </div>
+  </div>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="bg-white w-4/5 h-4/5 rounded-lg overflow-hidden flex flex-col">
+      <div class="bg-gray-800 text-white p-3 flex justify-between items-center">
+        <h2>Article Preview</h2>
+        <button id="close-preview" class="text-white hover:text-gray-300"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="preview-content" class="p-6 overflow-auto flex-1">
+        <!-- Preview content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elements
+      const editor = document.getElementById('editor');
+      const tabs = document.querySelectorAll('.flex.border-b button');
+      const ribbons = [
+        document.getElementById('text-ribbon'),
+        document.getElementById('insert-ribbon'),
+        document.getElementById('layout-ribbon')
+      ];
+      const articleTitle = document.getElementById('article-title');
+      const textColorBtn = document.getElementById('text-color-btn');
+      const textColorPicker = document.getElementById('text-color-picker');
+      const highlightBtn = document.getElementById('highlight-btn');
+      const highlightColorPicker = document.getElementById('highlight-color-picker');
+      const imageBtn = document.getElementById('image-btn');
+      const imageUpload = document.getElementById('image-upload');
+      const imageControls = document.getElementById('image-controls');
+      const tableBtn = document.getElementById('table-btn');
+      const tableCreator = document.getElementById('table-creator');
+      const linkBtn = document.getElementById('link-btn');
+      const linkEditor = document.getElementById('link-editor');
+      const columnLayoutBtn = document.getElementById('column-layout-btn');
+      const columnDropdown = document.getElementById('column-dropdown');
+      const previewBtn = document.getElementById('preview-btn');
+      const previewModal = document.getElementById('preview-modal');
+      const previewContent = document.getElementById('preview-content');
+      const closePreview = document.getElementById('close-preview');
+      
+      // Selected elements
+      let selectedImage = null;
+      let currentSelectedElement = null;
+      
+      // Tab Switching
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('bg-gray-200');
+            t.classList.add('hover:bg-gray-100');
+          });
+          tab.classList.add('bg-gray-200');
+          tab.classList.remove('hover:bg-gray-100');
+          
+          ribbons.forEach(ribbon => ribbon.classList.add('hidden'));
+          ribbons[index]?.classList.remove('hidden');
+          
+          // Hide all floating controls when changing tabs
+          hideAllFloatingControls();
+        });
+      });
+      
+      // Helper function to hide all floating controls
+      function hideAllFloatingControls() {
+        textColorPicker.style.display = 'none';
+        highlightColorPicker.style.display = 'none';
+        tableCreator.style.display = 'none';
+        linkEditor.style.display = 'none';
+        imageControls.style.display = 'none';
+        columnDropdown.style.display = 'none';
+      }
+      
+      // Click outside to close floating controls
+      document.addEventListener('click', function(e) {
+        const isColorBtn = e.target.closest('#text-color-btn');
+        const isColorPicker = e.target.closest('#text-color-picker');
+        const isHighlightBtn = e.target.closest('#highlight-btn');
+        const isHighlightPicker = e.target.closest('#highlight-color-picker');
+        const isTableBtn = e.target.closest('#table-btn');
+        const isTableCreator = e.target.closest('#table-creator');
+        const isLinkBtn = e.target.closest('#link-btn');
+        const isLinkEditor = e.target.closest('#link-editor');
+        const isColumnBtn = e.target.closest('#column-layout-btn');
+        const isColumnDropdown = e.target.closest('#column-dropdown');
+        
+        if (!isColorBtn && !isColorPicker) textColorPicker.style.display = 'none';
+        if (!isHighlightBtn && !isHighlightPicker) highlightColorPicker.style.display = 'none';
+        if (!isTableBtn && !isTableCreator) tableCreator.style.display = 'none';
+        if (!isLinkBtn && !isLinkEditor) linkEditor.style.display = 'none';
+        if (!isColumnBtn && !isColumnDropdown) columnDropdown.style.display = 'none';
+      });
+      
+      // // Text Formatting Functions
+      // // Basic rich text editing commands
+      // document.getElementById('bold-btn').addEventListener('click', () => {
+      //   document.execCommand('bold', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('italic-btn').addEventListener('click', () => {
+      //   document.execCommand('italic', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('underline-btn').addEventListener('click', () => {
+      //   document.execCommand('underline', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('strikethrough-btn').addEventListener('click', () => {
+      //   document.execCommand('strikeThrough', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('align-left-btn').addEventListener('click', () => {
+      //   document.execCommand('justifyLeft', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('align-center-btn').addEventListener('click', () => {
+      //   document.execCommand('justifyCenter', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('align-right-btn').addEventListener('click', () => {
+      //   document.execCommand('justifyRight', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('align-justify-btn').addEventListener('click', () => {
+      //   document.execCommand('justifyFull', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('bullet-list-btn').addEventListener('click', () => {
+      //   document.execCommand('insertUnorderedList', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('number-list-btn').addEventListener('click', () => {
+      //   document.execCommand('insertOrderedList', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('decrease-indent-btn').addEventListener('click', () => {
+      //   document.execCommand('outdent', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('increase-indent-btn').addEventListener('click', () => {
+      //   document.execCommand('indent', false, null);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('clear-format-btn').addEventListener('click', () => {
+      //   document.execCommand('removeFormat', false, null);
+      //   editor.focus();
+      // });
+      
+      // // Text Color Picker
+      // textColorBtn.addEventListener('click', function(e) {
+      //   const rect = textColorBtn.getBoundingClientRect();
+      //   textColorPicker.style.display = 'block';
+      //   textColorPicker.style.top = rect.bottom + 5 + 'px';
+      //   textColorPicker.style.left = rect.left + 'px';
+      //   e.stopPropagation();
+      // });
+      
+      // // Apply text color
+      // textColorPicker.querySelectorAll('.color-option').forEach(option => {
+      //   option.addEventListener('click', function() {
+      //     const color = this.getAttribute('data-color');
+      //     document.execCommand('foreColor', false, color);
+      //     textColorPicker.style.display = 'none';
+      //     editor.focus();
+      //   });
+      // });
+      
+      // // Highlight Button
+      // highlightBtn.addEventListener('click', function(e) {
+      //   const rect = highlightBtn.getBoundingClientRect();
+      //   highlightColorPicker.style.display = 'block';
+      //   highlightColorPicker.style.top = rect.bottom + 5 + 'px';
+      //   highlightColorPicker.style.left = rect.left + 'px';
+      //   e.stopPropagation();
+      // });
+      
+      // // Apply highlight color
+      // highlightColorPicker.querySelectorAll('.color-option').forEach(option => {
+      //   option.addEventListener('click', function() {
+      //     const color = this.getAttribute('data-color');
+      //     if (color === 'transparent') {
+      //       document.execCommand('removeFormat', false, null);
+      //     } else {
+      //       document.execCommand('hiliteColor', false, color);
+      //     }
+      //     highlightColorPicker.style.display = 'none';
+      //     editor.focus();
+      //   });
+      // });
+      
+      // // Font Family and Size
+      // document.getElementById('font-family').addEventListener('change', function() {
+      //   document.execCommand('fontName', false, this.value);
+      //   editor.focus();
+      // });
+      
+      // document.getElementById('font-size').addEventListener('change', function() {
+      //   // Convert to pt for execCommand
+      //   document.execCommand('fontSize', false, this.selectedIndex + 1);
+      //   editor.focus();
+      // });
+      
+      // // Text Styles
+      // document.getElementById('text-style').addEventListener('change', function() {
+      //   const tag = this.value;
+      //   const selection = window.getSelection();
+        
+      //   if (selection.rangeCount > 0) {
+      //     const range = selection.getRangeAt(0);
+      //     let selectedNode = range.commonAncestorContainer;
+          
+      //     // Get the element node (if the selection is in a text node)
+      //     if (selectedNode.nodeType === 3) { // Text node
+      //       selectedNode = selectedNode.parentNode;
+      //     }
+          
+      //     // Find the closest block element
+      //     let blockElement = selectedNode;
+      //     while (blockElement && !['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'PRE'].includes(blockElement.nodeName)) {
+      //       blockElement = blockElement.parentNode;
+      //       if (blockElement === editor) {
+      //         blockElement = selectedNode; // Reset if we reach the editor
+      //         break;
+      //       }
+      //     }
+          
+      //     // Create new element
+      //     const newElement = document.createElement(tag);
+      //     newElement.innerHTML = blockElement.innerHTML;
+          
+      //     // Replace old element with new one
+      //     blockElement.parentNode.replaceChild(newElement, blockElement);
+          
+      //     // Reselect the content
+      //     range.selectNodeContents(newElement);
+      //     selection.removeAllRanges();
+      //     selection.addRange(range);
+      //   }
+        
+      //   editor.focus();
+      // });
+      
+      // // Image Upload
+      // imageBtn.addEventListener('click', function() {
+      //   imageUpload.click();
+      // });
+      
+      // imageUpload.addEventListener('change', function() {
+      //   const file = this.files[0];
+      //   if (file) {
+      //     const reader = new FileReader();
+      //     reader.onload = function(e) {
+      //       const img = document.createElement('img');
+      //       img.src = e.target.result;
+      //       img.className = 'cursor-move my-2';
+      //       img.style.maxWidth = '100%';
+            
+      //       // Insert at cursor position
+      //       document.execCommand('insertHTML', false, img.outerHTML);
+            
+      //       // Make the newly inserted image draggable
+      //       initializeImageDragging();
+      //     };
+      //     reader.readAsDataURL(file);
+      //   }
+      // });
+      
+      // // Make images draggable
+      // function initializeImageDragging() {
+      //   const images = editor.querySelectorAll('img');
+        
+      //   images.forEach(img => {
+      //     if (!img.getAttribute('data-draggable')) {
+      //       img.setAttribute('data-draggable', 'true');
+            
+      //       img.addEventListener('mousedown', function(e) {
+      //         selectedImage = this;
+
+      //         // Show image controls
+      //         const rect = selectedImage.getBoundingClientRect();
+      //         imageControls.style.display = 'flex';
+      //         imageControls.style.top = (rect.top + window.scrollY - 40) + 'px';
+      //         imageControls.style.left = (rect.left + window.scrollX) + 'px';
+              
+      //         // Prevent default drag behavior
+      //         e.preventDefault();
+              
+      //         const startX = e.clientX;
+      //         const startY = e.clientY;
+      //         const startLeft = img.offsetLeft;
+      //         const startTop = img.offsetTop;
+              
+      //         // Mouse move handler for dragging
+      //         function mouseMoveHandler(e) {
+      //           const dx = e.clientX - startX;
+      //           const dy = e.clientY - startY;
+                
+      //           // Move the image
+      //           img.style.position = 'relative';
+      //           img.style.left = startLeft + dx + 'px';
+      //           img.style.top = startTop + dy + 'px';
+      //         }
+              
+      //         // Mouse up handler to stop dragging
+      //         function mouseUpHandler() {
+      //           document.removeEventListener('mousemove', mouseMoveHandler);
+      //           document.removeEventListener('mouseup', mouseUpHandler);
+      //         }
+              
+      //         document.addEventListener('mousemove', mouseMoveHandler);
+      //         document.addEventListener('mouseup', mouseUpHandler);
+      //       });
+            
+      //       // Select image on click (for controls)
+      //       img.addEventListener('click', function(e) {
+      //         e.stopPropagation();
+      //         selectedImage = this;
+              
+      //         // Show image controls
+      //         const rect = selectedImage.getBoundingClientRect();
+      //         imageControls.style.display = 'flex';
+      //         imageControls.style.top = (rect.top + window.scrollY - 40) + 'px';
+      //         imageControls.style.left = (rect.left + window.scrollX) + 'px';
+              
+      //         // Update width input value
+      //         document.getElementById('image-width').value = selectedImage.width;
+      //       });
+      //     }
+      //   });
+      // }
+      
+      // // Initialize dragging for any images already in the editor
+      // initializeImageDragging();
+      
+      // // Hide image controls when clicking elsewhere
+      // editor.addEventListener('click', function(e) {
+      //   if (e.target !== selectedImage && !e.target.closest('#image-controls')) {
+      //     imageControls.style.display = 'none';
+      //     selectedImage = null;
+      //   }
+      // });
+      
+      // // Image control buttons
+      // document.getElementById('image-left-align-btn').addEventListener('click', function() {
+      //   if (selectedImage) {
+      //     selectedImage.style.display = 'block';
+      //     selectedImage.style.marginLeft = '0';
+      //     selectedImage.style.marginRight = 'auto';
+      //     selectedImage.classList.remove('float-left', 'float-right');
+      //   }
+      // });
+      
+      // document.getElementById('image-center-align-btn').addEventListener('click', function() {
+      //   if (selectedImage) {
+      //     selectedImage.style.display = 'block';
+      //     selectedImage.style.marginLeft = 'auto';
+      //     selectedImage.style.marginRight = 'auto';
+      //     selectedImage.classList.remove('float-left', 'float-right');
+      //   }
+      // });
+      
+      // document.getElementById('image-right-align-btn').addEventListener('click', function() {
+      //   if (selectedImage) {
+      //     selectedImage.style.display = 'block';
+      //     selectedImage.style.marginLeft = 'auto';
+      //     selectedImage.style.marginRight = '0';
+      //     selectedImage.classList.remove('float-left', 'float-right');
+      //   }
+      // });
+      
+      // document.getElementById('image-float-left-btn').addEventListener('click', function() {
+      //   if (selectedImage) {
+      //     selectedImage.style.display = 'inline';
+      //     selectedImage.style.marginLeft = '';
+      //     selectedImage.style.marginRight = '';
+      //     selectedImage.classList.remove('float-right');
+      //     selectedImage.classList.add('float-left');
+      //   }
+      // });
+      
+      // document.getElementById('image-float-right-btn').addEventListener('click', function() {
+      //   if (selectedImage) {
+      //     selectedImage.style.display = 'inline';
+      //     selectedImage.style.marginLeft = '';
+      //     selectedImage.style.marginRight = '';
+      //     selectedImage.classList.remove('float-left');
+      //     selectedImage.classList.add('float-right');
+      //   }
+      // });
+      
+      // document.getElementById('image-width').addEventListener('change', function() {
+      //   if (selectedImage) {
+      //     selectedImage.style.width = this.value + 'px';
+      //   }
+      // });
+      
+      // document.getElementById('image-remove-btn').addEventListener('click', function() {
+      //   if (selectedImage) {
+      //     selectedImage.parentNode.removeChild(selectedImage);
+      //     imageControls.style.display = 'none';
+      //     selectedImage = null;
+      //   }
+      // });
+      
+      // // Table Creator
+      // tableBtn.addEventListener('click', function(e) {
+      //   const rect = tableBtn.getBoundingClientRect();
+      //   tableCreator.style.display = 'block';
+      //   tableCreator.style.top = rect.bottom + 5 + 'px';
+      //   tableCreator.style.left = rect.left + 'px';
+      //   e.stopPropagation();
+      // });
+      
+      // document.getElementById('insert-table-btn').addEventListener('click', function() {
+      //   const rows = parseInt(document.getElementById('table-rows').value) || 3;
+      //   const cols = parseInt(document.getElementById('table-cols').value) || 3;
+        
+      //   let tableHTML = '<table class="border-collapse w-full my-2">';
+        
+      //   // Create header row
+      //   tableHTML += '<thead><tr>';
+      //   for (let i = 0; i < cols; i++) {
+      //     tableHTML += '<th class="border border-gray-300 p-2">Header ' + (i + 1) + '</th>';
+      //   }
+      //   tableHTML += '</tr></thead>';
+        
+      //   // Create table body
+      //   tableHTML += '<tbody>';
+      //   for (let i = 0; i < rows - 1; i++) {
+      //     tableHTML += '<tr>';
+      //     for (let j = 0; j < cols; j++) {
+      //       tableHTML += '<td class="border border-gray-300 p-2">Cell</td>';
+      //     }
+      //     tableHTML += '</tr>';
+      //   }
+      //   tableHTML += '</tbody></table>';
+        
+      //   document.execCommand('insertHTML', false, tableHTML);
+      //   tableCreator.style.display = 'none';
+      //   editor.focus();
+      // });
+      
+      // // Link Creator
+      // linkBtn.addEventListener('click', function(e) {
+      //   const rect = linkBtn.getBoundingClientRect();
+      //   linkEditor.style.display = 'block';
+      //   linkEditor.style.top = rect.bottom + 5 + 'px';
+      //   linkEditor.style.left = rect.left + 'px';
+        
+      //   // Get selected text for link text
+      //   const selection = window.getSelection();
+      //   if (selection.toString()) {
+      //     document.getElementById('link-text').value = selection.toString();
+      //   }
+        
+      //   e.stopPropagation();
+      // });
+      
+      // document.getElementById('insert-link-btn').addEventListener('click', function() {
+      //   const url = document.getElementById('link-url').value.trim();
+      //   let text = document.getElementById('link-text').value.trim();
+        
+      //   if (url) {
+      //     if (!text) {
+      //       text = url;
+      //     }
+          
+      //     // Create link element
+      //     const link = document.createElement('a');
+      //     link.href = url;
+      //     link.textContent = text;
+      //     link.target = '_blank';  // Open in new tab
+          
+      //     // Insert the link
+      //     const selection = window.getSelection();
+      //     if (selection.rangeCount > 0) {
+      //       selection.deleteFromDocument();
+      //       selection.getRangeAt(0).insertNode(link);
+      //     } else {
+      //       document.execCommand('insertHTML', false, link.outerHTML);
+      //     }
+          
+      //     // Clear inputs and hide
+      //     document.getElementById('link-url').value = '';
+      //     document.getElementById('link-text').value = '';
+      //     linkEditor.style.display = 'none';
+          
+      //     editor.focus();
+      //   }
+      // });
+      
+      // // Column Layout
+      // columnLayoutBtn.addEventListener('click', function(e) {
+      //   const rect = columnLayoutBtn.getBoundingClientRect();
+      //   columnDropdown.style.display = 'block';
+      //   columnDropdown.style.top = rect.bottom + 5 + 'px';
+      //   columnDropdown.style.left = rect.left + 'px';
+      //   e.stopPropagation();
+      // });
+      
+      // // Apply column layout
+      // columnDropdown.querySelectorAll('.dropdown-item').forEach(item => {
+      //   item.addEventListener('click', function() {
+      //     const cols = parseInt(this.getAttribute('data-cols'));
+          
+      //     let containerHTML = '<div class="flex flex-wrap -mx-2 my-4">';
+          
+      //     for (let i = 0; i < cols; i++) {
+      //       let colWidth = 12 / cols;
+      //       containerHTML += `<div class="px-2 w-full md:w-${colWidth}/12"><p>Column ${i + 1} content...</p></div>`;
+      //     }
+          
+      //     containerHTML += '</div>';
+          
+      //     document.execCommand('insertHTML', false, containerHTML);
+      //     columnDropdown.style.display = 'none';
+      //     editor.focus();
+      //   });
+      // });
+      
+      // // Insert divider
+      // document.getElementById('hr-btn').addEventListener('click', function() {
+      //   document.execCommand('insertHTML', false, '<hr class="my-4 border-t border-gray-300">');
+      //   editor.focus();
+      // });
+      
+      // // Insert code block
+      // document.getElementById('code-btn').addEventListener('click', function() {
+      //   document.execCommand('insertHTML', false, '<pre class="bg-gray-100 p-4 rounded my-4"><code>// Your code here</code></pre>');
+      //   editor.focus();
+      // });
+      
+      // // Insert blockquote
+      // document.getElementById('quote-btn').addEventListener('click', function() {
+      //   document.execCommand('insertHTML', false, '<blockquote class="border-l-4 border-gray-300 pl-4 italic my-4">Quote text here</blockquote>');
+      //   editor.focus();
+      // });
+      
+      // // Preview functionality
+      // previewBtn.addEventListener('click', function() {
+      //   previewModal.classList.remove('hidden');
+      //   previewContent.innerHTML = '<h1 class="text-3xl font-bold mb-4">' + articleTitle.value + '</h1>' + editor.innerHTML;
+      // });
+      
+      // closePreview.addEventListener('click', function() {
+      //   previewModal.classList.add('hidden');
+      // });
+      
+      // // Save button functionality (placeholder)
+      // document.getElementById('save-btn').addEventListener('click', function() {
+      //   alert('Article saved as draft! (This is a demo - no actual saving occurs)');
+      // });
+      
+      // // Publish button functionality (placeholder)
+      // document.getElementById('publish-btn').addEventListener('click', function() {
+      //   alert('Article published! (This is a demo - no actual publishing occurs)');
+      // });
+      
+      // // Track selection for styling
+      // editor.addEventListener('mouseup', function() {
+      //   updateActiveStyles();
+      // });
+      
+      // editor.addEventListener('keyup', function() {
+      //   updateActiveStyles();
+      // });
+      
+      // function updateActiveStyles() {
+      //   // Get current selection
+      //   const selection = window.getSelection();
+      //   if (selection.rangeCount > 0) {
+      //     const range = selection.getRangeAt(0);
+      //     let selectedNode = range.commonAncestorContainer;
+          
+      //     // Get the element node (if the selection is in a text node)
+      //     if (selectedNode.nodeType === 3) { // Text node
+      //       selectedNode = selectedNode.parentNode;
+      //     }
+          
+      //     // Reset all button active states
+      //     document.querySelectorAll('#text-ribbon button').forEach(btn => {
+      //       btn.classList.remove('bg-gray-200');
+      //     });
+          
+      //     // Check and set button states based on current formatting
+      //     if (document.queryCommandState('bold')) {
+      //       document.getElementById('bold-btn').classList.add('bg-gray-200');
+      //     }
+          
+      //     if (document.queryCommandState('italic')) {
+      //       document.getElementById('italic-btn').classList.add('bg-gray-200');
+      //     }
+          
+      //     if (document.queryCommandState('underline')) {
+      //       document.getElementById('underline-btn').classList.add('bg-gray-200');
+      //     }
+          
+      //     if (document.queryCommandState('strikeThrough')) {
+      //       document.getElementById('strikethrough-btn').classList.add('bg-gray-200');
+      //     }
+          
+      //     // Update heading/style dropdown
+      //     let styleValue = 'p'; // Default
+          
+      //     if (selectedNode) {
+      //       let parentBlock = selectedNode;
+            
+      //       // Find the closest block element
+      //       while (parentBlock && !['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BLOCKQUOTE', 'PRE'].includes(parentBlock.nodeName)) {
+      //         parentBlock = parentBlock.parentNode;
+      //         if (!parentBlock || parentBlock === editor) {
+      //           parentBlock = null;
+      //           break;
+      //         }
+      //       }
+            
+      //       if (parentBlock) {
+      //         styleValue = parentBlock.nodeName.toLowerCase();
+      //       }
+      //     }
+          
+      //     document.getElementById('text-style').value = styleValue;
+      //   }
+      // }
+      
+      // // Initial focus
+      // articleTitle.focus();
+    });
+
+  </script> 
+
+
+  <script src="textFormatting.js"></script>
+<script src="imageHandling.js"></script>
+<script src="tableHandling.js"></script>
+<script src="linkHandling.js"></script>
+<script src="listHandling.js"></script>
+<script src="colorHandling.js"></script>
+<script src="previewHandling.js"></script>
+<script src="utils.js"></script>
+<script src="main.js"></script> 
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz</title>
+
+</head>
+<body>
+
+  <h1 class="center-text">Quiz Tayo</h1>
+  <form class="quiz" id="quizForm">
+    <p>Alam mo yung Feeling na?</p>
+    <div class="pili-ka">
+      <input type="radio" id="greatest" name="age" value="greatest">
+      <label for="greatest">Greatest</label>
+
+      <input type="radio" id="gusto" name="age" value="gustong">
+      <label for="gusto">Gustong</label>
+
+      <input type="radio" id="mss" name="age" value="miss">
+      <label for="miss">Miss</label>
+    </div>
+
+    <input type="submit" value="Submit" class="btn-submit">
+
+    <div class="output-video">
+      <video id="video-greatest" src="greateswhite.mp4" controls></video>
+      <video id="video-gustong" src="gustosabi.mp4" controls></video>
+      <video id="video-miss" src="miss.mp4" controls></video>
+    </div>
+  </form>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: rgb(222, 221, 221);
+    }
+
+ .quiz {
+  display: flex;
+  width: 500px;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid;
+  border-image: conic-gradient(
+    red, orange, yellow, green, blue, indigo, violet, red
+  ) 1;
+  animation: rotateBorder 3s linear infinite;
+  flex-direction: column;
+  margin: 50px auto;
+  gap: 10px;
+  padding: 20px;
+}
+
+
+@keyframes rotateBorder {
+  0% {
+    border-image: conic-gradient(
+      red, orange, yellow, green, blue, indigo, violet, red
+    ) 1;
+  }
+  100% {
+    border-image: conic-gradient(
+      violet, red, orange, yellow, green, blue, indigo, violet
+    ) 1;
+  }
+}
+
+
+    .pili-ka {
+
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .btn-submit {
+      width: 100px;
+      height: 35px;
+      border: none;
+      box-shadow: 0 0 5px rgb(255, 69, 69);
+      background: rgb(238, 108, 108);
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .center-text {
+      text-align: center;
+      margin-top: 100px;
+      font-size: 24px;
+    }
+
+    .output-video {
+    
+      height: 200px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .output-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none; 
+    }
+
+  
+
+    @media (max-width: 768px) {
+      .quiz {
+        width: 90%;
+        padding: 15px;
+      }
+
+      .center-text {
+        margin-top: 80px;
+        font-size: 22px;
+      }
+
+      .pili-ka {
+    
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .quiz {
+        width: 95%;
+        padding: 10px;
+      }
+
+      .center-text {
+        margin-top: 60px;
+        font-size: 20px;
+      }
+
+      .btn-submit {
+        width: 100%;
+      }
+
+      .output-video {
+        height: 180px;
+      }
+     
+    }
+  </style>
+  <script>
+    const form = document.getElementById("quizForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+ 
+      const videos = ["video-greatest", "video-gustong", "video-miss"];
+      videos.forEach(function(id) {
+        const vid = document.getElementById(id);
+        vid.style.display = "none";
+        vid.pause();
+      });
+
+      const selected = document.querySelector('input[name="age"]:checked');
+      if (selected) {
+        const videoId = "video-" + selected.value;
+        const selectedVideo = document.getElementById(videoId);
+        selectedVideo.style.display = "block";
+        selectedVideo.currentTime = 0;
+        selectedVideo.play();
+      }
+    });
+  </script>
+
+</body>
+</html>

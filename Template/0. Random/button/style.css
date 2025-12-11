@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: black;
+    font-family: 'algerian';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+img {
+    display: flex;
+    width: 278px;
+    height: 555px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid #fff;
+    position: relative;
+    object-fit: cover;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 1.2s;
+    } 
+
+    .text {
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .coke:hover {
+        transform: scale(1.1);
+    }
+
+    .fanta:hover {
+        rotate: 10deg;
+    }
+
+    .redbull:hover {
+        transform: translate(1rem);
+    }
+
+    .pepsi:hover {
+        filter: blur(5px);
+    }

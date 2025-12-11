@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education Timeline - Neumorphism</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f0;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .year-box {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  box-shadow:
+      2px 2px 4px #1ec600,  
+      -2px -2px 4px #d9ff40; 
+}
+
+
+.education-details {
+  margin-top: 5px;
+padding-bottom: 10px;
+}
+
+.education-details p {
+  margin: 5px 0;
+}
+
+.education-details span {
+  font-weight: bold;
+}
+
+.bullet {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #333;
+  border-radius: 50%;
+  margin-right: 5px;
+margin-left: 20px;
+}
+.wrapper {
+width:100%;
+display: flex;
+justify-content: center;
+align-items:center;
+padding: 10px;
+}
+
+.timeline {
+list-style: none;
+padding: 20px 0 20px 0;
+position: relative;
+width: 100%;
+}
+
+.timeline li {
+margin-bottom: 50px;
+position: relative;
+display: flex;
+}
+
+.timeline .panel {
+width: 46%;
+border-radius: 10px;
+overflow: hidden;
+position: relative;
+box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+            -6px -6px 10px rgba(255, 255, 255, .5),
+            6px 6px 8px rgba(255, 255, 255, .075),
+            6px 6px 10px rgba(0, 0, 0, .15);
+}
+
+.panel span{
+  font-size: 0.8rem;
+}
+
+.timeline p {
+padding: 0 20px 10px 20px;
+}
+.timeline summary {
+display:block;
+user-select: none;
+cursor: pointer;
+outline: none;
+padding:20px;
+margin-bottom: 0px;
+transition: all 600ms cubic-bezier(0.2,1,0.3,1);
+font-weight: 600;
+}
+
+.timeline .panel[open] summary {
+margin-bottom: 20px;
+padding-bottom: 20px;
+border-bottom: 1px solid rgba(0,0,0,0.1);
+   transition: all 0.3s ease;
+}
+
+.timeline summary:hover {
+color: #1da1f2;
+}
+.timeline:before {
+top:0;
+bottom:0;
+left: 50%;
+position: absolute;
+content: "";
+width: 5px;
+box-shadow:  3px 3px 3px #5f5f5f,
+           -2px -2px 3px #ffffff;
+}
+
+.timeline li:before {
+content: "";
+width: 25px;
+height: 25px;
+border-radius: 50%;
+position: absolute;
+top: 18px;
+left: 50%;
+background: #f8f8f8;
+margin-left:-11px;
+z-index: 99;
+background: linear-gradient(145deg, #fefefe, #d5d5d5);
+box-shadow:  5px 5px 4px #5f5f5f,
+           -5px -5px 4px #ffffff;
+}
+.timeline li:nth-child(even) {
+justify-content: flex-end; 
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper"> 
+      <ul class="timeline">
+          <li>
+              <details class="panel">
+                  <summary><span style="color: rgb(20, 20, 20);">College (Bachelor of Science in Information Technology)</span></summary>
+                  <p>
+                      <span style="color: rgb(29, 161, 242);">
+                          <span class="year-box">2022 - Present</span>
+                          <span>Central Luzon State University</span>
+                      </span>
+                  </p>
+                  <div class="education-details">
+                      <span style="color: rgb(29, 161, 242);">
+                          <span class="bullet"></span> Sophomore - BSIT<br>
+                          <span class="bullet"></span> Freshman - BSIT
+                      </span>
+                  </div>
+              </details>
+          </li>
+          <li>
+              <details class="panel">
+                  <summary><span style="color: rgb(20, 20, 20);">Senior High School (Science, Technology, Engineering and Mathematics)</span></summary>
+                  <p>
+                      <span style="color: rgb(29, 161, 242);">
+                          <span class="year-box">2020 - 2022</span>
+                          <span>Munoz National High School - Main - Senior High School</span>
+                      </span>
+                  </p>
+                  <div class="education-details">
+                      <span style="color: rgb(29, 161, 242);">
+                          <span class="bullet"></span> Grade 11-12 - STEM B<br>
+                      </span>
+                  </div>
+              </details>
+          </li>
+          <li>
+              <details class="panel">
+                  <summary><span style="color: rgb(20, 20, 20);">Junior High School</span></summary>
+                  <p>
+                      <span style="color: rgb(29, 161, 242);">
+                          <span class="year-box">2016 - 2020</span>
+                          <span>Munoz National High School - Main</span>
+                      </span>
+                  </p>
+                  <div class="education-details">
+                      <span style="color: rgb(29, 161, 242);">
+                          <span class="bullet"></span> Grade 10 - Balite<br>
+                          <span class="bullet"></span> Grade 9 - Ruby<br>
+                          <span class="bullet"></span> Grade 8 - Chico<br>
+                          <span class="bullet"></span> Grade 7 - Lavender
+                      </span>
+                  </div>
+              </details>
+          </li>
+          <li>
+              <details class="panel">
+                  <summary><span style="color: rgb(20, 20, 20);">Elementary</span></summary>
+                  <p>
+                      <span style="color: rgb(29, 161, 242);">
+                          <span class="year-box">2010 - 2016</span>
+                          <span>Bantug Elementary School</span>
+                      </span>
+                  </p>
+                  <div class="education-details">
+                      <span style="color: rgb(29, 161, 242);">
+                          <span class="bullet"></span> Grade 1-6 : A<br>
+                          <span class="bullet"></span> Kindergarten
+                      </span>
+                  </div>
+              </details>
+          </li>
+          
+      </ul>
+  </div> 
+
+  </div>
+</body>
+</html>

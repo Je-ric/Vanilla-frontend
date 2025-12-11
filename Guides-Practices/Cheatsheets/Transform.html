@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Transform</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .container{
+        margin: 20px;
+    }
+
+    .category {
+        margin: 0 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 2px solid black;
+    }
+
+    .category-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 2px solid black;
+    }
+
+    .column {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: #007bff;
+        color: white;
+        font-size: 17px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .group{
+        display: flex;
+        flex-direction: column;    
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+    }
+
+    .code {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 5px;    
+    }
+
+    .box:hover {
+        transform: rotate(45deg);
+        background-color: red;
+    }
+
+    /* rotate */
+    .rotate-left:hover {
+        transform: rotate(-45deg);
+    }
+    .rotateX:hover {
+        transform: rotateX(45deg);
+    }
+    .rotateY:hover {
+        transform: rotateY(45deg);
+    }
+    .rotateZ:hover {
+        transform: rotateZ(90deg);
+    }
+    .rotate3d:hover {
+        transform: rotate3d(1, 1, 1, 45deg);
+    }
+
+    /* translate */
+    .translate:hover {
+        transform: translate(50px, 50px);
+    }
+    .translate1:hover {
+        transform: translate(-50px, 50px);
+    }
+    .translate2:hover {
+        transform: translate(50px, -50px);
+    }
+    .translate3:hover {
+        transform: translate(-50px, -50px);
+    }
+    .translateX:hover {
+        transform: translateX(100px);
+    }
+    .translateX1:hover {
+        transform: translateX(-100px);
+    }
+    .translateY:hover {
+        transform: translateY(100px);
+    }
+    .translateY1:hover {
+        transform: translateY(-100px);
+    }
+
+    /* scale */
+    .scale:hover {
+        transform: scale(0.5);
+    }
+    .scale1:hover {
+        transform: scale(-0.5);
+    }
+    .scale2:hover {
+        transform: scale(1.5);
+    }
+    .scale3:hover {
+        transform: scale(-1.5);
+    }
+    .scaleX:hover {
+        transform: scaleX(0.5);
+    }
+    .scaleX1:hover {
+        transform: scaleX(-0.5);
+    }
+    .scaleX2:hover {
+        transform: scaleX(1.5);
+    }
+    .scaleX3:hover {
+        transform: scaleX(-1.5);
+    }
+    .scaleY:hover {
+        transform: scaleY(0.5);
+    }
+    .scaleY1:hover {
+        transform: scaleY(-0.5);
+    }
+    .scaleY2:hover {
+        transform: scaleY(1.5);
+    }
+    .scaleY3:hover {
+        transform: scaleY(-1.5);
+    }
+
+    /* skew */
+    .skew:hover {
+        transform: skew(30deg, 20deg);
+    }
+    .skew1:hover {
+        transform: skew(-30deg, -20deg);
+    }
+    .skewX:hover {
+        transform: skewX(45deg);
+    }
+    .skewX1:hover {
+        transform: skewX(-45deg);
+    }
+    .skewY:hover {
+        transform: skewY(45deg);
+    }
+    .skewY1:hover {
+        transform: skewY(-45deg);
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="category">
+        <div class="category-title">Rotation</div>
+        <div class="column">
+            <div class="group">
+                <div class="box transformations">Rotate</div>
+                <div class="code">transform: rotate(45deg);</div>
+            </div>
+            <div class="group">
+                <div class="box rotate-left">Rotate Left</div>
+                <div class="code">transform: rotate(-45deg);</div>
+            </div>
+            <div class="group">
+                <div class="box rotateX">Rotate X</div>
+                <div class="code">transform: rotateX(45deg);</div>
+            </div>
+            <div class="group">
+                <div class="box rotateY">Rotate Y</div>
+                <div class="code">transform: rotateY(45deg);</div>
+            </div>
+            <div class="group">
+                <div class="box rotate3d">Rotate 3D</div>
+                <div class="code">transform: rotate3d(1, 1, 1, 45deg);</div>
+            </div>
+        </div>
+    </div>    
+
+    <div class="category">
+        <div class="category-title">Translation</div>
+        <div class="column">
+            <div class="group">
+                <div class="box translate">Translate</div>
+                <div class="code">transform: translate(50px, 50px);</div>
+            </div>
+            <div class="group">
+                <div class="box translate1">Translate</div>
+                <div class="code">transform: translate(-50px, 50px);</div>
+            </div>
+            <div class="group">
+                <div class="box translate2">Translate</div>
+                <div class="code">transform: translate(50px, -50px);</div>
+            </div>
+            <div class="group">
+                <div class="box translate3">Translate</div>
+                <div class="code">transform: translate(-50px, -50px);</div>
+            </div>
+            <div class="group">
+                <div class="box translateX">Translate X</div>
+                <div class="code">transform: translateX(100px);</div>
+            </div>
+            <div class="group">
+                <div class="box translateX1">Translate X</div>
+                <div class="code">transform: translateX(-100px);</div>
+            </div>
+            <div class="group">
+                <div class="box translateY">Translate Y</div>
+                <div class="code">transform: translateY(100px);</div>
+            </div>
+            <div class="group">
+                <div class="box translateY1">Translate Y</div>
+                <div class="code">transform: translateY(-100px);</div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="category">
+        <div class="category-title">Scale</div>
+        <div class="column">
+            <div class="group">
+                <div class="box scale">Scale</div>
+                <div class="code">transform: scale(0.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scale1">Scale</div>
+                <div class="code">transform: scale(-0.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scale2">Scale</div>
+                <div class="code">transform: scale(1.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scale3">Scale</div>
+                <div class="code">transform: scale(-1.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scaleX">Scale X</div>
+                <div class="code">transform: scaleX(0.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scaleX1">Scale X</div>
+                <div class="code">transform: scaleX(-0.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scaleX2">Scale X</div>
+                <div class="code">transform: scaleX(1.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scaleX3">Scale X</div>
+                <div class="code">transform: scaleX(-1.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scaleY">Scale Y</div>
+                <div class="code">transform: scaleY(0.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scaleY1">Scale Y</div>
+                <div class="code">transform: scaleY(-0.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scaleY2">Scale Y</div>
+                <div class="code">transform: scaleY(1.5);</div>
+            </div>
+            <div class="group">
+                <div class="box scaleY3">Scale Y</div>
+                <div class="code">transform: scaleY(-1.5);</div>
+            </div>
+        </div>
+    </div>    
+
+    <div class="category">
+        <div class="category-title">Skew</div>
+        <div class="column">
+            <div class="group">
+                <div class="box skew">Skew</div>
+                <div class="code">transform: skew(30deg, 20deg);</div>
+            </div>
+            <div class="group">
+                <div class="box skew1">Skew</div>
+                <div class="code">transform: skew(-30deg, -20deg);</div>
+            </div>
+            <div class="group">
+                <div class="box skewX">Skew X</div>
+                <div class="code">transform: skewX(45deg);</div>
+            </div>
+            <div class="group">
+                <div class="box skewX1">Skew X</div>
+                <div class="code">transform: skewX(-45deg);</div>
+            </div>
+            <div class="group">
+                <div class="box skewY">Skew Y</div>
+                <div class="code">transform: skewY(45deg);</div>
+            </div>
+            <div class="group">
+                <div class="box skewY1">Skew Y</div>
+                <div class="code">transform: skewY(-45deg);</div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+</body>
+</html>

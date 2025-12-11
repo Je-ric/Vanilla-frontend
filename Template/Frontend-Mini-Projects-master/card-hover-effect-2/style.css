@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: ghostwhite;
+}
+
+.container {
+  margin-top: 7%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  height: 350px;
+  width: 600px;
+  margin: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 20px;
+}
+
+#cpt {
+  background: linear-gradient(135deg, #e69b56, #04385f);
+}
+#saurav {
+  background: linear-gradient(135deg, #462b34, #be6f6e);
+}
+#riya {
+  background: linear-gradient(135deg, #25242b, #7e9cc3);
+}
+#divs {
+  background: linear-gradient(135deg, #2c4453, #95b7a1);
+}
+#khati {
+  background: linear-gradient(135deg, #392b29, #987964);
+}
+#rohan {
+  background: linear-gradient(135deg, #6c6c6c, #2c2c2c);
+}
+.card img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 400px;
+  transition: 0.5s;
+}
+
+.card:hover img {
+  left: 80%;
+  height: 500px;
+}
+
+.card .content {
+  position: relative;
+  padding: 20px 20px 20px 40px;
+  width: 50%;
+  left: 20%;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.card:hover .content {
+  left: 0%;
+  opacity: 1;
+  visibility: visible;
+}
+
+.card .content h2 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 2.5em;
+  line-height: 1em;
+}
+
+.card .content p {
+  color: #fff;
+  /* padding: 5px; */
+}
+
+.card .content a {
+  position: relative;
+  display: inline-block;
+  color: #111;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #fff;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+@media (max-width: 991px) {
+  .card {
+    position: relative;
+    width: auto;
+    max-width: 600px;
+    transition: 0.5s;
+    align-items: flex-start;
+  }
+  .card:hover {
+    height: 600px;
+  }
+  .card:hover img {
+    left: 50%;
+    height: 350px;
+  }
+  .card .content {
+    width: 100%;
+    left: 0;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 420px) {
+  .card .content {
+    padding: 30px;
+  }
+  .card:hover img {
+    height: 300px;
+  }
+}

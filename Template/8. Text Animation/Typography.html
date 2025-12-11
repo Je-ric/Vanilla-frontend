@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .webdev {
+            text-align: center;
+            position: relative;
+            font-size: 5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 80px;
+            cursor: pointer;
+            overflow: hidden; /* Added overflow to the parent div */
+        }
+
+        .text {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.6);
+            z-index: 2; /* Set a higher z-index for the text to appear above the hover text */
+        }
+
+        .hover-text {
+            position: absolute; /* Changed to absolute for precise positioning */
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: blue;
+            overflow: hidden;
+            white-space: nowrap; /* Prevent the text from wrapping */
+            border-right: 6px solid blue;
+            transition: width 0.5s ease-in-out, filter 0.5s ease-in-out; /* Combined transitions */
+            z-index: 1; /* Set a lower z-index to appear below the text */
+        }
+
+        .webdev:hover .hover-text {
+            width: 0; /* Modified width to create the sliding effect from right to left */
+            filter: drop-shadow(0 0 40px blue);
+        }
+
+
+        
+        
+    </style>
+</head>
+<body>
+    <div class="webdev">
+        <span class="text">&nbsp;webdev&nbsp;</span>
+        <span class="hover-text">&nbsp;webdev&nbsp;</span>
+    </div>
+
+    
+</body>
+</html>

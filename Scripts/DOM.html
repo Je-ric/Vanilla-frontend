@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Events Example</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 200px;
+            margin: 20px;
+            transition: background-color 0.3s;
+        }
+        .input-box {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .message {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #333;
+        }
+        .highlight {
+            color: green;
+        }
+        .highlightBlur {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM Events Example</h1>
+
+    <!-- Mouse Events -->
+    <div class="box" id="mouseBox" onmouseover="mouseOver()" onmouseout="mouseOut()">
+        Hover me
+    </div>
+
+    <!-- Keyboard Events -->
+    <input type="text" id="keyboardInput" class="input-box" 
+        onkeydown="keyDown()" onkeyup="keyUp()" onkeypress="keyPress()" placeholder="Type something">
+    
+    <!-- Form Events -->
+    <form id="myForm">
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" 
+            onfocus="focusInput()" onblur="blurInput()" oninput="inputChange()">
+        <button type="submit" onsubmit="submitForm(event)">Submit</button>
+    </form>
+
+    <div id="message" class="message"></div>
+
+    <script>
+        // Mouse Events
+        function mouseOver() {
+            document.getElementById("mouseBox").style.backgroundColor = "lightgreen";
+            document.getElementById("message").textContent = "Mouse is over the box!";
+        }
+
+        function mouseOut() {
+            document.getElementById("mouseBox").style.backgroundColor = "lightblue";
+            document.getElementById("message").textContent = "Mouse left the box!";
+        }
+
+        // Keyboard Events
+        function keyDown() {
+            console.log("Key down event triggered!");
+            document.getElementById("message").textContent = "Key is being pressed (keydown).";
+            document.getElementById("message").classList.remove('highlightBlur');
+            document.getElementById("message").classList.add('highlight');
+        }
+
+        function keyUp() {
+            console.log("Key up event triggered!");
+            document.getElementById("message").textContent = "Key has been released (keyup).";
+        }
+
+        function keyPress() {
+            console.log("Key press event triggered!");
+            document.getElementById("message").textContent = "Character key is being pressed (keypress).";
+        }
+
+        // Form Events
+        function focusInput() {
+            console.log("Input field focused!");
+            document.getElementById("message").textContent = "Input field focused!";
+            document.getElementById("message").classList.add('highlight');
+        }
+
+        function blurInput() {
+            console.log("Input field lost focus!");
+            document.getElementById("message").textContent = "Input field lost focus!";
+            document.getElementById("message").classList.remove('highlight');
+            document.getElementById("message").classList.add('highlightBlur');
+        }
+
+        function inputChange() {
+            const inputVal = document.getElementById("name").value;
+            console.log("Input value changed: " + inputVal);
+            document.getElementById("message").textContent = "Input value changed: " + inputVal;
+        }
+
+        function submitForm(event) {
+            event.preventDefault(); // Prevent form submission for demonstration
+            console.log("Form submitted!");
+            document.getElementById("message").textContent = "Form submitted!";
+        }
+    </script>
+</body>
+</html>

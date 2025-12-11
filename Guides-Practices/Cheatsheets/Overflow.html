@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overflow Examples</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        display: grid;
+        width: 200px;
+        height: 150px;
+        border: 1px solid #ccc;
+        margin: 20px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .visible {
+        overflow: visible;
+    }
+
+    .hidden {
+        overflow: hidden;
+    }
+
+    .scroll {
+        overflow: scroll;
+    }
+
+    .auto {
+        overflow: auto;
+    }
+
+    .clip {
+        overflow: clip;
+    }
+
+    .no-display {
+        overflow: no-display;
+    }
+
+    .overlay {
+        overflow: overlay;
+    }
+
+    .break-word {
+        overflow-wrap: break-word;
+    }
+
+    .container-horizontal {
+        width: 150px;
+        overflow-x: hidden; /* Horizontal overflow hidden */
+    }
+
+    .container-vertical {
+        height: 100px;
+        overflow-y: scroll; /* Vertical overflow with scrollbar */
+    }
+</style>
+</head>
+<body>
+    <div class="container visible">
+        <h2>Overflow: Visible</h2>
+        <p>This content is visible even if it overflows the container.</p>
+    </div>
+
+    <div class="container hidden">
+        <h2>Overflow: Hidden</h2>
+        <p>This content will be hidden if it overflows the container.</p>
+    </div>
+
+    <div class="container scroll">
+        <h2>Overflow: Scroll</h2>
+        <p>This content will have a scrollbar if it overflows the container.</p>
+    </div>
+
+    <div class="container auto">
+        <h2>Overflow: Auto</h2>
+        <p>This content will have a scrollbar only if it overflows the container.</p>
+    </div>
+
+    <div class="container clip">
+        <h2>Overflow: Clip</h2>
+        <p>This content will be clipped at the boundaries of the container.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    
+    <div class="container no-display">
+        <h2>Overflow: No Display</h2>
+        <p>This content will not be displayed if it overflows the container.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="container overlay">
+        <h2>Overflow: Overlay</h2>
+        <p>This content will have an overlay scrollbar.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="container break-word">
+        <h2>Overflow: Break Word</h2>
+        <p>This content will break long words to prevent overflow.</p>
+        <p>Supercalifragilisticexpialidocious</p>
+    </div>
+
+    <div class="container container-horizontal">
+        <h2>Horizontal Overflow Control</h2>
+        <p>This content will have horizontal overflow hidden.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+
+    <div class="container container-vertical">
+        <h2>Vertical Overflow Control</h2>
+        <p>This content will have vertical overflow with scrollbar.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+</body>
+</html>

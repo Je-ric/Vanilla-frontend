@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Converter using Tailwind</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <!-- https://www.exchangerate-api.com/ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-white to-[#a16574] flex items-center justify-center p-4">
+
+    <div class="w-[370px] bg-[#222] text-white p-8 rounded-md shadow-2xl">
+
+        <header class="text-3xl font-semibold text-center">
+            Currency Converter
+        </header>
+
+        <form class="mt-10 mb-5 space-y-6">
+
+            <!-- Amount -->
+            <div>
+                <p class="text-lg mb-1">Enter Amount</p>
+                <input type="text" value="1"
+                    class="w-full h-[50px] text-lg px-4 rounded-md bg-[#555] border border-gray-400 focus:border-indigo-500 focus:ring-0 outline-none">
+            </div>
+
+            <!-- Drop Lists -->
+            <div class="flex items-center justify-between">
+
+                <!-- From -->
+                <div class="from">
+                    <p class="text-lg mb-1">From</p>
+                    <div
+                        class="flex items-center bg-white text-black w-[115px] h-[45px] rounded-md border border-gray-400 px-2">
+                        <img src="https://flagcdn.com/48x36/us.png" class="w-[21px]" />
+                        <select class="ml-2 bg-transparent outline-none text-base w-full"></select>
+                    </div>
+                </div>
+
+                <!-- Icon -->
+                <div class="icon mt-8 text-2xl cursor-pointer">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+
+                <!-- To -->
+                <div class="to">
+                    <p class="text-lg mb-1">To</p>
+                    <div
+                        class="flex items-center bg-white text-black w-[115px] h-[45px] rounded-md border border-gray-400 px-2">
+                        <img src="https://flagcdn.com/48x36/in.png" class="w-[21px]" />
+                        <select class="ml-2 bg-transparent outline-none text-base w-full"></select>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Exchange Rate -->
+            <div class="exchange-rate text-lg mt-4">
+                Getting exchange rate...
+            </div>
+
+            <!-- Button -->
+            <button
+                class="w-full h-[52px] bg-[#444] hover:bg-[#333] text-white text-lg rounded-md transform active:scale-95 transition">
+                Get Exchange Rate
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+        /* ------------------ Country List ------------------ */
+        let country_list = {
+            AED: "AE", AFN: "AF", XCD: "AG", ALL: "AL", AMD: "AM", ANG: "AN",
+            AOA: "AO", AQD: "AQ", ARS: "AR", AUD: "AU", AZN: "AZ",
+            BAM: "BA", BBD: "BB", BDT: "BD", XOF: "BE", BGN: "BG", BHD: "BH",
+            BIF: "BI", BMD: "BM", BND: "BN", BOB: "BO", BRL: "BR", BSD: "BS",
+            NOK: "BV", BWP: "BW", BYR: "BY", BZD: "BZ", CAD: "CA", CDF: "CD",
+            XAF: "CF", CHF: "CH", CLP: "CL", CNY: "CN", COP: "CO", CRC: "CR",
+            CUP: "CU", CVE: "CV", CYP: "CY", CZK: "CZ", DJF: "DJ", DKK: "DK",
+            DOP: "DO", DZD: "DZ", ECS: "EC", EEK: "EE", EGP: "EG", ETB: "ET",
+            EUR: "FR", FJD: "FJ", FKP: "FK", GBP: "GB", GEL: "GE", GGP: "GG",
+            GHS: "GH", GIP: "GI", GMD: "GM", GNF: "GN", GTQ: "GT", GYD: "GY",
+            HKD: "HK", HNL: "HN", HRK: "HR", HTG: "HT", HUF: "HU", IDR: "ID",
+            ILS: "IL", INR: "IN", IQD: "IQ", IRR: "IR", ISK: "IS", JMD: "JM",
+            JOD: "JO", JPY: "JP", KES: "KE", KGS: "KG", KHR: "KH", KMF: "KM",
+            KPW: "KP", KRW: "KR", KWD: "KW", KYD: "KY", KZT: "KZ", LAK: "LA",
+            LBP: "LB", LKR: "LK", LRD: "LR", LSL: "LS", LTL: "LT", LVL: "LV",
+            LYD: "LY", MAD: "MA", MDL: "MD", MGA: "MG", MKD: "MK", MMK: "MM",
+            MNT: "MN", MOP: "MO", MRO: "MR", MTL: "MT", MUR: "MU", MVR: "MV",
+            MWK: "MW", MXN: "MX", MYR: "MY", MZN: "MZ", NAD: "NA", XPF: "NC",
+            NGN: "NG", NIO: "NI", NPR: "NP", NZD: "NZ", OMR: "OM", PAB: "PA",
+            PEN: "PE", PGK: "PG", PHP: "PH", PKR: "PK", PLN: "PL", PYG: "PY",
+            QAR: "QA", RON: "RO", RSD: "RS", RUB: "RU", RWF: "RW", SAR: "SA",
+            SBD: "SB", SCR: "SC", SDG: "SD", SEK: "SE", SGD: "SG", SKK: "SK",
+            SLL: "SL", SOS: "SO", SRD: "SR", STD: "ST", SVC: "SV", SYP: "SY",
+            SZL: "SZ", THB: "TH", TJS: "TJ", TMT: "TM", TND: "TN", TOP: "TO",
+            TRY: "TR", TTD: "TT", TWD: "TW", TZS: "TZ", UAH: "UA", UGX: "UG",
+            USD: "US", UYU: "UY", UZS: "UZ", VEF: "VE", VND: "VN", VUV: "VU",
+            YER: "YE", ZAR: "ZA", ZMK: "ZM", ZWD: "ZW"
+        };
+
+        let apiKey = "e759f92560e41c99ee6213a2";
+
+        const dropList = document.querySelectorAll("form select"),
+            fromCurrency = document.querySelector(".from select"),
+            toCurrency = document.querySelector(".to select"),
+            getButton = document.querySelector("form button");
+
+        /* ------------------ Populate Options ------------------ */
+        dropList.forEach((select, index) => {
+            for (let code in country_list) {
+                let selected =
+                    index === 0 && code === "USD" ? "selected" :
+                        index === 1 && code === "INR" ? "selected" : "";
+
+                let optionTag = `<option value="${code}" ${selected}>${code}</option>`;
+                select.insertAdjacentHTML("beforeend", optionTag);
+            }
+
+            select.addEventListener("change", (e) => loadFlag(e.target));
+        });
+
+        /* ------------------ Load Flag ------------------ */
+        function loadFlag(element) {
+            let code = element.value;
+            element.parentElement.querySelector("img").src =
+                `https://flagcdn.com/48x36/${country_list[code].toLowerCase()}.png`;
+        }
+
+        /* ------------------ Swap Button ------------------ */
+        document.querySelector(".icon").addEventListener("click", () => {
+            let temp = fromCurrency.value;
+            fromCurrency.value = toCurrency.value;
+            toCurrency.value = temp;
+            loadFlag(fromCurrency);
+            loadFlag(toCurrency);
+            getExchangeRate();
+        });
+
+        /* ------------------ Fetch Exchange Rate ------------------ */
+        function getExchangeRate() {
+            const amount = document.querySelector("form input");
+            const exchangeRateTxt = document.querySelector(".exchange-rate");
+
+            let amountVal = amount.value || 1;
+            amount.value = amountVal;
+
+            exchangeRateTxt.innerText = "Getting exchange rate...";
+
+            fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency.value}`)
+                .then(res => res.json())
+                .then(data => {
+                    let rate = data.conversion_rates[toCurrency.value];
+                    let total = (rate * amountVal).toFixed(2);
+                    exchangeRateTxt.innerText = `${amountVal} ${fromCurrency.value} = ${total} ${toCurrency.value}`;
+                })
+                .catch(() => {
+                    exchangeRateTxt.innerText = "Something went wrong";
+                });
+        }
+
+        window.addEventListener("load", getExchangeRate);
+        getButton.addEventListener("click", e => { e.preventDefault(); getExchangeRate(); });
+    </script>
+
+</body>
+
+</html>

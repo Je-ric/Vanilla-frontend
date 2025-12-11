@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .calculator form {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        output {
+            width: calc(100% - 20px);
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .calculator h1{
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Addition</h1>
+        <form oninput="result1.value = num1_1.valueAsNumber + num2_1.valueAsNumber">
+            <input type="number" id="num1_1" placeholder="Enter number 1" required>
+            <input type="number" id="num2_1" placeholder="Enter number 2" required>
+            <!-- <input type="submit" value="Add"> -->
+            <output id="result1">Result: </output>
+        </form>
+    </div>
+    <div class="calculator">
+        <h1>Subtraction</h1>
+        <form oninput="result2.value = num1_2.valueAsNumber - num2_2.valueAsNumber">
+            <input type="number" id="num1_2" placeholder="Enter number 1" required>
+            <input type="number" id="num2_2" placeholder="Enter number 2" required>
+            <!-- <input type="submit" value="Subtract"> -->
+            <output id="result2">Result: </output>
+        </form>
+    </div>
+    <div class="calculator">
+        <h1>Multiplication</h1>
+        <form oninput="result3.value = num1_3.valueAsNumber * num2_3.valueAsNumber">
+            <input type="number" id="num1_3" placeholder="Enter number 1" required>
+            <input type="number" id="num2_3" placeholder="Enter number 2" required>
+            <!-- <input type="submit" value="Multiply"> -->
+            <output id="result3">Result: </output>
+        </form>
+    </div>
+    <div class="calculator">
+        <h1>Division</h1>
+        <form oninput="result4.value = num1_4.valueAsNumber / num2_4.valueAsNumber">
+            <input type="number" id="num1_4" placeholder="Enter number 1" required>
+            <input type="number" id="num2_4" placeholder="Enter number 2" required>
+            <!-- <input type="submit" value="Divide"> -->
+            <output id="result4">Result: </output>
+        </form>
+    </div>
+</body>
+</html>

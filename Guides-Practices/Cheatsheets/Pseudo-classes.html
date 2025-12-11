@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald&display=swap">
+<title>Form Styling with Pseudo-classes</title>
+<style>
+    *{
+        font-family: 'Oswald';
+    }
+
+  body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #c6c7c9;
+  }
+
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+  }
+
+  /* 1 */
+  form:has(input:focus) {
+    border: 2px solid rgb(0, 4, 255);
+  }
+
+  form {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  input:invalid {
+    border-color: red; 
+  }
+
+/* 2 */
+  .random-container{
+    display: flex;
+    justify-content:center;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .random-item,
+  .random{
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    background-color: lightsalmon;
+    transition: scale 300ms;
+    cursor: pointer;
+  }
+
+  .random-item:hover{
+    scale: 1.2;
+  }
+
+  .random-item:hover ~ .random-item{
+    scale: 0.5;
+  }
+
+  .random-item:has(~.random-item:hover){
+    scale: 0,5;
+  }
+/* 3 */
+  .random-container .random:hover{
+    scale: 1.2;
+  }
+
+  .random-container .random.random:has(~.random:hover),
+  .random-container .random:hover ~ .random{
+    scale: 0.5;
+  }
+</style>
+</head>
+<body>
+    <!-- 1 -->
+<div class="container">
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required pattern="[A-Za-z0-9]+" title="Username must not contain special characters.">
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+</div>
+
+<!-- 2 -->
+<div class="container">
+    <div class="random-container">
+        <div class="random-item"></div>
+        <div class="random-item"></div>
+        <div class="random-item"></div>
+    </div>
+</div>
+
+<!-- 3 -->
+<div class="container">
+    <div class="random-container">
+        <div class="random"></div>
+        <div class="random"></div>
+        <div class="random"></div>
+    </div>
+</div>
+
+
+<!-- 4 -->
+<style>
+    summary::marker{
+        content: " 🌟 ";
+    }
+
+    .content{
+        font-size: 0.8rem;
+    }
+
+    details[open] summary{
+        padding: 20px;
+        background-color: aqua;
+    }
+
+    .accordion-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .accordion{
+        margin-bottom: 20px;
+    }
+</style>
+<div class="accordion-container">
+    <div class="accordion">
+        <details class="details">
+            <summary>Anong sabe?</summary>
+            <div class="content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Nesciunt doloribus excepturi rerum velit veniam nam doloremque dolor possimus nulla architecto 
+                    a perspiciatis iusto tenetur delectus nostrum ipsam, saepe sint voluptatum.</p>
+            </div>
+        </details>
+    </div>
+    
+        <div class="accordion">
+        <details>
+            <summary>Ano paaaa?</summary>
+            <div class="content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nesciunt doloribus excepturi rerum velit veniam nam doloremque dolor possimus nulla architecto 
+                    a perspiciatis iusto tenetur delectus nostrum ipsam, saepe sint voluptatum.</p>
+            </div>
+        </details>
+    </div>
+</div>
+
+<!-- 5 -->
+<style>
+    h1::selection{
+        background-color: lightsalmon;
+        color: red
+    }
+</style>
+
+<div class="container">
+    <h1>Try lang</h1>
+</div>
+
+
+<!-- 6 -->
+<style>
+    .span-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.0;
+    }
+
+    h1 span,
+    h2 span{
+        -webkit-text-stroke: 1px white;
+        color: transparent;
+        font-weight: bold;
+        font-size: 4rem;
+    }
+
+    h1 span:hover{
+        color: black;
+    }
+
+    h2 span:has(~span:hover){
+        color: blue;
+    }
+</style>
+<div class="span-container">   
+        <h1>
+            <span>S</span>
+            <span>I</span>
+            <span>N</span>
+            <span>G</span>
+            <span>L</span>
+            <span>E</span>
+        </h1>
+
+        <h2>
+            <span>M</span>
+            <span>U</span>
+            <span>L</span>
+            <span>T</span>
+            <span>I</span>
+            <span>P</span>
+            <span>L</span>
+            <span>E</span>
+        </h2>
+</div>
+
+
+</body>
+</html>

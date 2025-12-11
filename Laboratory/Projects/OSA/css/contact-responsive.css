@@ -1,0 +1,62 @@
+
+@media only screen and (max-width: 767px) {
+  .container {
+    margin-top: 45%;
+    margin-bottom: 45%;
+  }
+  
+  .contact {
+    margin-top: 40px;
+    font-size: 30px;
+    border-top: 2px solid #ffd700;
+    margin-left: 5%;
+    width: 90%;
+    text-align: center;
+  }
+
+  .top-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+
+  .contact-form {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .fullname,
+  .id-email {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="password"],
+  .form-group select,
+  .form-group textarea {
+    width: calc(100% - 16px);
+    border-radius: 15px;
+  }
+
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .contact {
+    font-size: 40px;
+    width: 70%;
+    margin-left: 15%;
+  }
+
+  .contact-form {
+    width: 80%;
+  }
+
+  .fullname,
+  .id-email {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+}

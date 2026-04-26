@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lorem Ipsum & Dummy Data Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start p-6 gap-6">
+
+  <div class="text-center">
+    <h1 class="text-3xl font-bold text-blue-600">Dummy Data Generator</h1>
+    <p class="text-gray-500 mt-1">Generate Lorem Ipsum text and fake data for prototyping</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex flex-wrap justify-center gap-2">
+    <button onclick="switchTab('lorem')"  id="tab-lorem"  class="tab-btn bg-blue-500 text-white px-4 py-2 rounded-full font-semibold text-sm">Lorem Ipsum</button>
+    <button onclick="switchTab('names')"  id="tab-names"  class="tab-btn bg-white text-gray-700 border px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-100">Names</button>
+    <button onclick="switchTab('emails')" id="tab-emails" class="tab-btn bg-white text-gray-700 border px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-100">Emails</button>
+    <button onclick="switchTab('phones')" id="tab-phones" class="tab-btn bg-white text-gray-700 border px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-100">Phone Numbers</button>
+    <button onclick="switchTab('dates')"  id="tab-dates"  class="tab-btn bg-white text-gray-700 border px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-100">Dates</button>
+    <button onclick="switchTab('colors')" id="tab-colors" class="tab-btn bg-white text-gray-700 border px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-100">Colors</button>
+  </div>
+
+  <!-- Options Card -->
+  <div class="w-full max-w-2xl bg-white rounded-xl shadow-md p-5 flex flex-col gap-4">
+
+    <!-- Lorem options -->
+    <div id="opts-lorem" class="flex flex-col gap-3">
+      <div class="grid grid-cols-2 gap-3">
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-600">Type</label>
+          <select id="loremType" class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm">
+            <option value="paragraphs">Paragraphs</option>
+            <option value="sentences">Sentences</option>
+            <option value="words">Words</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-sm font-medium text-gray-600">Count</label>
+          <input type="number" id="loremCount" value="3" min="1" max="20"
+            class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Other options (count only) -->
+    <div id="opts-other" class="hidden flex-col gap-3">
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-600">How many to generate</label>
+        <input type="number" id="otherCount" value="5" min="1" max="50"
+          class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm" />
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <button onclick="generate()" class="flex-1 bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition-colors">Generate</button>
+      <button onclick="copyOutput()" class="flex-1 bg-green-500 text-white font-semibold py-2 rounded hover:bg-green-600 transition-colors">Copy</button>
+      <button onclick="clearOutput()" class="flex-1 bg-gray-300 text-gray-800 font-semibold py-2 rounded hover:bg-gray-400 transition-colors">Clear</button>
+    </div>
+
+  </div>
+
+  <!-- Output Card -->
+  <div class="w-full max-w-2xl bg-white rounded-xl shadow-md p-5 flex flex-col gap-3">
+    <h2 class="text-lg font-bold text-gray-700">Output</h2>
+    <textarea id="output" readonly placeholder="Generated content will appear here..."
+      class="w-full h-64 p-3 border border-gray-300 rounded resize-none focus:outline-none text-sm text-gray-700 bg-gray-50 font-mono"></textarea>
+    <p id="copyMsg" class="hidden text-green-600 text-sm font-medium text-center">Copied to clipboard!</p>
+  </div>
+
+  <script>
+    var currentTab = "lorem";
+
+    // ── Word banks ────────────────────────────────────────────────────────────
+    var loremWords = [
+      "lorem","ipsum","dolor","sit","amet","consectetur","adipiscing","elit",
+      "sed","do","eiusmod","tempor","incididunt","ut","labore","et","dolore",
+      "magna","aliqua","enim","ad","minim","veniam","quis","nostrud","exercitation",
+      "ullamco","laboris","nisi","aliquip","ex","ea","commodo","consequat","duis",
+      "aute","irure","in","reprehenderit","voluptate","velit","esse","cillum",
+      "fugiat","nulla","pariatur","excepteur","sint","occaecat","cupidatat","non",
+      "proident","sunt","culpa","qui","officia","deserunt","mollit","anim","id","est"
+    ];
+
+    var firstNames = ["James","Maria","John","Patricia","Robert","Jennifer","Michael","Linda","William","Barbara",
+      "David","Susan","Richard","Jessica","Joseph","Sarah","Thomas","Karen","Charles","Lisa",
+      "Ana","Carlos","Sofia","Miguel","Isabella","Lucas","Valentina","Diego","Camila","Andres"];
+
+    var lastNames = ["Smith","Johnson","Williams","Brown","Jones","Garcia","Miller","Davis","Wilson","Taylor",
+      "Anderson","Thomas","Jackson","White","Harris","Martin","Thompson","Young","Lee","Walker",
+      "Santos","Reyes","Cruz","Flores","Rivera","Gomez","Torres","Ramirez","Diaz","Morales"];
+
+    var domains = ["gmail.com","yahoo.com","outlook.com","hotmail.com","mail.com","proton.me","icloud.com"];
+
+    // ── Tab switch ────────────────────────────────────────────────────────────
+    function switchTab(tab) {
+      currentTab = tab;
+      var btns = document.querySelectorAll(".tab-btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].className = "tab-btn bg-white text-gray-700 border px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-100";
+      }
+      document.getElementById("tab-" + tab).className = "tab-btn bg-blue-500 text-white px-4 py-2 rounded-full font-semibold text-sm";
+
+      if (tab === "lorem") {
+        document.getElementById("opts-lorem").classList.remove("hidden");
+        document.getElementById("opts-lorem").classList.add("flex");
+        document.getElementById("opts-other").classList.add("hidden");
+        document.getElementById("opts-other").classList.remove("flex");
+      } else {
+        document.getElementById("opts-lorem").classList.add("hidden");
+        document.getElementById("opts-lorem").classList.remove("flex");
+        document.getElementById("opts-other").classList.remove("hidden");
+        document.getElementById("opts-other").classList.add("flex");
+      }
+    }
+
+    // ── Random helpers ────────────────────────────────────────────────────────
+    function randInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function randItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    // ── Generators ────────────────────────────────────────────────────────────
+    function generateWords(count) {
+      var result = [];
+      for (var i = 0; i < count; i++) {
+        result.push(randItem(loremWords));
+      }
+      return result.join(" ");
+    }
+
+    function generateSentence() {
+      var wordCount = randInt(8, 18);
+      var words = [];
+      for (var i = 0; i < wordCount; i++) {
+        words.push(randItem(loremWords));
+      }
+      var sentence = words.join(" ");
+      return sentence.charAt(0).toUpperCase() + sentence.slice(1) + ".";
+    }
+
+    function generateParagraph() {
+      var sentenceCount = randInt(4, 7);
+      var sentences = [];
+      for (var i = 0; i < sentenceCount; i++) {
+        sentences.push(generateSentence());
+      }
+      return sentences.join(" ");
+    }
+
+    function generateName() {
+      return randItem(firstNames) + " " + randItem(lastNames);
+    }
+
+    function generateEmail() {
+      var first = randItem(firstNames).toLowerCase();
+      var last  = randItem(lastNames).toLowerCase();
+      var sep;
+      var r = randInt(0, 2);
+      if (r === 0) { sep = "."; }
+      else if (r === 1) { sep = "_"; }
+      else { sep = ""; }
+      var num = randInt(0, 99);
+      var useNum = randInt(0, 1);
+      if (useNum === 1) {
+        return first + sep + last + num + "@" + randItem(domains);
+      } else {
+        return first + sep + last + "@" + randItem(domains);
+      }
+    }
+
+    function generatePhone() {
+      var formats = ["+1", "+63", "+44", "+61", "+81"];
+      var prefix = randItem(formats);
+      var number = "";
+      for (var i = 0; i < 10; i++) {
+        number += randInt(0, 9);
+        if (i === 2 || i === 5) { number += "-"; }
+      }
+      return prefix + " " + number;
+    }
+
+    function generateDate() {
+      var year  = randInt(1970, 2025);
+      var month = randInt(1, 12);
+      var day;
+
+      if (month === 2) {
+        if (year % 4 === 0) {
+          day = randInt(1, 29);
+        } else {
+          day = randInt(1, 28);
+        }
+      } else if (month === 4 || month === 6 || month === 9 || month === 11) {
+        day = randInt(1, 30);
+      } else {
+        day = randInt(1, 31);
+      }
+
+      var mm = month < 10 ? "0" + month : "" + month;
+      var dd = day   < 10 ? "0" + day   : "" + day;
+      return year + "-" + mm + "-" + dd;
+    }
+
+    function generateColor() {
+      var r = randInt(0, 255);
+      var g = randInt(0, 255);
+      var b = randInt(0, 255);
+      var rh = r.toString(16).length === 1 ? "0" + r.toString(16) : r.toString(16);
+      var gh = g.toString(16).length === 1 ? "0" + g.toString(16) : g.toString(16);
+      var bh = b.toString(16).length === 1 ? "0" + b.toString(16) : b.toString(16);
+      return "#" + rh + gh + bh + "  rgb(" + r + ", " + g + ", " + b + ")";
+    }
+
+    // ── Main generate ─────────────────────────────────────────────────────────
+    function generate() {
+      var output = document.getElementById("output");
+      var result = "";
+
+      if (currentTab === "lorem") {
+        var type  = document.getElementById("loremType").value;
+        var count = parseInt(document.getElementById("loremCount").value);
+        if (isNaN(count) || count < 1) { count = 1; }
+
+        if (type === "words") {
+          result = generateWords(count);
+        } else if (type === "sentences") {
+          var sentences = [];
+          for (var i = 0; i < count; i++) {
+            sentences.push(generateSentence());
+          }
+          result = sentences.join(" ");
+        } else {
+          var paragraphs = [];
+          for (var i = 0; i < count; i++) {
+            paragraphs.push(generateParagraph());
+          }
+          result = paragraphs.join("\n\n");
+        }
+
+      } else {
+        var count = parseInt(document.getElementById("otherCount").value);
+        if (isNaN(count) || count < 1) { count = 1; }
+        var lines = [];
+
+        for (var i = 0; i < count; i++) {
+          if (currentTab === "names") {
+            lines.push(generateName());
+          } else if (currentTab === "emails") {
+            lines.push(generateEmail());
+          } else if (currentTab === "phones") {
+            lines.push(generatePhone());
+          } else if (currentTab === "dates") {
+            lines.push(generateDate());
+          } else if (currentTab === "colors") {
+            lines.push(generateColor());
+          }
+        }
+        result = lines.join("\n");
+      }
+
+      output.value = result;
+    }
+
+    function copyOutput() {
+      var output = document.getElementById("output");
+      var msg    = document.getElementById("copyMsg");
+      if (output.value === "") { return; }
+      output.select();
+      document.execCommand("copy");
+      msg.classList.remove("hidden");
+      setTimeout(function() { msg.classList.add("hidden"); }, 2000);
+    }
+
+    function clearOutput() {
+      document.getElementById("output").value = "";
+    }
+  </script>
+
+</body>
+</html>

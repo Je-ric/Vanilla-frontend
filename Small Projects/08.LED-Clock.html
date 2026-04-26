@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LED Clock</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .led-on  { background-color: #facc15; box-shadow: 0 0 10px 3px #facc15; }
+    .led-off { background-color: #374151; }
+    .led     { transition: background-color 0.2s, box-shadow 0.2s; }
+  </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-6 gap-8">
+
+  <div class="text-center">
+    <h1 class="text-3xl font-bold text-yellow-500">LED Binary Clock</h1>
+    <p class="text-gray-500 mt-1">Each column of LEDs represents a digit in binary</p>
+  </div>
+
+  <!-- Clock display -->
+  <div class="bg-gray-800 rounded-2xl shadow-2xl p-8 flex flex-col items-center gap-6">
+
+    <!-- Bit weight labels -->
+    <div class="flex items-center gap-3">
+      <div class="w-8"></div><!-- spacer for label column -->
+      <div class="flex gap-2">
+        <div class="w-10 text-center text-gray-400 text-xs font-bold">H1</div>
+        <div class="w-10 text-center text-gray-400 text-xs font-bold">H2</div>
+      </div>
+      <div class="w-6 text-center text-gray-500 text-lg font-bold">:</div>
+      <div class="flex gap-2">
+        <div class="w-10 text-center text-gray-400 text-xs font-bold">M1</div>
+        <div class="w-10 text-center text-gray-400 text-xs font-bold">M2</div>
+      </div>
+      <div class="w-6 text-center text-gray-500 text-lg font-bold">:</div>
+      <div class="flex gap-2">
+        <div class="w-10 text-center text-gray-400 text-xs font-bold">S1</div>
+        <div class="w-10 text-center text-gray-400 text-xs font-bold">S2</div>
+      </div>
+    </div>
+
+    <!-- LED rows (bit 8, 4, 2, 1) -->
+    <div id="ledGrid" class="flex flex-col gap-3"></div>
+
+    <!-- Digit labels -->
+    <div class="flex items-center gap-3">
+      <div class="w-8 text-right text-gray-500 text-xs"></div>
+      <div class="flex gap-2">
+        <div class="w-10 text-center text-yellow-400 text-xl font-bold" id="dH1">0</div>
+        <div class="w-10 text-center text-yellow-400 text-xl font-bold" id="dH2">0</div>
+      </div>
+      <div class="w-6 text-center text-yellow-400 text-xl font-bold">:</div>
+      <div class="flex gap-2">
+        <div class="w-10 text-center text-yellow-400 text-xl font-bold" id="dM1">0</div>
+        <div class="w-10 text-center text-yellow-400 text-xl font-bold" id="dM2">0</div>
+      </div>
+      <div class="w-6 text-center text-yellow-400 text-xl font-bold">:</div>
+      <div class="flex gap-2">
+        <div class="w-10 text-center text-yellow-400 text-xl font-bold" id="dS1">0</div>
+        <div class="w-10 text-center text-yellow-400 text-xl font-bold" id="dS2">0</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Legend -->
+  <div class="w-full max-w-lg bg-white rounded-xl shadow-md p-5">
+    <h2 class="text-lg font-bold text-gray-700 mb-3">How to Read</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600">
+      <div class="bg-gray-50 rounded p-3">
+        <p class="font-semibold text-gray-800 mb-1">Columns</p>
+        <p>H1 H2 = Hour tens &amp; ones</p>
+        <p>M1 M2 = Minute tens &amp; ones</p>
+        <p>S1 S2 = Second tens &amp; ones</p>
+      </div>
+      <div class="bg-gray-50 rounded p-3">
+        <p class="font-semibold text-gray-800 mb-1">Rows (top → bottom)</p>
+        <p>Row 1 = bit value <span class="font-bold">8</span></p>
+        <p>Row 2 = bit value <span class="font-bold">4</span></p>
+        <p>Row 3 = bit value <span class="font-bold">2</span></p>
+        <p>Row 4 = bit value <span class="font-bold">1</span></p>
+      </div>
+      <div class="bg-gray-50 rounded p-3 sm:col-span-2">
+        <p class="font-semibold text-gray-800 mb-1">Example: 10:20:35</p>
+        <p>H1=1 (0001), H2=0 (0000) → 10</p>
+        <p>M1=2 (0010), M2=0 (0000) → 20</p>
+        <p>S1=3 (0011), S2=5 (0101) → 35</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Bit weights for 4 rows
+    var bitWeights = [8, 4, 2, 1];
+
+    // Column IDs in order: H1, H2, M1, M2, S1, S2
+    var colIds = ["H1", "H2", "M1", "M2", "S1", "S2"];
+
+    // Build the LED grid
+    var ledGrid = document.getElementById("ledGrid");
+
+    for (var row = 0; row < 4; row++) {
+      var rowDiv = document.createElement("div");
+      rowDiv.className = "flex items-center gap-3";
+
+      // Bit weight label
+      var label = document.createElement("div");
+      label.className = "w-8 text-right text-gray-500 text-xs font-bold";
+      label.textContent = bitWeights[row];
+      rowDiv.appendChild(label);
+
+      // Hour group
+      var hourGroup = document.createElement("div");
+      hourGroup.className = "flex gap-2";
+      for (var col = 0; col < 2; col++) {
+        var led = document.createElement("div");
+        led.className = "led led-off w-10 h-10 rounded-full";
+        led.id = "led-" + colIds[col] + "-" + row;
+        hourGroup.appendChild(led);
+      }
+      rowDiv.appendChild(hourGroup);
+
+      // Colon separator
+      var sep1 = document.createElement("div");
+      sep1.className = "w-6 text-center text-gray-600 text-lg font-bold";
+      sep1.textContent = "";
+      rowDiv.appendChild(sep1);
+
+      // Minute group
+      var minGroup = document.createElement("div");
+      minGroup.className = "flex gap-2";
+      for (var col = 2; col < 4; col++) {
+        var led = document.createElement("div");
+        led.className = "led led-off w-10 h-10 rounded-full";
+        led.id = "led-" + colIds[col] + "-" + row;
+        minGroup.appendChild(led);
+      }
+      rowDiv.appendChild(minGroup);
+
+      // Colon separator
+      var sep2 = document.createElement("div");
+      sep2.className = "w-6 text-center text-gray-600 text-lg font-bold";
+      sep2.textContent = "";
+      rowDiv.appendChild(sep2);
+
+      // Second group
+      var secGroup = document.createElement("div");
+      secGroup.className = "flex gap-2";
+      for (var col = 4; col < 6; col++) {
+        var led = document.createElement("div");
+        led.className = "led led-off w-10 h-10 rounded-full";
+        led.id = "led-" + colIds[col] + "-" + row;
+        secGroup.appendChild(led);
+      }
+      rowDiv.appendChild(secGroup);
+
+      ledGrid.appendChild(rowDiv);
+    }
+
+    // ── Update clock ──────────────────────────────────────────────────────────
+    function updateClock() {
+      var now  = new Date();
+      var h    = now.getHours();
+      var m    = now.getMinutes();
+      var s    = now.getSeconds();
+
+      // Split each into tens and ones digit
+      var h1 = Math.floor(h / 10);
+      var h2 = h % 10;
+      var m1 = Math.floor(m / 10);
+      var m2 = m % 10;
+      var s1 = Math.floor(s / 10);
+      var s2 = s % 10;
+
+      var digits = [h1, h2, m1, m2, s1, s2];
+
+      // Update digit labels
+      document.getElementById("dH1").textContent = h1;
+      document.getElementById("dH2").textContent = h2;
+      document.getElementById("dM1").textContent = m1;
+      document.getElementById("dM2").textContent = m2;
+      document.getElementById("dS1").textContent = s1;
+      document.getElementById("dS2").textContent = s2;
+
+      // Update LEDs using if/else for each bit
+      for (var col = 0; col < 6; col++) {
+        var digit = digits[col];
+
+        for (var row = 0; row < 4; row++) {
+          var led = document.getElementById("led-" + colIds[col] + "-" + row);
+          var bitVal = bitWeights[row];
+
+          // Check if this bit is set in the digit
+          if (digit >= bitVal) {
+            digit = digit - bitVal;
+            led.className = "led led-on w-10 h-10 rounded-full";
+          } else {
+            led.className = "led led-off w-10 h-10 rounded-full";
+          }
+        }
+      }
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+
+</body>
+</html>

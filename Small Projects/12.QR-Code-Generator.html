@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Code Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start p-6 gap-6">
+
+  <div class="text-center">
+    <h1 class="text-3xl font-bold text-blue-600">QR Code Generator</h1>
+    <p class="text-gray-500 mt-1">Generate a QR code for any text, URL, or data</p>
+  </div>
+
+  <!-- Input Card -->
+  <div class="w-full max-w-xl bg-white rounded-xl shadow-md p-6 flex flex-col gap-4">
+
+    <div class="flex flex-col gap-1">
+      <label class="font-medium text-gray-700">Text or URL</label>
+      <textarea id="qrInput" placeholder="Enter text, URL, email, phone..."
+        class="w-full h-28 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"></textarea>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-600">Size</label>
+        <select id="qrSize" class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm">
+          <option value="128">Small (128px)</option>
+          <option value="200" selected>Medium (200px)</option>
+          <option value="300">Large (300px)</option>
+          <option value="400">XL (400px)</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-600">Error Correction</label>
+        <select id="qrLevel" class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm">
+          <option value="L">L — Low (7%)</option>
+          <option value="M" selected>M — Medium (15%)</option>
+          <option value="Q">Q — Quartile (25%)</option>
+          <option value="H">H — High (30%)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3">
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-600">Dark Color</label>
+        <input type="color" id="darkColor" value="#000000"
+          class="w-full h-10 border border-gray-300 rounded cursor-pointer" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-600">Light Color</label>
+        <input type="color" id="lightColor" value="#ffffff"
+          class="w-full h-10 border border-gray-300 rounded cursor-pointer" />
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <button onclick="generateQR()" class="flex-1 bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition-colors">Generate</button>
+      <button onclick="downloadQR()" id="downloadBtn" class="flex-1 bg-green-500 text-white font-semibold py-2 rounded hover:bg-green-600 transition-colors hidden">Download</button>
+      <button onclick="clearQR()" class="flex-1 bg-gray-300 text-gray-800 font-semibold py-2 rounded hover:bg-gray-400 transition-colors">Clear</button>
+    </div>
+
+    <div id="errorBox" class="hidden bg-red-50 border border-red-200 rounded-lg p-3 text-center text-red-600 font-medium text-sm"></div>
+
+  </div>
+
+  <!-- QR Output Card -->
+  <div class="w-full max-w-xl bg-white rounded-xl shadow-md p-6 flex flex-col items-center gap-4">
+    <h2 class="text-lg font-bold text-gray-700 self-start">QR Code</h2>
+    <div id="qrPlaceholder" class="flex flex-col items-center justify-center w-48 h-48 border-2 border-dashed border-gray-300 rounded-xl text-gray-400 text-sm text-center p-4">
+      Your QR code will appear here
+    </div>
+    <div id="qrOutput" class="hidden flex-col items-center gap-3">
+      <div id="qrCanvas"></div>
+      <p id="qrCharCount" class="text-xs text-gray-400"></p>
+    </div>
+  </div>
+
+  <!-- Presets Card -->
+  <div class="w-full max-w-xl bg-white rounded-xl shadow-md p-5 flex flex-col gap-3">
+    <h2 class="text-lg font-bold text-gray-700">Quick Presets</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+      <button onclick="setPreset('url')"   class="bg-gray-50 border rounded-lg p-3 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-300 transition text-left">
+        <div class="font-semibold">🌐 URL</div>
+        <div class="text-xs text-gray-400">https://example.com</div>
+      </button>
+      <button onclick="setPreset('email')" class="bg-gray-50 border rounded-lg p-3 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-300 transition text-left">
+        <div class="font-semibold">📧 Email</div>
+        <div class="text-xs text-gray-400">mailto:you@email.com</div>
+      </button>
+      <button onclick="setPreset('phone')" class="bg-gray-50 border rounded-lg p-3 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-300 transition text-left">
+        <div class="font-semibold">📞 Phone</div>
+        <div class="text-xs text-gray-400">tel:+1234567890</div>
+      </button>
+      <button onclick="setPreset('sms')"   class="bg-gray-50 border rounded-lg p-3 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-300 transition text-left">
+        <div class="font-semibold">💬 SMS</div>
+        <div class="text-xs text-gray-400">sms:+1234567890</div>
+      </button>
+      <button onclick="setPreset('wifi')"  class="bg-gray-50 border rounded-lg p-3 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-300 transition text-left">
+        <div class="font-semibold">📶 WiFi</div>
+        <div class="text-xs text-gray-400">WIFI:S:Name;T:WPA;P:pass;;</div>
+      </button>
+      <button onclick="setPreset('text')"  class="bg-gray-50 border rounded-lg p-3 text-sm text-gray-700 hover:bg-blue-50 hover:border-blue-300 transition text-left">
+        <div class="font-semibold">📝 Plain Text</div>
+        <div class="text-xs text-gray-400">Hello, World!</div>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    var qrInstance = null;
+
+    var presets = {
+      url:   "https://example.com",
+      email: "mailto:you@email.com",
+      phone: "tel:+1234567890",
+      sms:   "sms:+1234567890?body=Hello",
+      wifi:  "WIFI:S:MyNetwork;T:WPA;P:mypassword;;",
+      text:  "Hello, World!"
+    };
+
+    function setPreset(type) {
+      document.getElementById("qrInput").value = presets[type];
+    }
+
+    function generateQR() {
+      var input     = document.getElementById("qrInput").value.trim();
+      var size      = parseInt(document.getElementById("qrSize").value);
+      var level     = document.getElementById("qrLevel").value;
+      var darkColor = document.getElementById("darkColor").value;
+      var lightColor = document.getElementById("lightColor").value;
+      var errorBox  = document.getElementById("errorBox");
+
+      errorBox.classList.add("hidden");
+
+      if (input === "") {
+        errorBox.textContent = "Please enter some text or a URL.";
+        errorBox.classList.remove("hidden");
+        return;
+      }
+
+      // Clear previous QR
+      var canvas = document.getElementById("qrCanvas");
+      canvas.innerHTML = "";
+
+      if (qrInstance !== null) {
+        qrInstance.clear();
+        qrInstance = null;
+      }
+
+      // Determine error correction level
+      var correctionLevel;
+      if (level === "L") {
+        correctionLevel = QRCode.CorrectLevel.L;
+      } else if (level === "M") {
+        correctionLevel = QRCode.CorrectLevel.M;
+      } else if (level === "Q") {
+        correctionLevel = QRCode.CorrectLevel.Q;
+      } else {
+        correctionLevel = QRCode.CorrectLevel.H;
+      }
+
+      qrInstance = new QRCode(canvas, {
+        text:          input,
+        width:         size,
+        height:        size,
+        colorDark:     darkColor,
+        colorLight:    lightColor,
+        correctLevel:  correctionLevel
+      });
+
+      document.getElementById("qrPlaceholder").classList.add("hidden");
+      var outputDiv = document.getElementById("qrOutput");
+      outputDiv.classList.remove("hidden");
+      outputDiv.classList.add("flex");
+
+      document.getElementById("qrCharCount").textContent = input.length + " characters";
+      document.getElementById("downloadBtn").classList.remove("hidden");
+    }
+
+    function downloadQR() {
+      var canvas = document.getElementById("qrCanvas").querySelector("canvas");
+      if (!canvas) {
+        var img = document.getElementById("qrCanvas").querySelector("img");
+        if (!img) { return; }
+        var link = document.createElement("a");
+        link.href = img.src;
+        link.download = "qrcode.png";
+        link.click();
+        return;
+      }
+      var link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "qrcode.png";
+      link.click();
+    }
+
+    function clearQR() {
+      document.getElementById("qrInput").value = "";
+      document.getElementById("qrCanvas").innerHTML = "";
+      document.getElementById("errorBox").classList.add("hidden");
+      document.getElementById("qrPlaceholder").classList.remove("hidden");
+      document.getElementById("qrOutput").classList.add("hidden");
+      document.getElementById("qrOutput").classList.remove("flex");
+      document.getElementById("downloadBtn").classList.add("hidden");
+      if (qrInstance !== null) { qrInstance.clear(); qrInstance = null; }
+    }
+
+    document.getElementById("qrInput").addEventListener("keydown", function(e) {
+      if (e.ctrlKey && e.key === "Enter") { generateQR(); }
+    });
+  </script>
+
+</body>
+</html>

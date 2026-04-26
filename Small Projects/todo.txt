@@ -1,0 +1,7 @@
+Binary ↔ Decimal ↔ Hex Converter
+Logic Gate Simulator (AND, OR, NOT with UI toggles)
+Lorem Ipsum / Dummy Data Generator
+QR Code Generator
+Age Calculator (with exact days)
+JSON → Table / CSV Converter
+(do this html)

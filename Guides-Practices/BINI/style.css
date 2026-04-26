@@ -57,9 +57,14 @@ body {
   background: linear-gradient(135deg, #FF4081 0%, #C39BD3 100%);
 }
 
+/* .bini-middle {
+  background: linear-gradient(135deg, #43CEA2 0%, #185A9D  100%);
+} */
+
 .bini-bottom {
   background: linear-gradient(135deg, #A7C7E7 0%, #FFEB3B 100%);
 }
+
 
 .section h1 {
   font-size: 200px;
